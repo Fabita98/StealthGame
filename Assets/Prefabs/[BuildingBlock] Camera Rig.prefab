@@ -8528,8 +8528,8 @@ GameObject:
   - component: {fileID: 2001952761430122998}
   - component: {fileID: 3233920571435835916}
   - component: {fileID: 8482786942460612247}
-  - component: {fileID: 8063284275506530081}
-  - component: {fileID: 7371120069883251598}
+  - component: {fileID: 7755837729170806274}
+  - component: {fileID: 9135238286081816760}
   m_Layer: 0
   m_Name: '[BuildingBlock] Camera Rig'
   m_TagString: Untagged
@@ -8566,7 +8566,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockId: e47682b9-c270-40b1-b16d-90b627a5ce1b
-  instanceId: c04123de-d3a2-4528-97c1-f21abbaec08a
+  instanceId: 8747cd7a-bd08-4c74-8dec-ef55922b3095
   version: 1
 --- !u!114 &2114863592372001144
 MonoBehaviour:
@@ -8729,7 +8729,7 @@ MonoBehaviour:
   EnableLinearMovement: 1
   EnableRotation: 1
   RotationEitherThumbstick: 0
---- !u!114 &8063284275506530081
+--- !u!114 &7755837729170806274
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8738,7 +8738,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7556456323398885302}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b559882761557a4f9f456a622fe893d, type: 3}
+  m_Script: {fileID: 11500000, guid: a593eb286f163bb44b50daec5835f41a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Acceleration: 0.1
@@ -8757,7 +8757,10 @@ MonoBehaviour:
   EnableLinearMovement: 1
   EnableRotation: 1
   RotationEitherThumbstick: 0
---- !u!114 &7371120069883251598
+  headPoseRelativeOffsetTranslation: {x: 0, y: -1, z: 0}
+  headObjectTransform: {fileID: 1905127967566892977}
+  crouchHeightDifference: 0.5
+--- !u!114 &9135238286081816760
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8766,7 +8769,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7556456323398885302}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 968ef56c7d721544d9bdf6b73cdaf251, type: 3}
+  m_Script: {fileID: 11500000, guid: 03b2ab8812d4a034e8f457157de005e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawn: {fileID: 0}
@@ -9049,7 +9052,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockId: 5817f7c0-f2a5-45f9-a5ca-64264e0166e8
-  instanceId: bf1c77d7-03fc-4ea2-9532-1b29c60aa2b1
+  instanceId: d9121103-33e3-476e-a17a-8b0067016932
   version: 1
 --- !u!114 &6730027053966516815
 MonoBehaviour:
@@ -9743,7 +9746,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockId: 5817f7c0-f2a5-45f9-a5ca-64264e0166e8
-  instanceId: d5d2b127-fd40-4711-93f6-f1bde60de534
+  instanceId: 77f6a0be-2f2f-4959-8d91-ea27b5871547
   version: 1
 --- !u!114 &4693446744197427233
 MonoBehaviour:
