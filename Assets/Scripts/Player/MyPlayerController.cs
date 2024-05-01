@@ -186,6 +186,7 @@ public class MyPlayerController : MonoBehaviour
     private bool ReadyToSnapTurn;
 
     private bool playerControllerEnabled = false;
+    [HideInInspector] public bool isHiding;
 
     void Start()
     {
