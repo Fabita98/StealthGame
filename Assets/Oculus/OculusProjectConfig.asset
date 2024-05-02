@@ -17,7 +17,7 @@ MonoBehaviour:
   handTrackingSupport: 0
   handTrackingFrequency: 0
   handTrackingVersion: 0
-  anchorSupport: 0
+  anchorSupport: 1
   sharedAnchorSupport: 0
   renderModelSupport: 0
   trackedKeyboardSupport: 0
@@ -25,7 +25,7 @@ MonoBehaviour:
   faceTrackingSupport: 0
   eyeTrackingSupport: 0
   virtualKeyboardSupport: 0
-  sceneSupport: 0
+  sceneSupport: 2
   disableBackups: 1
   enableNSCConfig: 1
   securityXmlPath: 
@@ -40,5 +40,5 @@ MonoBehaviour:
   systemSplashScreen: {fileID: 0}
   systemSplashScreenType: 0
   _systemLoadingScreenBackground: 0
-  ovrPluginMd5Win64: e8cfe66d40bc858ac6a51dd265d3b2f7d5bc1d83e92d234ffc9603ed79bbe34a
-  ovrPluginMd5Android: c7bb9a379e186c4b2726b69bbb7d3ace17f314798bb8b63cfa569a93e8acee88
+  ovrPluginMd5Win64: e8cfe66d40bc858ac6a51dd265d3b2f709e817b66779d985982bbadd40ba1f0d
+  ovrPluginMd5Android: c7bb9a379e186c4b2726b69bbb7d3ace544d6f7023b2242045531af10b68d133
