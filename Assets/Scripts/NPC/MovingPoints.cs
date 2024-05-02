@@ -19,12 +19,13 @@ public class MovingPoints : MonoBehaviour
     {
         points = pointsContainer.GetComponentsInChildren<Transform>().ToList();
         points.RemoveAt(0);
-        pointIndex = Random.Range(0, points.Count);
+        // pointIndex = Random.Range(0, points.Count);
+        pointIndex = 0;
         _currentPoint = points[pointIndex];
         recentlyViewedPointIndex = pointIndex;
     }
 
-    public Transform GetNext(NavMeshAgent agent)
+    public Transform GetNextRandom(NavMeshAgent agent)
     {
         int rnd = Random.Range(0, points.Count);
         pointIndex = rnd;
@@ -56,6 +57,17 @@ public class MovingPoints : MonoBehaviour
         // recentlyViewedPointIndex = Random.Range(1, nearestPointPickRange + 1);
         // _currentPoint = nearestPoints.ElementAt(recentlyViewedPointIndex).Key;
         // return _currentPoint;
+    }
+    
+    public Transform GetNextCircular(NavMeshAgent agent)
+    {
+        pointIndex++;
+        if (pointIndex >= points.Count)
+        {
+            pointIndex = 0;
+        }
+        _currentPoint = points[pointIndex];
+        return _currentPoint;
     }
 
     public bool HasReached(NavMeshAgent agent)

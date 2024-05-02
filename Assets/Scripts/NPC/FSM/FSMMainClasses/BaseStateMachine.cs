@@ -15,10 +15,9 @@ public class BaseStateMachine : MonoBehaviour
     [NonSerialized] public BaseState CurrentState;
     [NonSerialized] public NavMeshAgent NavMeshAgent;
     [NonSerialized] public MovingPoints MovingPoints;
-    [NonSerialized] public float WaitTime = 10.15f;
+    [NonSerialized] public float WaitTime = 2;
     [NonSerialized] public float AttackCoolDown = 2.25f;
     [NonSerialized] public float AlertTime = 1.4f;
-    [NonSerialized] public float AgonyTime = 5.84f;
     [NonSerialized] public bool isStartOfChase;
     [NonSerialized] public bool isStartOfPatrol;
     [NonSerialized] public bool isStartOfAttack;
@@ -33,7 +32,6 @@ public class BaseStateMachine : MonoBehaviour
         NavMeshAgent = GetComponent<NavMeshAgent>();
         MovingPoints = GetComponent<MovingPoints>();
         AttackCoolDown /= 1.5f;
-        AgonyTime /= 1.5f;
         isStartOfChase = true;
         isStartOfPatrol = true;
         isStartOfAttack = true;

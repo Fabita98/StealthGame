@@ -16,9 +16,6 @@ public class AttackAction : FSMAction
         
         if (machine.isStartOfAttack)
         {
-            timer = machine.AttackCoolDown + machine.AgonyTime;
-            // enemyUtility.ChooseAttackAnimation();
-            // machine.isStartOfAttack = false;
             enemyAttackSensor.IsAttackCompleted = false;
             machine.isStartOfPatrol = true;
             machine.isStartOfChase = true;
@@ -26,8 +23,6 @@ public class AttackAction : FSMAction
         }
         if (timer <= 0)
         {
-            // machine.isStartOfAttack = true;
-            // machine.isStartOfAgony = true;
             enemyAttackSensor.IsAttackCompleted = true;
             enemyAttackSensor.StartAttack = false;
         }

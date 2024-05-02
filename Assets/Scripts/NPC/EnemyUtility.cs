@@ -19,6 +19,7 @@ public class EnemyUtility : MonoBehaviour
 {
     [SerializeField] private GameObject eyeLights;
     public float viewRadius = 25;
+    public float overallRadius = 5;
     public float viewAngle = 150;
     public float waitTime = 25;
     public LayerMask playerMask;
@@ -68,7 +69,15 @@ public class EnemyUtility : MonoBehaviour
 
     public void SetEyeLights(bool active)
     {
-        eyeLights.SetActive(active);
+        if (active)
+        {
+            eyeLights.GetComponent<Light>().color = Color.red;            
+        }
+        else
+        {
+            eyeLights.GetComponent<Light>().color = Color.white;
+        }
+        // eyeLights.SetActive(active);
     }
     
 }
