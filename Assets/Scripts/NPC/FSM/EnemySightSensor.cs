@@ -51,6 +51,10 @@ public class EnemySightSensor : MonoBehaviour
     private void OnDrawGizmos()
     {
         EnemyUtility enemyUtility = EnemyUtility.Instance;
+        if (enemyUtility == null)
+        {
+            enemyUtility = GetComponent<EnemyUtility>();
+        }
 
         // Draw view radius
         Gizmos.color = Color.red;
