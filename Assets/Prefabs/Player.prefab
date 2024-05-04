@@ -8530,9 +8530,10 @@ GameObject:
   - component: {fileID: 8482786942460612247}
   - component: {fileID: 7755837729170806274}
   - component: {fileID: 9135238286081816760}
+  - component: {fileID: 83791958215455564}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8760,6 +8761,7 @@ MonoBehaviour:
   headPoseRelativeOffsetTranslation: {x: 0, y: -1, z: 0}
   headObjectTransform: {fileID: 1905127967566892977}
   crouchHeightDifference: 0.5
+  isHiding: 0
 --- !u!114 &9135238286081816760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8773,6 +8775,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawn: {fileID: 0}
+--- !u!114 &83791958215455564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7556456323398885302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa2ab5d5b0374e446996837f44c50d2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7693083535201240644
 GameObject:
   m_ObjectHideFlags: 0
