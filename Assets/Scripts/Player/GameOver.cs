@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class GameOver : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.CompareTag("LeftOrRightWall") || other.gameObject.CompareTag("SideWalls"))
+        if (other.transform.CompareTag("LeftOrRightWall") || other.transform.CompareTag("SideWalls"))
         {
             Debug.Log("Game Over");
         }
