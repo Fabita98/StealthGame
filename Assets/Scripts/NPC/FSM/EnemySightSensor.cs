@@ -7,32 +7,44 @@ using UnityEngine;
 public class EnemySightSensor : MonoBehaviour
 {
     private bool _isFinallyEscaped;
+    private Transform _lastSeenPlayerTransform;
+    private float _lastSeenPlayerTimer;
 
     public void Awake()
     {
         _isFinallyEscaped = false;
+        _lastSeenPlayerTimer = 0;
+        GameObject lastSeenPlayerTransformObject = new GameObject("LastSeenPlayerTransform");
+        _lastSeenPlayerTransform = lastSeenPlayerTransformObject.transform;
     }
 
     public bool Ping()
     {
         EnemyUtility enemyUtility = EnemyUtility.Instance;
         Collider[] playerInRange = Physics.OverlapSphere(transform.position, enemyUtility.viewRadius, enemyUtility.playerMask);
- 
+        _lastSeenPlayerTimer += Time.deltaTime;
+        
         for (int i = 0; i < playerInRange.Length; i++)
         {
-            Transform player = playerInRange[i].transform;
-            Vector3 dirToPlayer = (player.position - transform.position).normalized;
-            float dstToPlayer = Vector3.Distance(transform.position, player.position);
+            Transform playerTransform = playerInRange[i].transform;
+            Vector3 dirToPlayer = (playerTransform.position - transform.position).normalized;
+            float dstToPlayer = Vector3.Distance(transform.position, playerTransform.position);
             if (dstToPlayer < enemyUtility.overallRadius
                 // && !playerController.isHiding
                 )
             {
+                _lastSeenPlayerTimer = 0;
+                _lastSeenPlayerTransform.position = playerTransform.position;
+                // _lastSeenPlayerTransform = new Transform(playerTransform);
                 return true;
             }
             else if (Vector3.Angle(transform.forward, dirToPlayer) < enemyUtility.viewAngle / 2)
             {
                 if (!Physics.Raycast(transform.position, dirToPlayer, dstToPlayer, enemyUtility.obstacleMask))
                 {
+                    _lastSeenPlayerTimer = 0;
+                    _lastSeenPlayerTransform.position = playerTransform.position;
+                    // _lastSeenPlayerTransform = playerTransform;
                     return true;
                 }
                 else
@@ -40,7 +52,7 @@ public class EnemySightSensor : MonoBehaviour
                     return false;
                 }
             }
-            if (Vector3.Distance(transform.position, player.position) > enemyUtility.viewRadius)
+            if (Vector3.Distance(transform.position, playerTransform.position) > enemyUtility.viewRadius)
             {
                 return false;
             }
@@ -72,13 +84,32 @@ public class EnemySightSensor : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, enemyUtility.overallRadius);
     }
     
-    public bool Escaped(Transform playerTransform, Transform enemyTransform, float escapeDistance)
+    public bool EscapedPlayerPos(Transform playerTransform, Transform enemyTransform, float escapeDistance)
     {
         if (Vector3.Distance(playerTransform.position, enemyTransform.position) > escapeDistance)
         {
             return true;
         }
         return false;
+    }
+    
+    
+    public bool Escaped(Transform enemyTransform, float escapeDistance)
+    {
+        if (Vector3.Distance(_lastSeenPlayerTransform.position, enemyTransform.position) > escapeDistance)
+        {
+            return true;
+        }
+        else if (_lastSeenPlayerTimer > EnemyUtility.Instance.maxTimeToLosePlayer)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public Transform GetLastSeenPlayerTransform()
+    {
+        return _lastSeenPlayerTransform;
     }
 
     public void ChangeEscapedState(bool state)

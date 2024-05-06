@@ -180,7 +180,8 @@ MonoBehaviour:
   viewRadius: 25
   overallRadius: 5
   viewAngle: 90
-  waitTime: 25
+  waitTime: 2
+  maxTimeToLosePlayer: 5
   playerMask:
     serializedVersion: 2
     m_Bits: 64

@@ -43,11 +43,13 @@ public class ChaseAction : FSMAction
             }
             else
             {
-                if (!enemySightSensor.Escaped(playerTransform, machine.transform, enemyUtility.viewRadius))
+                // if (!enemySightSensor.Escaped(playerTransform, machine.transform, enemyUtility.viewRadius))
+                if (!enemySightSensor.Escaped(machine.transform, enemyUtility.viewRadius))
                 {
                     waitTime = machine.WaitTime;
                     machine.Move(true);
-                    navMeshAgent.SetDestination(playerTransform.position);   
+                    Transform lastSeenPlayerTransform = enemySightSensor.GetLastSeenPlayerTransform();
+                    navMeshAgent.SetDestination(lastSeenPlayerTransform.position);   
                 }
                 else 
                 {

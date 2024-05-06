@@ -37,6 +37,11 @@ public class BaseStateMachine : MonoBehaviour
         isStartOfAttack = true;
     }
 
+    private void Start()
+    {
+        WaitTime = EnemyUtility.Instance.waitTime;
+    }
+
     private void LateUpdate()
     {
         CurrentState.Execute(this);

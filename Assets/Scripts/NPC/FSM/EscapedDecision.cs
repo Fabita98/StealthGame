@@ -8,6 +8,7 @@ public class EscapedDecision : Decision
     public override bool Decide(BaseStateMachine stateMachine)
     {
         var enemyInLineOfSight = stateMachine.GetComponent<EnemySightSensor>();
+        enemyInLineOfSight.Ping();
         return enemyInLineOfSight.IsFinallyEscaped();
     }
 }
