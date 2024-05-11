@@ -34,10 +34,21 @@ public class PatrolAction : FSMAction
         if (movingPoints.HasReached(navMeshAgent))
         {
             timer += Time.deltaTime;
-            navMeshAgent.SetDestination(movingPoints.GetNextCircular(navMeshAgent).position);
-            machine.Move();
-            timer = 0;
-            stopAnimationChoose = false;
+            if (timer < machine.WaitTime)
+            {
+                if(!stopAnimationChoose)
+                {
+                    machine.Stop();
+                    stopAnimationChoose = true;
+                }   
+            }
+            else
+            {
+                navMeshAgent.SetDestination(movingPoints.GetNextCircular(navMeshAgent).position);
+                machine.Move();
+                timer = 0;
+                stopAnimationChoose = false;             
+            }
         }
         else if (timer > machine.WaitTime)
         {

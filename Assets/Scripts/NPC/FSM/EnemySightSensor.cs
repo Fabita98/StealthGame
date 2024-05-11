@@ -94,14 +94,21 @@ public class EnemySightSensor : MonoBehaviour
     }
     
     
-    public bool Escaped(Transform enemyTransform, float escapeDistance)
+    public bool Escaped(BaseStateMachine machine, Transform enemyTransform, float escapeDistance)
     {
         if (Vector3.Distance(_lastSeenPlayerTransform.position, enemyTransform.position) > escapeDistance)
         {
+            machine.isChaseReset = true;
             return true;
         }
         else if (_lastSeenPlayerTimer > EnemyUtility.Instance.maxTimeToLosePlayer)
         {
+            machine.isChaseReset = true;
+            return true;
+        }
+        else if (_lastSeenPlayerTimer > 0.1f && machine.NavMeshAgent.velocity == Vector3.zero)
+        {
+            machine.isChaseReset = true;
             return true;
         }
         return false;

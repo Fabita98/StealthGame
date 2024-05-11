@@ -16,11 +16,14 @@ public class BaseStateMachine : MonoBehaviour
     [NonSerialized] public NavMeshAgent NavMeshAgent;
     [NonSerialized] public MovingPoints MovingPoints;
     [NonSerialized] public float WaitTime = 2;
+    [NonSerialized] public float ChaseWaitTime = 2;
     [NonSerialized] public float AttackCoolDown = 2.25f;
-    [NonSerialized] public float AlertTime = 1.4f;
+    [NonSerialized] public float AlertTime = 4f;
     [NonSerialized] public bool isStartOfChase;
+    [NonSerialized] public bool isChaseReset;
     [NonSerialized] public bool isStartOfPatrol;
     [NonSerialized] public bool isStartOfAttack;
+    [NonSerialized] public bool stopAnimationChoose;
     private Dictionary<Type, Component> _cachedComponents;
     private int _updateCounter;
 
@@ -40,11 +43,17 @@ public class BaseStateMachine : MonoBehaviour
     private void Start()
     {
         WaitTime = EnemyUtility.Instance.waitTime;
+        ChaseWaitTime = EnemyUtility.Instance.chaseWaitTime;
     }
 
     private void LateUpdate()
     {
         CurrentState.Execute(this);
+        // counter++;
+        // if (NavMeshAgent.velocity == Vector3.zero)
+        // {
+        //     Stop();
+        // }
         // _updateCounter++;
         // if (_updateCounter == 300)
         // {
@@ -70,12 +79,26 @@ public class BaseStateMachine : MonoBehaviour
     {
         NavMeshAgent.isStopped = true;
         NavMeshAgent.speed = 0;
+        if(chooseIdleAnimation)
+            EnemyUtility.Instance.ChooseIdleAnimation();
+        else
+        {
+            EnemyUtility.Instance.SetAnimation(lookAround: true);
+        }
     }
     
     public void Move(bool isRunning = false)
     {
         NavMeshAgent.isStopped = false;
         NavMeshAgent.speed = isRunning ? _runSpeed : _speed;
+        if (isRunning)
+        {
+            EnemyUtility.Instance.SetAnimation(sprint:true);   
+        }
+        else
+        {
+            EnemyUtility.Instance.SetAnimation(walk:true);
+        }
     }
     
     // private void OnTriggerEnter(Collider other)

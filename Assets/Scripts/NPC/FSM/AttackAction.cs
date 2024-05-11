@@ -11,10 +11,12 @@ public class AttackAction : FSMAction
     public override void Execute(BaseStateMachine machine)
     {
         var enemyAttackSensor = machine.GetComponent<EnemyAttackSensor>();
+        EnemyUtility enemyUtility = EnemyUtility.Instance;
         
         if (machine.isStartOfAttack)
         {
             enemyAttackSensor.IsAttackCompleted = true;
+            enemyUtility.ChooseAttackAnimation();
             machine.isStartOfAttack = false;
             PlayerFunctionalities.Instance.CapturedByGuard();
         }

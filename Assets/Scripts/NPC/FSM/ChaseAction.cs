@@ -31,8 +31,13 @@ public class ChaseAction : FSMAction
             machine.isStartOfPatrol = true;
             machine.isStartOfAttack = true;
             machine.Stop();
-            // enemyUtility.SetAnimation(alert: true);
+            enemyUtility.SetAnimation(alert: true);
             timer = 0;
+        }
+
+        if (machine.isChaseReset)
+        {
+            stopAnimationChoose = false;
         }
         timer += Time.deltaTime;
         if (timer > machine.AlertTime)
@@ -44,9 +49,9 @@ public class ChaseAction : FSMAction
             else
             {
                 // if (!enemySightSensor.Escaped(playerTransform, machine.transform, enemyUtility.viewRadius))
-                if (!enemySightSensor.Escaped(machine.transform, enemyUtility.viewRadius))
+                if (!enemySightSensor.Escaped(machine, machine.transform, enemyUtility.viewRadius))
                 {
-                    waitTime = machine.WaitTime;
+                    waitTime = machine.ChaseWaitTime;
                     machine.Move(true);
                     Transform lastSeenPlayerTransform = enemySightSensor.GetLastSeenPlayerTransform();
                     navMeshAgent.SetDestination(lastSeenPlayerTransform.position);   
