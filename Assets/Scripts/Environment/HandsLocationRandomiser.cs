@@ -1,24 +1,22 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class HandsLocationRandomiser : MonoBehaviour
 {
     [Header("Hands")]
     public int handsNumber;
     public GameObject handPrefab;
-    HashSet<Vector3> positions;
 
     [Header("Parent Ref Collider")]
     public Bounds boxBounds;
     public GameObject colliderObj;
-    public bool isRight = false;
+    public bool isRight;
 
     public static int instanceCount = 0;
 
     private void Awake()
     {
-        if (instanceCount > 2)
+        if (instanceCount >= 2)
         {
             Destroy(this);
             return;
@@ -26,18 +24,29 @@ public class HandsLocationRandomiser : MonoBehaviour
 
         instanceCount++;
 
-        // Add a BoxCollider to this object
-        BoxCollider boxCollider = gameObject.AddComponent<BoxCollider>();
-        boxCollider.size = transform.parent.GetComponent<BoxCollider>().size * 0.8f;
-        boxCollider.tag = "LeftOrRightWall";
+        CreateNewRefBoxCollider();
 
         if (transform.TryGetComponent<Collider>(out var refCollider))
         {
             boxBounds = refCollider.bounds;
             colliderObj = refCollider.gameObject;
+            InstantiateHands();
         }
+    }
 
-        positions = new HashSet<Vector3>();
+    private void CreateNewRefBoxCollider()
+    {
+        if (transform.parent.TryGetComponent<BoxCollider>(out var parentBoxCollider))
+        {
+            BoxCollider newBoxCollider = gameObject.AddComponent<BoxCollider>();
+            newBoxCollider.size = parentBoxCollider.size * 0.8f;
+            newBoxCollider.tag = "LeftOrRightWall";
+        }
+    }
+
+    private void InstantiateHands()
+    {
+        HashSet<Vector3> positions = new();
 
         while (positions.Count < handsNumber)
         {
@@ -56,23 +65,28 @@ public class HandsLocationRandomiser : MonoBehaviour
             positions.Add(newPos);
         }
 
-        #region Set Hand parameters when spawned
         foreach (Vector3 pos in positions)
         {
-            // Instantiate the hand at the origin, then set its local position
+            #region Hands spawn explained
+            // Hands on left/right wall need different position and rotation to be set manually:
+            // Unity doesn't automatically set them correctly when instanting them
+            #endregion
             GameObject handInstance = Instantiate(handPrefab, Vector3.zero, Quaternion.identity, colliderObj.transform);
-            handInstance.transform.localPosition = new Vector3(-0.936f, pos.y, pos.z);
-            //when instantiating a prefab in code and set its parent, Unity does not automatically adjust the scale of the instantiated GameObject
+            handInstance.transform.localPosition = isRight ? new Vector3(-2.499f, pos.y, pos.z) : new Vector3(-0.936f, pos.y, pos.z);
             handInstance.transform.localScale = new Vector3(2.28571415f, 0.111111119f, 0.0277777798f);
 
             Transform armature = handInstance.transform.Find("Armature");
             if (armature != null)
             {
+                if (isRight)
+                {
+                    armature.transform.localPosition = new Vector2(1.52456f, 0f);
+                    armature.Rotate(0, -179.363f, 0);
+                }
                 float randomX = Random.Range(-90, 90);
                 armature.Rotate(randomX, 0, 0);
             }
         }
-        #endregion
     }
 
     private void OnDestroy()
