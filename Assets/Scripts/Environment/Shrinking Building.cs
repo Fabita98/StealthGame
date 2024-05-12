@@ -8,12 +8,14 @@ public class ShrinkingBuilding : MonoBehaviour
     public GameObject LeftOrRightWall;
     public GameObject door;
     public LayerMask assignedLayer;
-    public float shrinkSpeed = 0;
+    public static float shrinkSpeed = 0;
+    public bool isRight;
 
     [Header("Player Data")]
-    public float stressLevel = 0;
+    // Stress level is shared between all buildings -> static
+    private static float stressLevel = 0.5f;
 
-    private void Awake()
+    private void Start()
     {
         assignedLayer = gameObject.layer;
         gameObject.layer = LayerMask.GetMask("House");
@@ -60,20 +62,7 @@ public class ShrinkingBuilding : MonoBehaviour
     {
         if (obj.CompareTag("SideWalls"))
         {
-            foreach (Transform child in obj.transform)
-            {
-                if (child.CompareTag("LeftOrRightWall"))
-                {
-                    if (child.localPosition.z > 0f)
-                    {
-                        child.localPosition -= new Vector3(0, 0, shrinkSpeed/2);
-                    }
-                    else
-                    {
-                        child.localPosition += new Vector3(0, 0, shrinkSpeed/2);
-                    }
-                }
-            }            
+            obj.transform.position += isRight ? new Vector3(-shrinkSpeed / 2, 0, 0) : new Vector3(shrinkSpeed / 2, 0, 0);                  
         } else {
             Debug.LogError("SideWalls group not found");
             return;

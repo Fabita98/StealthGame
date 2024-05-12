@@ -7,9 +7,13 @@ public class HandsLocationRandomiser : MonoBehaviour
     public int handsNumber;
     public GameObject handPrefab;
 
+    [Header("Hands PosX for R/L walls")]
+    [SerializeField] private float handPosXRight = -2.499f;
+    [SerializeField] private float handPosXLeft = -0.936f;
+
     [Header("Parent Ref Collider")]
-    public Bounds boxBounds;
-    public GameObject colliderObj;
+    private Bounds boxBounds;
+    public GameObject colliderObj;    
     public bool isRight;
 
     public static int instanceCount = 0;
@@ -41,6 +45,8 @@ public class HandsLocationRandomiser : MonoBehaviour
             BoxCollider newBoxCollider = gameObject.AddComponent<BoxCollider>();
             newBoxCollider.size = parentBoxCollider.size * 0.8f;
             newBoxCollider.tag = "LeftOrRightWall";
+            // Required to detect player collision for game over
+            newBoxCollider.isTrigger = true;
         }
     }
 
@@ -72,7 +78,7 @@ public class HandsLocationRandomiser : MonoBehaviour
             // Unity doesn't automatically set them correctly when instanting them
             #endregion
             GameObject handInstance = Instantiate(handPrefab, Vector3.zero, Quaternion.identity, colliderObj.transform);
-            handInstance.transform.localPosition = isRight ? new Vector3(-2.499f, pos.y, pos.z) : new Vector3(-0.936f, pos.y, pos.z);
+            handInstance.transform.localPosition = isRight ? new Vector3(handPosXRight, pos.y, pos.z) : new Vector3(handPosXLeft, pos.y, pos.z);
             handInstance.transform.localScale = new Vector3(2.28571415f, 0.111111119f, 0.0277777798f);
 
             Transform armature = handInstance.transform.Find("Armature");

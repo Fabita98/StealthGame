@@ -762,9 +762,10 @@ GameObject:
   - component: {fileID: 372561259}
   - component: {fileID: 372561258}
   - component: {fileID: 372561257}
+  - component: {fileID: 372561261}
   m_Layer: 0
   m_Name: CubeR
-  m_TagString: Untagged
+  m_TagString: SideWalls
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -856,6 +857,27 @@ Transform:
   - {fileID: 599727269}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &372561261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 372561256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75f47043d48fdf945a7e2d42d66cd085, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sideWalls: {fileID: 0}
+  LeftOrRightWall: {fileID: 0}
+  door: {fileID: 0}
+  assignedLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  shrinkSpeed: 0
+  isRight: 1
+  stressLevel: 0
 --- !u!1 &394473759
 GameObject:
   m_ObjectHideFlags: 0
@@ -1314,7 +1336,7 @@ MonoBehaviour:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   colliderObj: {fileID: 0}
-  isRight: 1
+  isRight: 0
 --- !u!1 &618478125
 GameObject:
   m_ObjectHideFlags: 0
@@ -2336,6 +2358,7 @@ GameObject:
   - component: {fileID: 1435032152}
   - component: {fileID: 1435032151}
   - component: {fileID: 1435032150}
+  - component: {fileID: 1435032154}
   m_Layer: 0
   m_Name: CubeL
   m_TagString: SideWalls
@@ -2430,6 +2453,27 @@ Transform:
   - {fileID: 942684574}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1435032154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1435032149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75f47043d48fdf945a7e2d42d66cd085, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sideWalls: {fileID: 0}
+  LeftOrRightWall: {fileID: 0}
+  door: {fileID: 0}
+  assignedLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  shrinkSpeed: 0
+  isRight: 0
+  stressLevel: 0
 --- !u!1 &1467505252
 GameObject:
   m_ObjectHideFlags: 0
