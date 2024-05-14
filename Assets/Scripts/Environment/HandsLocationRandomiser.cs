@@ -8,11 +8,12 @@ public class HandsLocationRandomiser : MonoBehaviour
     public GameObject handPrefab;
 
     [Header("Hands PosX for R/L walls")]
-    [SerializeField] private float handPosXRight = -2.499f;
-    [SerializeField] private float handPosXLeft = -0.936f;
+    public readonly float handPosXRight = -2.499f;
+    public readonly float handPosXLeft = -0.936f;
 
     [Header("Parent Ref Collider")]
     private Bounds boxBounds;
+    public float resizeFactor = 0.9f;
     public GameObject colliderObj;    
     public bool isRight;
 
@@ -43,7 +44,7 @@ public class HandsLocationRandomiser : MonoBehaviour
         if (transform.parent.TryGetComponent<BoxCollider>(out var parentBoxCollider))
         {
             BoxCollider newBoxCollider = gameObject.AddComponent<BoxCollider>();
-            newBoxCollider.size = parentBoxCollider.size * 0.8f;
+            newBoxCollider.size = parentBoxCollider.size * resizeFactor;
             newBoxCollider.tag = "LeftOrRightWall";
             // Required to detect player collision for game over
             newBoxCollider.isTrigger = true;
