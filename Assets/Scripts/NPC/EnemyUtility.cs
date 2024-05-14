@@ -23,6 +23,7 @@ public class EnemyUtility : MonoBehaviour
     public float viewAngle = 150;
     public float waitTime = 2;
     public float chaseWaitTime = 2;
+    public float alertWaitTime = 1;
     public float maxTimeToLosePlayer = 0;
     public LayerMask playerMask;
     public LayerMask obstacleMask;

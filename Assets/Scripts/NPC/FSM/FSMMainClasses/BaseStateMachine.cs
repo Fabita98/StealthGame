@@ -18,7 +18,7 @@ public class BaseStateMachine : MonoBehaviour
     [NonSerialized] public float WaitTime = 2;
     [NonSerialized] public float ChaseWaitTime = 2;
     [NonSerialized] public float AttackCoolDown = 2.25f;
-    [NonSerialized] public float AlertTime = 4f;
+    [NonSerialized] public float AlertTime = .3f;
     [NonSerialized] public bool isStartOfChase;
     [NonSerialized] public bool isChaseReset;
     [NonSerialized] public bool isStartOfPatrol;
@@ -44,6 +44,7 @@ public class BaseStateMachine : MonoBehaviour
     {
         WaitTime = EnemyUtility.Instance.waitTime;
         ChaseWaitTime = EnemyUtility.Instance.chaseWaitTime;
+        AlertTime = EnemyUtility.Instance.alertWaitTime;
     }
 
     private void LateUpdate()
