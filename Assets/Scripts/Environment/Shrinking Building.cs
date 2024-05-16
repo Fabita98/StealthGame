@@ -4,24 +4,43 @@ using UnityEngine;
 public class ShrinkingBuilding : MonoBehaviour
 {
     [Header("Building properties")]
-    public GameObject sideWalls;
+    public GameObject sideWall;
     public GameObject LeftOrRightWall;
-    public GameObject door;
+    private Vector3[] initialSideWallsPositions;
+    //public GameObject door;
     public LayerMask assignedLayer;
-    public static float shrinkSpeed = 0;
     public bool isRight;
 
-    [Header("Player Data")]
-    // Stress level is shared between all buildings -> static
+    // All shared data between more elements in the game are static
     private static float stressLevel = 0.5f;
+    private static GameObject[] sideWalls;
+    public static float shrinkSpeed = 0;
+    public static bool gameOver;
+
+    public static int instanceCount = 0;
+    public static ShrinkingBuilding LocalInstance;
+
+    private void Awake()
+    {
+        if (instanceCount >= 2)
+        {
+            Destroy(this);
+            return;
+        }
+        else
+        {
+            LocalInstance = this;
+            instanceCount++;
+        }
+
+        sideWalls ??= new GameObject[2];
+        gameObject.layer = LayerMask.GetMask("House");
+        assignedLayer = gameObject.layer;
+    }
 
     private void Start()
     {
-        assignedLayer = gameObject.layer;
-        gameObject.layer = LayerMask.GetMask("House");
-        sideWalls = FindChildWithTag(gameObject, "SideWalls");
-        LeftOrRightWall = FindChildWithTag(gameObject, "LeftOrRightWall");
-        door = FindChildWithTag(gameObject, "Door");
+        SetWallsSettings();
     }
 
     private void FixedUpdate()
@@ -32,11 +51,12 @@ public class ShrinkingBuilding : MonoBehaviour
         stressLevel = Mathf.Clamp(stressLevel, 0, 1);
         if (stressLevel > 0)
         {
-            ShrinkSideWalls(sideWalls);
+            ShrinkSideWalls(sideWall);
         }
     }
 
-    public GameObject FindChildWithTag(GameObject parent, string tag)
+    // Try to find the child object with the given tag through BFS traversal
+    public bool TryToFindChildWithTag(GameObject parent, string tag, out GameObject result)
     {
         Queue<Transform> queue = new();
         queue.Enqueue(parent.transform);
@@ -46,7 +66,8 @@ public class ShrinkingBuilding : MonoBehaviour
             Transform current = queue.Dequeue();
             if (current.CompareTag(tag))
             {
-                return current.gameObject;
+                result = current.gameObject;
+                return true;
             }
 
             foreach (Transform child in current)
@@ -55,17 +76,44 @@ public class ShrinkingBuilding : MonoBehaviour
             }
         }
 
-        return null;
+        result = null;
+        return false;
     }
 
     private void ShrinkSideWalls(GameObject obj)
     {
         if (obj.CompareTag("SideWalls"))
         {
-            obj.transform.position += isRight ? new Vector3(-shrinkSpeed / 2, 0, 0) : new Vector3(shrinkSpeed / 2, 0, 0);                  
+            obj.transform.position += isRight ? new Vector3(-shrinkSpeed / 2, 0, 0) : new Vector3(shrinkSpeed / 2, 0, 0);
+            if (gameOver)
+            {
+                GameObject[] sideWallsObjects = GameObject.FindGameObjectsWithTag("SideWalls");
+                for (int i = 0; i < sideWallsObjects.Length; i++)
+                {
+                    sideWallsObjects[i].transform.position = LocalInstance.initialSideWallsPositions[i];
+                }
+                gameOver = false;
+            }
         } else {
             Debug.LogError("SideWalls group not found");
             return;
+        }
+    }
+
+    private void SetWallsSettings() {
+        if (TryToFindChildWithTag(gameObject, "SideWalls", out GameObject foundWall))
+        {
+            sideWall = foundWall;
+            sideWalls[isRight ? 0 : 1] = sideWall;
+        }
+        if (TryToFindChildWithTag(gameObject, "LeftOrRightWall", out GameObject foundLRWall)) LeftOrRightWall = foundLRWall;
+        //door = FindChildWithTag(gameObject, "Door");
+
+        // Save the initial position of side walls
+        if (sideWall != null)
+        {
+            LocalInstance.initialSideWallsPositions ??= new Vector3[2];
+            LocalInstance.initialSideWallsPositions[isRight ? 0 : 1] = sideWall.transform.position;
         }
     }
 }

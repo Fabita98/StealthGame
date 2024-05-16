@@ -6,6 +6,7 @@ public class GameOver : MonoBehaviour
     {
         if (other.transform.CompareTag("LeftOrRightWall") || other.transform.CompareTag("SideWalls"))
         {
+            ShrinkingBuilding.gameOver = true;
             Debug.Log("Game Over");
         }
     }

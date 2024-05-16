@@ -11,11 +11,13 @@ public class HandsLocationRandomiser : MonoBehaviour
     public readonly float handPosXRight = -2.499f;
     public readonly float handPosXLeft = -0.936f;
 
-    [Header("Parent Ref Collider")]
+    [Header("Ref Collider")]
     private Bounds boxBounds;
-    public float resizeFactor = 0.9f;
+    public float resizeFactor = 0.8f;
+    public readonly float deltaX = 0.7f;
     public GameObject colliderObj;    
     public bool isRight;
+    BoxCollider newBoxCollider;
 
     public static int instanceCount = 0;
 
@@ -30,12 +32,16 @@ public class HandsLocationRandomiser : MonoBehaviour
         instanceCount++;
 
         CreateNewRefBoxCollider();
-
-        if (transform.TryGetComponent<Collider>(out var refCollider))
+        #region New Collider creation explained
+        //If the new collider is successfully created, then proceed instantiating hands and
+        //enlarging the box collider size to cover the hands for the game over detection
+        #endregion
+        if (transform.TryGetComponent<BoxCollider>(out var refBoxCollider))
         {
-            boxBounds = refCollider.bounds;
-            colliderObj = refCollider.gameObject;
+            boxBounds = refBoxCollider.bounds;
+            colliderObj = refBoxCollider.gameObject;
             InstantiateHands();
+            EnlargeBoxColliderXSize();
         }
     }
 
@@ -43,7 +49,7 @@ public class HandsLocationRandomiser : MonoBehaviour
     {
         if (transform.parent.TryGetComponent<BoxCollider>(out var parentBoxCollider))
         {
-            BoxCollider newBoxCollider = gameObject.AddComponent<BoxCollider>();
+            newBoxCollider = gameObject.AddComponent<BoxCollider>();
             newBoxCollider.size = parentBoxCollider.size * resizeFactor;
             newBoxCollider.tag = "LeftOrRightWall";
             // Required to detect player collision for game over
@@ -61,7 +67,8 @@ public class HandsLocationRandomiser : MonoBehaviour
             do
             {
                 newPos = new Vector3(
-                    Random.Range(boxBounds.min.x, boxBounds.max.x),
+                    //Random.Range(boxBounds.min.x, boxBounds.max.x),
+                    0f,
                     Random.Range(boxBounds.min.y, boxBounds.max.y),
                     Random.Range(boxBounds.min.z, boxBounds.max.z)
                 );
@@ -95,6 +102,19 @@ public class HandsLocationRandomiser : MonoBehaviour
             }
         }
     }
+
+    #region L/R Walls Collider resize 
+    private void EnlargeBoxColliderXSize()
+    {
+        Vector3 newSize = newBoxCollider.size;
+        newSize.x += deltaX;
+        newBoxCollider.size = newSize;
+
+        Vector3 newCenter = newBoxCollider.center;
+        newCenter.x += isRight ? -deltaX / 2 : deltaX / 2;
+        newBoxCollider.center = newCenter;
+    }
+    #endregion
 
     private void OnDestroy()
     {
