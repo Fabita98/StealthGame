@@ -187,6 +187,7 @@ public class MyPlayerController : MonoBehaviour
 
     private bool playerControllerEnabled = false;
     [HideInInspector] public bool isHiding;
+    public GameObject torchGO;
 
     void Start()
     {
@@ -375,6 +376,7 @@ public class MyPlayerController : MonoBehaviour
             bool moveRight = Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow);
             bool moveBack = Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow);
             bool crouch = Input.GetKey(KeyCode.C);
+            bool torch = Input.GetKey(KeyCode.T);
 
             bool dpad_move = false;
 
@@ -394,7 +396,10 @@ public class MyPlayerController : MonoBehaviour
             {
                 crouch = true;
             }
-
+            if (OVRInput.Get(OVRInput.Button.One)) // A button
+            {
+                torch = true;
+            }
             MoveScale = 1.0f;
 
             if ((moveForward && moveLeft) || (moveForward && moveRight) ||
@@ -438,6 +443,8 @@ public class MyPlayerController : MonoBehaviour
             {
                 Stand();
             }
+
+            if (torch) toggleTorch();
 
 #if !UNITY_ANDROID // LeftTrigger not avail on Android game pad
             moveInfluence *= 1.0f + OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger);
@@ -615,6 +622,10 @@ public class MyPlayerController : MonoBehaviour
         FallSpeed = 0.0f;
     }
 
+    public void toggleTorch()
+    {
+        torchGO.SetActive(!torchGO.activeSelf);
+    }
     /// <summary>
     /// Gets the move scale multiplier.
     /// </summary>
