@@ -187,6 +187,10 @@ public class MyPlayerController : MonoBehaviour
 
     private bool playerControllerEnabled = false;
     [HideInInspector] public bool isHiding;
+    
+    
+    public static MyPlayerController Instance => _instance;
+    private static MyPlayerController _instance;
 
     void Start()
     {
@@ -198,6 +202,10 @@ public class MyPlayerController : MonoBehaviour
 
     void Awake()
     {
+        if (_instance == null)
+        {
+            _instance = this;
+        }
         Controller = gameObject.GetComponent<CharacterController>();
 
         if (Controller == null)
