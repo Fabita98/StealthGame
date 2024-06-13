@@ -279,6 +279,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 797222576}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &520747488 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7556456323398885302, guid: b6b964aae8b716a499f22a753fe2d1a2, type: 3}
+  m_PrefabInstance: {fileID: 1700672569}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &553535604
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1025,6 +1030,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7755837729170806274, guid: b6b964aae8b716a499f22a753fe2d1a2, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9135238286081816760, guid: b6b964aae8b716a499f22a753fe2d1a2, type: 3}
       propertyPath: spawn
       value: 
@@ -1032,19 +1041,39 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7556456323398885302, guid: b6b964aae8b716a499f22a753fe2d1a2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1700672579}
   m_SourcePrefab: {fileID: 100100000, guid: b6b964aae8b716a499f22a753fe2d1a2, type: 3}
---- !u!114 &1700672570 stripped
+--- !u!114 &1700672579
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7755837729170806274, guid: b6b964aae8b716a499f22a753fe2d1a2, type: 3}
-  m_PrefabInstance: {fileID: 1700672569}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 520747488}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a593eb286f163bb44b50daec5835f41a, type: 3}
+  m_Script: {fileID: 11500000, guid: 0950df82e7936c84983497630bde5b54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Acceleration: 0.1
+  Damping: 0.3
+  BackAndSideDampen: 0.5
+  JumpForce: 0.3
+  RotationAmount: 1.5
+  RotationRatchet: 45
+  SnapRotation: 1
+  RotateAroundGuardianCenter: 1
+  FixedSpeedSteps: 0
+  HmdResetsY: 1
+  HmdRotatesY: 1
+  GravityModifier: 0.379
+  useProfileData: 1
+  EnableLinearMovement: 1
+  EnableRotation: 1
+  RotationEitherThumbstick: 0
 --- !u!1001 &1819331262
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1113,7 +1142,7 @@ PrefabInstance:
     - target: {fileID: 4597086340892482254, guid: faf9c57d28d7aab4397b78a5c669b6b7, type: 3}
       propertyPath: PlayerController
       value: 
-      objectReference: {fileID: 1700672570}
+      objectReference: {fileID: 1700672579}
     - target: {fileID: 5397545951518848837, guid: faf9c57d28d7aab4397b78a5c669b6b7, type: 3}
       propertyPath: waitTime
       value: 2

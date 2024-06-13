@@ -8,7 +8,7 @@ using UnityEngine.AI;
 
 public class BaseStateMachine : MonoBehaviour
 {
-    public MyPlayerController PlayerController;
+    public OVRPlayerController PlayerController;
     [SerializeField] private BaseState _initialState;
     [SerializeField] private float _speed;
     [SerializeField] private float _runSpeed;
