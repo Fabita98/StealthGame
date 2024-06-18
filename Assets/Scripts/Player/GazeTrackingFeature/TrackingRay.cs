@@ -53,9 +53,9 @@ namespace Assets.Scripts.GazeTrackingFeature
             lineRenderer.startColor = rayColorDefaultState;
             lineRenderer.endColor = rayColorDefaultState;
             lineRenderer.positionCount = 2;
-            lineRenderer.SetPosition(0, transform.position);
-            lineRenderer.SetPosition(1, new Vector3(transform.position.x, transform.position.y,
-                                                    transform.position.z + rayDistance));
+            //lineRenderer.SetPosition(0, transform.position);
+            //lineRenderer.SetPosition(1, new Vector3(transform.position.x, transform.position.y,
+            //                                        transform.position.z + rayDistance));
         }
 
         void UnSelect(bool clear = false)

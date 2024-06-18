@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 4197231068023422512}
   - component: {fileID: 4181702065844671463}
   m_Layer: 0
-  m_Name: '[BuildingBlock] Eye Gaze Left'
+  m_Name: '[BuildingBlock] Eye Gaze Right'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockId: f92445a7-db19-452c-8d3d-96820f6c8972
-  instanceId: cd5ca646-581d-4f50-a0e1-b30092d6b4f2
+  instanceId: a294cbd9-fb52-464c-a43d-28e5ba425173
   version: 1
   installationRoutineCheckpoint:
     _installationRoutineId: 
@@ -153,7 +153,7 @@ MonoBehaviour:
   ConfidenceThreshold: 0.3
   ApplyPosition: 1
   ApplyRotation: 1
-  ReferenceFrame: {fileID: 0}
+  ReferenceFrame: {fileID: 5833755942290256211}
   TrackingMode: 2
 --- !u!120 &4197231068023422512
 LineRenderer:
