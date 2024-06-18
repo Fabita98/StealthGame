@@ -7,14 +7,11 @@ public class lightHR : MonoBehaviour
     // Start is called before the first frame update
     int valueHR, range, averageHR;
     float newIntensity, lastDecrease=0,delta =0;
+    bool reset = false;
     void Start()
     {
         averageHR = 65;
     }
-
-    private float currentValue;
-    private float startValue;
-    private float targetValue;
     private float incrementSpeed= 0.0005f;
 
     // Metodo per avviare l'incremento del valore da start a finish in 5 secondi
@@ -55,10 +52,14 @@ public class lightHR : MonoBehaviour
             GetComponent<Light>().intensity -= incrementSpeed;
             lastDecrease = Time.time;
         }
-        if (Time.time - lastDecrease > 10)
+        if (Time.time - lastDecrease > 15&& !reset)
         {
-            delta -= 5;
-            lastDecrease = Time.deltaTime;
+            delta -= 1;
+            lastDecrease = Time.time;
+        }
+        if(delta < -5)
+        {
+            reset = true;
         }
     }
 }
