@@ -532,6 +532,7 @@ GameObject:
   - component: {fileID: 7715556942633212588}
   - component: {fileID: 7029410435708775694}
   - component: {fileID: 3668258169597697877}
+  - component: {fileID: 7454099671839535822}
   m_Layer: 0
   m_Name: InteractableCanvas
   m_TagString: Untagged
@@ -609,6 +610,38 @@ MonoBehaviour:
   _addNewPointsToFront: 0
   _forwardElement: {fileID: 7029410435708775694}
   _canvasMesh: {fileID: 6079214847258273205}
+--- !u!114 &7454099671839535822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8088972122135232344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5626a0b1dc955a43be59ce7ea116678, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pointableCanvas: {fileID: 7029410435708775694}
+  _suppressWhileDragging: 1
+  _whenBeginHighlight:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenEndHighlight:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenSelectedHovered:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenSelectedEmpty:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenUnselectedHovered:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenUnselectedEmpty:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8165506151693230557
 GameObject:
   m_ObjectHideFlags: 0

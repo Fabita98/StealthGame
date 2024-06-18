@@ -1,12 +1,13 @@
 {
   "dependencies": {
     "com.meta.xr.sdk.all": "65.0.0",
+    "com.meta.xr.simulator": "file:C:/Users/USER/Downloads/meta_xr_simulator_v62/meta_xr_simulator_v62/package",
     "com.unity.2d.animation": "9.0.3",
-    "com.unity.2d.tilemap": "1.0.0",
-    "com.unity.2d.spriteshape": "9.0.2",
-    "com.unity.2d.sprite": "1.0.0",
-    "com.unity.2d.psdimporter": "8.0.2",
     "com.unity.2d.pixel-perfect": "5.0.3",
+    "com.unity.2d.psdimporter": "8.0.2",
+    "com.unity.2d.sprite": "1.0.0",
+    "com.unity.2d.spriteshape": "9.0.2",
+    "com.unity.2d.tilemap": "1.0.0",
     "com.unity.collab-proxy": "2.3.1",
     "com.unity.feature.development": "1.0.1",
     "com.unity.ide.rider": "3.0.24",
