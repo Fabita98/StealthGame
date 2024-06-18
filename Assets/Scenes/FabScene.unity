@@ -7279,8 +7279,8 @@ MonoBehaviour:
   OnObjectHover:
     m_PersistentCalls:
       m_Calls: []
-  OnHoverActiveMaterial: {fileID: 2100000, guid: 659a980e80620684f8ff9013c6dda48d, type: 2}
-  OnHoverInactiveMaterial: {fileID: 2100000, guid: e4d94bfcb0af5fa4f94abbec6c671fb4, type: 2}
+  OnHoverActiveMaterial: {fileID: 2100000, guid: 8579efad97f6e674885d3f9ab4c9e9f9, type: 2}
+  OnHoverInactiveMaterial: {fileID: 2100000, guid: 2827d129e3b490a4c84c1dfb3ec5a9f4, type: 2}
 --- !u!54 &1272018895
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7824,8 +7824,8 @@ MonoBehaviour:
   OnObjectHover:
     m_PersistentCalls:
       m_Calls: []
-  OnHoverActiveMaterial: {fileID: 2100000, guid: 659a980e80620684f8ff9013c6dda48d, type: 2}
-  OnHoverInactiveMaterial: {fileID: 2100000, guid: e4d94bfcb0af5fa4f94abbec6c671fb4, type: 2}
+  OnHoverActiveMaterial: {fileID: 2100000, guid: 8579efad97f6e674885d3f9ab4c9e9f9, type: 2}
+  OnHoverInactiveMaterial: {fileID: 2100000, guid: 2827d129e3b490a4c84c1dfb3ec5a9f4, type: 2}
 --- !u!54 &1359948919
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9054,8 +9054,8 @@ MonoBehaviour:
   OnObjectHover:
     m_PersistentCalls:
       m_Calls: []
-  OnHoverActiveMaterial: {fileID: 2100000, guid: 659a980e80620684f8ff9013c6dda48d, type: 2}
-  OnHoverInactiveMaterial: {fileID: 2100000, guid: e4d94bfcb0af5fa4f94abbec6c671fb4, type: 2}
+  OnHoverActiveMaterial: {fileID: 2100000, guid: 8579efad97f6e674885d3f9ab4c9e9f9, type: 2}
+  OnHoverInactiveMaterial: {fileID: 2100000, guid: 2827d129e3b490a4c84c1dfb3ec5a9f4, type: 2}
 --- !u!54 &1592318304
 Rigidbody:
   m_ObjectHideFlags: 0
