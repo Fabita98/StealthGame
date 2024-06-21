@@ -1,7 +1,6 @@
 {
   "dependencies": {
     "com.meta.xr.sdk.all": "65.0.0",
-    "com.meta.xr.simulator": "file:C:/Users/USER/Downloads/meta_xr_simulator_v62/meta_xr_simulator_v62/package",
     "com.unity.2d.animation": "9.0.3",
     "com.unity.2d.pixel-perfect": "5.0.3",
     "com.unity.2d.psdimporter": "8.0.2",
