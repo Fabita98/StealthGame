@@ -63,7 +63,7 @@ public class EnableXR : MonoBehaviour
         // Make sure there is something to de-initialize
         if (XRGeneralSettings.Instance.Manager.isInitializationComplete)
         {
-            XRGeneralSettings.Instance.Manager.StopSubsystems();
+            //XRGeneralSettings.Instance.Manager.StopSubsystems();
             XRGeneralSettings.Instance.Manager.DeinitializeLoader();
         }
     }
