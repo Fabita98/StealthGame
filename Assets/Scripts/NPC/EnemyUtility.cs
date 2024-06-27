@@ -70,6 +70,11 @@ public class EnemyUtility : MonoBehaviour
         EnemyAnimator.SetBool(EnemyAnimatorParameters.Alert.ToString(), alert);
     }
 
+    public void ResetAnimator()
+    {
+        EnemyAnimator.Play("Idle");
+    }
+
     public void SetEyeLights(bool active)
     {
         if (active)
