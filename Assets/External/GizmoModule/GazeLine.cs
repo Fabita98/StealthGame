@@ -10,40 +10,44 @@ public class GazeLine : MonoBehaviour
     public LayerMask mask;
 
     private Vector3 hitPosition;
+    private Vector3 center1, center2;
+    private float radius;
+
     private readonly List<EyeInteractable> eyeInteractables = new();
+
+    void Start() {
+        radius = 3f;
+        center1 = transform.position;
+        center2 = transform.position + Vector3.forward * radius;
+    }
 
     void FixedUpdate() {
         EyeGazeRayCasting();
     }
 
-    private void Update()
-    {
-        GizmoModule.instance.DrawSphere(hitPosition /*+ (transform.position - hitPosition).normalized * cursorOffset*/, cursorRadius, Color.red);
+    void Update() {
+        // Eye gizmo
+        GizmoModule.instance.DrawSphere(hitPosition + (transform.position - hitPosition).normalized * cursorOffset, cursorRadius, Color.red);    
     }
 
-    private void EyeGazeRayCasting()
-    {
-        if (Physics.Raycast(origin: transform.position, direction: transform.forward, out RaycastHit hit, Mathf.Infinity, layerMask: mask))
-        {
-            UnSelect();
+    private void EyeGazeRayCasting() {
+        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, Mathf.Infinity, layerMask: mask)) {
             hitPosition = hit.point;
             cursorRadius = .5f;
 
-            if (hit.collider.TryGetComponent<EyeInteractable>(out var eyeInteractable))
-            {
+            if (hit.collider.TryGetComponent<EyeInteractable>(out var eyeInteractable)) {
                 eyeInteractables.Add(eyeInteractable);
                 eyeInteractable.IsHovered = true;
-                //eyeInteractable.HoveringTime += Time.fixedDeltaTime;
-            }
+                EyeInteractable.HoveringTime += Time.fixedDeltaTime;
+            } else UnSelect();
         }
         else UnSelect(true);
     }
 
-    void UnSelect(bool clear = false)
-    {
-        foreach (EyeInteractable interactable in eyeInteractables)
-        {
-            interactable.ResetHover();
+    void UnSelect(bool clear = false) {
+        foreach (EyeInteractable interactable in eyeInteractables) {
+            interactable.IsHovered = false;
+            EyeInteractable.HoveringTime = 0;
         }
         if (clear) eyeInteractables.Clear();
     }

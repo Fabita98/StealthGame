@@ -3,7 +3,6 @@ using UnityEngine.Events;
 
 namespace Assets.Scripts.GazeTrackingFeature
 {
-    [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(EyeOutline))]
     [RequireComponent(typeof(AudioSource))] 
     internal class EyeInteractable : MonoBehaviour
@@ -18,7 +17,7 @@ namespace Assets.Scripts.GazeTrackingFeature
         private MeshRenderer meshRenderer;
         private float eyeOutlineWidth;
         public bool IsHovered { get; set; }
-        public float HoveringTime { get; set; }
+        public static float HoveringTime;
 
         [Header("Game object layer")]
         private LayerMask gameObjLayer;  
@@ -40,17 +39,9 @@ namespace Assets.Scripts.GazeTrackingFeature
             ComponentInit();
         }
 
-        private void FixedUpdate()
+        private void Update()
         {
-            if (IsHovered) {
-                if (meshRenderer) meshRenderer.material = OnHoverActiveMaterial;
-                else GazeControl();
-                OnObjectHover?.Invoke(gameObject);
-            }
-            else
-            {
-                ResetHover();
-            }
+            GazeControl();
         }
 
         private void ComponentInit() {
@@ -69,24 +60,20 @@ namespace Assets.Scripts.GazeTrackingFeature
                 else Debug.LogWarning("MeshRenderer component not found.");
             } 
 
-            if (TryGetComponent<EyeOutline>(out var eO))
-            {
+            if (TryGetComponent<EyeOutline>(out var eO)) {
                 eyeOutline = eO;
-                eyeOutline.enabled = true;
-                ResetHover();
+                eyeOutline.enabled = false;
             }
             else Debug.LogWarning("EyeOutline component not found.");
         }
 
         #region EyeInteractable instances counter
-        void OnEnable()
-        {
+        void OnEnable() {
             OverallEyeInteractableInstanceCounter++;
             OnCounterChanged?.Invoke(OverallEyeInteractableInstanceCounter);
         }
 
-        void OnDisable()
-        {
+        void OnDisable() {
             OverallEyeInteractableInstanceCounter--;
             OnCounterChanged?.Invoke(OverallEyeInteractableInstanceCounter);
         }
@@ -94,41 +81,44 @@ namespace Assets.Scripts.GazeTrackingFeature
 
         #region Eye and voice control methods
 
-            #region Eye control methods
-            public void ResetHover()
-        {
-            HoveringTime = 0;
-            IsHovered = false;
-            if (gameObjLayer == squareLayer && meshRenderer) meshRenderer.material = OnHoverInactiveMaterial; 
-            else eyeOutline.OutlineWidth = 0;
-        }
+        #region Eye control methods
+        public void GazeControl() {
+            if (IsHovered) {
+                OnObjectHover?.Invoke(gameObject);
+                // Hovering square case 
+                if (meshRenderer) meshRenderer.material = OnHoverActiveMaterial;
 
-            public void GazeControl()
-        {
-            HoveringTime += Time.fixedDeltaTime;
-            // Hover for one monk at a time
-            if (HoveringTime >= 1f) {
-                eyeOutline.OutlineColor = Color.yellow;
-                eyeOutline.OutlineMode = EyeOutline.Mode.OutlineAll;
-                eyeOutlineWidth += Time.fixedDeltaTime;
-                Mathf.Clamp(eyeOutlineWidth, 0.2f, 3f);
-                // hover to tell the player that he can speak to the hovered monk
-                if (HoveringTime >= 2f) {
-                    //StartVoiceRecording();
-                    eyeOutlineWidth = 5;
-                    eyeOutline.OutlineColor = Color.green;
-                    Debug.Log("Enemy selected: ready to talk! ");
-                    //StopVoiceRecording();
-                    //PlayRecordedVoice();
-                    ResetHover();
+                // Hover ONLY for one monk at a time
+                if (gameObjLayer == monkLayer && HoveringTime > 1f) {
+                    eyeOutline.enabled = true;
+                    eyeOutline.OutlineColor = Color.yellow;
+                    eyeOutline.OutlineMode = EyeOutline.Mode.OutlineAll;
+                    eyeOutlineWidth += Time.deltaTime;
+                    Mathf.Clamp(eyeOutlineWidth, 1f, 3f);
+
+                    // Hover to tell the player that he can speak to the hovered monk
+                    if (HoveringTime > 3f) {
+                        //StartVoiceRecording();
+                        eyeOutlineWidth = 4f;
+                        eyeOutline.OutlineColor = Color.green;
+                        Debug.Log("Enemy selected: ready to talk! ");
+                        //StopVoiceRecording();
+                        //PlayRecordedVoice();
+                        //HoveringTime = 0f;
+                    }
                 }
             }
+            else ResetHover();
         }
-            #endregion
 
-            #region Voice recording methods
-            public void StartVoiceRecording()
-        {
+        public void ResetHover() {
+            if (gameObjLayer == squareLayer && meshRenderer) meshRenderer.material = OnHoverInactiveMaterial;
+            else if (gameObjLayer == monkLayer) eyeOutline.enabled = false;
+        }
+        #endregion
+
+        #region Voice recording methods
+        public void StartVoiceRecording() {
             if (Microphone.IsRecording(null)) {
                 Debug.LogWarning("Microphone is already recording!");
                 return;
@@ -139,8 +129,7 @@ namespace Assets.Scripts.GazeTrackingFeature
             Debug.Log("Voice recording started...");
         }
 
-            public void StopVoiceRecording()
-        {
+        public void StopVoiceRecording() {
             if (!isRecording) {
                 Debug.LogWarning("Microphone is not recording.");
                 return;
@@ -151,21 +140,18 @@ namespace Assets.Scripts.GazeTrackingFeature
             Debug.Log("Voice recording stopped.");
         }
 
-            private void PlayRecordedVoice()
-        {
-            if (recordedClip != null)
-            {
+        private void PlayRecordedVoice() {
+            if (recordedClip != null) {
                 audioSource.clip = recordedClip;
                 audioSource.Play();
                 Debug.Log("Playing recorded voice...");
             }
-            else
-            {
+            else {
                 Debug.LogWarning("No recorded clip to play.");
                 return;
             }
         }
-            #endregion
+        #endregion
         #endregion
     }
 }
