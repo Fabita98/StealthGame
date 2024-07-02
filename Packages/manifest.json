@@ -1,7 +1,6 @@
 {
   "dependencies": {
-    "com.meta.xr.sdk.all": "66.0.0",
-    "com.meta.xr.sdk.interaction.ovr.samples": "66.0.0",
+    "com.meta.xr.sdk.all": "60.0.0",
     "com.unity.2d.animation": "9.0.3",
     "com.unity.2d.pixel-perfect": "5.0.3",
     "com.unity.2d.psdimporter": "8.0.2",

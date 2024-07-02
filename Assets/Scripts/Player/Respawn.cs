@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class respawn : MonoBehaviour
+public class Respawn : MonoBehaviour
 {
     public GameObject spawn;
     // Start is called before the first frame update
@@ -15,5 +15,11 @@ public class respawn : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void Spawn(Transform spawnTransform)
+    {
+        transform.position = spawnTransform.position;
+        transform.eulerAngles = spawnTransform.eulerAngles;
     }
 }

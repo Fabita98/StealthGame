@@ -152,8 +152,8 @@ public class PlayerPrefsManager : MonoBehaviour
         string position = key + "TP";
         string eulerAngles = key + "TE";
         // string scale = key + "TS";
-        value.transform.position = GetVector3(position);
-        value.transform.eulerAngles = GetVector3(eulerAngles);
+        value.position = GetVector3(position);
+        value.eulerAngles = GetVector3(eulerAngles);
         // SetVector3(scale, value.localScale);
     }
 }

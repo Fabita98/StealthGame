@@ -8,16 +8,7 @@ public class CheckpointController : MonoBehaviour
 
     void Start()
     {
-        SetCheckpoint(transform);
-        // ResetToCheckpoint();
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            ResetToCheckpoint();
-        }
+        SetCheckpoint(MyPlayerController.Instance.transform);
     }
 
     public void SetCheckpoint(Transform checkpointTransform)
@@ -26,8 +17,12 @@ public class CheckpointController : MonoBehaviour
     }
 
     public void ResetToCheckpoint()
-    {   
-        PlayerPrefsManager.GetAndSetTransform(PlayerPrefsKeys.PlayerLastCheckpoint, MyPlayerController.Instance.gameObject.transform);
+    {
+        CharacterController characterController = MyPlayerController.Instance.GetComponent<CharacterController>();
+        characterController.enabled = false;
+        PlayerPrefsManager.GetAndSetTransform(PlayerPrefsKeys.PlayerLastCheckpoint, MyPlayerController.Instance.transform);
+        characterController.enabled = true;
+        // playerTransform.position = Vector3.zero;
         List<BaseStateMachine> enemies = GameController.Instance.GetAllEnemies();
         foreach (var enemy in enemies)
         {
