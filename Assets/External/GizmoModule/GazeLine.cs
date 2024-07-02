@@ -1,54 +1,69 @@
-using Assets.Scripts.GazeTrackingFeature;
 using System.Collections.Generic;
 using Unity.Labs.SuperScience;
 using UnityEngine;
 
-public class GazeLine : MonoBehaviour
+namespace Assets.Scripts.GazeTrackingFeature
 {
-    public float cursorOffset, cursorRadius;
 
-    public LayerMask mask;
+    public class GazeLine : MonoBehaviour
+    {
+        public float cursorOffset, cursorRadius;
 
-    private Vector3 hitPosition;
-    private Vector3 center1, center2;
-    private float radius;
+        public LayerMask mask;
+        private int monkLayer, squareLayer;
 
-    private readonly List<EyeInteractable> eyeInteractables = new();
+        private Vector3 hitPosition;
+        public static GameObject staredMonk;
+        private Vector3 center1, center2;
+        private float radius;
 
-    void Start() {
-        radius = 3f;
-        center1 = transform.position;
-        center2 = transform.position + Vector3.forward * radius;
-    }
+        private readonly List<EyeInteractable> eyeInteractables = new();
 
-    void FixedUpdate() {
-        EyeGazeRayCasting();
-    }
-
-    void Update() {
-        // Eye gizmo
-        GizmoModule.instance.DrawSphere(hitPosition + (transform.position - hitPosition).normalized * cursorOffset, cursorRadius, Color.red);    
-    }
-
-    private void EyeGazeRayCasting() {
-        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, Mathf.Infinity, layerMask: mask)) {
-            hitPosition = hit.point;
-            cursorRadius = .5f;
-
-            if (hit.collider.TryGetComponent<EyeInteractable>(out var eyeInteractable)) {
-                eyeInteractables.Add(eyeInteractable);
-                eyeInteractable.IsHovered = true;
-                EyeInteractable.HoveringTime += Time.fixedDeltaTime;
-            } else UnSelect();
+        private void Awake()
+        {
+            monkLayer = LayerMask.NameToLayer("Monks");
+            squareLayer = LayerMask.NameToLayer("Squares");
         }
-        else UnSelect(true);
-    }
 
-    void UnSelect(bool clear = false) {
-        foreach (EyeInteractable interactable in eyeInteractables) {
-            interactable.IsHovered = false;
-            EyeInteractable.HoveringTime = 0;
+        void Start() {
+            radius = 3f;
+            center1 = transform.position;
+            center2 = transform.position + Vector3.forward * radius;
         }
-        if (clear) eyeInteractables.Clear();
-    }
+
+        void FixedUpdate() {
+            EyeGazeRayCasting();
+        }
+
+        void Update() {
+            // Eye gizmo
+            GizmoModule.instance.DrawSphere(hitPosition + (transform.position - hitPosition).normalized * cursorOffset, cursorRadius, Color.red);
+        }
+
+        private void EyeGazeRayCasting() {
+            if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, Mathf.Infinity, layerMask: mask)) {
+                hitPosition = hit.point;
+                cursorRadius = .5f;
+
+                if (hit.collider.TryGetComponent<EyeInteractable>(out var eyeInteractable)) {
+                    eyeInteractables.Add(eyeInteractable);
+                    eyeInteractable.IsHovered = true;
+                    if (eyeInteractable.gameObjLayer == monkLayer)
+                    {
+                        staredMonk = eyeInteractable.gameObject;
+                    }
+                    EyeInteractable.HoveringTime += Time.fixedDeltaTime;
+                } else UnSelect();
+            }
+            else UnSelect(true);
+        }
+
+        void UnSelect(bool clear = false) {
+            foreach (EyeInteractable interactable in eyeInteractables) {
+                interactable.IsHovered = false;
+                EyeInteractable.HoveringTime = 0;
+            }
+            if (clear) eyeInteractables.Clear();
+        }
+    } 
 }

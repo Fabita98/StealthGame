@@ -22,16 +22,30 @@ namespace Assets.Scripts.GazeTrackingFeature
         private void OnEnable()
         {
             EyeInteractable.OnCounterChanged += HandleCounterChange;
+            EyeInteractable.OnVoiceRecording += HandleVoiceRecording;
         }
 
         private void OnDisable()
         {
             EyeInteractable.OnCounterChanged -= HandleCounterChange;
+            EyeInteractable.OnVoiceRecording -= HandleVoiceRecording;
         }
 
         private void HandleCounterChange(int newCount)
         {
             Debug.Log($"Current EyeInteractable instance counter: {newCount}");
+        }
+
+        private void HandleVoiceRecording(AudioClip audioClip)
+        {
+
+
+        }
+
+        private void StartVoiceCoroutine()
+        {
+            AudioSource monkAudioSource = EyeInteractable.audioSource;
+
         }
     }
 }

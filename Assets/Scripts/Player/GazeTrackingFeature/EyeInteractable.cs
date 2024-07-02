@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace Assets.Scripts.GazeTrackingFeature
@@ -17,21 +18,29 @@ namespace Assets.Scripts.GazeTrackingFeature
         private MeshRenderer meshRenderer;
         private float eyeOutlineWidth;
         public bool IsHovered { get; set; }
+        #region Make the monk talk: bools explanation
+        // isStaring is used to check if the player is staring at a monk,
+        // then readyToTalk is used to check if the required amount of time to make the monk talk has passed
+        #endregion
+        public static bool isStaring;
         public static float HoveringTime;
 
         [Header("Game object layer")]
-        private LayerMask gameObjLayer;  
+        public LayerMask gameObjLayer;  
         private int squareLayer, monkLayer;
 
         [Header("Voice recording settings")]
         [SerializeField] private int recordingLength = 3; 
         private bool isRecording = false;
-        private AudioClip recordedClip;
-        private AudioSource audioSource;
+        public AudioClip recordedClip;
+        public static AudioSource audioSource;
 
         public static int OverallEyeInteractableInstanceCounter { get; private set; }
+        public static bool readyToTalk;
         public static event CounterChangeHandler OnCounterChanged;
         public delegate void CounterChangeHandler(int newCount);
+        public static event VoiceRecordingHandler OnVoiceRecording;
+        public delegate void VoiceRecordingHandler(AudioClip audioClip);
         #endregion
 
         void Awake()
@@ -81,7 +90,7 @@ namespace Assets.Scripts.GazeTrackingFeature
 
         #region Eye and voice control methods
 
-        #region Eye control methods
+        #region Eye control 
         public void GazeControl() {
             if (IsHovered) {
                 OnObjectHover?.Invoke(gameObject);
@@ -90,6 +99,7 @@ namespace Assets.Scripts.GazeTrackingFeature
 
                 // Hover ONLY for one monk at a time
                 if (gameObjLayer == monkLayer && HoveringTime > 1f) {
+                    isStaring = true;
                     eyeOutline.enabled = true;
                     eyeOutline.OutlineColor = Color.yellow;
                     eyeOutline.OutlineMode = EyeOutline.Mode.OutlineAll;
@@ -98,13 +108,15 @@ namespace Assets.Scripts.GazeTrackingFeature
 
                     // Hover to tell the player that he can speak to the hovered monk
                     if (HoveringTime > 3f) {
-                        //StartVoiceRecording();
+                        isStaring = false;
+                        readyToTalk = true;
                         eyeOutlineWidth = 4f;
                         eyeOutline.OutlineColor = Color.green;
                         Debug.Log("Enemy selected: ready to talk! ");
-                        //StopVoiceRecording();
-                        //PlayRecordedVoice();
+                        // Trigger the voice recording event here
+                        OnVoiceRecording?.Invoke(null); // Passing null for now, will handle recording in the listener
                         //HoveringTime = 0f;
+                        readyToTalk = false;
                     }
                 }
             }
@@ -117,40 +129,94 @@ namespace Assets.Scripts.GazeTrackingFeature
         }
         #endregion
 
-        #region Voice recording methods
-        public void StartVoiceRecording() {
-            if (Microphone.IsRecording(null)) {
+        #region Voice recording 
+        // Coroutine for handling voice recording and playback
+        #region Voice recording coroutine with Unity's Microphone API
+        public IEnumerator VoiceRecordingCoroutine(AudioSource targetAudioSource)
+        {
+            if (Microphone.IsRecording(null))
+            {
                 Debug.LogWarning("Microphone is already recording!");
-                return;
+                yield break; // Exit the coroutine if already recording
             }
 
-            isRecording = true;
-            recordedClip = Microphone.Start(null, false, recordingLength, 44100);
+            AudioClip recordedClip = Microphone.Start(null, false, 3, 44100); // Adjust parameters as needed
             Debug.Log("Voice recording started...");
-        }
 
-        public void StopVoiceRecording() {
-            if (!isRecording) {
-                Debug.LogWarning("Microphone is not recording.");
-                return;
-            }
+            yield return new WaitForSeconds(3); // Adjust length as needed
 
-            Microphone.End(null);
-            isRecording = false;
+            Microphone.End(null); // Stop the microphone recording
             Debug.Log("Voice recording stopped.");
-        }
 
-        private void PlayRecordedVoice() {
-            if (recordedClip != null) {
-                audioSource.clip = recordedClip;
-                audioSource.Play();
-                Debug.Log("Playing recorded voice...");
+            if (recordedClip != null)
+            {
+                targetAudioSource.clip = recordedClip;
+                targetAudioSource.Play();
+                Debug.Log("Playing recorded voice through the monk...");
             }
-            else {
+            else
+            {
                 Debug.LogWarning("No recorded clip to play.");
-                return;
             }
         }
+        #endregion
+
+        #region Voice recording coroutine with Voice SDK
+
+//        private void CollectLipSync()
+//        {
+//            var frame = lipsyncTracker.GetLastProcessedFrame();
+
+//            List<float> visemesWheights = new(frame.Visemes);
+
+//            if (visemesWheights != null)
+//            {
+//                foreach (var viseme in (OVRLipSync.Viseme[])Enum.GetValues(typeof(OVRLipSync.Viseme)))
+//                {
+//                    AddToDictionary(viseme.ToString(), visemesWheights[(int)viseme].ToString());
+//                }
+
+//                AddToDictionary("Laughter probability", frame.laughterScore.ToString());
+//            }
+//            else
+//            {
+//                foreach (var viseme in (OVRLipSync.Viseme[])Enum.GetValues(typeof(OVRLipSync.Viseme)))
+//                {
+//                    AddToDictionary(viseme.ToString(), "NaN", false);
+//                }
+
+//                AddToDictionary("Laughter probability", "NaN", false);
+//            }
+//        }
+
+//        public void CreateLipsyncTracker()
+//        {
+//            GameObject lipsynctrackerObj = new("LipsyncTracker", typeof(LipSyncTracker));
+//            lipsynctrackerObj.transform.parent = transform;
+
+//            var lipsyncTrackerTemp = lipsynctrackerObj.GetComponent<LipSyncTracker>();
+//            lipsyncTrackerTemp.provider = OVRLipSync.ContextProviders.Enhanced_with_Laughter;
+//            lipsyncTrackerTemp.audioLoopback = false;
+//            lipsyncTrackerTemp.micSelected = Microphone.devices[0];
+//        }
+
+//        public void RemoveLipsyncTracker()
+//        {
+//#if UNITY_EDITOR
+//            EditorApplication.delayCall += () => {
+//                Transform lipTransform = null;
+//                if (this != null && transform != null)
+//                    lipTransform = transform.Find("LipsyncTracker");
+
+//                if (lipTransform)
+//                {
+//                    DestroyImmediate(lipTransform.gameObject);
+//                }
+//            };
+//#endif
+//        }
+
+        #endregion
         #endregion
         #endregion
     }
