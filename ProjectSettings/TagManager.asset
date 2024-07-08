@@ -12,6 +12,7 @@ TagManager:
   - LeftHand
   - HealthBar
   - OxBar
+  - Hand
   layers:
   - Default
   - TransparentFX
