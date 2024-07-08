@@ -20,7 +20,7 @@ public class open_door : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag=="Hand")
+        if (other.tag=="LeftHand"|| other.tag == "RightHand")
         {
             play = true;
             Debug.Log("opeeeen");
