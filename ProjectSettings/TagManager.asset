@@ -7,6 +7,12 @@ TagManager:
   - SideWalls
   - Door
   - LeftOrRightWall
+  - Torch
+  - OxBar
+  - HealthBar
+  - RightHand
+  - LeftHand
+  - Monk
   layers:
   - Default
   - TransparentFX

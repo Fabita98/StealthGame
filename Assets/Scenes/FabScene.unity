@@ -1699,6 +1699,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6752307791147371159, guid: faf9c57d28d7aab4397b78a5c669b6b7, type: 3}
+      propertyPath: m_TagString
+      value: Monk
+      objectReference: {fileID: 0}
     - target: {fileID: 7582455514296755728, guid: faf9c57d28d7aab4397b78a5c669b6b7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 23.26
@@ -3096,6 +3100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67978744717d2084da41bfbf8e3c66b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recordingLength: 3
+  trialMonk: {fileID: 616310646}
 --- !u!1 &517713572
 GameObject:
   m_ObjectHideFlags: 0
@@ -3575,6 +3581,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7fdb76289701454ca1e759f80309f13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &616310646 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6752307791147371159, guid: faf9c57d28d7aab4397b78a5c669b6b7, type: 3}
+  m_PrefabInstance: {fileID: 284551133}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &621598188
 GameObject:
   m_ObjectHideFlags: 0
@@ -7779,8 +7790,6 @@ MonoBehaviour:
   gameObjLayer:
     serializedVersion: 2
     m_Bits: 0
-  recordingLength: 3
-  recordedClip: {fileID: 0}
 --- !u!54 &1272018895
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8445,8 +8454,6 @@ MonoBehaviour:
   gameObjLayer:
     serializedVersion: 2
     m_Bits: 0
-  recordingLength: 3
-  recordedClip: {fileID: 0}
 --- !u!54 &1359948919
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9006,7 +9013,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cursorOffset: 0
-  cursorRadius: 0.1
+  cursorRadius: 0.2
   mask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -9796,8 +9803,6 @@ MonoBehaviour:
   gameObjLayer:
     serializedVersion: 2
     m_Bits: 0
-  recordingLength: 3
-  recordedClip: {fileID: 0}
 --- !u!54 &1592318304
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10288,7 +10293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cursorOffset: 0
-  cursorRadius: 0.1
+  cursorRadius: 0.2
   mask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -11538,7 +11543,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 436, y: 299}
+  m_AnchoredPosition: {x: 503, y: 299}
   m_SizeDelta: {x: 499, y: 234.663}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1852078497
@@ -11548,7 +11553,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1852078495}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
@@ -11563,18 +11568,20 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 300
+    m_FontSize: 30
     m_FontStyle: 0
-    m_BestFit: 1
+    m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 300
-    m_Alignment: 1
+    m_Alignment: 4
     m_AlignByGeometry: 1
     m_RichText: 0
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: You can now talk for the monk!
+  m_Text: '
+
+    Monk can now speak for you!'
 --- !u!222 &1852078498
 CanvasRenderer:
   m_ObjectHideFlags: 0

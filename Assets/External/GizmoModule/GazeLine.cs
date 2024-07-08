@@ -7,15 +7,14 @@ namespace Assets.Scripts.GazeTrackingFeature
 
     public class GazeLine : MonoBehaviour
     {
-        public float cursorOffset, cursorRadius;
+        [SerializeField] private float cursorOffset;
+        [SerializeField] private float cursorRadius;
 
         public LayerMask mask;
         private int monkLayer, squareLayer;
 
         private Vector3 hitPosition;
         public static GameObject staredMonk;
-        private Vector3 center1, center2;
-        private float radius;
 
         private readonly List<EyeInteractable> eyeInteractables = new();
 
@@ -23,12 +22,6 @@ namespace Assets.Scripts.GazeTrackingFeature
         {
             monkLayer = LayerMask.NameToLayer("Monks");
             squareLayer = LayerMask.NameToLayer("Squares");
-        }
-
-        void Start() {
-            radius = 3f;
-            center1 = transform.position;
-            center2 = transform.position + Vector3.forward * radius;
         }
 
         void FixedUpdate() {
@@ -42,9 +35,8 @@ namespace Assets.Scripts.GazeTrackingFeature
 
         private void EyeGazeRayCasting() {
             if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, Mathf.Infinity, layerMask: mask)) {
+                
                 hitPosition = hit.point;
-                cursorRadius = .5f;
-
                 if (hit.collider.TryGetComponent<EyeInteractable>(out var eyeInteractable)) {
                     eyeInteractables.Add(eyeInteractable);
                     eyeInteractable.IsHovered = true;
@@ -53,7 +45,8 @@ namespace Assets.Scripts.GazeTrackingFeature
                         staredMonk = eyeInteractable.gameObject;
                     }
                     EyeInteractable.HoveringTime += Time.fixedDeltaTime;
-                } else UnSelect();
+                }
+                else UnSelect();
             }
             else UnSelect(true);
         }

@@ -29,24 +29,16 @@ namespace Assets.Scripts.GazeTrackingFeature
         public LayerMask gameObjLayer;  
         private int squareLayer, monkLayer;
 
-        [Header("Voice recording settings")]
-        [SerializeField] private int recordingLength = 3; 
-        private bool isRecording = false;
-        public AudioClip recordedClip;
-        public static AudioSource audioSource;
-
         public static int OverallEyeInteractableInstanceCounter { get; private set; }
         public static bool readyToTalk;
         public static event CounterChangeHandler OnCounterChanged;
-        public delegate void CounterChangeHandler(int newCount);
-        public static event VoiceRecordingHandler OnVoiceRecording;
-        public delegate void VoiceRecordingHandler(AudioClip audioClip);
+        public delegate void CounterChangeHandler(int newCount);        
         #endregion
 
         void Awake()
         {            
             ComponentInit();
-        }
+        }        
 
         private void Update()
         {
@@ -59,12 +51,12 @@ namespace Assets.Scripts.GazeTrackingFeature
             squareLayer = LayerMask.NameToLayer("Squares");
 
             // Case where EyeInteractable instance is a monk 
-            if (gameObjLayer == monkLayer) {
-                if (TryGetComponent<AudioSource>(out var aS)) audioSource = aS;
-                else Debug.LogWarning("AudioSource component not found.");
-            }
+            //if (gameObjLayer == monkLayer) {
+            //    if (TryGetComponent<AudioSource>(out var aS)) audioSource = aS;
+            //    else Debug.LogWarning("AudioSource component not found.");
+            //}
             // Case where EyeInteractable instance is a square
-            else if (gameObjLayer == squareLayer) {
+            if (gameObjLayer == squareLayer) {
                 if (TryGetComponent<MeshRenderer>(out var mR)) meshRenderer = mR;
                 else Debug.LogWarning("MeshRenderer component not found.");
             } 
@@ -87,8 +79,6 @@ namespace Assets.Scripts.GazeTrackingFeature
             OnCounterChanged?.Invoke(OverallEyeInteractableInstanceCounter);
         }
         #endregion
-
-        #region Eye and voice control methods
 
         #region Eye control 
         public void GazeControl() {
@@ -114,7 +104,7 @@ namespace Assets.Scripts.GazeTrackingFeature
                         eyeOutline.OutlineColor = Color.green;
                         Debug.Log("Enemy selected: ready to talk! ");
                         // Trigger the voice recording event here
-                        OnVoiceRecording?.Invoke(null); // Passing null for now, will handle recording in the listener
+                        //EyeTrackingDebug.OnVoiceRecording?.Invoke(null); // Passing null for now, will handle recording in the listener
                         //HoveringTime = 0f;
                         readyToTalk = false;
                     }
@@ -127,97 +117,6 @@ namespace Assets.Scripts.GazeTrackingFeature
             if (gameObjLayer == squareLayer && meshRenderer) meshRenderer.material = OnHoverInactiveMaterial;
             else if (gameObjLayer == monkLayer) eyeOutline.enabled = false;
         }
-        #endregion
-
-        #region Voice recording 
-        // Coroutine for handling voice recording and playback
-        #region Voice recording coroutine with Unity's Microphone API
-        public IEnumerator VoiceRecordingCoroutine(AudioSource targetAudioSource)
-        {
-            if (Microphone.IsRecording(null))
-            {
-                Debug.LogWarning("Microphone is already recording!");
-                yield break; // Exit the coroutine if already recording
-            }
-
-            AudioClip recordedClip = Microphone.Start(null, false, 3, 44100); // Adjust parameters as needed
-            Debug.Log("Voice recording started...");
-
-            yield return new WaitForSeconds(3); // Adjust length as needed
-
-            Microphone.End(null); // Stop the microphone recording
-            Debug.Log("Voice recording stopped.");
-
-            if (recordedClip != null)
-            {
-                targetAudioSource.clip = recordedClip;
-                targetAudioSource.Play();
-                Debug.Log("Playing recorded voice through the monk...");
-            }
-            else
-            {
-                Debug.LogWarning("No recorded clip to play.");
-            }
-        }
-        #endregion
-
-        #region Voice recording coroutine with Voice SDK
-
-//        private void CollectLipSync()
-//        {
-//            var frame = lipsyncTracker.GetLastProcessedFrame();
-
-//            List<float> visemesWheights = new(frame.Visemes);
-
-//            if (visemesWheights != null)
-//            {
-//                foreach (var viseme in (OVRLipSync.Viseme[])Enum.GetValues(typeof(OVRLipSync.Viseme)))
-//                {
-//                    AddToDictionary(viseme.ToString(), visemesWheights[(int)viseme].ToString());
-//                }
-
-//                AddToDictionary("Laughter probability", frame.laughterScore.ToString());
-//            }
-//            else
-//            {
-//                foreach (var viseme in (OVRLipSync.Viseme[])Enum.GetValues(typeof(OVRLipSync.Viseme)))
-//                {
-//                    AddToDictionary(viseme.ToString(), "NaN", false);
-//                }
-
-//                AddToDictionary("Laughter probability", "NaN", false);
-//            }
-//        }
-
-//        public void CreateLipsyncTracker()
-//        {
-//            GameObject lipsynctrackerObj = new("LipsyncTracker", typeof(LipSyncTracker));
-//            lipsynctrackerObj.transform.parent = transform;
-
-//            var lipsyncTrackerTemp = lipsynctrackerObj.GetComponent<LipSyncTracker>();
-//            lipsyncTrackerTemp.provider = OVRLipSync.ContextProviders.Enhanced_with_Laughter;
-//            lipsyncTrackerTemp.audioLoopback = false;
-//            lipsyncTrackerTemp.micSelected = Microphone.devices[0];
-//        }
-
-//        public void RemoveLipsyncTracker()
-//        {
-//#if UNITY_EDITOR
-//            EditorApplication.delayCall += () => {
-//                Transform lipTransform = null;
-//                if (this != null && transform != null)
-//                    lipTransform = transform.Find("LipsyncTracker");
-
-//                if (lipTransform)
-//                {
-//                    DestroyImmediate(lipTransform.gameObject);
-//                }
-//            };
-//#endif
-//        }
-
-        #endregion
-        #endregion
         #endregion
     }
 }
