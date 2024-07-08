@@ -32,7 +32,9 @@ namespace Assets.Scripts.GazeTrackingFeature
         public static int OverallEyeInteractableInstanceCounter { get; private set; }
         public static bool readyToTalk;
         public static event CounterChangeHandler OnCounterChanged;
-        public delegate void CounterChangeHandler(int newCount);        
+        public delegate void CounterChangeHandler(int newCount);
+        public static event VoiceRecordingHandler OnVoiceRecording;
+        public delegate void VoiceRecordingHandler(AudioClip audioClip);
         #endregion
 
         void Awake()
@@ -102,15 +104,13 @@ namespace Assets.Scripts.GazeTrackingFeature
                         readyToTalk = true;
                         eyeOutlineWidth = 4f;
                         eyeOutline.OutlineColor = Color.green;
-                        Debug.Log("Enemy selected: ready to talk! ");
                         // Trigger the voice recording event here
-                        //EyeTrackingDebug.OnVoiceRecording?.Invoke(null); // Passing null for now, will handle recording in the listener
+                        EyeTrackingDebug.Instance.TriggerVoiceRecordingEvent(null); // Passing null for now, will handle recording in the listener
                         //HoveringTime = 0f;
                         readyToTalk = false;
                     }
                 }
-            }
-            else ResetHover();
+            } else ResetHover();
         }
 
         public void ResetHover() {

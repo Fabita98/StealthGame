@@ -1,3 +1,4 @@
+using Meta.WitAi.Lib;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -9,9 +10,11 @@ namespace Assets.Scripts.GazeTrackingFeature
         public static EyeTrackingDebug Instance { get; private set; }
 
         [Header("Voice recording parameters")]
-        [SerializeField] private int recordingLength = 3;
-        public static AudioSource audioSource;
-        [SerializeField] public GameObject trialMonk;
+        [SerializeField] private int recordingLengthInMS = 30000;
+        public GameObject trialMonk;
+        public Mic oculusMic;
+        public bool oculusMicFound = false;
+
         public static event VoiceRecordingHandler OnVoiceRecording;
         public delegate void VoiceRecordingHandler(AudioClip audioClip);
         public static event Action OnRecordingAboutToStart;
@@ -32,9 +35,7 @@ namespace Assets.Scripts.GazeTrackingFeature
 
         private void Start()
         {
-            if (trialMonk == null) trialMonk = GameObject.FindGameObjectWithTag("Monk");
-            // wait 5s than invoke event
-            StartCoroutine(InvokeVoiceRecording());
+            SearchForOculusMic();
         }
 
         private void OnEnable()
@@ -49,30 +50,38 @@ namespace Assets.Scripts.GazeTrackingFeature
             OnVoiceRecording -= HandleVoiceRecording;
         }
 
+        public void TriggerVoiceRecordingEvent(AudioClip audioClip)
+        {
+            OnVoiceRecording?.Invoke(audioClip);
+        }
+
         private void HandleCounterChange(int newCount)
         {
             Debug.Log($"Current EyeInteractable instance counter: {newCount}");
         }
 
         #region Voice recording 
-        #region Voice recording coroutine with Unity's Microphone API
         private void HandleVoiceRecording(AudioClip audioClip)
         {
-            GazeLine.staredMonk = trialMonk;
+            //GazeLine.staredMonk = trialMonk;
+            trialMonk = GazeLine.staredMonk;
 
-            if (GazeLine.staredMonk && GazeLine.staredMonk.TryGetComponent<AudioSource>(out var monkAudioSource))
+            if (trialMonk && trialMonk.TryGetComponent<AudioSource>(out var monkAudioSource))
             {
-                StartCoroutine(VoiceRecordingCoroutine(monkAudioSource));
+                StartCoroutine(OculusMicRecordingCoroutine(monkAudioSource));
             }
             else
             {
-                if (trialMonk.TryGetComponent<AudioSource>(out var trialMonkAudioSource))
-                StartCoroutine(VoiceRecordingCoroutine(trialMonkAudioSource));
+                return;
+                //if (trialMonk.TryGetComponent<AudioSource>(out var trialMonkAudioSource))
+                //StartCoroutine(VoiceRecordingCoroutine(trialMonkAudioSource));
             }
-        }
+        }        
 
-        public IEnumerator VoiceRecordingCoroutine(AudioSource targetAudioSource)
+        #region Voice recording coroutine with Unity's Microphone API
+        public IEnumerator BuiltinRecordingCoroutine(AudioSource targetAudioSource)
         {
+            Debug.Log($"Microphone device: {Microphone.devices[0]}");
             if (Microphone.IsRecording(null))
             {
                 Debug.LogWarning("Microphone is already recording!");
@@ -80,11 +89,10 @@ namespace Assets.Scripts.GazeTrackingFeature
             }
             OnRecordingAboutToStart?.Invoke();
 
-            AudioClip recordedClip = Microphone.Start(null, false, recordingLength, 44100); 
-            Debug.Log($"Microphone device: {Microphone.devices[0]}");
+            AudioClip recordedClip = Microphone.Start(null, false, recordingLengthInMS, 44100);
             Debug.Log("Voice recording started...");
 
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(recordingLengthInMS);
 
             Microphone.End(null); // Stop the microphone recording
             Debug.Log("Voice recording stopped.");
@@ -108,59 +116,39 @@ namespace Assets.Scripts.GazeTrackingFeature
 
         #region Voice recording coroutine with Voice SDK
 
-        //        private void CollectLipSync()
-        //        {
-        //            var frame = lipsyncTracker.GetLastProcessedFrame();
+        private void SearchForOculusMic()
+        {
+            Debug.Log($"Persistent data path: {Application.persistentDataPath}");
 
-        //            List<float> visemesWheights = new(frame.Visemes);
+            if (oculusMic == null) {
+                oculusMic = FindObjectOfType<Mic>();
+                if (oculusMic != null) {
+                    oculusMicFound = true;
+                    Debug.Log("Oculus Mic found.");
+                } 
+                else Debug.LogWarning("Oculus Mic not found.");
+            }            
+        }
 
-        //            if (visemesWheights != null)
-        //            {
-        //                foreach (var viseme in (OVRLipSync.Viseme[])Enum.GetValues(typeof(OVRLipSync.Viseme)))
-        //                {
-        //                    AddToDictionary(viseme.ToString(), visemesWheights[(int)viseme].ToString());
-        //                }
+        public IEnumerator OculusMicRecordingCoroutine(AudioSource targetAudioSource) {
+            if (oculusMicFound && oculusMic != null) {
+                OnRecordingAboutToStart?.Invoke();
+                oculusMic.StartRecording(recordingLengthInMS);
 
-        //                AddToDictionary("Laughter probability", frame.laughterScore.ToString());
-        //            }
-        //            else
-        //            {
-        //                foreach (var viseme in (OVRLipSync.Viseme[])Enum.GetValues(typeof(OVRLipSync.Viseme)))
-        //                {
-        //                    AddToDictionary(viseme.ToString(), "NaN", false);
-        //                }
+                yield return new WaitForSeconds(recordingLengthInMS);
 
-        //                AddToDictionary("Laughter probability", "NaN", false);
-        //            }
-        //        }
+                oculusMic.StopRecording();
+                OnRecordingStopped?.Invoke();
 
-        //        public void CreateLipsyncTracker()
-        //        {
-        //            GameObject lipsynctrackerObj = new("LipsyncTracker", typeof(LipSyncTracker));
-        //            lipsynctrackerObj.transform.parent = transform;
-
-        //            var lipsyncTrackerTemp = lipsynctrackerObj.GetComponent<LipSyncTracker>();
-        //            lipsyncTrackerTemp.provider = OVRLipSync.ContextProviders.Enhanced_with_Laughter;
-        //            lipsyncTrackerTemp.audioLoopback = false;
-        //            lipsyncTrackerTemp.micSelected = Microphone.devices[0];
-        //        }
-
-        //        public void RemoveLipsyncTracker()
-        //        {
-        //#if UNITY_EDITOR
-        //            EditorApplication.delayCall += () => {
-        //                Transform lipTransform = null;
-        //                if (this != null && transform != null)
-        //                    lipTransform = transform.Find("LipsyncTracker");
-
-        //                if (lipTransform)
-        //                {
-        //                    DestroyImmediate(lipTransform.gameObject);
-        //                }
-        //            };
-        //#endif
-        //        }
-
+                if (oculusMic.AudioClip != null) {
+                    targetAudioSource.clip = oculusMic.AudioClip;
+                    SavWav.Save("oculus_mic_recording", oculusMic.AudioClip);
+                    targetAudioSource.Play();
+                    Debug.Log("Playing recorded voice through Oculus Mic...");
+                } else Debug.LogWarning("No recorded clip to play from Oculus Mic.");
+            } 
+            else Debug.LogWarning("Oculus Mic not found or not initialized.");
+        }
         #endregion
         #endregion
     }
