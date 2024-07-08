@@ -8,7 +8,8 @@ using UnityEngine.AI;
 
 public class BaseStateMachine : MonoBehaviour
 {
-    public OVRPlayerController PlayerController;
+    public MyPlayerController PlayerController;
+    [SerializeField] private int id;
     [SerializeField] private BaseState _initialState;
     [SerializeField] private float _speed;
     [SerializeField] private float _runSpeed;
@@ -26,6 +27,7 @@ public class BaseStateMachine : MonoBehaviour
     [NonSerialized] public bool stopAnimationChoose;
     private Dictionary<Type, Component> _cachedComponents;
     private int _updateCounter;
+    private Transform initialTransform;
 
     private void Awake()
     {
@@ -38,6 +40,9 @@ public class BaseStateMachine : MonoBehaviour
         isStartOfChase = true;
         isStartOfPatrol = true;
         isStartOfAttack = true;
+        initialTransform = MovingPoints.GetFirst();
+        transform.position = initialTransform.position;
+        transform.rotation = initialTransform.rotation;
     }
 
     private void Start()
@@ -75,7 +80,35 @@ public class BaseStateMachine : MonoBehaviour
         }
         return component;
     }
-    
+
+    public void Reset()
+    {
+        // Reset position and rotation
+        transform.position = initialTransform.position;
+        transform.rotation = initialTransform.rotation;
+
+        // Reset NavMeshAgent
+        if (NavMeshAgent != null)
+        {
+            NavMeshAgent.ResetPath();
+            NavMeshAgent.velocity = Vector3.zero;
+            NavMeshAgent.isStopped = false;
+            NavMeshAgent.speed = _speed;
+        }
+
+        // Reset state-related variables
+        CurrentState = _initialState;
+        isStartOfChase = true;
+        isStartOfPatrol = true;
+        isStartOfAttack = true;
+        stopAnimationChoose = false;
+        _updateCounter = 0;
+
+        // Reset other components and variables as needed
+        EnemyUtility.Instance.ResetAnimator();
+
+    }
+
     public void Stop(bool chooseIdleAnimation = true)
     {
         NavMeshAgent.isStopped = true;

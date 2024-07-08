@@ -7,6 +7,11 @@ TagManager:
   - SideWalls
   - Door
   - LeftOrRightWall
+  - RightHand
+  - Torch
+  - LeftHand
+  - HealthBar
+  - OxBar
   layers:
   - Default
   - TransparentFX
@@ -16,8 +21,8 @@ TagManager:
   - UI
   - Player
   - Obstacle
-  - 
-  - 
+  - Body
+  - Hide
   - 
   - 
   - 

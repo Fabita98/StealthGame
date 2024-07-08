@@ -89,4 +89,9 @@ public class MovingPoints : MonoBehaviour
 
         return false;
     }
+
+    public Transform GetFirst()
+    {
+        return points.First();
+    }
 }

@@ -11,6 +11,7 @@ public enum PlayerPrefsKeys
     GameStarted,
     Level,
     GameTimer,
+    PlayerLastCheckpoint,
 }
 
 /// <summary>
@@ -136,7 +137,7 @@ public class PlayerPrefsManager : MonoBehaviour
         return value;
     }
 
-    private static void SetTransform(PlayerPrefsKeys key, Transform value)
+    public static void SetTransform(PlayerPrefsKeys key, Transform value)
     {
         string position = key + "TP";
         string eulerAngles = key + "TE";
@@ -146,13 +147,13 @@ public class PlayerPrefsManager : MonoBehaviour
         // SetVector3(scale, value.localScale);
     }
     
-    private static void GetTransform(PlayerPrefsKeys key, Transform value)
+    public static void GetAndSetTransform(PlayerPrefsKeys key, Transform value)
     {
         string position = key + "TP";
         string eulerAngles = key + "TE";
         // string scale = key + "TS";
-        value.transform.position = GetVector3(position);
-        value.transform.eulerAngles = GetVector3(eulerAngles);
+        value.position = GetVector3(position);
+        value.eulerAngles = GetVector3(eulerAngles);
         // SetVector3(scale, value.localScale);
     }
 }

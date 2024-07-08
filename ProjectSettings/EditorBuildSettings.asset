@@ -4,7 +4,13 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 0
+    path: Assets/Scenes/SadraScene.unity
+    guid: 03a066569fbc8de40b0af201882d5986
+  - enabled: 1
+    path: Assets/Samples/Meta XR Core SDK/66.0.0/Sample Scenes/ControllerDrivenHandPoses.unity
+    guid: 7ea9f7c90c2fa404d86276a633b59903
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 2fa7d38318a0c474f88d8fcd833b9a72, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 802bfd6d692624b4d92e94419775c701, type: 2}

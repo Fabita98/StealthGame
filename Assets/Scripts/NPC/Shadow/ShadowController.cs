@@ -14,6 +14,7 @@ public class ShadowController : MonoBehaviour
     // private AudioSource _audioSource;
     private PlayerFunctionalities _playerFunctionalities;
     private CapsuleCollider _triggerCapsuleCollider;
+    private ShadowDissolve _shadowDissolve;
     
     void Start()
     {
@@ -22,6 +23,7 @@ public class ShadowController : MonoBehaviour
         // _audioSource = GetComponent<AudioSource>();
         _playerFunctionalities = PlayerFunctionalities.Instance;
         _triggerCapsuleCollider = GetComponent<CapsuleCollider>();
+        _shadowDissolve = transform.GetChild(0).GetComponent<ShadowDissolve>();
         SetTriggerRadius(triggerRadius);
     }
 
@@ -56,7 +58,12 @@ public class ShadowController : MonoBehaviour
             _playerFunctionalities.CapturedByShadow();
         }
     }
-    
+
+    public void Reset()
+    {
+        _shadowDissolve.Reset();
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;

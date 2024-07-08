@@ -450,7 +450,7 @@ public class MyPlayerController : MonoBehaviour
                 Stand();
             }
 
-            if (torch) toggleTorch();
+            // if (torch) toggleTorch();
 
 #if !UNITY_ANDROID // LeftTrigger not avail on Android game pad
             moveInfluence *= 1.0f + OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger);
@@ -628,10 +628,10 @@ public class MyPlayerController : MonoBehaviour
         FallSpeed = 0.0f;
     }
 
-    public void toggleTorch()
-    {
-        torchGO.SetActive(!torchGO.activeSelf);
-    }
+    // public void toggleTorch()
+    // {
+    //     torchGO.SetActive(!torchGO.activeSelf);
+    // }
     /// <summary>
     /// Gets the move scale multiplier.
     /// </summary>

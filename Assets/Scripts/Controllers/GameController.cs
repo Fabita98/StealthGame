@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,6 +13,7 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour
 {
     private GameManager _gameManager;
+    [NonSerialized] public CheckpointController CheckpointController;
     
     private static GameController _instance;
     public static GameController Instance => _instance;
@@ -32,7 +35,19 @@ public class GameController : MonoBehaviour
         {
             PlayerPrefsManager.SetBool(PlayerPrefsKeys.GameStarted, true);
         }
+
+        CheckpointController = GetComponent<CheckpointController>();
         // _gameManager.AudioManager.play(SoundName.MainTheme);
+    }
+
+    public List<BaseStateMachine> GetAllEnemies()
+    {
+        return FindObjectsOfType<BaseStateMachine>().ToList();
+    }
+    
+    public List<ShadowController> GetAllShadows()
+    {
+        return FindObjectsOfType<ShadowController>().ToList();
     }
 
 }

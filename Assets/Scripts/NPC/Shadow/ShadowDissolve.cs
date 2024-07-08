@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,7 +20,12 @@ public class ShadowDissolve : MonoBehaviour
     {
         SetAppearanceRadius(_shadowController.appearanceRadius);
     }
-    
+
+    public void Reset()
+    {
+        GetComponent<Renderer>().material.SetFloat("_DissolveAmount", 1);
+    }
+
     private void SetAppearanceRadius(float radius)
     {
         _appearanceCapsuleCollider.radius = _defaultRadius * radius;
