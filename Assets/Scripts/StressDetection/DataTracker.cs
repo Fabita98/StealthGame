@@ -134,13 +134,13 @@ public class DataTracker : MonoBehaviour {
 					trackerClass.RemoveUnusedEyes();
 				}
 
-				trackerClass.takeFaceData = EditorGUILayout.Toggle("Take Face Data", trackerClass.takeFaceData);
+				// trackerClass.takeFaceData = EditorGUILayout.Toggle("Take Face Data", trackerClass.takeFaceData);
 
-				ovrexpr.enabled = trackerClass.takeFaceData || trackerClass.takeEyeData;
+				// ovrexpr.enabled = trackerClass.takeFaceData || trackerClass.takeEyeData;
 
-				if (trackerClass.takeFaceData && trackerClass.takeEyeData) {
-					EditorGUILayout.HelpBox("Eye closed will be collected as face data to avoid double access to face expression", MessageType.Info);
-				}
+				// if (trackerClass.takeFaceData && trackerClass.takeEyeData) {
+				// 	EditorGUILayout.HelpBox("Eye closed will be collected as face data to avoid double access to face expression", MessageType.Info);
+				// }
 
 
 				trackerClass.takeMovementData = EditorGUILayout.Toggle("Take Movement Data", trackerClass.takeMovementData);
@@ -150,7 +150,7 @@ public class DataTracker : MonoBehaviour {
 				}
 			}
 
-			trackerClass.takeLipSync = EditorGUILayout.Toggle("Take LipSync", trackerClass.takeLipSync);
+			// trackerClass.takeLipSync = EditorGUILayout.Toggle("Take LipSync", trackerClass.takeLipSync);
 
 			// if (trackerClass.takeLipSync) {
 			// 	if (Microphone.devices.Length == 0) {
@@ -399,7 +399,7 @@ public class DataTracker : MonoBehaviour {
 			if (takeMovementData) {
 				CollectOVRInputControllerTrackingInfo(OVRInput.Controller.LTouch);
 				CollectOVRInputControllerTrackingInfo(OVRInput.Controller.RTouch);
-				// CollectOVRInputControllerButtonData();
+				CollectOVRInputControllerButtonData();
 				// CollectTrackerTrackingInfo();
 				CollectOVRNodeTrackingInfo(OVRPlugin.Node.Head); //Is equal to OVRPlugin.Node.EyeCenter (tested)
 			}
@@ -646,14 +646,14 @@ public class DataTracker : MonoBehaviour {
 	/// <summary>
 	/// Collect Button data from OVRInput class, using different types of sources
 	/// </summary>
-	// private void CollectOVRInputControllerButtonData() {
-	// 	var isValidData = OVRInput.IsControllerConnected(OVRInput.Controller.RTouch) && OVRInput.IsControllerConnected(OVRInput.Controller.LTouch);
-	// 	GetOVRInputEnumInfo(OVRInput.RawButton.Any | OVRInput.RawButton.None | OVRInput.RawButton.Back | OVRInput.RawButton.LShoulder | OVRInput.RawButton.RShoulder | OVRInput.RawButton.DpadUp | OVRInput.RawButton.DpadDown | OVRInput.RawButton.DpadLeft | OVRInput.RawButton.DpadRight, isValidData);
-	// 	GetOVRInputEnumInfo(OVRInput.RawTouch.Any | OVRInput.RawTouch.None | OVRInput.RawTouch.LTouchpad | OVRInput.RawTouch.RTouchpad, isValidData);
-	// 	GetOVRInputEnumInfo(OVRInput.RawNearTouch.Any | OVRInput.RawNearTouch.None, isValidData);
-	// 	GetOVRInputEnumInfo(OVRInput.RawAxis1D.Any | OVRInput.RawAxis1D.None | OVRInput.RawAxis1D.LStylusForce | OVRInput.RawAxis1D.RStylusForce, isValidData);
-	// 	GetOVRInputEnumInfo(OVRInput.RawAxis2D.Any | OVRInput.RawAxis2D.None | OVRInput.RawAxis2D.LTouchpad | OVRInput.RawAxis2D.RTouchpad, isValidData);
-	// }
+	private void CollectOVRInputControllerButtonData() {
+		var isValidData = OVRInput.IsControllerConnected(OVRInput.Controller.RTouch) && OVRInput.IsControllerConnected(OVRInput.Controller.LTouch);
+		GetOVRInputEnumInfo(OVRInput.RawButton.Any | OVRInput.RawButton.None | OVRInput.RawButton.Back | OVRInput.RawButton.LShoulder | OVRInput.RawButton.RShoulder | OVRInput.RawButton.DpadUp | OVRInput.RawButton.DpadDown | OVRInput.RawButton.DpadLeft | OVRInput.RawButton.DpadRight, isValidData);
+		GetOVRInputEnumInfo(OVRInput.RawTouch.Any | OVRInput.RawTouch.None | OVRInput.RawTouch.LTouchpad | OVRInput.RawTouch.RTouchpad, isValidData);
+		GetOVRInputEnumInfo(OVRInput.RawNearTouch.Any | OVRInput.RawNearTouch.None, isValidData);
+		GetOVRInputEnumInfo(OVRInput.RawAxis1D.Any | OVRInput.RawAxis1D.None | OVRInput.RawAxis1D.LStylusForce | OVRInput.RawAxis1D.RStylusForce, isValidData);
+		GetOVRInputEnumInfo(OVRInput.RawAxis2D.Any | OVRInput.RawAxis2D.None | OVRInput.RawAxis2D.LTouchpad | OVRInput.RawAxis2D.RTouchpad, isValidData);
+	}
 
 
 	/// <summary>
@@ -666,18 +666,17 @@ public class DataTracker : MonoBehaviour {
 	/// <param name="isValidCheck">
 	/// Is input collected valid?
 	/// </param>
-	// private void GetOVRInputEnumInfo<T>(T excludeFlags, bool isValidCheck = true) {
-	// 	foreach (var enumElement in (T[]) Enum.GetValues(typeof(T))) {
-	// 		if (!HasFlag(excludeFlags, enumElement))
-	// 			AddToDictionary(typeof(T) + enumElement.ToString(), enumElement.ToString(), isValidCheck);
-	// 	}
-	// }
-	//
-	// private bool HasFlag<T>(T flags, T flag) where T : Enum {
-	// 	long flagsValue = Convert.ToInt64(flags);
-	// 	long flagValue = Convert.ToInt64(flag);
-	// 	return (flagsValue & flagValue) == flagValue;
-	// }
+	private void GetOVRInputEnumInfo<T>(T excludeFlags, bool isValidCheck = true) where T : Enum {
+		foreach (T enumElement in Enum.GetValues(typeof(T))) {
+			// Check if the current enum element is part of the exclude flags
+			var enumValue = Convert.ToInt64(enumElement);
+			var excludeValue = Convert.ToInt64(excludeFlags);
+
+			if ((enumValue & excludeValue) == 0) {
+				AddToDictionary($"{typeof(T).Name}.{enumElement}", enumElement.ToString(), isValidCheck);
+			}
+		}
+	}
 
 
 	#endregion
