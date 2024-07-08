@@ -29,6 +29,8 @@ public class PatrolAction : FSMAction
             machine.isStartOfChase = true;
             machine.isStartOfAttack = true;
             machine.GetComponent<EnemySightSensor>().ChangeEscapedState(false);
+            machine.GetComponent<EnemyAttackSensor>().StartAttack = false;
+            machine.GetComponent<EnemyAttackSensor>().IsAttackCompleted = false;
         }
 
         if (movingPoints.HasReached(navMeshAgent))

@@ -83,11 +83,9 @@ public class BaseStateMachine : MonoBehaviour
 
     public void Reset()
     {
-        // Reset position and rotation
         transform.position = initialTransform.position;
         transform.rotation = initialTransform.rotation;
 
-        // Reset NavMeshAgent
         if (NavMeshAgent != null)
         {
             NavMeshAgent.ResetPath();
@@ -96,7 +94,8 @@ public class BaseStateMachine : MonoBehaviour
             NavMeshAgent.speed = _speed;
         }
 
-        // Reset state-related variables
+        GetComponent<EnemyAttackSensor>().StartAttack = false;
+        GetComponent<EnemyAttackSensor>().IsAttackCompleted = false;
         CurrentState = _initialState;
         isStartOfChase = true;
         isStartOfPatrol = true;
@@ -104,8 +103,8 @@ public class BaseStateMachine : MonoBehaviour
         stopAnimationChoose = false;
         _updateCounter = 0;
 
-        // Reset other components and variables as needed
         EnemyUtility.Instance.ResetAnimator();
+        
 
     }
 
