@@ -754,7 +754,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1351085757
 Transform:
   m_ObjectHideFlags: 0
@@ -792,11 +792,11 @@ MonoBehaviour:
   takeEyeData: 0
   takeFaceData: 0
   takeLipSync: 0
-  takeMovementData: 0
+  takeMovementData: 1
   takeEyeWorld: 0
   takeEyeTracking: 0
   takeEyeHead: 0
-  takeEyeSemanticWorld: 0
+  takeEyeSemanticWorld: 1
   enableSaveIntoCSV: 1
   dataPath: Assets/Data/DataTracker
   micSelected: 0
@@ -822,6 +822,64 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 789633835821025854, guid: faf9c57d28d7aab4397b78a5c669b6b7, type: 3}
   m_PrefabInstance: {fileID: 4913593682904349067}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1387937455
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1387937457}
+  - component: {fileID: 1387937456}
+  - component: {fileID: 1387937458}
+  m_Layer: 0
+  m_Name: StressDetection
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1387937456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1387937455}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d480807602aaf02499b748268963ebd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baselineDuration: 5
+--- !u!4 &1387937457
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1387937455}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -150.31781, y: -74.86999, z: -104.657684}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1387937458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1387937455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d2d4b46adc344a40b484a6d1a16b548, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1552746785 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8135042374922898975, guid: 04f679b953cf73b49b555bd7bce56d93, type: 3}
@@ -1511,3 +1569,4 @@ SceneRoots:
   - {fileID: 124298507}
   - {fileID: 918057887}
   - {fileID: 1351085757}
+  - {fileID: 1387937457}
