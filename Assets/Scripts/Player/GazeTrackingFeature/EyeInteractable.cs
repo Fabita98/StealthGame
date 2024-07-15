@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
 namespace Assets.Scripts.GazeTrackingFeature
@@ -10,12 +9,12 @@ namespace Assets.Scripts.GazeTrackingFeature
     {
         #region Variables and events definition
         [Header("Eye hovering parameters")]
+        private MeshRenderer meshRenderer;
         [SerializeField] private Material OnHoverActiveMaterial;
         [SerializeField] private Material OnHoverInactiveMaterial;
         // Event to be invoked to debug logger, if needed
         [SerializeField] private UnityEvent<GameObject> OnObjectHover;
         private EyeOutline eyeOutline;
-        private MeshRenderer meshRenderer;
         private float eyeOutlineWidth;
         public bool IsHovered { get; set; }
         #region Make the monk talk: bools explanation
@@ -24,6 +23,8 @@ namespace Assets.Scripts.GazeTrackingFeature
         #endregion
         public static bool isStaring;
         public static float HoveringTime;
+        private readonly OVRInput.RawButton keyForVoiceControl = OVRInput.RawButton.A;
+        public static float buttonHoldTime;
 
         [Header("Game object layer")]
         public LayerMask gameObjLayer;  
@@ -33,19 +34,11 @@ namespace Assets.Scripts.GazeTrackingFeature
         public static bool readyToTalk;
         public static event CounterChangeHandler OnCounterChanged;
         public delegate void CounterChangeHandler(int newCount);
-        public static event VoiceRecordingHandler OnVoiceRecording;
-        public delegate void VoiceRecordingHandler(AudioClip audioClip);
         #endregion
 
-        void Awake()
-        {            
-            ComponentInit();
-        }        
+        void Awake() => ComponentInit();      
 
-        private void Update()
-        {
-            GazeControl();
-        }
+        private void Update() => GazeControl();
 
         private void ComponentInit() {
             gameObjLayer = gameObject.layer;
@@ -53,8 +46,11 @@ namespace Assets.Scripts.GazeTrackingFeature
             squareLayer = LayerMask.NameToLayer("Squares");
 
             // Case where EyeInteractable instance is a monk 
-            //if (gameObjLayer == monkLayer) {
-            //    if (TryGetComponent<AudioSource>(out var aS)) audioSource = aS;
+            //if (gameObjLayer == monkLayer)
+            //{
+            //    if (TryGetComponent<AudioSource>(out var aS)) {
+            //        monkAudioSource = aS;
+            //    }
             //    else Debug.LogWarning("AudioSource component not found.");
             //}
             // Case where EyeInteractable instance is a square
@@ -93,13 +89,15 @@ namespace Assets.Scripts.GazeTrackingFeature
                 if (gameObjLayer == monkLayer && HoveringTime > 1f) {
                     isStaring = true;
                     eyeOutline.enabled = true;
+                    VocalKeyHoldingCheck();
                     eyeOutline.OutlineColor = Color.yellow;
                     eyeOutline.OutlineMode = EyeOutline.Mode.OutlineAll;
                     eyeOutlineWidth += Time.deltaTime;
                     Mathf.Clamp(eyeOutlineWidth, 1f, 3f);
 
                     // Hover to tell the player that he can speak to the hovered monk
-                    if (HoveringTime > 3f) {
+                    if (HoveringTime > 2f && VocalKeyHoldingCheck(true)) {
+                        //ReadyToTalkvibrationFeedback();
                         isStaring = false;
                         readyToTalk = true;
                         eyeOutlineWidth = 4f;
@@ -116,6 +114,23 @@ namespace Assets.Scripts.GazeTrackingFeature
         public void ResetHover() {
             if (gameObjLayer == squareLayer && meshRenderer) meshRenderer.material = OnHoverInactiveMaterial;
             else if (gameObjLayer == monkLayer) eyeOutline.enabled = false;
+        }
+
+        private bool VocalKeyHoldingCheck(bool isBeingHeld = false) {
+            bool isButtonHeld = false;
+            if (OVRInput.Get(keyForVoiceControl)) {
+                Debug.Log("A pressed");
+                buttonHoldTime += Time.deltaTime;
+                if (buttonHoldTime > 3f) {
+                    isButtonHeld = true;
+                }
+            } else buttonHoldTime = 0f;
+            Debug.Log($"isButtonHeld value: {isButtonHeld}");
+            return isButtonHeld;
+        }
+
+        private void ReadyToTalkvibrationFeedback() {
+            OVRInput.SetControllerVibration(0.5f, 0.5f, OVRInput.Controller.RTouch);
         }
         #endregion
     }

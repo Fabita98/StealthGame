@@ -7,9 +7,6 @@ namespace Assets.Scripts.GazeTrackingFeature
     {
         [SerializeField] private Text text;
 
-        private void Update()
-        {
-            text.text = $"Hover\ntime: {EyeInteractable.HoveringTime}";
-        }
+        private void Update() => text.text = $"Hover time: {EyeInteractable.HoveringTime}\n A_Key hold time: {EyeInteractable.buttonHoldTime}";
     } 
 }

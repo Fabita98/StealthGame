@@ -10,13 +10,14 @@ namespace Assets.Scripts.GazeTrackingFeature
         public static EyeTrackingDebug Instance { get; private set; }
 
         [Header("Voice recording parameters")]
-        [SerializeField] private int recordingLengthInMS = 30000;
-        public GameObject trialMonk;
+        [SerializeField] private int recordingLengthInMs = 3000;
+        public GameObject staredMonkForSingleton;
         public Mic oculusMic;
         public bool oculusMicFound = false;
 
         public static event VoiceRecordingHandler OnVoiceRecording;
         public delegate void VoiceRecordingHandler(AudioClip audioClip);
+        // Used to enable/disable the speaking text UI
         public static event Action OnRecordingAboutToStart;
         public static event Action OnRecordingStopped;
 
@@ -36,6 +37,7 @@ namespace Assets.Scripts.GazeTrackingFeature
         private void Start()
         {
             SearchForOculusMic();
+            StartInvokeVoiceRecordingCoroutine();
         }
 
         private void OnEnable()
@@ -50,33 +52,29 @@ namespace Assets.Scripts.GazeTrackingFeature
             OnVoiceRecording -= HandleVoiceRecording;
         }
 
-        public void TriggerVoiceRecordingEvent(AudioClip audioClip)
-        {
-            OnVoiceRecording?.Invoke(audioClip);
-        }
+        public void TriggerVoiceRecordingEvent(AudioClip audioClip) => OnVoiceRecording?.Invoke(audioClip);
 
-        private void HandleCounterChange(int newCount)
-        {
-            Debug.Log($"Current EyeInteractable instance counter: {newCount}");
-        }
+        private void HandleCounterChange(int newCount) => Debug.Log($"Current EyeInteractable instance counter: {newCount}");
 
         #region Voice recording 
         private void HandleVoiceRecording(AudioClip audioClip)
         {
-            //GazeLine.staredMonk = trialMonk;
-            trialMonk = GazeLine.staredMonk;
+            if (GazeLine.staredMonk) {
+                staredMonkForSingleton = GazeLine.staredMonk;
+                if (staredMonkForSingleton.TryGetComponent(out AudioSource staredMonkAudioSource)) {
+                    StartCoroutine(OculusMicRecordingCoroutine(staredMonkAudioSource));
+                }
+                else return;
+            }
+        }
 
-            if (trialMonk && trialMonk.TryGetComponent<AudioSource>(out var monkAudioSource))
-            {
-                StartCoroutine(OculusMicRecordingCoroutine(monkAudioSource));
-            }
-            else
-            {
-                return;
-                //if (trialMonk.TryGetComponent<AudioSource>(out var trialMonkAudioSource))
-                //StartCoroutine(VoiceRecordingCoroutine(trialMonkAudioSource));
-            }
-        }        
+        private IEnumerator InvokeVoiceRecording()
+        {
+            yield return new WaitForSeconds(5f);
+            OnVoiceRecording?.Invoke(null);
+        }
+
+        private void StartInvokeVoiceRecordingCoroutine() => StartCoroutine(InvokeVoiceRecording());
 
         #region Voice recording coroutine with Unity's Microphone API
         public IEnumerator BuiltinRecordingCoroutine(AudioSource targetAudioSource)
@@ -89,10 +87,10 @@ namespace Assets.Scripts.GazeTrackingFeature
             }
             OnRecordingAboutToStart?.Invoke();
 
-            AudioClip recordedClip = Microphone.Start(null, false, recordingLengthInMS, 44100);
+            AudioClip recordedClip = Microphone.Start(null, false, recordingLengthInMs, 44100);
             Debug.Log("Voice recording started...");
 
-            yield return new WaitForSeconds(recordingLengthInMS);
+            yield return new WaitForSeconds(recordingLengthInMs);
 
             Microphone.End(null); // Stop the microphone recording
             Debug.Log("Voice recording stopped.");
@@ -105,17 +103,10 @@ namespace Assets.Scripts.GazeTrackingFeature
                 Debug.Log("Playing recorded voice through the monk...");
             }
             else Debug.LogWarning("No recorded clip to play.");
-        }
-
-        private IEnumerator InvokeVoiceRecording()
-        {
-            yield return new WaitForSeconds(5f);
-            OnVoiceRecording?.Invoke(null);
-        }
+        }        
         #endregion
 
         #region Voice recording coroutine with Voice SDK
-
         private void SearchForOculusMic()
         {
             Debug.Log($"Persistent data path: {Application.persistentDataPath}");
@@ -124,7 +115,7 @@ namespace Assets.Scripts.GazeTrackingFeature
                 oculusMic = FindObjectOfType<Mic>();
                 if (oculusMic != null) {
                     oculusMicFound = true;
-                    Debug.Log("Oculus Mic found.");
+                    Debug.Log($"{oculusMic.CurrentDeviceName} found as Oculus Mic.");
                 } 
                 else Debug.LogWarning("Oculus Mic not found.");
             }            
@@ -133,17 +124,18 @@ namespace Assets.Scripts.GazeTrackingFeature
         public IEnumerator OculusMicRecordingCoroutine(AudioSource targetAudioSource) {
             if (oculusMicFound && oculusMic != null) {
                 OnRecordingAboutToStart?.Invoke();
-                oculusMic.StartRecording(recordingLengthInMS);
+                oculusMic.StartRecording(recordingLengthInMs);
 
-                yield return new WaitForSeconds(recordingLengthInMS);
-
+                yield return new WaitForSeconds(recordingLengthInMs);
+                
                 oculusMic.StopRecording();
                 OnRecordingStopped?.Invoke();
 
                 if (oculusMic.AudioClip != null) {
                     targetAudioSource.clip = oculusMic.AudioClip;
-                    SavWav.Save("oculus_mic_recording", oculusMic.AudioClip);
                     targetAudioSource.Play();
+                    SavWav.Save("oculus_mic_recording", oculusMic.AudioClip);
+                    SavWav.Save("targetAudioSource", targetAudioSource.clip);
                     Debug.Log("Playing recorded voice through Oculus Mic...");
                 } else Debug.LogWarning("No recorded clip to play from Oculus Mic.");
             } 
