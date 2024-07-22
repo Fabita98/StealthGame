@@ -1,6 +1,7 @@
 using Meta.WitAi.Lib;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts.GazeTrackingFeature
@@ -10,10 +11,14 @@ namespace Assets.Scripts.GazeTrackingFeature
         public static EyeTrackingDebug Instance { get; private set; }
 
         [Header("Voice recording parameters")]
-        [SerializeField] private int recordingLengthInMs = 3000;
+        private readonly int recordingLengthInMs = 3000;
         public GameObject staredMonkForSingleton;
         public Mic oculusMic;
         public bool oculusMicFound = false;
+        private readonly string directory = "Recordings";
+        private bool _recording;
+        private long _startTimestamp;
+        private readonly List<float> samples = new();
 
         public static event VoiceRecordingHandler OnVoiceRecording;
         public delegate void VoiceRecordingHandler(AudioClip audioClip);
@@ -21,35 +26,30 @@ namespace Assets.Scripts.GazeTrackingFeature
         public static event Action OnRecordingAboutToStart;
         public static event Action OnRecordingStopped;
 
-        private void Awake()
-        {
-            if (Instance == null)
-            {
+        private void Awake() {
+            if (Instance == null) {
                 Instance = this;
                 DontDestroyOnLoad(this);
             }
-            else if (Instance != this)
-            {
+            else if (Instance != this) {
                 Destroy(this); 
             }
         }
 
-        private void Start()
-        {
+        private void Start() {
             SearchForOculusMic();
             StartInvokeVoiceRecordingCoroutine();
         }
 
-        private void OnEnable()
-        {
+        private void OnEnable() {
             EyeInteractable.OnCounterChanged += HandleCounterChange;
             OnVoiceRecording += HandleVoiceRecording;
         }
 
-        private void OnDisable()
-        {
+        private void OnDisable() {
             EyeInteractable.OnCounterChanged -= HandleCounterChange;
             OnVoiceRecording -= HandleVoiceRecording;
+            StopRecording();
         }
 
         public void TriggerVoiceRecordingEvent(AudioClip audioClip) => OnVoiceRecording?.Invoke(audioClip);
@@ -57,8 +57,7 @@ namespace Assets.Scripts.GazeTrackingFeature
         private void HandleCounterChange(int newCount) => Debug.Log($"Current EyeInteractable instance counter: {newCount}");
 
         #region Voice recording 
-        private void HandleVoiceRecording(AudioClip audioClip)
-        {
+        private void HandleVoiceRecording(AudioClip audioClip) {
             if (GazeLine.staredMonk) {
                 staredMonkForSingleton = GazeLine.staredMonk;
                 if (staredMonkForSingleton.TryGetComponent(out AudioSource staredMonkAudioSource)) {
@@ -68,8 +67,7 @@ namespace Assets.Scripts.GazeTrackingFeature
             }
         }
 
-        private IEnumerator InvokeVoiceRecording()
-        {
+        private IEnumerator InvokeVoiceRecording() {
             yield return new WaitForSeconds(5f);
             OnVoiceRecording?.Invoke(null);
         }
@@ -77,11 +75,9 @@ namespace Assets.Scripts.GazeTrackingFeature
         private void StartInvokeVoiceRecordingCoroutine() => StartCoroutine(InvokeVoiceRecording());
 
         #region Voice recording coroutine with Unity's Microphone API
-        public IEnumerator BuiltinRecordingCoroutine(AudioSource targetAudioSource)
-        {
+        public IEnumerator BuiltinRecordingCoroutine(AudioSource targetAudioSource) {
             Debug.Log($"Microphone device: {Microphone.devices[0]}");
-            if (Microphone.IsRecording(null))
-            {
+            if (Microphone.IsRecording(null)) {
                 Debug.LogWarning("Microphone is already recording!");
                 yield break; // Exit the coroutine if already recording
             }
@@ -96,8 +92,7 @@ namespace Assets.Scripts.GazeTrackingFeature
             Debug.Log("Voice recording stopped.");
             OnRecordingStopped?.Invoke();
 
-            if (recordedClip != null)
-            {
+            if (recordedClip != null) {
                 targetAudioSource.clip = recordedClip;
                 targetAudioSource.Play();
                 Debug.Log("Playing recorded voice through the monk...");
@@ -107,39 +102,84 @@ namespace Assets.Scripts.GazeTrackingFeature
         #endregion
 
         #region Voice recording coroutine with Voice SDK
-        private void SearchForOculusMic()
-        {
+        private void SearchForOculusMic() {
             Debug.Log($"Persistent data path: {Application.persistentDataPath}");
-
-            if (oculusMic == null) {
+            if (!oculusMic) {
                 oculusMic = FindObjectOfType<Mic>();
-                if (oculusMic != null) {
+                oculusMic.OnSampleReady += OnSampleReady;
+                if (oculusMic) {
                     oculusMicFound = true;
                     Debug.Log($"{oculusMic.CurrentDeviceName} found as Oculus Mic.");
+                    oculusMic.SafeStartMicrophone();
                 } 
                 else Debug.LogWarning("Oculus Mic not found.");
             }            
         }
 
         public IEnumerator OculusMicRecordingCoroutine(AudioSource targetAudioSource) {
-            if (oculusMicFound && oculusMic != null) {
+            if (oculusMicFound && (oculusMic.State.Equals(MicState.On) || oculusMic.State.Equals(MicState.Enabling))) {
                 OnRecordingAboutToStart?.Invoke();
-                oculusMic.StartRecording(recordingLengthInMs);
+                //oculusMic.StartRecording(recordingLengthInMs);
+                StartRecording();
 
-                yield return new WaitForSeconds(recordingLengthInMs);
-                
-                oculusMic.StopRecording();
+                //int timeToWaitInS = recordingLengthInMs / 1000;
+                //yield return new WaitForSeconds(timeToWaitInS);
+
+                //Invoke(nameof(OculusStopRecording), timeToWaitInS);
+                StopRecording();
                 OnRecordingStopped?.Invoke();
 
-                if (oculusMic.AudioClip != null) {
+                if (oculusMic.AudioClip) {
                     targetAudioSource.clip = oculusMic.AudioClip;
                     targetAudioSource.Play();
                     SavWav.Save("oculus_mic_recording", oculusMic.AudioClip);
-                    SavWav.Save("targetAudioSource", targetAudioSource.clip);
                     Debug.Log("Playing recorded voice through Oculus Mic...");
                 } else Debug.LogWarning("No recorded clip to play from Oculus Mic.");
             } 
             else Debug.LogWarning("Oculus Mic not found or not initialized.");
+            yield return null;
+        }
+
+        private void OculusStopRecording() {
+            Debug.Log("OculusMic Invoked with delay.");
+            oculusMic.StopRecording();            
+        }
+        #endregion
+
+        #region Fra&Marco NewVoiceRecorder methods
+        private void OnSampleReady(int sampleCount, float[] sample, float levelMax) {
+            //Debug.Log($"Sample ready: {sample.Length} samples");
+            samples.AddRange(sample);
+        }
+
+        public void StartRecording() {
+            if (_recording) {
+                Debug.LogWarning("Trying to start recording while already recording");
+                return;
+            }
+            _startTimestamp = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+            samples.Clear();
+            _recording = true;
+        }
+
+        public void StopRecording(string label = "") {
+            if (!_recording) {
+                Debug.LogWarning("Trying to stop recording while not recording");
+                return;
+            }
+            if (samples.Count == 0) {
+                Debug.LogWarning("Trying to stop recording with no samples");
+                _recording = false;
+                return;
+            }
+            var endTimestamp = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+            var clip = AudioClip.Create("Recording", samples.Count, 1, 16000, false);
+            clip.SetData(samples.ToArray(), 0);
+            _recording = false;
+            label = label == "" ? "" : $"_{label}";
+            var filename = $"{_startTimestamp}_{endTimestamp}{label}";
+            SavWav.Save(directory + filename, clip);
+            SavWav.Save($"{directory + filename}_trimmed.wav", clip.TrimSilence(0.01f));
         }
         #endregion
         #endregion
