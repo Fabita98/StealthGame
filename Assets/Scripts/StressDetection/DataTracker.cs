@@ -11,7 +11,7 @@ using UnityEngine.UIElements;
 // using Utils;
 
 [RequireComponent(typeof(Timestamp))]
-// [RequireComponent(typeof(OVRFaceExpressions))]
+[RequireComponent(typeof(OVRFaceExpressions))]
 public class DataTracker : MonoBehaviour {
 	//Region to manage Editor behaviour
 
