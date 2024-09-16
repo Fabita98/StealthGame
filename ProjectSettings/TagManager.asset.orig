@@ -7,14 +7,21 @@ TagManager:
   - SideWalls
   - Door
   - LeftOrRightWall
+<<<<<<< HEAD
   - RightHand
   - Torch
   - LeftHand
   - HealthBar
   - OxBar
   - Hand
-  - Undefined
+=======
+  - Torch
+  - OxBar
+  - HealthBar
+  - RightHand
+  - LeftHand
   - Monk
+>>>>>>> origin/EyeTracking_AND_VoiceControl
   layers:
   - Default
   - TransparentFX
@@ -24,11 +31,17 @@ TagManager:
   - UI
   - Player
   - Obstacle
+<<<<<<< HEAD
   - Body
   - Hide
   - Grab
+=======
   - Monks
   - Squares
+  - 
+>>>>>>> origin/EyeTracking_AND_VoiceControl
+  - 
+  - 
   - 
   - 
   - 
