@@ -45,9 +45,8 @@ namespace Assets.Scripts.GazeTrackingFeature
             monkLayer = LayerMask.NameToLayer("Monks");
             squareLayer = LayerMask.NameToLayer("Squares");
 
-            // Case where EyeInteractable instance is a monk 
-            //if (gameObjLayer == monkLayer)
-            //{
+            // Case where EyeInteractable instance is a monk
+            //if (gameObjLayer == monkLayer) {
             //    if (TryGetComponent<AudioSource>(out var aS)) {
             //        monkAudioSource = aS;
             //    }
@@ -103,7 +102,7 @@ namespace Assets.Scripts.GazeTrackingFeature
                         eyeOutlineWidth = 4f;
                         eyeOutline.OutlineColor = Color.green;
                         // Trigger the voice recording event here
-                        EyeTrackingDebug.Instance.TriggerVoiceRecordingEvent(null); // Passing null for now, will handle recording in the listener
+                        EyeTrackingDebug.Instance.TriggerVoiceRecordingEvent();
                         //HoveringTime = 0f;
                         readyToTalk = false;
                     }

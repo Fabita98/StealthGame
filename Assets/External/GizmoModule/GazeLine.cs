@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Assets.Scripts.GazeTrackingFeature
 {
 
-    public class GazeLine : MonoBehaviour
+    internal class GazeLine : MonoBehaviour
     {
         [SerializeField] private float cursorOffset;
         [SerializeField] private float cursorRadius;
@@ -14,7 +14,7 @@ namespace Assets.Scripts.GazeTrackingFeature
         private int monkLayer, squareLayer;
 
         private Vector3 hitPosition;
-        public static GameObject staredMonk;
+        public static EyeInteractable staredMonk;
 
         private readonly List<EyeInteractable> eyeInteractables = new();
 
@@ -42,7 +42,7 @@ namespace Assets.Scripts.GazeTrackingFeature
                     eyeInteractable.IsHovered = true;
                     if (eyeInteractable.gameObjLayer == monkLayer)
                     {
-                        staredMonk = eyeInteractable.gameObject;
+                        staredMonk = eyeInteractable;
                     }
                     EyeInteractable.HoveringTime += Time.fixedDeltaTime;
                 }
