@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace Assets.Scripts.GazeTrackingFeature
 {
-
     internal class GazeLine : MonoBehaviour
     {
         [SerializeField] private float cursorOffset;

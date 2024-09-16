@@ -1592,12 +1592,44 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 2827d129e3b490a4c84c1dfb3ec5a9f4, type: 2}
     - target: {fileID: 573133671525017405, guid: faf9c57d28d7aab4397b78a5c669b6b7, type: 3}
+      propertyPath: Loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 573133671525017405, guid: faf9c57d28d7aab4397b78a5c669b6b7, type: 3}
+      propertyPath: Priority
+      value: 51
+      objectReference: {fileID: 0}
+    - target: {fileID: 573133671525017405, guid: faf9c57d28d7aab4397b78a5c669b6b7, type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 573133671525017405, guid: faf9c57d28d7aab4397b78a5c669b6b7, type: 3}
+      propertyPath: MinDistance
+      value: 6.846856
+      objectReference: {fileID: 0}
+    - target: {fileID: 573133671525017405, guid: faf9c57d28d7aab4397b78a5c669b6b7, type: 3}
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 51fe4306a24d64e1ba7b9792fa3d0837, type: 3}
     - target: {fileID: 573133671525017405, guid: faf9c57d28d7aab4397b78a5c669b6b7, type: 3}
+      propertyPath: rolloffMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 573133671525017405, guid: faf9c57d28d7aab4397b78a5c669b6b7, type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 573133671525017405, guid: faf9c57d28d7aab4397b78a5c669b6b7, type: 3}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].time
+      value: 0.94821167
+      objectReference: {fileID: 0}
+    - target: {fileID: 573133671525017405, guid: faf9c57d28d7aab4397b78a5c669b6b7, type: 3}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].value
+      value: 0.9942322
+      objectReference: {fileID: 0}
+    - target: {fileID: 573133671525017405, guid: faf9c57d28d7aab4397b78a5c669b6b7, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1035372793584584366, guid: faf9c57d28d7aab4397b78a5c669b6b7, type: 3}
       propertyPath: m_Enabled
@@ -1713,7 +1745,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7582455514296755728, guid: faf9c57d28d7aab4397b78a5c669b6b7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 23.26
+      value: 20.72
       objectReference: {fileID: 0}
     - target: {fileID: 7582455514296755728, guid: faf9c57d28d7aab4397b78a5c669b6b7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1721,7 +1753,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7582455514296755728, guid: faf9c57d28d7aab4397b78a5c669b6b7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.79
+      value: -1.96
       objectReference: {fileID: 0}
     - target: {fileID: 7582455514296755728, guid: faf9c57d28d7aab4397b78a5c669b6b7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -10481,7 +10513,10 @@ PrefabInstance:
     - {fileID: 3248581571440561671, guid: c893dcbfcf4766f4ebe99ef3e2e14fea, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8115332942976373740, guid: c893dcbfcf4766f4ebe99ef3e2e14fea, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1746619000}
   m_SourcePrefab: {fileID: 100100000, guid: c893dcbfcf4766f4ebe99ef3e2e14fea, type: 3}
 --- !u!1 &1660950800
 GameObject:
@@ -10847,6 +10882,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1245378032}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1746618993 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8115332942976373740, guid: c893dcbfcf4766f4ebe99ef3e2e14fea, type: 3}
+  m_PrefabInstance: {fileID: 1652673723}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1746619000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1746618993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb7e126e26edd2b40ab25ac6c5304885, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursorOffset: 0.5
+  cursorRadius: 0.2
+  mask:
+    serializedVersion: 2
+    m_Bits: 768
 --- !u!1 &1770871687
 GameObject:
   m_ObjectHideFlags: 0
@@ -11608,7 +11665,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: '
 
-    Monk can now speak for you!'
+    Stared monk is going to speak!'
 --- !u!222 &1852078498
 CanvasRenderer:
   m_ObjectHideFlags: 0

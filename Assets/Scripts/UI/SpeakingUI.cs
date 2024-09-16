@@ -1,9 +1,7 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.Scripts.GazeTrackingFeature
-{
+namespace Assets.Scripts.GazeTrackingFeature {
     public class SpeakingUI : MonoBehaviour
     {
         public Text speakingUIText;
@@ -29,6 +27,7 @@ namespace Assets.Scripts.GazeTrackingFeature
         {
             speakingUIText.enabled = true;
         }
+
         private void DisableSpeakingText()
         {
             speakingUIText.enabled = false;
