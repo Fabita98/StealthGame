@@ -1867,7 +1867,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
@@ -1879,7 +1879,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6752307791147371159}
-  m_Enabled: 1
+  m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 4
@@ -1906,12 +1906,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e6d5daf7f66f004a8b72668fd291754, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eyeLights: {fileID: 0}
+  eyeLights: {fileID: 789633835821025854}
   viewRadius: 25
   overallRadius: 5
   viewAngle: 90
-  waitTime: 5
-  chaseWaitTime: 2
+  waitTime: 2
+  chaseWaitTime: 5
   alertWaitTime: 1
   maxTimeToLosePlayer: 5
   playerMask:
@@ -1927,7 +1927,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6752307791147371159}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9807a59fffa3bc54cbff79547b09fe72, type: 3}
   m_Name: 
@@ -2008,8 +2008,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee9694d3e5dda44da046c69b1057866, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnHoverActiveMaterial: {fileID: 0}
-  OnHoverInactiveMaterial: {fileID: 0}
+  OnHoverActiveMaterial: {fileID: 2100000, guid: 8579efad97f6e674885d3f9ab4c9e9f9, type: 2}
+  OnHoverInactiveMaterial: {fileID: 2100000, guid: 2827d129e3b490a4c84c1dfb3ec5a9f4, type: 2}
   OnObjectHover:
     m_PersistentCalls:
       m_Calls: []
@@ -2023,7 +2023,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6752307791147371159}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
@@ -2047,8 +2047,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 0
-  outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 2
+  outlineColor: {r: 0.927798, g: 0.9811321, b: 0, a: 1}
+  outlineWidth: 1
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
@@ -2062,20 +2062,20 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 0bc58b082a49d0e48a76910cfc94d034, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 51
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 28.881426
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -2092,8 +2092,8 @@ AudioSource:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 1
-      value: 0
+      time: 0.94821167
+      value: 0.9942322
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -2108,7 +2108,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -2163,12 +2163,12 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.17
-  m_Height: 7.0384455
+  m_Radius: 1.62
+  m_Height: 7.11
   m_Direction: 1
   m_Center: {x: -0.1, y: 3.019223, z: 7.4827144e-11}
 --- !u!1 &6966038469249070563
