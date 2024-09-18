@@ -27,10 +27,7 @@ namespace Assets.Scripts.GazeTrackingFeature
             EyeGazeRayCasting();
         }
 
-        void Update() {
-            // Eye gizmo
-            GizmoModule.instance.DrawSphere(hitPosition + (transform.position - hitPosition).normalized * cursorOffset, cursorRadius, Color.red);
-        }
+        
 
         private void EyeGazeRayCasting() {
             if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, Mathf.Infinity, layerMask: mask)) {
