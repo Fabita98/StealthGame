@@ -8,35 +8,16 @@ public class lightHR : MonoBehaviour
     int valueHR, range, averageHR;
     float newIntensity, lastDecrease=0,delta =0;
     bool reset = false;
+    public bool abilityActive = false;
+    public float maxEnergy = 30f; // Massimo tempo di energia disponibile per l'abilità
+    public float energyDrainRate = 1f; // Energia consumata al secondo
+    public float currentEnergy=15;
     void Start()
     {
         averageHR = 65;
     }
     private float incrementSpeed= 0.0005f;
 
-    // Metodo per avviare l'incremento del valore da start a finish in 5 secondi
-    /*public void IncrementValue()
-    {
-        startValue = this.GetComponent<Light>().range;
-        targetValue = newIntensity;
-        incrementSpeed = (targetValue - startValue) / 4f; // Calcolo della velocità di incremento per completare in 5 secondi
-        StartCoroutine(IncrementCoroutine());
-    }
-
-    // Coroutine per incrementare gradualmente il valore
-    private IEnumerator IncrementCoroutine()
-    {
-        float timer = 0f;
-        while (timer < 4f)
-        {
-            GetComponent<Light>().range += incrementSpeed * Time.deltaTime; // Incremento graduale del valore nel tempo
-            timer += Time.deltaTime;
-            yield return null;
-        }
-        currentValue = targetValue; // Assicurati che il valore finale sia esatto
-    }*/
-
-    // Update is called once per frame
     void Update()
     {
         valueHR = hyperateSocket.value;
@@ -57,9 +38,80 @@ public class lightHR : MonoBehaviour
             delta -= 1;
             lastDecrease = Time.time;
         }
-        if(delta < -5)
+        if (delta < -5)
         {
             reset = true;
         }
+
+        if (OVRInput.GetDown(OVRInput.Button.One))
+        {
+            ToggleAbility();
+        }
+        if (abilityActive)
+        {
+            UpdateAbility();
+        }
+
+    }
+    void ToggleAbility()
+        {
+            if (abilityActive)
+            {
+                DeactivateAbility();
+            }
+            else if (currentEnergy > 0)
+            {
+                ActivateAbility();
+            }
+        }
+
+    void ActivateAbility()
+    {
+        abilityActive = true;
+        GetComponent<Light>().range = 76; 
+        Debug.Log("Abilità attivata");
+    }
+
+    void DeactivateAbility()
+    {
+        GetComponent<Light>().range = 0;
+        abilityActive = false;
+        Debug.Log("Abilità disattivata");
+    }
+
+    void UpdateAbility()
+    {
+        if (currentEnergy > 0)
+        {
+            currentEnergy -= energyDrainRate * Time.deltaTime;
+            if (currentEnergy <= 0)
+            {
+                currentEnergy = 0;
+                DeactivateAbility();
+            }
+            else if (currentEnergy <= 2.2f)
+            {
+                OscillateLight();
+            }
+        }
+
+        // Debug per mostrare l'energia corrente
+        Debug.Log("Energia corrente: " + currentEnergy);
+    }
+    void OscillateLight()
+    {
+        float frequency = 2f; // Frequenza dell'oscillazione
+        float intensity = Mathf.PingPong(Time.time * frequency, newIntensity);
+        GetComponent<Light>().intensity = intensity;
+    }
+    // Funzione per ricaricare l'energia, se necessario
+    public void RechargeEnergy(float amount)
+    {
+        currentEnergy += amount;
+        if (currentEnergy > maxEnergy)
+        {
+            currentEnergy = maxEnergy;
+        }
+        Debug.Log("Energia ricaricata: " + currentEnergy);
     }
 }

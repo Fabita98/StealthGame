@@ -33,7 +33,7 @@ public class TransitionMusic : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-        if (!trigger&&other.tag=="Hand") { fade1(); trigger = true; }    
+        if (!trigger&&other.tag=="RightHand") { fade1(); trigger = true; Debug.Log("cambia canzone"); }    
     }
    
     public void fade1()

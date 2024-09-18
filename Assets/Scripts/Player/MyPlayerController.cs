@@ -181,6 +181,7 @@ public class MyPlayerController : MonoBehaviour
     private bool prevHatRight = false;
     private float SimulationRate = 60f;
     private float buttonRotation = 0f;
+    private int i = 0;
 
     // Set to true when a snap turn has occurred, code requires one frame of centered thumbstick to enable another snap turn.
     private bool ReadyToSnapTurn;
@@ -267,6 +268,11 @@ public class MyPlayerController : MonoBehaviour
             else
                 return;
         }
+        //if (OVRInput.GetDown(OVRInput.Button.One)) // A button
+        //{
+        //    torchGO.GetComponent<lightHR>().buttonPressed = !torchGO.GetComponent<lightHR>().buttonPressed;
+        //    //torch = true;
+        //}
 
         //todo: enable for Unity Input System
 #if ENABLE_LEGACY_INPUT_MANAGER
@@ -382,7 +388,6 @@ public class MyPlayerController : MonoBehaviour
             bool moveRight = Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow);
             bool moveBack = Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow);
             bool crouch = Input.GetKey(KeyCode.C);
-            bool torch = Input.GetKey(KeyCode.T);
 
             bool dpad_move = false;
 
@@ -402,10 +407,7 @@ public class MyPlayerController : MonoBehaviour
             {
                 crouch = true;
             }
-            if (OVRInput.Get(OVRInput.Button.One)) // A button
-            {
-                torch = true;
-            }
+            
             MoveScale = 1.0f;
 
             if ((moveForward && moveLeft) || (moveForward && moveRight) ||
@@ -450,7 +452,6 @@ public class MyPlayerController : MonoBehaviour
                 Stand();
             }
 
-            // if (torch) toggleTorch();
 
 #if !UNITY_ANDROID // LeftTrigger not avail on Android game pad
             moveInfluence *= 1.0f + OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger);
@@ -628,14 +629,10 @@ public class MyPlayerController : MonoBehaviour
         FallSpeed = 0.0f;
     }
 
-    // public void toggleTorch()
-    // {
-    //     torchGO.SetActive(!torchGO.activeSelf);
-    // }
     /// <summary>
-    /// Gets the move scale multiplier.
+    /// gets the move scale multiplier.
     /// </summary>
-    /// <param name="moveScaleMultiplier">Move scale multiplier.</param>
+    /// <param name="movescalemultiplier">move scale multiplier.</param>
     public void GetMoveScaleMultiplier(ref float moveScaleMultiplier)
     {
         moveScaleMultiplier = MoveScaleMultiplier;
