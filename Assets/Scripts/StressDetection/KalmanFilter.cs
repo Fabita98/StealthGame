@@ -1,46 +1,44 @@
-using UnityEngine;
 using MathNet.Numerics.LinearAlgebra;
 
 public class KalmanFilter
 {
-    private int stateDimension;
-    private int observationDimension;
+    private Matrix<float> processCovariance;      // Q: Process noise covariance
+    private Matrix<float> observationCovariance;  // R: Observation noise covariance
 
-    private Matrix<float> transitionMatrix;
-    private Matrix<float> observationMatrix;
-    private Matrix<float> transitionCovariance;
-    private Matrix<float> observationCovariance;
-
-    public KalmanFilter(int dz, int dx, Matrix<float> transitionMatrix = null, Matrix<float> observationMatrix = null)
+    public KalmanFilter(int dz, int dx)
     {
-        stateDimension = dz;
-        observationDimension = dx;
-
-        this.transitionMatrix = transitionMatrix ?? Matrix<float>.Build.Dense(dz, dz, 1.0f);
-        this.observationMatrix = observationMatrix ?? Matrix<float>.Build.Dense(dx, dz, 1.0f);
-        transitionCovariance = Matrix<float>.Build.DenseDiagonal(dz, 1.0f);
-        observationCovariance = Matrix<float>.Build.DenseDiagonal(dx, 1.0f);
+        // Initialize default covariance matrices
+        processCovariance = Matrix<float>.Build.DenseIdentity(dz);      // Q: Process noise covariance
+        observationCovariance = Matrix<float>.Build.DenseIdentity(dx);  // R: Observation noise covariance
     }
 
-    public (Vector<float>, Matrix<float>) FilterUpdate(Vector<float> prevStateMean, Matrix<float> prevStateCovariance, Vector<float> observation, Vector<float> transitionOffset = null)
+    // Method that returns both the updated state mean and covariance
+    public (Vector<float>, Matrix<float>) FilterUpdate(Vector<float> previousStateMean, Matrix<float> previousStateCovariance,
+                                                       Vector<float> observation, Matrix<float> transitionMatrix,
+                                                       Matrix<float> observationMatrix, Vector<float> controlInput = null)
     {
-        // Prediction step
-        Vector<float> predictedStateMean = transitionMatrix * prevStateMean;
-        if (transitionOffset != null)
+        // Step 1: Predict the next state (prior)
+        Vector<float> predictedStateMean = transitionMatrix * previousStateMean;
+
+        if (controlInput != null)
         {
-            predictedStateMean += transitionOffset;
+            predictedStateMean += controlInput; // Add control input to the prediction
         }
 
-        Matrix<float> predictedStateCovariance = transitionMatrix * prevStateCovariance * transitionMatrix.Transpose() + transitionCovariance;
+        Matrix<float> predictedStateCovariance = transitionMatrix * previousStateCovariance * transitionMatrix.Transpose() + processCovariance;
 
-        // Update step
-        Vector<float> innovation = observation - (observationMatrix * predictedStateMean);
-        Matrix<float> innovationCovariance = observationMatrix * predictedStateCovariance * observationMatrix.Transpose() + observationCovariance;
+        // Step 2: Compute the Kalman Gain
+        var S = observationMatrix * predictedStateCovariance * observationMatrix.Transpose() + observationCovariance;
+        var K = predictedStateCovariance * observationMatrix.Transpose() * S.Inverse(); // Kalman Gain
 
-        Matrix<float> kalmanGain = predictedStateCovariance * observationMatrix.Transpose() * innovationCovariance.Inverse();
-        Vector<float> updatedStateMean = predictedStateMean + (kalmanGain * innovation);
-        Matrix<float> updatedStateCovariance = (Matrix<float>.Build.DenseIdentity(stateDimension) - (kalmanGain * observationMatrix)) * predictedStateCovariance;
+        // Step 3: Update the state with the observation (correction step)
+        Vector<float> y = observation - (observationMatrix * predictedStateMean); // Innovation (Residual)
+        Vector<float> updatedStateMean = predictedStateMean + K * y;
 
+        // Update covariance
+        Matrix<float> updatedStateCovariance = (Matrix<float>.Build.DenseIdentity(K.RowCount) - K * observationMatrix) * predictedStateCovariance;
+
+        // Return both the updated state mean and the updated covariance
         return (updatedStateMean, updatedStateCovariance);
     }
 }
