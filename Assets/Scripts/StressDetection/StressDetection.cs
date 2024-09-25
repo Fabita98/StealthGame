@@ -1,14 +1,15 @@
 using UnityEngine;
 using MathNet.Numerics.LinearAlgebra;
 
-public class StressKalmanFilterController : MonoBehaviour
+public class StressDetection : MonoBehaviour
 {
+    [SerializeField] private DataTracker DataTracker;
     private KalmanFilter kalmanFilter;
     private Matrix<float> z_preds;    // Predicted states (dz-dimensional)
     private Matrix<float> cov;        // Covariance matrix (dz-dimensional)
 
-    public int dz = 1;  // State dimension (stress)
-    public int dx = 8;  // Observation dimension (eye, head, controller, heart rate)
+    private int dz = 1;  // State dimension (stress)
+    private int dx = 125;  // Observation dimension (eye, head, controller, heart rate)
 
     private Matrix<float> transitionMatrix;
     private Matrix<float> observationMatrix;
@@ -27,7 +28,7 @@ public class StressKalmanFilterController : MonoBehaviour
         cov = Matrix<float>.Build.Dense(1, dz);     // Placeholder for covariance
     }
 
-    void Update()
+    void LateUpdate()
     {
         // Collect current frame data
         float[] eyeMovement = GetEyeMovementData();
@@ -36,14 +37,17 @@ public class StressKalmanFilterController : MonoBehaviour
         float heartRate = GetHeartRateData();
 
         // Combine inputs into a single observation vector
-        var observation = Vector<float>.Build.DenseOfArray(new float[]
-        {
-            eyeMovement[0], eyeMovement[1],
-            headMovement[0], headMovement[1], headMovement[2],
-            controllerPress[0], controllerPress[1],
-            heartRate
-        });
-
+        // var observation = Vector<float>.Build.DenseOfArray(new float[]
+        // {
+        //     eyeMovement[0], eyeMovement[1],
+        //     headMovement[0], headMovement[1], headMovement[2],
+        //     controllerPress[0], controllerPress[1],
+        //     heartRate
+        // });
+        
+        Vector<float> observation = Vector<float>.Build.DenseOfArray(DataTracker.GetLatestDataRow().ToArray());
+        
+        
         // Apply the Kalman filter at each frame
         float[] controlInput = GetControlInput(); // Control input (u_test)
 
