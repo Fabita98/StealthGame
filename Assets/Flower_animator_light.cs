@@ -107,10 +107,11 @@ public class Flower_animator_light : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Hand")
+        if (other.tag == "RightHand"|| other.tag == "LeftHand")
         {
-            if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
+            if (OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger)>0)
             {
+                Debug.Log("is holdiiiiiing");
                 inHand = true;
             }
             else inHand = false;
@@ -118,7 +119,7 @@ public class Flower_animator_light : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Hand")
+        if (other.tag == "RightHand")
         {
             inHand = false;
         }
