@@ -6,8 +6,6 @@ using UnityEditor;
 using UnityEditor.Recorder;
 using UnityEditorInternal;
 using UnityEngine;
-using UnityEngine.Assertions;
-using UnityEngine.UIElements;
 // using Utils;
 
 [RequireComponent(typeof(Timestamp))]
