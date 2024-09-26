@@ -1,9 +1,7 @@
 using System.Collections.Generic;
-using Unity.Labs.SuperScience;
 using UnityEngine;
 
-namespace Assets.Scripts.GazeTrackingFeature
-{
+namespace Assets.Scripts.GazeTrackingFeature {
     internal class GazeLine : MonoBehaviour
     {
         [SerializeField] private float cursorOffset;
@@ -26,8 +24,6 @@ namespace Assets.Scripts.GazeTrackingFeature
         void FixedUpdate() {
             EyeGazeRayCasting();
         }
-
-        
 
         private void EyeGazeRayCasting() {
             if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, Mathf.Infinity, layerMask: mask)) {

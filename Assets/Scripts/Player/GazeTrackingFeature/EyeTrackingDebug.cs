@@ -7,10 +7,11 @@ namespace Assets.Scripts.GazeTrackingFeature {
     {
         public static EyeTrackingDebug Instance { get; private set; }
 
-        [Header("Voice recording parameters")]
+        [Header("Voice playback parameters")]
         public EyeInteractable staredMonkForSingleton;
         [SerializeField] private AudioClip monkAudioClip;
         [SerializeField] private GazeLine gazeLine;
+
         public static event VoiceRecordingHandler OnVoiceRecording;
         public delegate void VoiceRecordingHandler();
         // Used to enable/disable the speaking text UI
@@ -28,7 +29,7 @@ namespace Assets.Scripts.GazeTrackingFeature {
         }
 
         private void Start() {
-            StartInvokeVoiceRecordingCoroutine();
+            //StartInvokeVoiceRecordingCoroutine();
         }
 
         private void OnEnable() {
@@ -41,18 +42,15 @@ namespace Assets.Scripts.GazeTrackingFeature {
             OnVoiceRecording -= HandleVoiceRecording;
         }
 
-        public void TriggerVoiceRecordingEvent() => OnVoiceRecording?.Invoke();
-
         private void HandleCounterChange(int newCount) => Debug.Log($"Current EyeInteractable instance counter: {newCount}");
-
         #region AudioClip playback
+        
         private void HandleVoiceRecording() {
             if (gazeLine.staredMonk) {
                 staredMonkForSingleton = gazeLine.staredMonk;
                 OnRecordingAboutToStart?.Invoke();
                 if (staredMonkForSingleton.TryGetComponent(out AudioSource staredMonkAudioSource)) {
-                    //aC = monkAudioClip;
-                    //staredMonkAudioSource.clip = aC;
+                    staredMonkForSingleton.StartExplosiveVibration();
                     staredMonkAudioSource.Play();
                     Debug.Log("Monk is talking now with " + staredMonkAudioSource.clip.name);
                     StartCoroutine(WaitForAudioToEnd(staredMonkAudioSource));
@@ -60,16 +58,20 @@ namespace Assets.Scripts.GazeTrackingFeature {
                 else return;
             }
         }
-
+        
         private IEnumerator WaitForAudioToEnd(AudioSource audioSource) {
             yield return new WaitWhile(() => audioSource.isPlaying);
             OnRecordingStopped?.Invoke();
+            staredMonkForSingleton.ResetHover();
+            staredMonkForSingleton.StopExplosiveVibration();
         }
-
+        
         private IEnumerator InvokeVoiceRecording() {
             yield return new WaitForSeconds(3f);
             OnVoiceRecording?.Invoke();
         }
+        
+        public void TriggerVoiceRecordingEvent() => OnVoiceRecording?.Invoke();
 
         // Coroutine to invoke without headset usage
         private void StartInvokeVoiceRecordingCoroutine() => StartCoroutine(InvokeVoiceRecording());
