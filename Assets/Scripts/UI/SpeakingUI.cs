@@ -13,14 +13,14 @@ namespace Assets.Scripts.GazeTrackingFeature {
 
         private void OnEnable()
         {
-            EyeTrackingDebug.OnRecordingAboutToStart += EnableSpeakingText;
-            EyeTrackingDebug.OnRecordingStopped += DisableSpeakingText;
+            EyeTrackingDebug.OnPlaybackAboutToStart += EnableSpeakingText;
+            EyeTrackingDebug.OnPlaybackStopped += DisableSpeakingText;
         }
 
         private void OnDisable()
         {
-            EyeTrackingDebug.OnRecordingAboutToStart -= EnableSpeakingText;
-            EyeTrackingDebug.OnRecordingStopped -= DisableSpeakingText;
+            EyeTrackingDebug.OnPlaybackAboutToStart -= EnableSpeakingText;
+            EyeTrackingDebug.OnPlaybackStopped -= DisableSpeakingText;
         }
 
         private void EnableSpeakingText()

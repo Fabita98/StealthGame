@@ -9,16 +9,16 @@ namespace Assets.Scripts.GazeTrackingFeature {
         [Header("Voice playback variables")]
         public EyeInteractable staredMonkForSingleton;
         private const string audioDataPath = "C:\\Users\\utente\\Desktop\\Unity projects\\StealthGame\\Assets\\Art\\Audio\\AudioPool";
-        private float maxSnoringTime = 10f;
-        private float minSnoringTime = 1f;
+        private float maxSnoringTime = 12f;
+        private float minSnoringTime = 4f;
 
         public static event VoiceRecordingHandler OnVoiceRecording;
         public delegate void VoiceRecordingHandler();
         /// <summary>
         /// Events used to enable/disable the speaking text UI
         /// </summary>
-        public static event Action OnRecordingAboutToStart;
-        public static event Action OnRecordingStopped;
+        public static event Action OnPlaybackAboutToStart;
+        public static event Action OnPlaybackStopped;
 
         private void Awake() {
             if (Instance == null) {
@@ -50,28 +50,20 @@ namespace Assets.Scripts.GazeTrackingFeature {
         private void HandleVoiceRecording() {
             if (GazeLine.staredMonk) {
                 staredMonkForSingleton = GazeLine.staredMonk;
-                OnRecordingAboutToStart?.Invoke();
-                if (staredMonkForSingleton.TryGetComponent(out AudioSource staredMonkAudioSource)) {
-                    StartCoroutine(WaitForAudioToEnd(maxSnoringTime));
-                    Debug.Log("Monk is talking now with " + staredMonkAudioSource.clip.name);
+                OnPlaybackAboutToStart?.Invoke();
+                if (staredMonkForSingleton.snoringAudio) {
+                    StartSnoringAudioCoroutine();
                 }
-                else return;
+                else { 
+                    Debug.LogWarning("snoringAudio not found on staredMonkForSingleton -> SnoringCoroutine not launched! ");
+                    return; 
+                }
             }
         }
-        
-        private IEnumerator WaitForAudioToEnd(float duration) {
-            if (staredMonkForSingleton.TryGetComponent<AudioSource>(out var monkAudioSource)) {
-                staredMonkForSingleton.StartExplosiveVibration();
-                staredMonkForSingleton.snoringAudio.Play();
-                yield return new WaitForSeconds(duration);
-                OnRecordingStopped?.Invoke();
-                staredMonkForSingleton.StopExplosiveVibration();
-            } else yield break;           
-        }
 
-        #region Snoring audio playback
-        public void StartSnoringAudioCoroutine() => StartCoroutine(PlaySnoringAudioCoroutine());
-        
+        public void TriggerVoiceRecordingEvent() => OnVoiceRecording?.Invoke();
+
+            #region Snoring audio playback        
         /// <summary>
         /// Coroutine to play snoring audio depending on stress value. Stress value is temporary and will be replaced with a more complex system.
         /// </summary>
@@ -87,21 +79,24 @@ namespace Assets.Scripts.GazeTrackingFeature {
             }
             else {
                 Debug.LogWarning("AudioSource component not found on staredMonkForSingleton.");
+                yield break;
             }
         }
+
+        public void StartSnoringAudioCoroutine() => StartCoroutine(PlaySnoringAudioCoroutine());
         #endregion
 
-        public void TriggerVoiceRecordingEvent() => OnVoiceRecording?.Invoke();
-
+            #region NO headset usage
         /// <summary>
         /// Coroutine and invokeCoroutine to invoke without headset usage
         /// </summary>
-        private IEnumerator InvokeVoiceRecording() {
-            yield return new WaitForSeconds(3f);
-            OnVoiceRecording?.Invoke();
-        }
+        //private IEnumerator InvokeVoiceRecording() {
+        //    yield return new WaitForSeconds(3f);
+        //    OnVoiceRecording?.Invoke();
+        //}
 
-        private void StartInvokeVoiceRecordingCoroutine() => StartCoroutine(InvokeVoiceRecording());
+        //private void StartInvokeVoiceRecordingCoroutine() => StartCoroutine(InvokeVoiceRecording());
+        #endregion
         #endregion
     }
 }

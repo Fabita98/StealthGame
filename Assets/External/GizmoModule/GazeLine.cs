@@ -5,8 +5,8 @@ using UnityEngine;
 namespace Assets.Scripts.GazeTrackingFeature {
     internal class GazeLine : MonoBehaviour
     {
-        [SerializeField] private float cursorOffset = .3f;
-        [SerializeField] private float cursorRadius = .1f;
+        [SerializeField] private float cursorOffset = .1f;
+        [SerializeField] private float cursorRadius = .2f;
 
         public LayerMask mask;
         private int monkLayer, squareLayer;

@@ -23,10 +23,10 @@ namespace Assets.Scripts.GazeTrackingFeature {
         public bool isStaring;
         public bool readyToTalk;
         public static float HoveringTime;
-        [SerializeField] private float staringTime = 1.0f;
+        [SerializeField] private float staringTimeToPressVocalKey = 1.0f;
         [SerializeField] private float staringTimeToTalk = 2.0f;
-        [SerializeField] private int minWidthValue = 0;
-        [SerializeField] private int maxWidthValue = 4;
+        [SerializeField] private float minWidthValue = .2f;
+        [SerializeField] private float maxWidthValue = 4;
         private float duration;
 
         [Header("Voice Control")]
@@ -50,7 +50,7 @@ namespace Assets.Scripts.GazeTrackingFeature {
             gameObjLayer = gameObject.layer;
             monkLayer = LayerMask.NameToLayer("Monks");
             squareLayer = LayerMask.NameToLayer("Squares");
-            duration = staringTime + staringTimeToTalk;
+            duration = staringTimeToPressVocalKey + staringTimeToTalk;
             
             if (gameObjLayer == squareLayer) {
                 if (TryGetComponent<MeshRenderer>(out var mR)) meshRenderer = mR;
@@ -102,20 +102,25 @@ namespace Assets.Scripts.GazeTrackingFeature {
                 // Hovering square case 
                 if (gameObjLayer == squareLayer && meshRenderer) meshRenderer.material = OnHoverActiveMaterial;
 
-                // Hover for ONE monk at a time
-                else if (gameObjLayer == monkLayer && HoveringTime > staringTime) {
-                    isStaring = true;
-                    OutlineWidthControl(isStaring, Color.yellow);
-                    VocalKeyHoldingCheck();
-                    // Hover to tell the player that he can speak to the hovered monk
-                    if (HoveringTime > staringTimeToTalk && VocalKeyHoldingCheck()) {
-                        isStaring = false;
-                        readyToTalk = true;
-                        OutlineWidthControl(readyToTalk, Color.green);
-                        // Triggers the voice recording event 
-                        EyeTrackingDebug.Instance.TriggerVoiceRecordingEvent();
-                        readyToTalk = false;
-                    }
+                // Hovering monk case
+                else if (GazeLine.staredMonk.IsHovered) { 
+                    OutlineWidthControl(IsHovered, Color.blue); 
+
+                    if (HoveringTime > staringTimeToPressVocalKey) {
+                        isStaring = true;
+                        OutlineWidthControl(isStaring, Color.yellow);
+                        VocalKeyHoldingCheck();
+                        // Hover to tell the player that he can speak to the hovered monk
+                        if (HoveringTime > staringTimeToTalk && VocalKeyHoldingCheck()) {
+                            isStaring = false;
+                            StartRightControllerVibrationCoroutine();
+                            readyToTalk = true;
+                            OutlineWidthControl(readyToTalk, Color.green);
+                            // Triggers the voice recording event 
+                            EyeTrackingDebug.Instance.TriggerVoiceRecordingEvent();
+                            readyToTalk = false;
+                        }
+                    }                
                 }
             } else ResetHover();
         }
@@ -133,7 +138,7 @@ namespace Assets.Scripts.GazeTrackingFeature {
             if (OVRInput.Get(keyForVoiceControl) && GazeLine.staredMonk.IsHovered) {
                 StartCoroutine(GradualControllerVibration());
                 buttonHoldTime += Time.deltaTime;
-                if (buttonHoldTime > staringTime + staringTimeToTalk) {
+                if (buttonHoldTime > staringTimeToPressVocalKey + staringTimeToTalk) {
                     isButtonHeld = true;
                 }
             } else buttonHoldTime = 0f;
@@ -142,17 +147,20 @@ namespace Assets.Scripts.GazeTrackingFeature {
 
         internal void OutlineWidthControl(bool active, Color color) {
             if (active.Equals(false)) return;
-            else {
-                float lerpedWidth = Mathf.Lerp(minWidthValue, maxWidthValue, buttonHoldTime);
-                eyeOutline.enabled = active;
-                eyeOutline.OutlineColor = color;
-                eyeOutline.OutlineMode = EyeOutline.Mode.OutlineAll;
-                // isStaring is true until both staring AND key holding time checks are met
-                eyeOutline.OutlineWidth = isStaring ? lerpedWidth : maxWidthValue;
-            }
+            
+            float lerpedWidth = Mathf.Lerp(minWidthValue, maxWidthValue, buttonHoldTime);
+            eyeOutline.OutlineMode = EyeOutline.Mode.OutlineAll;
+            eyeOutline.enabled = active;
+            eyeOutline.OutlineColor = color;
+            eyeOutline.OutlineWidth = active switch {
+                true when GazeLine.staredMonk.IsHovered => maxWidthValue/2,
+                true when (isStaring && GazeLine.staredMonk.IsHovered) => lerpedWidth,
+                true when readyToTalk => maxWidthValue,
+                _ => minWidthValue,
+            };
         }
 
-        #region Vibration 
+            #region Vibration 
         internal IEnumerator GradualControllerVibration() { 
             float maxAmplitude = 1.0f;
             float maxFrequency = 1.0f;
@@ -168,11 +176,22 @@ namespace Assets.Scripts.GazeTrackingFeature {
             OVRInput.SetControllerVibration(0, 0, OVRInput.Controller.RTouch);
         }
 
-        internal void StartExplosiveVibration() {
-            OVRInput.SetControllerVibration(1, 1, OVRInput.Controller.RTouch);
+        public void StartRightControllerVibrationCoroutine() {
+            StartCoroutine(RightControllerVibrationCoroutine());
         }
 
-        internal void StopExplosiveVibration() {
+        private IEnumerator RightControllerVibrationCoroutine() {
+            float duration = 2.0f;
+            byte maxAmplitude = 2;
+            byte maxFrequency = 1;
+
+            // Start vibration
+            OVRInput.SetControllerVibration(maxFrequency, maxAmplitude, OVRInput.Controller.RTouch);
+
+            // Wait for the duration
+            yield return new WaitForSeconds(duration);
+
+            // Stop vibration
             OVRInput.SetControllerVibration(0, 0, OVRInput.Controller.RTouch);
         }
         #endregion
