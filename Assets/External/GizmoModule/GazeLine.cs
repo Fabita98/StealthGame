@@ -1,17 +1,18 @@
 using System.Collections.Generic;
+using Unity.Labs.SuperScience;
 using UnityEngine;
 
 namespace Assets.Scripts.GazeTrackingFeature {
     internal class GazeLine : MonoBehaviour
     {
-        [SerializeField] private float cursorOffset;
-        [SerializeField] private float cursorRadius;
+        [SerializeField] private float cursorOffset = .3f;
+        [SerializeField] private float cursorRadius = .1f;
 
         public LayerMask mask;
         private int monkLayer, squareLayer;
 
         private Vector3 hitPosition;
-        public EyeInteractable staredMonk;
+        public static EyeInteractable staredMonk;
 
         private readonly List<EyeInteractable> eyeInteractables = new();
 
@@ -23,6 +24,10 @@ namespace Assets.Scripts.GazeTrackingFeature {
 
         void FixedUpdate() {
             EyeGazeRayCasting();
+        }
+
+        void Update() {
+            GizmoModule.instance.DrawSphere(hitPosition + (transform.position - hitPosition).normalized * cursorOffset, cursorRadius, Color.cyan);
         }
 
         private void EyeGazeRayCasting() {

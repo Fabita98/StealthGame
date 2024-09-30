@@ -6,15 +6,17 @@ namespace Assets.Scripts.GazeTrackingFeature {
     internal class EyeTrackingDebug : MonoBehaviour
     {
         public static EyeTrackingDebug Instance { get; private set; }
-
-        [Header("Voice playback parameters")]
+        [Header("Voice playback variables")]
         public EyeInteractable staredMonkForSingleton;
-        [SerializeField] private AudioClip monkAudioClip;
-        [SerializeField] private GazeLine gazeLine;
+        private const string audioDataPath = "C:\\Users\\utente\\Desktop\\Unity projects\\StealthGame\\Assets\\Art\\Audio\\AudioPool";
+        private float maxSnoringTime = 10f;
+        private float minSnoringTime = 1f;
 
         public static event VoiceRecordingHandler OnVoiceRecording;
         public delegate void VoiceRecordingHandler();
-        // Used to enable/disable the speaking text UI
+        /// <summary>
+        /// Events used to enable/disable the speaking text UI
+        /// </summary>
         public static event Action OnRecordingAboutToStart;
         public static event Action OnRecordingStopped;
 
@@ -28,9 +30,9 @@ namespace Assets.Scripts.GazeTrackingFeature {
             }
         }
 
-        private void Start() {
-            //StartInvokeVoiceRecordingCoroutine();
-        }
+        //private void Start() {
+        //    StartInvokeVoiceRecordingCoroutine();
+        //}
 
         private void OnEnable() {
             EyeInteractable.OnCounterChanged += HandleCounterChange;
@@ -43,37 +45,62 @@ namespace Assets.Scripts.GazeTrackingFeature {
         }
 
         private void HandleCounterChange(int newCount) => Debug.Log($"Current EyeInteractable instance counter: {newCount}");
-        #region AudioClip playback
         
+        #region AudioClip playback
         private void HandleVoiceRecording() {
-            if (gazeLine.staredMonk) {
-                staredMonkForSingleton = gazeLine.staredMonk;
+            if (GazeLine.staredMonk) {
+                staredMonkForSingleton = GazeLine.staredMonk;
                 OnRecordingAboutToStart?.Invoke();
                 if (staredMonkForSingleton.TryGetComponent(out AudioSource staredMonkAudioSource)) {
-                    staredMonkForSingleton.StartExplosiveVibration();
-                    staredMonkAudioSource.Play();
+                    StartCoroutine(WaitForAudioToEnd(maxSnoringTime));
                     Debug.Log("Monk is talking now with " + staredMonkAudioSource.clip.name);
-                    StartCoroutine(WaitForAudioToEnd(staredMonkAudioSource));
                 }
                 else return;
             }
         }
         
-        private IEnumerator WaitForAudioToEnd(AudioSource audioSource) {
-            yield return new WaitWhile(() => audioSource.isPlaying);
-            OnRecordingStopped?.Invoke();
-            staredMonkForSingleton.ResetHover();
-            staredMonkForSingleton.StopExplosiveVibration();
+        private IEnumerator WaitForAudioToEnd(float duration) {
+            if (staredMonkForSingleton.TryGetComponent<AudioSource>(out var monkAudioSource)) {
+                staredMonkForSingleton.StartExplosiveVibration();
+                staredMonkForSingleton.snoringAudio.Play();
+                yield return new WaitForSeconds(duration);
+                OnRecordingStopped?.Invoke();
+                staredMonkForSingleton.StopExplosiveVibration();
+            } else yield break;           
         }
+
+        #region Snoring audio playback
+        public void StartSnoringAudioCoroutine() => StartCoroutine(PlaySnoringAudioCoroutine());
         
+        /// <summary>
+        /// Coroutine to play snoring audio depending on stress value. Stress value is temporary and will be replaced with a more complex system.
+        /// </summary>
+        /// <param name="duration"></param>
+        /// <param name="stressValue"></param>
+        /// <returns></returns>
+        private IEnumerator PlaySnoringAudioCoroutine(float stressValue = .5f) {
+            float duration = UnityEngine.Random.Range(minSnoringTime, maxSnoringTime);
+            if (staredMonkForSingleton.snoringAudio.clip) {
+                staredMonkForSingleton.snoringAudio.Play();
+                yield return new WaitForSeconds(duration);
+                staredMonkForSingleton.snoringAudio.Stop();
+            }
+            else {
+                Debug.LogWarning("AudioSource component not found on staredMonkForSingleton.");
+            }
+        }
+        #endregion
+
+        public void TriggerVoiceRecordingEvent() => OnVoiceRecording?.Invoke();
+
+        /// <summary>
+        /// Coroutine and invokeCoroutine to invoke without headset usage
+        /// </summary>
         private IEnumerator InvokeVoiceRecording() {
             yield return new WaitForSeconds(3f);
             OnVoiceRecording?.Invoke();
         }
-        
-        public void TriggerVoiceRecordingEvent() => OnVoiceRecording?.Invoke();
 
-        // Coroutine to invoke without headset usage
         private void StartInvokeVoiceRecordingCoroutine() => StartCoroutine(InvokeVoiceRecording());
         #endregion
     }
