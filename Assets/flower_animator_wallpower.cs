@@ -7,6 +7,7 @@ public class Flower_animator_wallpower : MonoBehaviour
     public ParticleSystem fallParticles; // Sistema di particelle per l'effetto visivo
     public float holdDuration = 2.0f; // Durata della pressione del tasto necessaria
     public Animator an;
+    public GameObject player;
 
     private bool isConsuming = false;
     private float dissolveProgress = 0.0f;
@@ -17,7 +18,7 @@ public class Flower_animator_wallpower : MonoBehaviour
 
     void Start()
     {
-
+        
     }
 
     void Update()
@@ -101,6 +102,7 @@ public class Flower_animator_wallpower : MonoBehaviour
         isConsuming = true;
         dissolveProgress = 0.0f;
         dissolveStartTime = Time.time + dissolveDelay;
+        player.GetComponent<SpiritVision>().mana += 8;
         //power variable to be added
 
     }
