@@ -119,7 +119,7 @@ public class Flower_animator_light : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "RightHand")
+        if (other.tag == "RightHand" || other.tag == "LeftHand")
         {
             inHand = false;
         }
