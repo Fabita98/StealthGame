@@ -15,6 +15,7 @@ TagManager:
   - Hand
   - Undefined
   - Monk
+  - HidingArea
   layers:
   - Default
   - TransparentFX

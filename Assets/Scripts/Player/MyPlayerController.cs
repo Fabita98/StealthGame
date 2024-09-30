@@ -187,7 +187,7 @@ public class MyPlayerController : MonoBehaviour
     private bool ReadyToSnapTurn;
 
     private bool playerControllerEnabled = false;
-    [HideInInspector] public bool isHiding;
+    [HideInInspector] public bool isHiding = false;
     public GameObject torchGO;
     public static MyPlayerController Instance => _instance;
     private static MyPlayerController _instance;
@@ -247,6 +247,23 @@ public class MyPlayerController : MonoBehaviour
             }
 
             playerControllerEnabled = false;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("HidingArea"))
+        {
+            isHiding = true;
+        }
+    }
+    
+    
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("HidingArea"))
+        {
+            isHiding = false;
         }
     }
 
