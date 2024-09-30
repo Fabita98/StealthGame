@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 using MathNet.Numerics.LinearAlgebra;
 
@@ -9,7 +10,9 @@ public class StressDetection : MonoBehaviour
     private Matrix<float> cov;        // Covariance matrix (dz-dimensional)
 
     private int dz = 1;  // State dimension (stress)
-    private int dx = 125;  // Observation dimension (eye, head, controller, heart rate)
+    // private int dx = 125 - 2;  // Observation dimension (eye, movement, controller, time)
+    // private int dx = 87 - 2;  // Observation dimension (movement, controller, time)
+    private int dx = 78 - 2;  // Observation dimension (movement, controller)
 
     private Matrix<float> transitionMatrix;
     private Matrix<float> observationMatrix;
@@ -45,9 +48,8 @@ public class StressDetection : MonoBehaviour
         //     heartRate
         // });
         
-        Vector<float> observation = Vector<float>.Build.DenseOfArray(DataTracker.GetLatestDataRow().ToArray());
-        
-        
+        Vector<float> observation = Vector<float>.Build.DenseOfArray(DataTracker.GetLatestDataRow().Skip(2).ToArray());
+
         // Apply the Kalman filter at each frame
         float[] controlInput = GetControlInput(); // Control input (u_test)
 
@@ -55,7 +57,8 @@ public class StressDetection : MonoBehaviour
         var predictedStress = ApplyOnlineInputKalman(dz, dx, observation, controlInput);
         
         // Output the predicted stress level
-        Debug.Log("Predicted Stress: " + predictedStress.Item1[0]);
+        Debug.LogWarning("Predicted Stress(" + Time.timeAsDouble + "): "  + predictedStress.Item1[0]);
+        // Debug.LogWarning("Predicted Stress(" + Time.timeAsDouble + "): "  + predictedStress.Item2);
     }
 
     private (Vector<float>, Matrix<float>) ApplyOnlineInputKalman(int dz, int dx, Vector<float> observation, float[] controlInput)
@@ -89,6 +92,11 @@ public class StressDetection : MonoBehaviour
         return (nextState, nextCovariance);  // Return both the updated state and covariance
     }
 
+
+    private void NormalizeInputData()
+    {
+        
+    }
 
     // Dummy methods for collecting inputs
     private float[] GetEyeMovementData() { return new float[] { Random.value, Random.value }; }
