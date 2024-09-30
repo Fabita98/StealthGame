@@ -12,7 +12,8 @@ public enum EnemyAnimatorParameters
     Walk,
     SpeedWalk,
     Attack,
-    Alert
+    Alert,
+    Sleep
 }
 
 public class EnemyUtility : MonoBehaviour
@@ -59,8 +60,13 @@ public class EnemyUtility : MonoBehaviour
         SetAnimation(attack: true);
     }
     
+    public void ChooseSleepAnimation()
+    {
+        SetAnimation(sleep: true);
+    }
+    
     public  void SetAnimation(bool idle = false, bool lookAround = false, bool walk = false, bool sprint = false,
-        bool attack = false, bool alert = false)
+        bool attack = false, bool alert = false, bool sleep = false)
     {
         EnemyAnimator.SetBool(EnemyAnimatorParameters.Idle.ToString(), idle);
         EnemyAnimator.SetBool(EnemyAnimatorParameters.LookAround.ToString(), lookAround);
@@ -68,6 +74,7 @@ public class EnemyUtility : MonoBehaviour
         EnemyAnimator.SetBool(EnemyAnimatorParameters.SpeedWalk.ToString(), sprint);
         EnemyAnimator.SetBool(EnemyAnimatorParameters.Attack.ToString(), attack);
         EnemyAnimator.SetBool(EnemyAnimatorParameters.Alert.ToString(), alert);
+        EnemyAnimator.SetBool(EnemyAnimatorParameters.Sleep.ToString(), sleep);
     }
 
     public void ResetAnimator()

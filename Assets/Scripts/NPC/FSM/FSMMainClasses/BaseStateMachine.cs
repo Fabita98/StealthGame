@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.GazeTrackingFeature;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -24,6 +25,7 @@ public class BaseStateMachine : MonoBehaviour
     [NonSerialized] public bool isChaseReset;
     [NonSerialized] public bool isStartOfPatrol;
     [NonSerialized] public bool isStartOfAttack;
+    [NonSerialized] public bool isStartOfSleep;
     [NonSerialized] public bool stopAnimationChoose;
     private Dictionary<Type, Component> _cachedComponents;
     private int _updateCounter;
@@ -40,6 +42,7 @@ public class BaseStateMachine : MonoBehaviour
         isStartOfChase = true;
         isStartOfPatrol = true;
         isStartOfAttack = true;
+        isStartOfSleep = true;
         initialTransform = MovingPoints.GetFirst();
         transform.position = initialTransform.position;
         transform.rotation = initialTransform.rotation;
@@ -100,6 +103,7 @@ public class BaseStateMachine : MonoBehaviour
         isStartOfChase = true;
         isStartOfPatrol = true;
         isStartOfAttack = true;
+        isStartOfSleep = true;
         stopAnimationChoose = false;
         _updateCounter = 0;
 

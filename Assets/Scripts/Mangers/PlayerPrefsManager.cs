@@ -12,6 +12,7 @@ public enum PlayerPrefsKeys
     Level,
     GameTimer,
     PlayerLastCheckpoint,
+    BlueLotus
 }
 
 /// <summary>

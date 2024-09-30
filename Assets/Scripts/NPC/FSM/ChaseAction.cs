@@ -30,6 +30,7 @@ public class ChaseAction : FSMAction
             machine.isStartOfChase = false;
             machine.isStartOfPatrol = true;
             machine.isStartOfAttack = true;
+            machine.isStartOfSleep = true;
             machine.Stop();
             enemyUtility.SetAnimation(alert: true);
             timer = 0;

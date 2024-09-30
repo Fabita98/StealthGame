@@ -28,6 +28,7 @@ public class PatrolAction : FSMAction
             machine.isStartOfPatrol = false;
             machine.isStartOfChase = true;
             machine.isStartOfAttack = true;
+            machine.isStartOfSleep = true;
             machine.GetComponent<EnemySightSensor>().ChangeEscapedState(false);
             machine.GetComponent<EnemyAttackSensor>().StartAttack = false;
             machine.GetComponent<EnemyAttackSensor>().IsAttackCompleted = false;

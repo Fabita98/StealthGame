@@ -19,7 +19,7 @@ namespace Assets.Scripts.GazeTrackingFeature {
         // isStaring is used to check if the player is staring at a monk;
         // while readyToTalk is used to check if the required amount of time to make the monk talk has passed
         public static bool isStaring;
-        public static bool readyToTalk;
+        public bool readyToTalk;
         public static float HoveringTime;
         [SerializeField] private float staringTime = 1.0f;
         [SerializeField] private float staringTimeToTalk = 2.0f;
