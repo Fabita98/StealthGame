@@ -9,25 +9,26 @@ namespace Assets.Scripts.GazeTrackingFeature {
     {
         #region Variables and events definition
         [Header("Eye hovering parameters")]
-        private MeshRenderer meshRenderer;
-        [SerializeField] private Material OnHoverActiveMaterial;
-        [SerializeField] private Material OnHoverInactiveMaterial;
+        [Header("Squares related")]
+        internal MeshRenderer meshRenderer;
+        [SerializeField] internal Material OnHoverActiveMaterial;
+        [SerializeField] internal Material OnHoverInactiveMaterial;
         // Event to be invoked to debug logger, if needed
         [SerializeField] private UnityEvent<GameObject> OnObjectHover;
-        private EyeOutline eyeOutline;
-        private readonly AudioSource[] audioSources = new AudioSource[2];
+        internal EyeOutline eyeOutline;
+        internal readonly AudioSource[] audioSources = new AudioSource[2];
         [SerializeField] internal AudioSource snoringAudio, playerSpottedAudio;
         public bool IsHovered { get; set; }
-        // isStaring is used to check if the player is staring at a monk;
-        // while readyToTalk is used to check if the required amount of time to make the monk talk has passed
+        // isStaring is used to check if the player is staring at a monk after a minimum amount of time;
+        // while readyToTalk is used to check if the required amount of time to make the monk snore has passed
         public bool isStaring;
         public bool readyToTalk;
-        public static float HoveringTime;
+        internal static float HoveringTime;
         [SerializeField] private float staringTimeToPressVocalKey = 1.0f;
         [SerializeField] private float staringTimeToTalk = 2.0f;
+        private float duration;
         [SerializeField] private float minWidthValue = .2f;
         [SerializeField] private float maxWidthValue = 4;
-        private float duration;
 
         [Header("Voice Control")]
         private readonly OVRInput.RawButton keyForVoiceControl = OVRInput.RawButton.A;
@@ -35,7 +36,6 @@ namespace Assets.Scripts.GazeTrackingFeature {
 
         [Header("Game object layer")]
         public LayerMask gameObjLayer;  
-        private int squareLayer, monkLayer;
 
         public static int OverallEyeInteractableInstanceCounter { get; private set; }
         public static event CounterChangeHandler OnCounterChanged;
@@ -48,16 +48,14 @@ namespace Assets.Scripts.GazeTrackingFeature {
 
         private void ComponentInit() {
             gameObjLayer = gameObject.layer;
-            monkLayer = LayerMask.NameToLayer("Monks");
-            squareLayer = LayerMask.NameToLayer("Squares");
             duration = staringTimeToPressVocalKey + staringTimeToTalk;
             
-            if (gameObjLayer == squareLayer) {
+            if (gameObjLayer == GazeLine.Instance.squareLayer) {
                 if (TryGetComponent<MeshRenderer>(out var mR)) meshRenderer = mR;
                 else Debug.LogWarning("MeshRenderer component not found.");
             } 
 
-            if (gameObjLayer == monkLayer && TryGetComponent<EyeOutline>(out var eO)) {
+            if (gameObjLayer == GazeLine.Instance.monkLayer && TryGetComponent<EyeOutline>(out var eO)) {
                 eyeOutline = eO;
                 eyeOutline.enabled = false;
 
@@ -99,18 +97,17 @@ namespace Assets.Scripts.GazeTrackingFeature {
         public void GazeControl() {
             if (IsHovered) {
                 OnObjectHover?.Invoke(gameObject);
-                // Hovering square case 
-                if (gameObjLayer == squareLayer && meshRenderer) meshRenderer.material = OnHoverActiveMaterial;
+                // Case 1: Hovering monk -> blue outline
+                if (GazeLine.staredMonk.IsHovered) {
+                    OutlineWidthControl(IsHovered, Color.blue);
 
-                // Hovering monk case
-                else if (GazeLine.staredMonk.IsHovered) { 
-                    OutlineWidthControl(IsHovered, Color.blue); 
-
+                    // Case 1.1 : Keep staring at the monk -> switch to yellow outline && Vocal Key enabled
                     if (HoveringTime > staringTimeToPressVocalKey) {
                         isStaring = true;
                         OutlineWidthControl(isStaring, Color.yellow);
                         VocalKeyHoldingCheck();
-                        // Hover to tell the player that he can speak to the hovered monk
+                        // Case 1.1.1 : Keep staring at the monk after having both stared at it
+                        // and held the key for required amount of time -> switch to green outline && starts snoring
                         if (HoveringTime > staringTimeToTalk && VocalKeyHoldingCheck()) {
                             isStaring = false;
                             StartRightControllerVibrationCoroutine();
@@ -120,17 +117,9 @@ namespace Assets.Scripts.GazeTrackingFeature {
                             EyeTrackingDebug.Instance.TriggerVoiceRecordingEvent();
                             readyToTalk = false;
                         }
-                    }                
+                    }
                 }
-            } else ResetHover();
-        }
-
-        internal void ResetHover() {
-            if (gameObjLayer == squareLayer && meshRenderer) meshRenderer.material = OnHoverInactiveMaterial;
-            else if (gameObjLayer == monkLayer) {
-                eyeOutline.enabled = false;
-                isStaring = false;
-            }
+            } else GazeLine.Instance.UnSelect();
         }
 
         private bool VocalKeyHoldingCheck() {
@@ -138,7 +127,7 @@ namespace Assets.Scripts.GazeTrackingFeature {
             if (OVRInput.Get(keyForVoiceControl) && GazeLine.staredMonk.IsHovered) {
                 StartCoroutine(GradualControllerVibration());
                 buttonHoldTime += Time.deltaTime;
-                if (buttonHoldTime > staringTimeToPressVocalKey + staringTimeToTalk) {
+                if (buttonHoldTime >= duration) {
                     isButtonHeld = true;
                 }
             } else buttonHoldTime = 0f;
@@ -154,7 +143,7 @@ namespace Assets.Scripts.GazeTrackingFeature {
             eyeOutline.OutlineColor = color;
             eyeOutline.OutlineWidth = active switch {
                 true when GazeLine.staredMonk.IsHovered => maxWidthValue/2,
-                true when (isStaring && GazeLine.staredMonk.IsHovered) => lerpedWidth,
+                true when (GazeLine.staredMonk.IsHovered && isStaring) => lerpedWidth,
                 true when readyToTalk => maxWidthValue,
                 _ => minWidthValue,
             };
@@ -173,25 +162,27 @@ namespace Assets.Scripts.GazeTrackingFeature {
             }
 
             // Ensure vibration is stopped at the end
-            OVRInput.SetControllerVibration(0, 0, OVRInput.Controller.RTouch);
+            StopRightControllerVibration();        
         }
 
-        public void StartRightControllerVibrationCoroutine() {
+        internal void StartRightControllerVibrationCoroutine() {
             StartCoroutine(RightControllerVibrationCoroutine());
         }
 
-        private IEnumerator RightControllerVibrationCoroutine() {
-            float duration = 2.0f;
+        internal IEnumerator RightControllerVibrationCoroutine() {
+            float vibDuration = 2.0f;
             byte maxAmplitude = 2;
             byte maxFrequency = 1;
 
-            // Start vibration
             OVRInput.SetControllerVibration(maxFrequency, maxAmplitude, OVRInput.Controller.RTouch);
 
             // Wait for the duration
-            yield return new WaitForSeconds(duration);
+            yield return new WaitForSeconds(vibDuration);
 
-            // Stop vibration
+            StopRightControllerVibration();
+        }
+
+        internal void StopRightControllerVibration() {
             OVRInput.SetControllerVibration(0, 0, OVRInput.Controller.RTouch);
         }
         #endregion
