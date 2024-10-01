@@ -20,6 +20,7 @@ public class SleepAction : FSMAction
             machine.isStartOfChase = true;
             machine.isStartOfAttack = true;
             machine.isStartOfSleep = false;
+            enemyUtility.sleepTimer.SetActive(true);
         }
     }
 }

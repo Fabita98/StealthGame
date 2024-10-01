@@ -19,6 +19,7 @@ public enum EnemyAnimatorParameters
 public class EnemyUtility : MonoBehaviour
 {
     [SerializeField] private GameObject eyeLights;
+    public GameObject sleepTimer;
     public float viewRadius = 25;
     public float overallRadius = 5;
     public float viewAngle = 150;
