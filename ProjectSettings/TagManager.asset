@@ -16,6 +16,7 @@ TagManager:
   - Undefined
   - Monk
   - HidingArea
+  - Shadow
   layers:
   - Default
   - TransparentFX

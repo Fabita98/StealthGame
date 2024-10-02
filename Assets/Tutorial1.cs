@@ -31,7 +31,7 @@ public class Tutorial1 : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "RightHand")
         {
 
             if (!gameObject.GetComponent<MeshRenderer>().enabled)

@@ -32,7 +32,7 @@ public class EnemySightSensor : MonoBehaviour
             Vector3 dirToPlayer = (playerTransform.position - transform.position).normalized;
             float dstToPlayer = Vector3.Distance(transform.position, playerTransform.position);
             if (dstToPlayer < enemyUtility.overallRadius
-                && !playerController.isHiding
+                //&& !playerController.isHiding
                 )
             {
                 _lastSeenPlayerTimer = 0;
