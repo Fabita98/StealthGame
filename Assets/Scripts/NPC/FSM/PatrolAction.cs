@@ -40,34 +40,38 @@ public class PatrolAction : FSMAction
             machine.Stop();
             stopAnimationChoose = true;
         }
-
-        if (movingPoints.HasReached(navMeshAgent))
+        else
         {
-            timer += Time.deltaTime;
-            if (timer < machine.WaitTime)
+
+            if (movingPoints.HasReached(navMeshAgent))
             {
-                if(!stopAnimationChoose)
+                timer += Time.deltaTime;
+                if (timer < machine.WaitTime)
                 {
-                    machine.Stop();
-                    stopAnimationChoose = true;
-                }   
+                    if(!stopAnimationChoose)
+                    {
+                        machine.Stop();
+                        stopAnimationChoose = true;
+                    }   
+                }
+                else
+                {
+                    navMeshAgent.SetDestination(movingPoints.GetNextCircular(navMeshAgent).position);
+                    machine.Move();
+                    timer = 0;
+                    stopAnimationChoose = false;             
+                }
             }
-            else
+        
+            if (timer > machine.WaitTime)
             {
                 navMeshAgent.SetDestination(movingPoints.GetNextCircular(navMeshAgent).position);
                 machine.Move();
                 timer = 0;
-                stopAnimationChoose = false;             
-            }
+                stopAnimationChoose = false;
+            }            
         }
-        
-        if (timer > machine.WaitTime)
-        {
-            navMeshAgent.SetDestination(movingPoints.GetNextCircular(navMeshAgent).position);
-            machine.Move();
-            timer = 0;
-            stopAnimationChoose = false;
-        }
+
         
         // if (enemySightSensor.Ping())
         // {

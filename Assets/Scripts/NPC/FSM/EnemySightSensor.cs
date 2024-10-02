@@ -35,9 +35,11 @@ public class EnemySightSensor : MonoBehaviour
             Transform playerTransform = playerInRange[i].transform;
             Vector3 dirToPlayer = (playerTransform.position - transform.position).normalized;
             float dstToPlayer = Vector3.Distance(transform.position, playerTransform.position);
-            if (dstToPlayer < enemyUtility.overallRadius
-                && !playerController.isHiding
-                )
+            if (playerController.isHiding)
+            {
+                return false;
+            }
+            if (dstToPlayer < enemyUtility.overallRadius)
             {
                 _lastSeenPlayerTimer = 0;
                 _lastSeenPlayerTransform.position = playerTransform.position;

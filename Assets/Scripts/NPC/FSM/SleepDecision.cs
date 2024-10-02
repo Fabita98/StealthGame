@@ -7,7 +7,7 @@ public class SleepDecision : Decision
 {
     public override bool Decide(BaseStateMachine stateMachine)
     {
-        var enemyInLineOfSight = stateMachine.GetComponent<EnemySleepSensor>();
-        return enemyInLineOfSight.IsSleeping();
+        var enemySleepSensor = stateMachine.GetComponent<EnemySleepSensor>();
+        return enemySleepSensor.IsSleeping();
     }
 }

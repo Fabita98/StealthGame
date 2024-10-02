@@ -159,6 +159,10 @@ public class MyPlayerController : MonoBehaviour
     [SerializeField]
     private Transform headObjectTransform;
     
+    
+    [SerializeField]
+    private Transform leftHandCollider; //for onTriggerEnter
+    
     [SerializeField]
     private float crouchHeightDifference;
 
@@ -250,22 +254,22 @@ public class MyPlayerController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("HidingArea"))
-        {
-            isHiding = true;
-        }
-    }
-    
-    
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("HidingArea"))
-        {
-            isHiding = false;
-        }
-    }
+    // private void OnTriggerStay(Collider other)
+    // {
+    //     if (other.CompareTag("HidingArea"))
+    //     {
+    //         isHiding = true;
+    //     }
+    // }
+    //
+    //
+    // private void OnTriggerExit(Collider other)
+    // {
+    //     if (other.CompareTag("HidingArea"))
+    //     {
+    //         isHiding = false;
+    //     }
+    // }
 
     void Update()
     {
