@@ -7,6 +7,8 @@ public class Flower_animator_light : MonoBehaviour
     public ParticleSystem fallParticles; // Sistema di particelle per l'effetto visivo
     public float holdDuration = 2.0f; // Durata della pressione del tasto necessaria
     public Animator an;
+    public GameObject petalsGO;
+    public AudioSource sound;
 
     private bool isConsuming = false;
     private float dissolveProgress = 0.0f;
@@ -24,7 +26,7 @@ public class Flower_animator_light : MonoBehaviour
     void Update()
     {
         // Controlla se il tasto è premuto
-        if ((Input.GetKeyDown(KeyCode.Space) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))&&inHand)
+        if ((Input.GetKeyDown(KeyCode.Space) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger)) && inHand)
         {
             holdStartTime = Time.time;
             isHolding = true;
@@ -70,7 +72,8 @@ public class Flower_animator_light : MonoBehaviour
                 dissolveProgress += Time.deltaTime;
                 float dissolveAmount = Mathf.Clamp01((currentTime - dissolveStartTime) / dissolveDuration);
                 an.SetTrigger("activate");
-                foreach (Transform petal in transform)
+                playsound();
+                foreach (Transform petal in petalsGO.transform)
                 {
                     Renderer renderer = petal.GetComponent<Renderer>();
                     if (renderer != null)
@@ -109,9 +112,8 @@ public class Flower_animator_light : MonoBehaviour
     {
         if (other.tag == "RightHand"|| other.tag == "LeftHand")
         {
-            if (OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger)>0)
+            if (OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, OVRInput.Controller.LTouch) > 0.1f || OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, OVRInput.Controller.RTouch) > 0.1f)
             {
-                Debug.Log("is holdiiiiiing");
                 inHand = true;
             }
             else inHand = false;
@@ -123,6 +125,10 @@ public class Flower_animator_light : MonoBehaviour
         {
             inHand = false;
         }
+    }
+    void playsound()
+    {
+        sound.Play(); 
     }
 
 }

@@ -60,7 +60,7 @@ public class SpiritVision : MonoBehaviour
     private void OnTriggerStay(Collider other)      //add every enemy in collider to list
     {
         bool match = false;
-        if (other.tag == "Monk")
+        if (other.tag == "Monk" || other.tag =="Shadow")
         {
             foreach (GameObject enemy in enemyinrange)
             {
@@ -84,7 +84,7 @@ public class SpiritVision : MonoBehaviour
     private void OnTriggerExit(Collider other)      //remove enemy from list
     {
         bool match = false;
-        if (other.tag == "Monk")
+        if (other.tag == "Monk" || other.tag == "Shadow")
         {
             foreach (GameObject enemy in enemyinrange)
             {
