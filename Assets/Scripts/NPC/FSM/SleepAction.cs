@@ -11,7 +11,7 @@ public class SleepAction : FSMAction
     public override void Execute(BaseStateMachine machine)
     {
         var sleepSensor = machine.GetComponent<EnemySleepSensor>();
-        EnemyUtility enemyUtility = EnemyUtility.Instance;
+        EnemyUtility enemyUtility = machine.GetComponent<EnemyUtility>();
         if (machine.isStartOfSleep)
         {
             machine.Stop();

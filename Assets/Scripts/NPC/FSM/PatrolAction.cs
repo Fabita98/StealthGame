@@ -16,11 +16,12 @@ public class PatrolAction : FSMAction
         NavMeshAgent navMeshAgent = machine.GetComponent<NavMeshAgent>();
         MovingPoints movingPoints = machine.GetComponent<MovingPoints>();
         EnemySightSensor enemySightSensor = machine.GetComponent<EnemySightSensor>();
+        EnemyUtility enemyUtility = machine.GetComponent<EnemyUtility>();
 
         
         if (machine.isStartOfPatrol)
         {
-            EnemyUtility.Instance.SetEyeLights(false);
+            enemyUtility.SetEyeLights(false);
             navMeshAgent.SetDestination(movingPoints.GetNextCircular(navMeshAgent).position);
             machine.Move();
             timer = 0;
@@ -32,6 +33,12 @@ public class PatrolAction : FSMAction
             machine.GetComponent<EnemySightSensor>().ChangeEscapedState(false);
             machine.GetComponent<EnemyAttackSensor>().StartAttack = false;
             machine.GetComponent<EnemyAttackSensor>().IsAttackCompleted = false;
+        }
+
+        if (movingPoints.Count() <= 1)
+        {
+            machine.Stop();
+            stopAnimationChoose = true;
         }
 
         if (movingPoints.HasReached(navMeshAgent))
@@ -53,7 +60,8 @@ public class PatrolAction : FSMAction
                 stopAnimationChoose = false;             
             }
         }
-        else if (timer > machine.WaitTime)
+        
+        if (timer > machine.WaitTime)
         {
             navMeshAgent.SetDestination(movingPoints.GetNextCircular(navMeshAgent).position);
             machine.Move();

@@ -17,12 +17,16 @@ public class EnemySightSensor : MonoBehaviour
         _lastSeenPlayerTimer = 0;
         GameObject lastSeenPlayerTransformObject = new GameObject("LastSeenPlayerTransform");
         _lastSeenPlayerTransform = lastSeenPlayerTransformObject.transform;
+    }
+
+    public void Start()
+    {
         playerController = MyPlayerController.Instance;
     }
 
     public bool Ping()
     {
-        EnemyUtility enemyUtility = EnemyUtility.Instance;
+        EnemyUtility enemyUtility = GetComponent<EnemyUtility>();
         Collider[] playerInRange = Physics.OverlapSphere(transform.position, enemyUtility.viewRadius, enemyUtility.playerMask);
         _lastSeenPlayerTimer += Time.deltaTime;
         
@@ -32,7 +36,7 @@ public class EnemySightSensor : MonoBehaviour
             Vector3 dirToPlayer = (playerTransform.position - transform.position).normalized;
             float dstToPlayer = Vector3.Distance(transform.position, playerTransform.position);
             if (dstToPlayer < enemyUtility.overallRadius
-                //&& !playerController.isHiding
+                && !playerController.isHiding
                 )
             {
                 _lastSeenPlayerTimer = 0;
@@ -64,7 +68,7 @@ public class EnemySightSensor : MonoBehaviour
     
     private void OnDrawGizmos()
     {
-        EnemyUtility enemyUtility = EnemyUtility.Instance;
+        EnemyUtility enemyUtility = GetComponent<EnemyUtility>();;
         if (enemyUtility == null)
         {
             enemyUtility = GetComponent<EnemyUtility>();
@@ -103,7 +107,7 @@ public class EnemySightSensor : MonoBehaviour
             machine.isChaseReset = true;
             return true;
         }
-        else if (_lastSeenPlayerTimer > EnemyUtility.Instance.maxTimeToLosePlayer)
+        else if (_lastSeenPlayerTimer > GetComponent<EnemyUtility>().maxTimeToLosePlayer)
         {
             machine.isChaseReset = true;
             return true;

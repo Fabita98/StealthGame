@@ -20,7 +20,7 @@ public class ChaseAction : FSMAction
         MovingPoints movingPoints = machine.GetComponent<MovingPoints>();
         EnemySightSensor enemySightSensor = machine.GetComponent<EnemySightSensor>();
         var enemyAttackSensor = machine.GetComponent<EnemyAttackSensor>();
-        EnemyUtility enemyUtility = EnemyUtility.Instance;
+        EnemyUtility enemyUtility = machine.GetComponent<EnemyUtility>();
         Transform playerTransform = machine.PlayerController.transform;
         if (machine.isStartOfChase)
         {
