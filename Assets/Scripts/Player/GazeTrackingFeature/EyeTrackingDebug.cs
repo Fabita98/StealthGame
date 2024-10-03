@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Unity.Labs.SuperScience;
 using UnityEngine;
 
 namespace Assets.Scripts.GazeTrackingFeature {
@@ -7,12 +8,11 @@ namespace Assets.Scripts.GazeTrackingFeature {
     {
         public static EyeTrackingDebug Instance { get; private set; }
         [Header("Voice playback variables")]
-        private const string audioDataPath = "C:\\Users\\utente\\Desktop\\Unity projects\\StealthGame\\Assets\\Art\\Audio\\AudioPool";
         private const float maxSnoringTime = 12f;
         private const float minSnoringTime = 4f;
 
-        public static event VoiceRecordingHandler OnVoiceRecording;
-        public delegate void VoiceRecordingHandler();
+        public static event SnoringAudioPlaybackHandler OnAudioPlayback;
+        public delegate void SnoringAudioPlaybackHandler();
         /// <summary>
         /// Events used to enable/disable the speaking text UI
         /// </summary>
@@ -35,31 +35,29 @@ namespace Assets.Scripts.GazeTrackingFeature {
 
         private void OnEnable() {
             EyeInteractable.OnCounterChanged += HandleCounterChange;
-            OnVoiceRecording += HandleVoiceRecording;
+            OnAudioPlayback += HandleSnoringAudioPlayback;
         }
 
         private void OnDisable() {
             EyeInteractable.OnCounterChanged -= HandleCounterChange;
-            OnVoiceRecording -= HandleVoiceRecording;
+            OnAudioPlayback -= HandleSnoringAudioPlayback;
         }
 
         private void HandleCounterChange(int newCount) => Debug.Log($"Current EyeInteractable instance counter: {newCount}");
         
         #region AudioClip playback
-        private void HandleVoiceRecording() {
+        private void HandleSnoringAudioPlayback() {
             if (GazeLine.staredMonk) {
                 OnPlaybackAboutToStart?.Invoke();
-                if (GazeLine.staredMonk.snoringAudio) {
-                    StartSnoringAudioCoroutine();
-                }
+                if (EyeInteractable.snoringAudio) StartSnoringAudioCoroutine();
                 else { 
-                    Debug.LogWarning("snoringAudio not found on staredMonkForSingleton -> SnoringCoroutine not launched! ");
+                    Debug.LogWarning("snoringAudio not found on staredMonk -> SnoringCoroutine not launched! ");
                     return; 
                 }
             }
         }
 
-        public void TriggerVoiceRecordingEvent() => OnVoiceRecording?.Invoke();
+        public void TriggerVoiceRecordingEvent() => OnAudioPlayback?.Invoke();
 
             #region Snoring audio playback        
         /// <summary>
@@ -70,13 +68,13 @@ namespace Assets.Scripts.GazeTrackingFeature {
         /// <returns></returns>
         private IEnumerator PlaySnoringAudioCoroutine(float stressValue = .5f) {
             float duration = UnityEngine.Random.Range(minSnoringTime, maxSnoringTime);
-            if (GazeLine.staredMonk.snoringAudio.clip) {
-                GazeLine.staredMonk.snoringAudio.Play();
+            if (GazeLine.staredMonk.audioSources[0]) {
+                GazeLine.staredMonk.audioSources[0].Play();
                 yield return new WaitForSeconds(duration);
-                GazeLine.staredMonk.snoringAudio.Stop();
+                GazeLine.staredMonk.audioSources[0].Stop();
             }
             else {
-                Debug.LogWarning("AudioSource component not found on staredMonkForSingleton.");
+                Debug.LogWarning("AudioSource[0] not found on staredMonkForSingleton.");
                 yield break;
             }
         }
