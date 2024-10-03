@@ -464,14 +464,14 @@ public class MyPlayerController : MonoBehaviour
 
             moveInfluence = Acceleration * 0.1f * MoveScale * MoveScaleMultiplier;
 
-            if (crouch)
-            {
-                Crouch();
-            }
-            else
-            {
-                Stand();
-            }
+            // if (crouch)
+            // {
+            //     Crouch();
+            // }
+            // else
+            // {
+            //     Stand();
+            // }
 
 
 #if !UNITY_ANDROID // LeftTrigger not avail on Android game pad
