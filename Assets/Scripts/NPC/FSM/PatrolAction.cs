@@ -35,7 +35,7 @@ public class PatrolAction : FSMAction
             machine.GetComponent<EnemyAttackSensor>().IsAttackCompleted = false;
         }
 
-        if (movingPoints.Count() <= 1)
+        if (movingPoints.Count() <= 1 && !stopAnimationChoose)
         {
             machine.Stop();
             stopAnimationChoose = true;
@@ -59,7 +59,7 @@ public class PatrolAction : FSMAction
                     navMeshAgent.SetDestination(movingPoints.GetNextCircular(navMeshAgent).position);
                     machine.Move();
                     timer = 0;
-                    stopAnimationChoose = false;             
+                    stopAnimationChoose = false;
                 }
             }
         
