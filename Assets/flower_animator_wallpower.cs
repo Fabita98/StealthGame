@@ -25,7 +25,7 @@ public class Flower_animator_wallpower : MonoBehaviour
 
     void Update()
     {
-        // Controlla se il tasto è premuto
+        // Controlla se il tasto ï¿½ premuto
         if ((Input.GetKeyDown(KeyCode.Space) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger)) && inHand)
         {
             holdStartTime = Time.time;
@@ -38,7 +38,7 @@ public class Flower_animator_wallpower : MonoBehaviour
             }
         }
 
-        // Controlla se il tasto è rilasciato
+        // Controlla se il tasto ï¿½ rilasciato
         if (Input.GetKeyUp(KeyCode.Space) || OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger))
         {
             isHolding = false;
@@ -50,7 +50,7 @@ public class Flower_animator_wallpower : MonoBehaviour
             }
         }
 
-        // Verifica se il tasto è stato tenuto premuto per il tempo richiesto
+        // Verifica se il tasto ï¿½ stato tenuto premuto per il tempo richiesto
         if (isHolding && Time.time - holdStartTime >= holdDuration)
         {
             StartConsuming();
@@ -85,6 +85,7 @@ public class Flower_animator_wallpower : MonoBehaviour
                         if (dissolveAmount >= 1.0f)
                         {
                             Destroy(petal.gameObject); // Distruggi il petalo quando completamente dissolto
+                            
                         }
                     }
 
@@ -94,6 +95,9 @@ public class Flower_animator_wallpower : MonoBehaviour
                 if (dissolveAmount >= 1.0f)
                 {
                     isConsuming = false;
+                    int currentPinkLotusCount = PlayerPrefsManager.GetInt(PlayerPrefsKeys.PinkLotus, 0);
+                    PlayerPrefsManager.SetInt(PlayerPrefsKeys.PinkLotus, currentPinkLotusCount + 1);
+                    UIController.Instance.AbilitiesUI.SetAbilitiesCount();
                 }
 
             }

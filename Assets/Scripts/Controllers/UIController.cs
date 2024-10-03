@@ -5,6 +5,7 @@ using UnityEngine;
 public class UIController : MonoBehaviour
 {
     public GameOverUI GameOverUI;
+    public AbilitiesUI AbilitiesUI;
     
     private static UIController _instance;
     public static UIController Instance => _instance;

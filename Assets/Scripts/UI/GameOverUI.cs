@@ -17,12 +17,12 @@ public class GameOverUI : MonoBehaviour
         });
     }
 
-    private void OnEnable()
-    {
-        MyPlayerController.Instance.EnableLinearMovement = false;
-    }
-    private void OnDisable()
-    {
-        MyPlayerController.Instance.EnableLinearMovement = true;
-    }
+    // private void OnEnable()
+    // {
+    //     MyPlayerController.Instance.EnableLinearMovement = false;
+    // }
+    // private void OnDisable()
+    // {
+    //     MyPlayerController.Instance.EnableLinearMovement = true;
+    // }
 }

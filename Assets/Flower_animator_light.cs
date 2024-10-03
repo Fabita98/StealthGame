@@ -25,7 +25,7 @@ public class Flower_animator_light : MonoBehaviour
 
     void Update()
     {
-        // Controlla se il tasto è premuto
+        // Controlla se il tasto ï¿½ premuto
         if ((Input.GetKeyDown(KeyCode.Space) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger)) && inHand)
         {
             holdStartTime = Time.time;
@@ -38,7 +38,7 @@ public class Flower_animator_light : MonoBehaviour
             }
         }
 
-        // Controlla se il tasto è rilasciato
+        // Controlla se il tasto ï¿½ rilasciato
         if (Input.GetKeyUp(KeyCode.Space) || OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger))
         {
             isHolding = false;
@@ -50,7 +50,7 @@ public class Flower_animator_light : MonoBehaviour
             }
         }
 
-        // Verifica se il tasto è stato tenuto premuto per il tempo richiesto
+        // Verifica se il tasto ï¿½ stato tenuto premuto per il tempo richiesto
         if (isHolding && Time.time - holdStartTime >= holdDuration)
         {
             StartConsuming();
@@ -94,6 +94,9 @@ public class Flower_animator_light : MonoBehaviour
                 if (dissolveAmount >= 1.0f)
                 {
                     isConsuming = false;
+                    int currentWhiteLotusCount = PlayerPrefsManager.GetInt(PlayerPrefsKeys.WhiteLotus, 0);
+                    PlayerPrefsManager.SetInt(PlayerPrefsKeys.WhiteLotus, currentWhiteLotusCount + 1);
+                    UIController.Instance.AbilitiesUI.SetAbilitiesCount();
                 }
                 
             }
