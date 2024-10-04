@@ -280,7 +280,7 @@ PrefabInstance:
     - target: {fileID: 4589775893643315885, guid: faf9c57d28d7aab4397b78a5c669b6b7, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: afba4735b42c70a47ac2e37ceb50c1cc, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 4589775893643315885, guid: faf9c57d28d7aab4397b78a5c669b6b7, type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
@@ -377,6 +377,51 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1027632330}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &301969878
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 301969880}
+  - component: {fileID: 301969879}
+  m_Layer: 0
+  m_Name: AudioHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &301969879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 301969878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75f624e1343179943b98104372f88168, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioHolder: {fileID: 301969878}
+--- !u!4 &301969880
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 301969878}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.898547, y: 1.1856667, z: 6.33513}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &325533053
 GameObject:
@@ -639,7 +684,7 @@ PrefabInstance:
     - target: {fileID: 4589775893643315885, guid: faf9c57d28d7aab4397b78a5c669b6b7, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: afba4735b42c70a47ac2e37ceb50c1cc, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 4589775893643315885, guid: faf9c57d28d7aab4397b78a5c669b6b7, type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
@@ -2880,5 +2925,6 @@ SceneRoots:
   - {fileID: 2134538898}
   - {fileID: 1223300699}
   - {fileID: 512594748}
+  - {fileID: 301969880}
   - {fileID: 442044239}
   - {fileID: 1192830135}
