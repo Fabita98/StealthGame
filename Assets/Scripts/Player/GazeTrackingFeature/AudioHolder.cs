@@ -20,12 +20,9 @@ namespace Assets.Scripts.GazeTrackingFeature {
             else if (instance != this) {
                 Destroy(this);
             }
-        }
 
-        private void Start() {
             FillAudioClipList();
-            AssignSnoringAudio();
-        }
+        }       
 
         internal void FillAudioClipList() {
             Debug.Log("FillAudioClipList launched ");
@@ -48,6 +45,8 @@ namespace Assets.Scripts.GazeTrackingFeature {
             else {
                 Debug.LogWarning("No audio clips found in the specified Resources folder.");
             }
+
+            AssignSnoringAudio();
         }
 
         internal AudioClip AssignRandomPlayerSpottedAudio() {
