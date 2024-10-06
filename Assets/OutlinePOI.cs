@@ -18,7 +18,7 @@ public class OutlinePOI : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Hand")
+        if (other.tag == "RightHand" || other.tag == "LeftHand")
         {
             POI.GetComponent<Outline>().enabled=true;
         } 
@@ -26,7 +26,7 @@ public class OutlinePOI : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Hand")
+        if (other.tag == "RightHand" || other.tag == "LeftHand")
         {
             POI.GetComponent<Outline>().enabled = false;
         }

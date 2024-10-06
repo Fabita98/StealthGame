@@ -159,6 +159,10 @@ public class MyPlayerController : MonoBehaviour
     [SerializeField]
     private Transform headObjectTransform;
     
+    
+    [SerializeField]
+    private Transform leftHandCollider; //for onTriggerEnter
+    
     [SerializeField]
     private float crouchHeightDifference;
 
@@ -187,7 +191,7 @@ public class MyPlayerController : MonoBehaviour
     private bool ReadyToSnapTurn;
 
     private bool playerControllerEnabled = false;
-    [HideInInspector] public bool isHiding;
+    [HideInInspector] public bool isHiding = false;
     public GameObject torchGO;
     public static MyPlayerController Instance => _instance;
     private static MyPlayerController _instance;
@@ -249,6 +253,23 @@ public class MyPlayerController : MonoBehaviour
             playerControllerEnabled = false;
         }
     }
+
+    // private void OnTriggerStay(Collider other)
+    // {
+    //     if (other.CompareTag("HidingArea"))
+    //     {
+    //         isHiding = true;
+    //     }
+    // }
+    //
+    //
+    // private void OnTriggerExit(Collider other)
+    // {
+    //     if (other.CompareTag("HidingArea"))
+    //     {
+    //         isHiding = false;
+    //     }
+    // }
 
     void Update()
     {
@@ -443,14 +464,14 @@ public class MyPlayerController : MonoBehaviour
 
             moveInfluence = Acceleration * 0.1f * MoveScale * MoveScaleMultiplier;
 
-            if (crouch)
-            {
-                Crouch();
-            }
-            else
-            {
-                Stand();
-            }
+            // if (crouch)
+            // {
+            //     Crouch();
+            // }
+            // else
+            // {
+            //     Stand();
+            // }
 
 
 #if !UNITY_ANDROID // LeftTrigger not avail on Android game pad

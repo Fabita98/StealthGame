@@ -5,11 +5,12 @@ using UnityEngine;
 public class SpiritVision : MonoBehaviour
 {
     // Start is called before the first frame update
-    public bool eyeClosed;
+    public bool activate;
     public float mana=10, manaSpeed=0.5f;
     List<GameObject> enemyinrange = new List<GameObject>();
     List<GameObject> enemyHighlighted = new List<GameObject>();
     bool isenable = false;
+    private float lastActivateTime;
     void Start()
     {
     }
@@ -17,10 +18,10 @@ public class SpiritVision : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (eyeClosed && mana > 0)              //if ability is used decrease mana and invoke outline; disable outline when mana is over
+        if (activate && mana > 0)              //if ability is used decrease mana and invoke outline; disable outline when mana is over
         {
             mana -= Time.deltaTime * manaSpeed;
-            mana = Mathf.Clamp(mana, -0.1f, 10);
+            mana = Mathf.Clamp(mana, -0.1f, 30);
             if (!isenable)
             {
                 Invoke("enableVision", 1);
@@ -28,6 +29,15 @@ public class SpiritVision : MonoBehaviour
             }
         }
         else if (isenable) disableVision();
+        if (activate)
+        {
+            lastActivateTime = Time.time;
+            if (Time.time - lastActivateTime > 8f)
+            {
+                isenable = false;
+                activate = false;
+            }
+        }
     }
 
     public void enableVision()
@@ -50,7 +60,7 @@ public class SpiritVision : MonoBehaviour
     private void OnTriggerStay(Collider other)      //add every enemy in collider to list
     {
         bool match = false;
-        if (other.tag == "enemy")
+        if (other.tag == "Monk" || other.tag =="Shadow")
         {
             foreach (GameObject enemy in enemyinrange)
             {
@@ -74,7 +84,7 @@ public class SpiritVision : MonoBehaviour
     private void OnTriggerExit(Collider other)      //remove enemy from list
     {
         bool match = false;
-        if (other.tag == "enemy")
+        if (other.tag == "Monk" || other.tag == "Shadow")
         {
             foreach (GameObject enemy in enemyinrange)
             {

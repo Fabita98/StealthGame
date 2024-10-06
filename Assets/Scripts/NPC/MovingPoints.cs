@@ -11,8 +11,8 @@ public class MovingPoints : MonoBehaviour
     [SerializeField] private GameObject pointsContainer;
     [SerializeField] private int nearestPointPickRange = 3;
     private List<Transform> points;
-    private static int pointIndex;
-    private static Transform _currentPoint;
+    private int pointIndex;
+    private Transform _currentPoint;
     private int recentlyViewedPointIndex;
 
     private void Awake()
@@ -72,7 +72,11 @@ public class MovingPoints : MonoBehaviour
 
     public bool HasReached(NavMeshAgent agent)
     {
-        if (agent.pathStatus == NavMeshPathStatus.PathComplete && agent.remainingDistance != Mathf.Infinity && Vector3.Distance(agent.transform.position, _currentPoint.position) < agent.stoppingDistance * 2)
+        if (
+            agent.pathStatus == NavMeshPathStatus.PathComplete && 
+            agent.remainingDistance != Mathf.Infinity 
+            && Vector3.Distance(agent.transform.position, _currentPoint.position) < agent.stoppingDistance * 2
+                                                               )
         {
             return true;
         }
@@ -93,5 +97,10 @@ public class MovingPoints : MonoBehaviour
     public Transform GetFirst()
     {
         return points.First();
+    }
+    
+    public int Count()
+    {
+        return points.Count;
     }
 }

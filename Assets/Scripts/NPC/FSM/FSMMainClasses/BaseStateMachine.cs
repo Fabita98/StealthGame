@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.GazeTrackingFeature;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,7 +10,7 @@ using UnityEngine.AI;
 public class BaseStateMachine : MonoBehaviour
 {
     public MyPlayerController PlayerController;
-    [SerializeField] private int id;
+    public int id;
     [SerializeField] private BaseState _initialState;
     [SerializeField] private float _speed;
     [SerializeField] private float _runSpeed;
@@ -24,7 +25,9 @@ public class BaseStateMachine : MonoBehaviour
     [NonSerialized] public bool isChaseReset;
     [NonSerialized] public bool isStartOfPatrol;
     [NonSerialized] public bool isStartOfAttack;
+    [NonSerialized] public bool isStartOfSleep;
     [NonSerialized] public bool stopAnimationChoose;
+    private EnemyUtility enemyUtility;
     private Dictionary<Type, Component> _cachedComponents;
     private int _updateCounter;
     private Transform initialTransform;
@@ -40,16 +43,18 @@ public class BaseStateMachine : MonoBehaviour
         isStartOfChase = true;
         isStartOfPatrol = true;
         isStartOfAttack = true;
+        isStartOfSleep = true;
         initialTransform = MovingPoints.GetFirst();
         transform.position = initialTransform.position;
         transform.rotation = initialTransform.rotation;
+        enemyUtility = GetComponent<EnemyUtility>();
     }
 
     private void Start()
     {
-        WaitTime = EnemyUtility.Instance.waitTime;
-        ChaseWaitTime = EnemyUtility.Instance.chaseWaitTime;
-        AlertTime = EnemyUtility.Instance.alertWaitTime;
+        WaitTime = enemyUtility.waitTime;
+        ChaseWaitTime = enemyUtility.chaseWaitTime;
+        AlertTime = enemyUtility.alertWaitTime;
     }
 
     private void LateUpdate()
@@ -100,10 +105,11 @@ public class BaseStateMachine : MonoBehaviour
         isStartOfChase = true;
         isStartOfPatrol = true;
         isStartOfAttack = true;
+        isStartOfSleep = true;
         stopAnimationChoose = false;
         _updateCounter = 0;
 
-        EnemyUtility.Instance.ResetAnimator();
+        enemyUtility.ResetAnimator();
         
 
     }
@@ -113,10 +119,10 @@ public class BaseStateMachine : MonoBehaviour
         NavMeshAgent.isStopped = true;
         NavMeshAgent.speed = 0;
         if(chooseIdleAnimation)
-            EnemyUtility.Instance.ChooseIdleAnimation();
+            enemyUtility.ChooseIdleAnimation();
         else
         {
-            EnemyUtility.Instance.SetAnimation(lookAround: true);
+            enemyUtility.SetAnimation(lookAround: true);
         }
     }
     
@@ -126,11 +132,11 @@ public class BaseStateMachine : MonoBehaviour
         NavMeshAgent.speed = isRunning ? _runSpeed : _speed;
         if (isRunning)
         {
-            EnemyUtility.Instance.SetAnimation(sprint:true);   
+            enemyUtility.SetAnimation(sprint:true);   
         }
         else
         {
-            EnemyUtility.Instance.SetAnimation(walk:true);
+            enemyUtility.SetAnimation(walk:true);
         }
     }
     

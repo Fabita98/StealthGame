@@ -16,11 +16,12 @@ public class PatrolAction : FSMAction
         NavMeshAgent navMeshAgent = machine.GetComponent<NavMeshAgent>();
         MovingPoints movingPoints = machine.GetComponent<MovingPoints>();
         EnemySightSensor enemySightSensor = machine.GetComponent<EnemySightSensor>();
+        EnemyUtility enemyUtility = machine.GetComponent<EnemyUtility>();
 
         
         if (machine.isStartOfPatrol)
         {
-            EnemyUtility.Instance.SetEyeLights(false);
+            enemyUtility.SetEyeLights(false);
             navMeshAgent.SetDestination(movingPoints.GetNextCircular(navMeshAgent).position);
             machine.Move();
             timer = 0;
@@ -28,37 +29,53 @@ public class PatrolAction : FSMAction
             machine.isStartOfPatrol = false;
             machine.isStartOfChase = true;
             machine.isStartOfAttack = true;
+            machine.isStartOfSleep = true;
             machine.GetComponent<EnemySightSensor>().ChangeEscapedState(false);
             machine.GetComponent<EnemyAttackSensor>().StartAttack = false;
             machine.GetComponent<EnemyAttackSensor>().IsAttackCompleted = false;
         }
 
-        if (movingPoints.HasReached(navMeshAgent))
+        if (movingPoints.Count() <= 1)
         {
-            timer += Time.deltaTime;
-            if (timer < machine.WaitTime)
+            if (!stopAnimationChoose)
             {
-                if(!stopAnimationChoose)
-                {
-                    machine.Stop();
-                    stopAnimationChoose = true;
-                }   
+                machine.Stop(false);
+                stopAnimationChoose = true;   
             }
-            else
+        }
+
+        else
+        {
+            if (movingPoints.HasReached(navMeshAgent))
+            {
+                timer += Time.deltaTime;
+                if (timer < machine.WaitTime)
+                {
+                    if(!stopAnimationChoose)
+                    {
+                        machine.Stop();
+                        stopAnimationChoose = true;
+                    }   
+                }
+                else
+                {
+                    navMeshAgent.SetDestination(movingPoints.GetNextCircular(navMeshAgent).position);
+                    machine.Move();
+                    timer = 0;
+                    stopAnimationChoose = false;
+                }
+            }
+        
+            if (timer > machine.WaitTime)
             {
                 navMeshAgent.SetDestination(movingPoints.GetNextCircular(navMeshAgent).position);
                 machine.Move();
                 timer = 0;
-                stopAnimationChoose = false;             
-            }
+                stopAnimationChoose = false;
+            }            
+   
         }
-        else if (timer > machine.WaitTime)
-        {
-            navMeshAgent.SetDestination(movingPoints.GetNextCircular(navMeshAgent).position);
-            machine.Move();
-            timer = 0;
-            stopAnimationChoose = false;
-        }
+
         
         // if (enemySightSensor.Ping())
         // {

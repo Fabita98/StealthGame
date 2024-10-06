@@ -7,6 +7,8 @@ public class Flower_animator_mindcontrol : MonoBehaviour
     public ParticleSystem fallParticles; // Sistema di particelle per l'effetto visivo
     public float holdDuration = 2.0f; // Durata della pressione del tasto necessaria
     public Animator an;
+    public GameObject petalsGO;
+    public AudioSource sound;
 
     private bool isConsuming = false;
     private float dissolveProgress = 0.0f;
@@ -23,7 +25,7 @@ public class Flower_animator_mindcontrol : MonoBehaviour
 
     void Update()
     {
-        // Controlla se il tasto è premuto
+        // Controlla se il tasto ï¿½ premuto
         if ((Input.GetKeyDown(KeyCode.Space) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger)) && inHand)
         {
             holdStartTime = Time.time;
@@ -36,7 +38,7 @@ public class Flower_animator_mindcontrol : MonoBehaviour
             }
         }
 
-        // Controlla se il tasto è rilasciato
+        // Controlla se il tasto ï¿½ rilasciato
         if (Input.GetKeyUp(KeyCode.Space) || OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger))
         {
             isHolding = false;
@@ -48,7 +50,7 @@ public class Flower_animator_mindcontrol : MonoBehaviour
             }
         }
 
-        // Verifica se il tasto è stato tenuto premuto per il tempo richiesto
+        // Verifica se il tasto ï¿½ stato tenuto premuto per il tempo richiesto
         if (isHolding && Time.time - holdStartTime >= holdDuration)
         {
             StartConsuming();
@@ -70,7 +72,8 @@ public class Flower_animator_mindcontrol : MonoBehaviour
                 dissolveProgress += Time.deltaTime;
                 float dissolveAmount = Mathf.Clamp01((currentTime - dissolveStartTime) / dissolveDuration);
                 an.SetTrigger("activate");
-                foreach (Transform petal in transform)
+                playsound();
+                foreach (Transform petal in petalsGO.transform)
                 {
                     Renderer renderer = petal.GetComponent<Renderer>();
                     if (renderer != null)
@@ -91,6 +94,9 @@ public class Flower_animator_mindcontrol : MonoBehaviour
                 if (dissolveAmount >= 1.0f)
                 {
                     isConsuming = false;
+                    int currentBlueLotusCount = PlayerPrefsManager.GetInt(PlayerPrefsKeys.BlueLotus, 0);
+                    PlayerPrefsManager.SetInt(PlayerPrefsKeys.BlueLotus, currentBlueLotusCount + 1);
+                    UIController.Instance.AbilitiesUI.SetAbilitiesCount();
                 }
 
             }
@@ -107,9 +113,9 @@ public class Flower_animator_mindcontrol : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Hand")
+        if (other.tag == "RightHand" || other.tag == "LeftHand")
         {
-            if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
+            if (OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, OVRInput.Controller.LTouch) > 0.1f || OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, OVRInput.Controller.RTouch) > 0.1f)
             {
                 inHand = true;
             }
@@ -118,10 +124,14 @@ public class Flower_animator_mindcontrol : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Hand")
+        if (other.tag == "RightHand" || other.tag == "LeftHand")
         {
             inHand = false;
         }
+    }
+    void playsound()
+    {
+        sound.Play();
     }
 
 }

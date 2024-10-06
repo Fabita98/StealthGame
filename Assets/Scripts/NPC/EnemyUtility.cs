@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 
@@ -12,12 +13,14 @@ public enum EnemyAnimatorParameters
     Walk,
     SpeedWalk,
     Attack,
-    Alert
+    Alert,
+    Sleep
 }
 
 public class EnemyUtility : MonoBehaviour
 {
     [SerializeField] private GameObject eyeLights;
+    public GameObject sleepTimer;
     public float viewRadius = 25;
     public float overallRadius = 5;
     public float viewAngle = 150;
@@ -27,19 +30,18 @@ public class EnemyUtility : MonoBehaviour
     public float maxTimeToLosePlayer = 0;
     public LayerMask playerMask;
     public LayerMask obstacleMask;
-    private Animator EnemyAnimator;
+    [SerializeField] private Animator enemyAnimator;
 
-    public static EnemyUtility Instance;
-    
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-
-        EnemyAnimator = GetComponent<Animator>();
-    }
+    // public static EnemyUtility Instance;
+    //
+    // private void Awake()
+    // {
+    //     if (Instance == null)
+    //     {
+    //         Instance = this;
+    //     }
+    //
+    // }
 
     public void ChooseIdleAnimation()
     {
@@ -59,20 +61,26 @@ public class EnemyUtility : MonoBehaviour
         SetAnimation(attack: true);
     }
     
-    public  void SetAnimation(bool idle = false, bool lookAround = false, bool walk = false, bool sprint = false,
-        bool attack = false, bool alert = false)
+    public void ChooseSleepAnimation()
     {
-        EnemyAnimator.SetBool(EnemyAnimatorParameters.Idle.ToString(), idle);
-        EnemyAnimator.SetBool(EnemyAnimatorParameters.LookAround.ToString(), lookAround);
-        EnemyAnimator.SetBool(EnemyAnimatorParameters.Walk.ToString(), walk);
-        EnemyAnimator.SetBool(EnemyAnimatorParameters.SpeedWalk.ToString(), sprint);
-        EnemyAnimator.SetBool(EnemyAnimatorParameters.Attack.ToString(), attack);
-        EnemyAnimator.SetBool(EnemyAnimatorParameters.Alert.ToString(), alert);
+        SetAnimation(sleep: true);
+    }
+    
+    public  void SetAnimation(bool idle = false, bool lookAround = false, bool walk = false, bool sprint = false,
+        bool attack = false, bool alert = false, bool sleep = false)
+    {
+        enemyAnimator.SetBool(EnemyAnimatorParameters.Idle.ToString(), idle);
+        enemyAnimator.SetBool(EnemyAnimatorParameters.LookAround.ToString(), lookAround);
+        enemyAnimator.SetBool(EnemyAnimatorParameters.Walk.ToString(), walk);
+        enemyAnimator.SetBool(EnemyAnimatorParameters.SpeedWalk.ToString(), sprint);
+        enemyAnimator.SetBool(EnemyAnimatorParameters.Attack.ToString(), attack);
+        enemyAnimator.SetBool(EnemyAnimatorParameters.Alert.ToString(), alert);
+        enemyAnimator.SetBool(EnemyAnimatorParameters.Sleep.ToString(), sleep);
     }
 
     public void ResetAnimator()
     {
-        EnemyAnimator.Play("Idle");
+        enemyAnimator.Play("Idle");
     }
 
     public void SetEyeLights(bool active)

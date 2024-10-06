@@ -241,7 +241,8 @@ public class DataTracker : MonoBehaviour {
 	// private List<EnemyAI> trackEnemies;
 
 	private Dictionary<string, LinkedList<string>> collectedData;
-
+	private List<float> latestDataRow;
+	
 	private long actualTime, timePrevious;
 	private float unityTimePrevious;
 
@@ -262,6 +263,8 @@ public class DataTracker : MonoBehaviour {
 	private string lastCommand = "";
 
 	private RecorderWindow recorder;
+
+	public bool eyeClosed = false;
 
 	public void Start() {
 		fixedFrameCounter = 1;
@@ -311,6 +314,7 @@ public class DataTracker : MonoBehaviour {
 
 		// CommandRecognizer.OnCommandRecognized.AddListener(c=> lastCommand = c.name);
 		collectData = collectDataOnStart;
+		latestDataRow = new List<float>();
 		recorder.StartRecording();
 	}
 
@@ -854,6 +858,29 @@ public class DataTracker : MonoBehaviour {
 		AddToDictionary("EyeClosedL", eyeClosedL.ToString(), isValidData);
 		AddToDictionary("EyeClosedR", eyeClosedR.ToString(), isValidData);
 	}
+	public void CheckEyeClosed()
+    {
+		float eyeClosedL = 0;
+		float eyeClosedR = 0;
+
+		var isValidData = ovrexpr.ValidExpressions;
+
+		if (ovrexpr.ValidExpressions)
+		{
+			eyeClosedL = ovrexpr[OVRFaceExpressions.FaceExpression.EyesClosedL];
+			eyeClosedR = ovrexpr[OVRFaceExpressions.FaceExpression.EyesClosedR];
+
+			//If blendshape is active, sum blendshape offset to recover true eyeclosed value
+			if (ovrexpr.EyeFollowingBlendshapesValid)
+			{
+				var blendShapeOffset = Mathf.Min(ovrexpr[OVRFaceExpressions.FaceExpression.EyesLookDownL], ovrexpr[OVRFaceExpressions.FaceExpression.EyesLookDownR]);
+				eyeClosedL += blendShapeOffset;
+				eyeClosedR += blendShapeOffset;
+			}
+		}
+		if (eyeClosedL>0.2f&& eyeClosedR>0.2f) eyeClosed = true; else eyeClosed = false;
+		
+	}
 
 	#endregion
 
@@ -944,6 +971,43 @@ public class DataTracker : MonoBehaviour {
 			Debug.Log(str + ": " + GetLastCollectedData(str));
 		}
 		Debug.Log("END OF PRINT");
+	}
+
+	public List<float> GetLatestDataRow()
+	{
+		List<string> labels = new(collectedData.Keys);
+		Dictionary<string, LinkedList<string>> tempCollectedData = collectedData;
+		var keyBound = "FrameUpdate";
+		if (!collectedData.ContainsKey(keyBound))
+			keyBound = collectedData.Keys.First();
+
+		// List<float> latestDataRow = new List<float>();
+		if (collectedData[keyBound].Count > 0)
+		{
+			latestDataRow = new List<float>();
+			foreach (var str in labels)
+			{
+				if (float.TryParse(collectedData[str].First.Value, out float parsedValue))
+				{
+					if (float.IsNaN(parsedValue))
+					{
+						latestDataRow.Add(0);
+					}
+					else
+					{
+						latestDataRow.Add(parsedValue);	
+					}
+				}
+				else
+				{
+					latestDataRow.Add(0);
+				}
+
+				collectedData[str].RemoveFirst();
+			}
+		}
+
+		return latestDataRow;
 	}
 
 	#endregion

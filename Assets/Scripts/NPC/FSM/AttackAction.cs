@@ -11,7 +11,7 @@ public class AttackAction : FSMAction
     public override void Execute(BaseStateMachine machine)
     {
         var enemyAttackSensor = machine.GetComponent<EnemyAttackSensor>();
-        EnemyUtility enemyUtility = EnemyUtility.Instance;
+        EnemyUtility enemyUtility = machine.GetComponent<EnemyUtility>();
         
         if (machine.isStartOfAttack)
         {

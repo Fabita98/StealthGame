@@ -16,21 +16,23 @@ public class open_door : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (DoorSound.isPlaying == false && play) { DoorSound.Play(); play = false; }
+        if (DoorSound.isPlaying == false && play)  Invoke("playsound", 0.5f); 
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag=="LeftHand"|| other.tag == "RightHand")
         {
             play = true;
-            Debug.Log("opeeeen");
             an.SetTrigger("open");
-            
 
         }
     }
     public void Finish()
     {
         //an.;
+    }
+    void playsound()
+    {
+        DoorSound.Play(); play = false;
     }
 }
