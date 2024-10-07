@@ -6,16 +6,26 @@ using UnityEngine.UI;
 
 public class GameOverUI : MonoBehaviour
 {
-    [SerializeField] private Button gameOverButton;
-    void Start()
+    private void Update()
     {
-        gameObject.SetActive(false);
-        gameOverButton.onClick.AddListener(() =>
+        if (OVRInput.GetDown(OVRInput.Button.Any))
         {
-            GameController.Instance.CheckpointController.ResetToCheckpoint();
             gameObject.SetActive(false);
-        });
+            GameController.Instance.CheckpointController.ResetToCheckpoint();
+        }
     }
+
+
+    // [SerializeField] private Button gameOverButton;
+    // void Start()
+    // {
+    //     //gameObject.SetActive(false);
+    //     gameOverButton.onClick.AddListener(() =>
+    //     {
+    //         GameController.Instance.CheckpointController.ResetToCheckpoint();
+    //         gameObject.SetActive(false);
+    //     });
+    // }
 
     // private void OnEnable()
     // {
