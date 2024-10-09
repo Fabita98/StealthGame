@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -20,8 +18,8 @@ namespace Assets.Scripts.GazeTrackingFeature {
         public bool isBeingStared;
         public bool readyToTalk;
         internal static float HoveringTime;
-        [SerializeField] private float staringTimeToPressVocalKey = 1.0f;
-        [SerializeField] private float staringTimeToTalk = 2.0f;
+        [SerializeField] private float staringTimeToPressVocalKey = 2.0f;
+        [SerializeField] private float staringTimeToTalk = 4.0f;
         private float duration;
         internal const byte noWidthValue = 0;
         [SerializeField] private float minWidthValue = .2f;
@@ -35,7 +33,7 @@ namespace Assets.Scripts.GazeTrackingFeature {
         [SerializeField] private UnityEvent<GameObject> OnObjectHover;
 
         [Header("Audio Playback")]
-        private readonly OVRInput.RawButton keyForVoiceControl = OVRInput.RawButton.A;
+        private readonly OVRInput.RawButton keyForVoiceControl = OVRInput.RawButton.B;
         public static float buttonHoldTime;
         internal EyeOutline eyeOutline;
         internal AudioSource[] audioSources;
@@ -59,6 +57,7 @@ namespace Assets.Scripts.GazeTrackingFeature {
 
         private void Update() => GazeControl();
 
+        #region Initialization methods
         private void ComponentInit() {
             duration = staringTimeToPressVocalKey + staringTimeToTalk;
 
@@ -122,6 +121,7 @@ namespace Assets.Scripts.GazeTrackingFeature {
                 Debug.LogError("snoringAudio is not assigned.");
             }
         }
+        #endregion
 
         #region EyeInteractable instances counter
         void OnEnable() {
@@ -137,7 +137,7 @@ namespace Assets.Scripts.GazeTrackingFeature {
 
         #region Eye control 
         public void GazeControl() {
-            if (GazeLine.staredMonk && GazeLine.staredMonk.IsHovered) {
+            if (GazeLine.staredMonk != null && GazeLine.staredMonk.IsHovered) {
                 OnObjectHover?.Invoke(gameObject);
                 // Case 1: Hovering monk -> blue outline
                 OutlineWidthControl(Color.blue);
@@ -153,7 +153,7 @@ namespace Assets.Scripts.GazeTrackingFeature {
                         readyToTalk = true;
                         StartRightControllerStrongVibrationCoroutine();
                         OutlineWidthControl(Color.green);
-                        if (snoringAudio != null) EyeTrackingDebug.Instance.TriggerVoiceRecordingEvent();
+                        if (snoringAudio != null) EyeTrackingDebug.Instance.SnoringAudioPlaybackTrigger();
                         else Debug.LogWarning("snoringAudio is null -> Event not triggered!");
                         readyToTalk = false;
                     }
@@ -164,7 +164,7 @@ namespace Assets.Scripts.GazeTrackingFeature {
 
         private bool VocalKeyHoldingCheck() {
             bool isButtonHeld = false;
-            if (OVRInput.Get(keyForVoiceControl) && GazeLine.staredMonk.IsHovered) {
+            if (OVRInput.Get(keyForVoiceControl) && GazeLine.staredMonk.isBeingStared) {
                 StartCoroutine(GradualControllerVibration());
                 buttonHoldTime += Time.deltaTime;
                 if (buttonHoldTime >= duration) {
@@ -243,6 +243,27 @@ namespace Assets.Scripts.GazeTrackingFeature {
             isVibrating = false;
         }
         #endregion
+        #endregion
+
+        #region Player spotted audio playback
+
+        private IEnumerator PlayPlayerSpottedAudioCoroutine() {
+            if (playerSpottedAudio != null) {
+                audioSources[1].Play();
+                yield return new WaitForSeconds(playerSpottedAudio.length);
+                audioSources[1].Stop();
+            }
+            else {
+                Debug.LogWarning("AudioSource[1] is null on staredMonkForSingleton.");
+                yield break;
+            }
+        }
+
+        public void StartPlayerSpottedAudioCoroutine() => StartCoroutine(PlayPlayerSpottedAudioCoroutine());
+
+        private void HandlePlayerSpottedAudioPlayback() {
+            StartPlayerSpottedAudioCoroutine();
+        }
         #endregion
     }
 }

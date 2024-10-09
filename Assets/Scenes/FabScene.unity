@@ -1314,7 +1314,7 @@ MonoBehaviour:
   isBeingStared: 0
   readyToTalk: 0
   staringTimeToPressVocalKey: 1
-  staringTimeToTalk: 2
+  staringTimeToTalk: 4
   minWidthValue: 0.2
   maxWidthValue: 4
   OnHoverActiveMaterial: {fileID: 2100000, guid: 8579efad97f6e674885d3f9ab4c9e9f9, type: 2}
@@ -1587,7 +1587,7 @@ MonoBehaviour:
   isBeingStared: 0
   readyToTalk: 0
   staringTimeToPressVocalKey: 1
-  staringTimeToTalk: 2
+  staringTimeToTalk: 4
   minWidthValue: 0.2
   maxWidthValue: 4
   OnHoverActiveMaterial: {fileID: 2100000, guid: 8579efad97f6e674885d3f9ab4c9e9f9, type: 2}
@@ -2078,7 +2078,7 @@ MonoBehaviour:
   isBeingStared: 0
   readyToTalk: 0
   staringTimeToPressVocalKey: 1
-  staringTimeToTalk: 2
+  staringTimeToTalk: 4
   minWidthValue: 0.2
   maxWidthValue: 4
   OnHoverActiveMaterial: {fileID: 2100000, guid: 8579efad97f6e674885d3f9ab4c9e9f9, type: 2}

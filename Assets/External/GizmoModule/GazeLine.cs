@@ -18,7 +18,7 @@ namespace Assets.Scripts.GazeTrackingFeature {
         private const int maxInstances = 2;
 
         private void Awake() {
-            if (instanceCount >= maxInstances) {
+            if (instanceCount > maxInstances) {
                 Destroy(gameObject);
                 return;
             }

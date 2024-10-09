@@ -1,7 +1,5 @@
 using System;
 using System.Collections;
-using System.Linq;
-using Unity.Labs.SuperScience;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -9,10 +7,10 @@ namespace Assets.Scripts.GazeTrackingFeature {
     internal class EyeTrackingDebug : MonoBehaviour {
         public static EyeTrackingDebug Instance { get; private set; }
         [Header("Voice playback variables")]
-        private const float maxSnoringTime = 12f;
-        private const float minSnoringTime = 4f;
+        [SerializeField] private float maxSnoringTime = 10f;
+        [SerializeField] private float minSnoringTime = 4f;
 
-        public static event SnoringAudioPlaybackHandler OnAudioPlayback;
+        public static event SnoringAudioPlaybackHandler OnSnoringAudioPlayback;
         public delegate void SnoringAudioPlaybackHandler();
         /// <summary>
         /// Events used to enable/disable the speaking text UI
@@ -30,18 +28,18 @@ namespace Assets.Scripts.GazeTrackingFeature {
             }
         }
 
-        private void Start() {
-            StartInvokeVoicePlaybackCoroutine();
-        }
+        //private void Start() {
+        //    StartInvokeVoicePlaybackCoroutine();
+        //}
 
         private void OnEnable() {
             EyeInteractable.OnCounterChanged += HandleCounterChange;
-            OnAudioPlayback += HandleSnoringAudioPlayback;
+            OnSnoringAudioPlayback += HandleSnoringAudioPlayback;
         }
 
         private void OnDisable() {
             EyeInteractable.OnCounterChanged -= HandleCounterChange;
-            OnAudioPlayback -= HandleSnoringAudioPlayback;
+            OnSnoringAudioPlayback -= HandleSnoringAudioPlayback;
         }
 
         private void HandleCounterChange(int newCount) => Debug.Log($"Current EyeInteractable instance counter: {newCount}");
@@ -62,7 +60,7 @@ namespace Assets.Scripts.GazeTrackingFeature {
             }
         }
 
-        public void TriggerVoiceRecordingEvent() => OnAudioPlayback?.Invoke();
+        public void SnoringAudioPlaybackTrigger() => OnSnoringAudioPlayback?.Invoke();
 
         #region Snoring audio playback        
         /// <summary>
@@ -91,9 +89,9 @@ namespace Assets.Scripts.GazeTrackingFeature {
         /// <summary>
         /// Coroutine and invokeCoroutine to invoke without headset usage
         /// </summary>
-        private IEnumerator InvokeVoicePlayback() {
+        private IEnumerator InvokeSnoringAudioPlaybackCoroutine() {
             if (GazeLine.staredMonk != null) {
-                OnAudioPlayback?.Invoke();
+                OnSnoringAudioPlayback?.Invoke();
             }
             else {
                 Debug.LogError("staredMonk is null ");
@@ -102,7 +100,7 @@ namespace Assets.Scripts.GazeTrackingFeature {
             yield return new WaitForSeconds(3f);
         }
 
-        private void StartInvokeVoicePlaybackCoroutine() => StartCoroutine(InvokeVoicePlayback());
+        private void StartInvokeVoicePlaybackCoroutine() => StartCoroutine(InvokeSnoringAudioPlaybackCoroutine());
         #endregion
         #endregion
     }
