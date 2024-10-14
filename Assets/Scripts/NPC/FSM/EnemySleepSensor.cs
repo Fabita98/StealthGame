@@ -7,7 +7,7 @@ public class EnemySleepSensor : MonoBehaviour
 
     public bool IsSleeping()
     {
-        EyeTrackingDebug.Instance.SnoringAudioPlaybackTrigger();
+        EyeTrackingDebug.SnoringAudioPlaybackTrigger();
         return isSleep;
     }
 

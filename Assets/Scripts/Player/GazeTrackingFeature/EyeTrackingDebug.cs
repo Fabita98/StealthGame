@@ -9,6 +9,7 @@ namespace Assets.Scripts.GazeTrackingFeature {
         [Header("Voice playback variables")]
         [SerializeField] private float maxSnoringTime = 10f;
         [SerializeField] private float minSnoringTime = 4f;
+        internal static bool isVocalPowerActive = false;
 
         public static event SnoringAudioPlaybackHandler OnSnoringAudioPlayback;
         public delegate void SnoringAudioPlaybackHandler();
@@ -33,22 +34,26 @@ namespace Assets.Scripts.GazeTrackingFeature {
         //}
 
         private void OnEnable() {
-            EyeInteractable.OnCounterChanged += HandleCounterChange;
+            EyeInteractable.OnEyeInteractableInstancesCounterChanged += HandleEyeInteractableInstancesCounterChange;
             OnSnoringAudioPlayback += HandleSnoringAudioPlayback;
         }
 
         private void OnDisable() {
-            EyeInteractable.OnCounterChanged -= HandleCounterChange;
+            EyeInteractable.OnEyeInteractableInstancesCounterChanged -= HandleEyeInteractableInstancesCounterChange;
             OnSnoringAudioPlayback -= HandleSnoringAudioPlayback;
         }
 
-        private void HandleCounterChange(int newCount) => Debug.Log($"Current EyeInteractable instance counter: {newCount}");
+        private void HandleEyeInteractableInstancesCounterChange(int newCount) => Debug.Log($"Current EyeInteractable instance counter: {newCount}");
 
         #region AudioClip playback
         private void HandleSnoringAudioPlayback() {
             if (GazeLine.staredMonk != null) {
                 OnPlaybackAboutToStart?.Invoke();
-                if (EyeInteractable.snoringAudio != null) StartSnoringAudioCoroutine();
+                if (EyeInteractable.snoringAudio != null) {
+                    StartSnoringAudioCoroutine();
+                    StartSnoringCooldown();
+                    DecreasePinkPowerCounter();
+                }
                 else {
                     Debug.LogError("snoringAudio not found on staredMonk -> SnoringCoroutine not launched! ");
                     return;
@@ -60,7 +65,7 @@ namespace Assets.Scripts.GazeTrackingFeature {
             }
         }
 
-        public void SnoringAudioPlaybackTrigger() => OnSnoringAudioPlayback?.Invoke();
+        public static void SnoringAudioPlaybackTrigger() => OnSnoringAudioPlayback?.Invoke();
 
         #region Snoring audio playback        
         /// <summary>
@@ -83,6 +88,24 @@ namespace Assets.Scripts.GazeTrackingFeature {
         }
 
         public void StartSnoringAudioCoroutine() => StartCoroutine(PlaySnoringAudioCoroutine());
+
+        internal void StartSnoringCooldown() {
+            float snoringAudioLength = EyeInteractable.snoringAudio != null ? EyeInteractable.snoringAudio.length : 0;
+            EyeInteractable.snoringCooldownEndTime = Time.time + Mathf.Max(15f, snoringAudioLength);
+        }
+
+        private void DecreasePinkPowerCounter() {
+            int currentPinkLotusCounterValue = PlayerPrefsManager.GetInt(PlayerPrefsKeys.PinkLotus, 0);
+            if (currentPinkLotusCounterValue > 0) {
+                PlayerPrefsManager.SetInt(PlayerPrefsKeys.PinkLotus, currentPinkLotusCounterValue - 1);
+                Debug.Log("PinkLotus counter value: " + currentPinkLotusCounterValue);
+                UIController.Instance.AbilitiesUI.SetAbilitiesCount();
+                if (currentPinkLotusCounterValue == 0) 
+                    Flower_animator_wallpower.TriggerOnPinkLotusPowerChangeEvent(false);
+                else
+                    Flower_animator_wallpower.TriggerOnPinkLotusPowerChangeEvent(true);
+            }
+        }
         #endregion
 
         #region NO headset usage

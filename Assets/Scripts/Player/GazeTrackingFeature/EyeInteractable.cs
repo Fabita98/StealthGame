@@ -32,11 +32,12 @@ namespace Assets.Scripts.GazeTrackingFeature {
         // Event to be invoked to debug logger, if needed
         [SerializeField] private UnityEvent<GameObject> OnObjectHover;
 
-        [Header("Audio Playback")]
+        [Header("Snoring Audio Playback")]
         private readonly OVRInput.RawButton keyForVoiceControl = OVRInput.RawButton.B;
         public static float buttonHoldTime;
         internal EyeOutline eyeOutline;
         internal AudioSource[] audioSources;
+        internal static float snoringCooldownEndTime = 15.0f;
         public static AudioClip snoringAudio;
         internal AudioClip playerSpottedAudio;
 
@@ -44,7 +45,7 @@ namespace Assets.Scripts.GazeTrackingFeature {
         private bool isVibrating;
 
         public static int OverallEyeInteractableInstanceCounter { get; private set; }
-        public static event CounterChangeHandler OnCounterChanged;
+        public static event CounterChangeHandler OnEyeInteractableInstancesCounterChanged;
         public delegate void CounterChangeHandler(int newCount);
         #endregion
 
@@ -55,7 +56,9 @@ namespace Assets.Scripts.GazeTrackingFeature {
                 InitializeAudioSources();
         }
 
-        private void Update() => GazeControl();
+        private void Update() {
+            if (EyeTrackingDebug.isVocalPowerActive) GazeControl();
+        }
 
         #region Initialization methods
         private void ComponentInit() {
@@ -126,12 +129,14 @@ namespace Assets.Scripts.GazeTrackingFeature {
         #region EyeInteractable instances counter
         void OnEnable() {
             OverallEyeInteractableInstanceCounter++;
-            OnCounterChanged?.Invoke(OverallEyeInteractableInstanceCounter);
+            OnEyeInteractableInstancesCounterChanged?.Invoke(OverallEyeInteractableInstanceCounter);
+            Flower_animator_wallpower.OnPinkLotusPowerChanged += HandlePinkLotusPowerActivation;
         }
 
         void OnDisable() {
             OverallEyeInteractableInstanceCounter--;
-            OnCounterChanged?.Invoke(OverallEyeInteractableInstanceCounter);
+            OnEyeInteractableInstancesCounterChanged?.Invoke(OverallEyeInteractableInstanceCounter);
+            Flower_animator_wallpower.OnPinkLotusPowerChanged -= HandlePinkLotusPowerActivation;
         }
         #endregion
 
@@ -153,7 +158,7 @@ namespace Assets.Scripts.GazeTrackingFeature {
                         readyToTalk = true;
                         StartRightControllerStrongVibrationCoroutine();
                         OutlineWidthControl(Color.green);
-                        if (snoringAudio != null) EyeTrackingDebug.Instance.SnoringAudioPlaybackTrigger();
+                        if (snoringAudio != null) EyeTrackingDebug.SnoringAudioPlaybackTrigger();
                         else Debug.LogWarning("snoringAudio is null -> Event not triggered!");
                         readyToTalk = false;
                     }
@@ -198,6 +203,8 @@ namespace Assets.Scripts.GazeTrackingFeature {
             staredMonk.eyeOutline.OutlineWidth = desiredWidth;
         }
 
+        public void HandlePinkLotusPowerActivation(bool isActive = false) => EyeTrackingDebug.isVocalPowerActive = isActive; 
+        
         #region Vibration 
         internal IEnumerator GradualControllerVibration() {
             if (isVibrating) yield break;
@@ -260,10 +267,6 @@ namespace Assets.Scripts.GazeTrackingFeature {
         }
 
         public void StartPlayerSpottedAudioCoroutine() => StartCoroutine(PlayPlayerSpottedAudioCoroutine());
-
-        private void HandlePlayerSpottedAudioPlayback() {
-            StartPlayerSpottedAudioCoroutine();
-        }
         #endregion
     }
 }

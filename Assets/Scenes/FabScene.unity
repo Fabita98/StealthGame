@@ -1322,6 +1322,7 @@ MonoBehaviour:
   OnObjectHover:
     m_PersistentCalls:
       m_Calls: []
+  isVocalPowerActive: 0
 --- !u!54 &1272018895
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1595,6 +1596,7 @@ MonoBehaviour:
   OnObjectHover:
     m_PersistentCalls:
       m_Calls: []
+  isVocalPowerActive: 0
 --- !u!54 &1359948919
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2086,6 +2088,7 @@ MonoBehaviour:
   OnObjectHover:
     m_PersistentCalls:
       m_Calls: []
+  isVocalPowerActive: 0
 --- !u!54 &1592318304
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2316,9 +2319,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3974817547725782410, guid: e02ae3ad6f2fefb4fb1b94b38b1080d9, type: 3}
       propertyPath: m_Name
-      value: VoiceControlSingleton
+      value: SingletonObject
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7471548231888037304, guid: e02ae3ad6f2fefb4fb1b94b38b1080d9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
