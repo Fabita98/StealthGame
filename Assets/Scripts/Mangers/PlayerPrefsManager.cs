@@ -15,6 +15,13 @@ public enum PlayerPrefsKeys
     WhiteLotus,
     PinkLotus,
     BlueLotus,
+    GotFirstWhiteLotus,
+    GotFirstPinkLotus,
+    GotFirstBlueLotus,
+    Level1Process,
+    Level2Process,
+    Level3Process,
+    Level4Process,
 }
 
 /// <summary>
@@ -158,5 +165,12 @@ public class PlayerPrefsManager : MonoBehaviour
         value.position = GetVector3(position);
         value.eulerAngles = GetVector3(eulerAngles);
         // SetVector3(scale, value.localScale);
+    }
+    
+    public static void SaveGame(Transform playerTransform, int level = -100)
+    {
+        GameController.Instance.CheckpointController.SetCheckpoint(playerTransform);
+        if(level != -100)
+            SetInt(PlayerPrefsKeys.Level, level);
     }
 }

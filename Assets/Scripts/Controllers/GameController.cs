@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour
 {
     private GameManager _gameManager;
     [NonSerialized] public CheckpointController CheckpointController;
+    [NonSerialized] public LevelsController LevelsController;
     
     private static GameController _instance;
     public static GameController Instance => _instance;
@@ -26,6 +27,8 @@ public class GameController : MonoBehaviour
         }
         Time.timeScale = 1;
         _gameManager = GameManager.Instance;
+        CheckpointController = GetComponent<CheckpointController>();
+        LevelsController = GetComponent<LevelsController>();
     }
 
     private void Start()
@@ -36,7 +39,6 @@ public class GameController : MonoBehaviour
             PlayerPrefsManager.SetBool(PlayerPrefsKeys.GameStarted, true);
         }
 
-        CheckpointController = GetComponent<CheckpointController>();
         // _gameManager.AudioManager.play(SoundName.MainTheme);
     }
 

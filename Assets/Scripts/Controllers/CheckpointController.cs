@@ -8,7 +8,7 @@ public class CheckpointController : MonoBehaviour
 
     void Start()
     {
-        SetCheckpoint(MyPlayerController.Instance.transform);
+        // SetCheckpoint(MyPlayerController.Instance.transform);
     }
 
     public void SetCheckpoint(Transform checkpointTransform)

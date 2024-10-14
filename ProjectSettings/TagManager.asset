@@ -17,6 +17,7 @@ TagManager:
   - Monk
   - HidingArea
   - Shadow
+  - Level1Objective
   layers:
   - Default
   - TransparentFX
