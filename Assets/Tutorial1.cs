@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Tutorial1 : MonoBehaviour
 {
-    public AudioSource voice;
+    public AudioSource voice, popSound;
+    bool firstTime = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,17 +32,20 @@ public class Tutorial1 : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "RightHand")
+        if (other.tag == "RightHand" && firstTime)
         {
 
             if (!gameObject.GetComponent<MeshRenderer>().enabled)
             {
                 smoke.SetActive(true);
+                popSound.Play();
                 Invoke("show", 1f);
+                Invoke("disappear", 10f);
             }
             
             Invoke("cooldown", 1.5f);
             Invoke("talk", 1.5f);
+            firstTime = false;
         }
     }
     void talk()
@@ -49,21 +53,27 @@ public class Tutorial1 : MonoBehaviour
         voice.Play();
 
     }
-    
-    void cooldown()
+    void disableSmoke()
     {
         smoke.SetActive(false);
-        
+    }
+    void smoke_out()
+    {
+        smoke.SetActive(false);
+        gameObject.GetComponent<MeshRenderer>().enabled = false;
     }
     void show()
     {
         gameObject.GetComponent<MeshRenderer>().enabled = true;
+        Invoke("disableSmoke",2);
+        
+        
     }
     void disappear()
     {
-        smoke.SetActive(true); 
-        Invoke("cooldown", 1.5f);
-        gameObject.SetActive(false);
+        smoke.SetActive(true);
+        popSound.Play();
+        Invoke("smoke_out", 1.5f);
     }
 }
 
