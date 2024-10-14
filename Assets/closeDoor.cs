@@ -5,8 +5,10 @@ using UnityEngine;
 public class closeDoor : MonoBehaviour
 {
     public Animator an1, an2;
-    public AudioSource DoorSound1, DoorSound2;
+    public AudioSource DoorSound1, DoorSound2, popSound;
     bool open = true;
+    public GameObject guide;
+    public GameObject smoke;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,14 +29,19 @@ public class closeDoor : MonoBehaviour
                     an1.SetTrigger("open");
                     an2.SetTrigger("open");
                     Invoke("playsound", 0.5f);
+                    Invoke("ShowTutorial", 3f);
                     open = false;
+                    
                 }
         }
         
     }
-    public void Finish()
+    public void ShowTutorial()
     {
-        //an.;
+        smoke.SetActive(true);
+        popSound.Play();
+        Invoke("activate_mesh",1);
+        
     }
     void playsound()
     {
@@ -42,5 +49,10 @@ public class closeDoor : MonoBehaviour
         DoorSound2.Play();
         an1.SetTrigger("close");
         an2.SetTrigger("close");
+    }
+    void activate_mesh()
+    {
+        guide.GetComponent<MeshRenderer>().enabled = true;
+        
     }
 }
