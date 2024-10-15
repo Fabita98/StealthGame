@@ -81,6 +81,7 @@ public class Level3 : Level
     public override void EndOfLevel()
     {
         Debug.Log("Tutorial Finished");
+        UIController.Instance.TutorialFinishedUI.gameObject.SetActive(true);
         // PlayerPrefsManager.SetInt(PlayerPrefsKeys.Level, 4);
         IsDone = true;
         PlayerPrefsManager.DeleteKey(PlayerPrefsKeys.Level2Process);

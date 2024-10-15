@@ -6,6 +6,7 @@ public class UIController : MonoBehaviour
 {
     public GameOverUI GameOverUI;
     public AbilitiesUI AbilitiesUI;
+    public TutorialFinishedUI TutorialFinishedUI;
     
     private static UIController _instance;
     public static UIController Instance => _instance;

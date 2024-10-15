@@ -5192,6 +5192,7 @@ GameObject:
   - component: {fileID: 6678678647198008616}
   - component: {fileID: 5156553012370351579}
   - component: {fileID: 2053118623207668267}
+  - component: {fileID: 4996985218006257406}
   m_Layer: 0
   m_Name: StatueD
   m_TagString: Untagged
@@ -5331,6 +5332,21 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.7258713
   m_Center: {x: -0.011783256, y: 0.5320518, z: 1.1525294}
+--- !u!114 &4996985218006257406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6264688562001003319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1222dff204ed00479617f3eac0067a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  voice: {fileID: 7702964666238492084}
+  popSound: {fileID: 5523293681083777423}
+  smoke: {fileID: 5184464091914227274}
 --- !u!1 &8939562465482850582
 GameObject:
   m_ObjectHideFlags: 0
