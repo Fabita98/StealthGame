@@ -1,3 +1,4 @@
+using Assets.Scripts.GazeTrackingFeature;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ public class SleepAction : FSMAction
         {
             machine.Stop();
             enemyUtility.ChooseSleepAnimation();
+            EyeTrackingDebug.SnoringAudioPlaybackTrigger();
             machine.isStartOfPatrol = true;
             machine.isStartOfChase = true;
             machine.isStartOfAttack = true;

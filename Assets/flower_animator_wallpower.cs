@@ -1,3 +1,5 @@
+using Assets.Scripts.GazeTrackingFeature;
+using System;
 using UnityEngine;
 
 public class Flower_animator_wallpower : MonoBehaviour
@@ -17,6 +19,12 @@ public class Flower_animator_wallpower : MonoBehaviour
     private float holdStartTime = 0.0f;
     private bool isHolding, inHand = false;
 
+    public static event PinkLotusPowerChangeHandler OnPinkLotusPowerChanged;
+    public delegate bool PinkLotusPowerChangeHandler(bool value);
+
+    public static void TriggerOnPinkLotusPowerChangeEvent(bool value) {
+        OnPinkLotusPowerChanged?.Invoke(value);
+    }
 
     void Start()
     {
@@ -98,8 +106,8 @@ public class Flower_animator_wallpower : MonoBehaviour
                     int currentPinkLotusCount = PlayerPrefsManager.GetInt(PlayerPrefsKeys.PinkLotus, 0);
                     PlayerPrefsManager.SetInt(PlayerPrefsKeys.PinkLotus, currentPinkLotusCount + 1);
                     UIController.Instance.AbilitiesUI.SetAbilitiesCount();
+                    OnPinkLotusPowerChanged?.Invoke(true);
                 }
-
             }
         }
     }
@@ -135,5 +143,4 @@ public class Flower_animator_wallpower : MonoBehaviour
     {
         sound.Play();
     }
-
 }

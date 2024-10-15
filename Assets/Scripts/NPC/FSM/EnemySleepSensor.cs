@@ -1,20 +1,18 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+using Assets.Scripts.GazeTrackingFeature;
 using UnityEngine;
 
 public class EnemySleepSensor : MonoBehaviour
 {
     public bool isSleep;
+    EyeInteractable eyeInteractable;
 
-    public void Awake()
-    {
+    private void Awake() {
+        eyeInteractable = GetComponent<EyeInteractable>();
     }
 
     public bool IsSleeping()
     {
-        return isSleep;
+        return eyeInteractable.readyToTalk;
     }
 
 }

@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -29,11 +27,6 @@ public enum PlayerPrefsKeys
 /// </summary>
 public class PlayerPrefsManager : MonoBehaviour
 {
-    
-    private void Start()
-    {
-    }
-
     public static void DeletePlayerPrefs()
     {
         PlayerPrefs.DeleteAll();
@@ -52,12 +45,10 @@ public class PlayerPrefsManager : MonoBehaviour
     public static bool GetBool(PlayerPrefsKeys key, bool defaultValue = true)
     {
         int value = defaultValue ? 1 : 0;
-        if (PlayerPrefs.HasKey(key.ToString()))
-        {
+        if (PlayerPrefs.HasKey(key.ToString())) {
             value = PlayerPrefs.GetInt(key.ToString());
         }
-        else
-        {
+        else {
             PlayerPrefs.SetInt(key.ToString(), value);
         }
 
@@ -95,6 +86,7 @@ public class PlayerPrefsManager : MonoBehaviour
         if (PlayerPrefs.HasKey(key.ToString()))
         {
             value = PlayerPrefs.GetInt(key.ToString());
+            Debug.Log("Value is: "+ value);
         }
         else
         {

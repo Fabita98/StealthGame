@@ -1,8 +1,5 @@
+using Assets.Scripts.GazeTrackingFeature;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Data.Common;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -20,10 +17,12 @@ public class ChaseAction : FSMAction
         MovingPoints movingPoints = machine.GetComponent<MovingPoints>();
         EnemySightSensor enemySightSensor = machine.GetComponent<EnemySightSensor>();
         var enemyAttackSensor = machine.GetComponent<EnemyAttackSensor>();
+        EyeInteractable eyeInteractable = machine.GetComponent<EyeInteractable>();
         EnemyUtility enemyUtility = machine.GetComponent<EnemyUtility>();
         Transform playerTransform = machine.PlayerController.transform;
         if (machine.isStartOfChase)
         {
+            eyeInteractable.StartPlayerSpottedAudioCoroutine();
             enemyUtility.SetEyeLights(true);
             navMeshAgent.SetDestination(playerTransform.position);
             stopAnimationChoose = false;
