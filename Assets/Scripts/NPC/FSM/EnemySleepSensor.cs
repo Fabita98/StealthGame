@@ -4,11 +4,15 @@ using UnityEngine;
 public class EnemySleepSensor : MonoBehaviour
 {
     public bool isSleep;
+    EyeInteractable eyeInteractable;
+
+    private void Awake() {
+        eyeInteractable = GetComponent<EyeInteractable>();
+    }
 
     public bool IsSleeping()
     {
-        EyeTrackingDebug.SnoringAudioPlaybackTrigger();
-        return isSleep;
+        return eyeInteractable.readyToTalk;
     }
 
 }
