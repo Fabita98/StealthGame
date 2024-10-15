@@ -255,13 +255,15 @@ namespace Assets.Scripts.GazeTrackingFeature {
         #region Player spotted audio playback
 
         private IEnumerator PlayPlayerSpottedAudioCoroutine() {
+            if (audioSources[1].isPlaying) yield break;
+
             if (playerSpottedAudio != null) {
                 audioSources[1].Play();
                 yield return new WaitForSeconds(playerSpottedAudio.length);
                 audioSources[1].Stop();
             }
             else {
-                Debug.LogWarning("AudioSource[1] is null on staredMonkForSingleton.");
+                Debug.LogWarning("AudioSource[1] is null.");
                 yield break;
             }
         }

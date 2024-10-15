@@ -60,7 +60,7 @@ namespace Assets.Scripts.GazeTrackingFeature {
                 }
             }
             else {
-                Debug.LogError("staredMonk is null ");
+                Debug.LogWarning("staredMonk is null ");
                 return;
             }
         }
@@ -117,7 +117,7 @@ namespace Assets.Scripts.GazeTrackingFeature {
                 OnSnoringAudioPlayback?.Invoke();
             }
             else {
-                Debug.LogError("staredMonk is null ");
+                Debug.LogError("staredMonk is null in the snoring audio coroutine ");
                 yield break;
             }
             yield return new WaitForSeconds(3f);
