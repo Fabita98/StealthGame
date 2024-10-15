@@ -12,6 +12,8 @@ namespace Assets.Scripts.GazeTrackingFeature {
         internal Collider[] colliders;
         private Collider standardCollider;
         private Collider eyeTrackingCollider;
+        [SerializeField] private float eyeTrackingColliderRadius = 2.5f;
+        [SerializeField] private float eyeTrackingColliderHeight = 8.9f;
         public bool IsHovered { get; set; }
         // isStaring is used to check if the player is staring at a monk after a minimum amount of time;
         // while readyToTalk is used to check if the required amount of time to make the monk snore has passed
@@ -106,6 +108,11 @@ namespace Assets.Scripts.GazeTrackingFeature {
             else if (colliders.Length >= 2) {
                 standardCollider.isTrigger = false;
                 eyeTrackingCollider.isTrigger = true;
+                // Bigger collider for eye tracking because monks are currently moving very fast
+                if (eyeTrackingCollider.TryGetComponent<CapsuleCollider>(out var cC)) {
+                    cC.radius = eyeTrackingColliderRadius;
+                    cC.height = eyeTrackingColliderHeight;
+                }
             }
             else Debug.LogWarning("Collider array does not have enough elements.");
         }

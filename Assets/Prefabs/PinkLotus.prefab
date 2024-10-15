@@ -6570,6 +6570,7 @@ GameObject:
   - component: {fileID: 7693633312811861410}
   - component: {fileID: 7625226683864928424}
   - component: {fileID: 5355167452017650028}
+  - component: {fileID: 7752220311642313994}
   m_Layer: 10
   m_Name: PinkLotus
   m_TagString: Untagged
@@ -6774,3 +6775,18 @@ MonoBehaviour:
   player: {fileID: 0}
   petalsGO: {fileID: 1128467547136402755}
   sound: {fileID: 7061098660737947281}
+--- !u!114 &7752220311642313994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9066826616284824708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74a89e9196ea33142987a2e8b961a402, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activate: 0
+  mana: 10
+  manaSpeed: 0.5

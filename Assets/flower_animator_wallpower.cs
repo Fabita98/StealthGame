@@ -1,5 +1,3 @@
-using Assets.Scripts.GazeTrackingFeature;
-using System;
 using UnityEngine;
 
 public class Flower_animator_wallpower : MonoBehaviour
