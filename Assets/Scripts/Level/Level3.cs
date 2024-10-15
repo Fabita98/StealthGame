@@ -14,7 +14,7 @@ public class Level3 : Level
     private void Awake()
     {
         _timer = 0;
-        _processNumber = PlayerPrefsManager.GetInt(PlayerPrefsKeys.Level2Process, 1);
+        _processNumber = PlayerPrefsManager.GetInt(PlayerPrefsKeys.Level3Process, 1);
         _levelConfig = GameController.Instance.LevelsController.levelsConfigContainer.level3Config;
     }
 
@@ -33,6 +33,14 @@ public class Level3 : Level
             // Statue talk
             print("Statue Talking");
         }
+        else if (_processNumber >= 2)
+        {
+            _levelConfig.otherObjects[0].GetComponent<DoorBehavior>().DoorInteraction();
+        }
+        // if (PlayerPrefsManager.GetInt(PlayerPrefsKeys.BlueLotus, 0) > 0)
+        // {
+        //     _levelConfig.otherObjects[0].GetComponent<DoorBehavior>().SetDoorState(DoorBehavior.DoorState.Open);
+        // }
     }
 
     public override void Process()
@@ -59,12 +67,18 @@ public class Level3 : Level
         _timer += Time.deltaTime;
         if (PlayerPrefsManager.GetInt(PlayerPrefsKeys.BlueLotus, 0) > 0)
         {
+            PlayerPrefsManager.SaveGame(_levelConfig.playerSpawnPoint, 3);
+            _levelConfig.otherObjects[0].GetComponent<DoorBehavior>().DoorInteraction();
             SaveCompletedProcess(2);
         }
     }
     
     private void secondProcess()
-    {
+    {   
+
+        // if (_levelConfig.otherObjects[0].GetComponent<DoorBehavior>().GetDoorState() == DoorBehavior.DoorState.Close)
+        // {
+        // }
         if (_isReachedToDestination)
         {
             SaveCompletedProcess(3);
@@ -75,7 +89,7 @@ public class Level3 : Level
     private void SaveCompletedProcess(int processNumber)
     {
         _processNumber = processNumber;
-        PlayerPrefsManager.SetInt(PlayerPrefsKeys.Level2Process, processNumber);
+        PlayerPrefsManager.SetInt(PlayerPrefsKeys.Level3Process, processNumber);
     }
 
     public override void EndOfLevel()
@@ -84,7 +98,7 @@ public class Level3 : Level
         UIController.Instance.TutorialFinishedUI.gameObject.SetActive(true);
         // PlayerPrefsManager.SetInt(PlayerPrefsKeys.Level, 4);
         IsDone = true;
-        PlayerPrefsManager.DeleteKey(PlayerPrefsKeys.Level2Process);
+        PlayerPrefsManager.DeleteKey(PlayerPrefsKeys.Level3Process);
     }
 
     public override void SetPlayerPosition()

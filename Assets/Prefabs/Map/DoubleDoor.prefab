@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3849927645893984646}
   - component: {fileID: 6528890748878188939}
-  m_Layer: 0
+  - component: {fileID: 2447006779500840774}
+  m_Layer: 7
   m_Name: DoubleDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,6 +56,26 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2447006779500840774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8988149124231803676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 433d338377b048746bda04d3323046a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerTagName: Player
+  animator: {fileID: 6528890748878188939}
+  doorSounds:
+  - {fileID: 7755114067571953172}
+  - {fileID: 2821902133132593979}
+  initState: 1
+  currentState: 1
+  isSingleBehavior: 1
 --- !u!1001 &1375658758203778795
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -64,12 +85,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 3849927645893984646}
     m_Modifications:
     - target: {fileID: 567537659543055859, guid: a3e223cee9d053648aa79bd58816f899, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 567537659543055859, guid: a3e223cee9d053648aa79bd58816f899, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1032254885547429604, guid: a3e223cee9d053648aa79bd58816f899, type: 3}
       propertyPath: m_Name
       value: wall_panel_C
+      objectReference: {fileID: 0}
+    - target: {fileID: 1032254885547429604, guid: a3e223cee9d053648aa79bd58816f899, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1032254885547429604, guid: a3e223cee9d053648aa79bd58816f899, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -238,12 +267,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 3849927645893984646}
     m_Modifications:
     - target: {fileID: 567537659543055859, guid: a3e223cee9d053648aa79bd58816f899, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 567537659543055859, guid: a3e223cee9d053648aa79bd58816f899, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1032254885547429604, guid: a3e223cee9d053648aa79bd58816f899, type: 3}
       propertyPath: m_Name
       value: wall_panel_C (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1032254885547429604, guid: a3e223cee9d053648aa79bd58816f899, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1032254885547429604, guid: a3e223cee9d053648aa79bd58816f899, type: 3}
       propertyPath: m_StaticEditorFlags

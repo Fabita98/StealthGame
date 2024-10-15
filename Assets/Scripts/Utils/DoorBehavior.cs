@@ -14,26 +14,17 @@ public class DoorBehavior : MonoBehaviour
     public string triggerTagName = "Player";
     public Animator animator;
     public AudioSource[] doorSounds;
-    public DoorState initState = DoorState.Open;
-    public DoorState currentState = DoorState.Open; 
+    public DoorState initState;
+    public DoorState currentState; 
     public bool isSingleBehavior = true;
 
     private void Awake()
     {
-        if (initState == DoorState.Open)
-        {
-            animator.Play("DoubleDoorOpened");
-        }
-        else
-        {
-            animator.Play("DoubleDoorClosed");
-        }
+        SetDoorState(initState);
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void DoorInteraction()
     {
-        if(!other.CompareTag(triggerTagName))
-            return;
         if (isSingleBehavior)
         {
             if (initState == DoorState.Open && currentState == DoorState.Open)
@@ -64,8 +55,35 @@ public class DoorBehavior : MonoBehaviour
                 currentState = DoorState.Open;
             }   
         }
-        
-        
+
+    }
+
+    public void SetDoorState(DoorState state)
+    {
+        if (state == DoorState.Open)
+        {
+            currentState = DoorState.Open;
+            initState = DoorState.Open;
+            animator.Play("DoubleDoorOpened");
+        }
+        else
+        {
+            currentState = DoorState.Close;
+            initState = DoorState.Close;
+            animator.Play("DoubleDoorClosed");
+        }
+    }
+    
+    public DoorState GetDoorState()
+    {
+        return currentState;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(!other.CompareTag(triggerTagName))
+            return;
+        DoorInteraction();
     }
     
     void PlaySound()

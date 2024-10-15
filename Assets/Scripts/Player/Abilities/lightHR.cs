@@ -9,7 +9,7 @@ public class lightHR : MonoBehaviour
     float newIntensity, lastDecrease=0,delta =0;
     bool reset = false;
     public bool abilityActive = false;
-    public float maxEnergy = 30f; // Massimo tempo di energia disponibile per l'abilità
+    public float maxEnergy = 30f; // Massimo tempo di energia disponibile per l'abilitï¿½
     public float energyDrainRate = 1f; // Energia consumata al secondo
     public float currentEnergy=15;
     void Start()
@@ -69,14 +69,14 @@ public class lightHR : MonoBehaviour
     {
         abilityActive = true;
         GetComponent<Light>().range = 76; 
-        Debug.Log("Abilità attivata");
+        Debug.Log("Abilitï¿½ attivata");
     }
 
     void DeactivateAbility()
     {
         GetComponent<Light>().range = 0;
         abilityActive = false;
-        Debug.Log("Abilità disattivata");
+        Debug.Log("Abilitï¿½ disattivata");
     }
 
     void UpdateAbility()
@@ -96,7 +96,7 @@ public class lightHR : MonoBehaviour
         }
 
         // Debug per mostrare l'energia corrente
-        Debug.Log("Energia corrente: " + currentEnergy);
+        // Debug.Log("Energia corrente: " + currentEnergy);
     }
     void OscillateLight()
     {

@@ -59,6 +59,7 @@ public class Level2 : Level
         _timer += Time.deltaTime;
         if (PlayerPrefsManager.GetInt(PlayerPrefsKeys.PinkLotus, 0) > 0)
         {
+            PlayerPrefsManager.SaveGame(_levelConfig.playerSpawnPoint, 2);
             SaveCompletedProcess(2);
         }
     }

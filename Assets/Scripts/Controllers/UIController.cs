@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,7 @@ public class UIController : MonoBehaviour
     public GameOverUI GameOverUI;
     public AbilitiesUI AbilitiesUI;
     public TutorialFinishedUI TutorialFinishedUI;
+    public PauseUI PauseUI;
     
     private static UIController _instance;
     public static UIController Instance => _instance;
@@ -19,4 +21,11 @@ public class UIController : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (OVRInput.GetDown(OVRInput.Button.Start))
+        {
+            PauseUI.gameObject.SetActive(true);
+        }
+    }
 }

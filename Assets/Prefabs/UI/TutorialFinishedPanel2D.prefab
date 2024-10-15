@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 3226316082941857824}
   - component: {fileID: 4424756726504574979}
   - component: {fileID: 4171411626906592202}
-  - component: {fileID: 860301552519052673}
+  - component: {fileID: 1699416857314298955}
   m_Layer: 5
   m_Name: TutorialFinishedPanel2D
   m_TagString: Untagged
@@ -212,7 +212,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &860301552519052673
+--- !u!114 &1699416857314298955
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -221,7 +221,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4469664851498268413}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6396f26d3eaf13d4ca179f5714b49490, type: 3}
+  m_Script: {fileID: 11500000, guid: f459679ef5e319c41ba368d436cddb29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7751129015152662198
