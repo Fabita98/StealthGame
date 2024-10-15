@@ -48,6 +48,18 @@ namespace Assets.Scripts.GazeTrackingFeature {
         public static event CounterChangeHandler OnEyeInteractableInstancesCounterChanged;
         public delegate void CounterChangeHandler(int newCount);
         #endregion
+        
+        #region EyeInteractable instances counter
+        void OnEnable() {
+            OverallEyeInteractableInstanceCounter++;
+            OnEyeInteractableInstancesCounterChanged?.Invoke(OverallEyeInteractableInstanceCounter);
+        }
+
+        void OnDisable() {
+            OverallEyeInteractableInstanceCounter--;
+            OnEyeInteractableInstancesCounterChanged?.Invoke(OverallEyeInteractableInstanceCounter);
+        }
+        #endregion
 
         void Awake() => ComponentInit();
 
@@ -111,7 +123,7 @@ namespace Assets.Scripts.GazeTrackingFeature {
             // Assign the AudioSource components to the array
             else if (audioSources.Length >= 2) {
                 audioSources[0].clip = snoringAudio;
-                if (AudioHolder.instance.AssignRandomPlayerSpottedAudio() != null) {
+                if (AudioHolder.instance != null) {
                     playerSpottedAudio = AudioHolder.instance.AssignRandomPlayerSpottedAudio();
                     audioSources[1].clip = playerSpottedAudio;
                     Debug.Log("playerSpottedAudio assigned ");
@@ -123,20 +135,6 @@ namespace Assets.Scripts.GazeTrackingFeature {
             if (snoringAudio == null) {
                 Debug.LogError("snoringAudio is not assigned.");
             }
-        }
-        #endregion
-
-        #region EyeInteractable instances counter
-        void OnEnable() {
-            OverallEyeInteractableInstanceCounter++;
-            OnEyeInteractableInstancesCounterChanged?.Invoke(OverallEyeInteractableInstanceCounter);
-            Flower_animator_wallpower.OnPinkLotusPowerChanged += HandlePinkLotusPowerActivation;
-        }
-
-        void OnDisable() {
-            OverallEyeInteractableInstanceCounter--;
-            OnEyeInteractableInstancesCounterChanged?.Invoke(OverallEyeInteractableInstanceCounter);
-            Flower_animator_wallpower.OnPinkLotusPowerChanged -= HandlePinkLotusPowerActivation;
         }
         #endregion
 
@@ -202,8 +200,6 @@ namespace Assets.Scripts.GazeTrackingFeature {
             staredMonk.eyeOutline.OutlineColor = color;
             staredMonk.eyeOutline.OutlineWidth = desiredWidth;
         }
-
-        public void HandlePinkLotusPowerActivation(bool isActive = false) => EyeTrackingDebug.isVocalPowerActive = isActive; 
         
         #region Vibration 
         internal IEnumerator GradualControllerVibration() {

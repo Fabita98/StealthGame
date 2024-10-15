@@ -19,9 +19,10 @@ public class Flower_animator_wallpower : MonoBehaviour
     private float holdStartTime = 0.0f;
     private bool isHolding, inHand = false;
 
-    public static event Action<bool> OnPinkLotusPowerChanged;
+    public static event PinkLotusPowerChangeHandler OnPinkLotusPowerChanged;
+    public delegate bool PinkLotusPowerChangeHandler(bool value);
 
-    public static void TriggerOnPinkLotusPowerChangeEvent(bool value = false) {
+    public static void TriggerOnPinkLotusPowerChangeEvent(bool value) {
         OnPinkLotusPowerChanged?.Invoke(value);
     }
 

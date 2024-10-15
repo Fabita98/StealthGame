@@ -9,7 +9,7 @@ namespace Assets.Scripts.GazeTrackingFeature {
         [Header("Voice playback variables")]
         [SerializeField] private float maxSnoringTime = 10f;
         [SerializeField] private float minSnoringTime = 4f;
-        internal static bool isVocalPowerActive = false;
+        internal static bool isVocalPowerActive;
 
         public static event SnoringAudioPlaybackHandler OnSnoringAudioPlayback;
         public delegate void SnoringAudioPlaybackHandler();
@@ -27,20 +27,30 @@ namespace Assets.Scripts.GazeTrackingFeature {
             else if (Instance != this) {
                 Destroy(this);
             }
+
         }
 
-        //private void Start() {
-        //    StartInvokeVoicePlaybackCoroutine();
-        //}
+        private void Start() {
+            //StartInvokeVoicePlaybackCoroutine();
+            int currentPinkLotusCounterValue = PlayerPrefsManager.GetInt(PlayerPrefsKeys.PinkLotus, 0);
+            if (currentPinkLotusCounterValue > 0) {
+                Flower_animator_wallpower.TriggerOnPinkLotusPowerChangeEvent(true);
+            }
+            else Flower_animator_wallpower.TriggerOnPinkLotusPowerChangeEvent(false);
+        }
+
+        public bool HandlePinkLotusPowerActivation(bool isActive) => EyeTrackingDebug.isVocalPowerActive = isActive;
 
         private void OnEnable() {
             EyeInteractable.OnEyeInteractableInstancesCounterChanged += HandleEyeInteractableInstancesCounterChange;
             OnSnoringAudioPlayback += HandleSnoringAudioPlayback;
+            Flower_animator_wallpower.OnPinkLotusPowerChanged += HandlePinkLotusPowerActivation;
         }
 
         private void OnDisable() {
             EyeInteractable.OnEyeInteractableInstancesCounterChanged -= HandleEyeInteractableInstancesCounterChange;
             OnSnoringAudioPlayback -= HandleSnoringAudioPlayback;
+            Flower_animator_wallpower.OnPinkLotusPowerChanged -= HandlePinkLotusPowerActivation;
         }
 
         private void HandleEyeInteractableInstancesCounterChange(int newCount) => Debug.Log($"Current EyeInteractable instance counter: {newCount}");
@@ -99,12 +109,10 @@ namespace Assets.Scripts.GazeTrackingFeature {
             if (currentPinkLotusCounterValue > 0) {
                 PlayerPrefsManager.SetInt(PlayerPrefsKeys.PinkLotus, currentPinkLotusCounterValue - 1);
                 Debug.Log("PinkLotus counter value: " + currentPinkLotusCounterValue);
-                UIController.Instance.AbilitiesUI.SetAbilitiesCount();
-                if (currentPinkLotusCounterValue == 0) 
-                    Flower_animator_wallpower.TriggerOnPinkLotusPowerChangeEvent(false);
-                else
-                    Flower_animator_wallpower.TriggerOnPinkLotusPowerChangeEvent(true);
+                UIController.Instance.AbilitiesUI.SetAbilitiesCount();                                   
+                Flower_animator_wallpower.TriggerOnPinkLotusPowerChangeEvent(true);
             }
+            else Flower_animator_wallpower.TriggerOnPinkLotusPowerChangeEvent(false);
         }
         #endregion
 
