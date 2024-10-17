@@ -302,7 +302,7 @@ MonoBehaviour:
   an: {fileID: 6841699239345371357}
   petalsGO: {fileID: 5806345717999009416}
   sound: {fileID: 3331315846383004357}
-  light: {fileID: 0}
+  light: {fileID: 5806345717999009416}
 --- !u!1 &1619105750987244133
 GameObject:
   m_ObjectHideFlags: 0

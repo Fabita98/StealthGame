@@ -6569,8 +6569,7 @@ GameObject:
   - component: {fileID: 7240090993429006169}
   - component: {fileID: 7693633312811861410}
   - component: {fileID: 7625226683864928424}
-  - component: {fileID: 5355167452017650028}
-  - component: {fileID: 7752220311642313994}
+  - component: {fileID: 5856379207082368360}
   m_Layer: 10
   m_Name: PinkLotus
   m_TagString: Untagged
@@ -6755,7 +6754,7 @@ CapsuleCollider:
   m_Height: 1.04
   m_Direction: 0
   m_Center: {x: 0, y: 0.12, z: 0}
---- !u!114 &5355167452017650028
+--- !u!114 &5856379207082368360
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6764,7 +6763,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9066826616284824708}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07b7b646e03d53f4298c50ca05347766, type: 3}
+  m_Script: {fileID: 11500000, guid: ed50efff7c5016c4aa5bda012c574ad1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dissolveDuration: 2
@@ -6772,21 +6771,5 @@ MonoBehaviour:
   fallParticles: {fileID: 7010752326747618170}
   holdDuration: 2
   an: {fileID: 7872943773621798256}
-  player: {fileID: 0}
   petalsGO: {fileID: 1128467547136402755}
   sound: {fileID: 7061098660737947281}
---- !u!114 &7752220311642313994
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9066826616284824708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74a89e9196ea33142987a2e8b961a402, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  activate: 0
-  mana: 10
-  manaSpeed: 0.5

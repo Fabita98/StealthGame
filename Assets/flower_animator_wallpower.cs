@@ -17,16 +17,11 @@ public class Flower_animator_wallpower : MonoBehaviour
     private float holdStartTime = 0.0f;
     private bool isHolding, inHand = false;
 
-    public static event PinkLotusPowerChangeHandler OnPinkLotusPowerChanged;
-    public delegate bool PinkLotusPowerChangeHandler(bool value);
+    public static event BlueLotusPowerChangeHandler OnBlueLotusPowerChanged;
+    public delegate bool BlueLotusPowerChangeHandler(bool value);
 
-    public static void TriggerOnPinkLotusPowerChangeEvent(bool value) {
-        OnPinkLotusPowerChanged?.Invoke(value);
-    }
-
-    void Start()
-    {
-        
+    public static void TriggerOnBlueLotusPowerChangeEvent(bool value) {
+        OnBlueLotusPowerChanged?.Invoke(value);
     }
 
     void Update()
@@ -94,17 +89,15 @@ public class Flower_animator_wallpower : MonoBehaviour
                             
                         }
                     }
-
-
                 }
 
                 if (dissolveAmount >= 1.0f)
                 {
                     isConsuming = false;
-                    int currentPinkLotusCount = PlayerPrefsManager.GetInt(PlayerPrefsKeys.PinkLotus, 0);
-                    PlayerPrefsManager.SetInt(PlayerPrefsKeys.PinkLotus, currentPinkLotusCount + 1);
+                    int currentBlueLotusCounter = PlayerPrefsManager.GetInt(PlayerPrefsKeys.BlueLotus, 0);
+                    PlayerPrefsManager.SetInt(PlayerPrefsKeys.BlueLotus, currentBlueLotusCounter + 1);
                     UIController.Instance.AbilitiesUI.SetAbilitiesCount();
-                    OnPinkLotusPowerChanged?.Invoke(true);
+                    OnBlueLotusPowerChanged?.Invoke(true);
                 }
             }
         }
@@ -115,10 +108,10 @@ public class Flower_animator_wallpower : MonoBehaviour
         isConsuming = true;
         dissolveProgress = 0.0f;
         dissolveStartTime = Time.time + dissolveDelay;
-        player.GetComponent<SpiritVision>().mana += 8; //power variable to be added
-        
-
+        if (player.TryGetComponent<SpiritVision>(out var sv)) sv.mana += 8;
+        else Debug.LogError("SpiritVision component not found on player");
     }
+
     private void OnTriggerStay(Collider other)
     {
         if (other.tag == "RightHand" || other.tag == "LeftHand")

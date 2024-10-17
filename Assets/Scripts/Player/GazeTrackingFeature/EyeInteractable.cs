@@ -71,7 +71,7 @@ namespace Assets.Scripts.GazeTrackingFeature {
         }
 
         private void Update() {
-            if (EyeTrackingDebug.isVocalPowerActive) GazeControl();
+            if (EyeTrackingDebug.isVocalPowerActive && EyeTrackingDebug.HasSnoringCooldownPassed()) GazeControl();
         }
 
         #region Initialization methods
@@ -206,8 +206,8 @@ namespace Assets.Scripts.GazeTrackingFeature {
             staredMonk.eyeOutline.OutlineMode = EyeOutline.Mode.OutlineAll;
             staredMonk.eyeOutline.OutlineColor = color;
             staredMonk.eyeOutline.OutlineWidth = desiredWidth;
-        }
-        
+        }        
+
         #region Vibration 
         internal IEnumerator GradualControllerVibration() {
             if (isVibrating) yield break;

@@ -5009,7 +5009,7 @@ GameObject:
   - component: {fileID: 2743734828082705630}
   - component: {fileID: 5451964759622795614}
   - component: {fileID: 1317744725008047371}
-  - component: {fileID: 6650867949625427525}
+  - component: {fileID: 7565195968111864917}
   m_Layer: 10
   m_Name: BlueLotus
   m_TagString: Untagged
@@ -5194,7 +5194,7 @@ CapsuleCollider:
   m_Height: 1.04
   m_Direction: 0
   m_Center: {x: 0, y: 0.12, z: 0}
---- !u!114 &6650867949625427525
+--- !u!114 &7565195968111864917
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5203,7 +5203,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3765655703283292593}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed50efff7c5016c4aa5bda012c574ad1, type: 3}
+  m_Script: {fileID: 11500000, guid: 07b7b646e03d53f4298c50ca05347766, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dissolveDuration: 2
@@ -5211,6 +5211,7 @@ MonoBehaviour:
   fallParticles: {fileID: 3516746252977439555}
   holdDuration: 2
   an: {fileID: 537079700776975513}
+  player: {fileID: 0}
   petalsGO: {fileID: 9205241132135608721}
   sound: {fileID: 1988631961387984649}
 --- !u!1 &4338799133502447699

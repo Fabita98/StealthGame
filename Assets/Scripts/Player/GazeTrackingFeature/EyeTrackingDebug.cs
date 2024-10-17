@@ -9,6 +9,7 @@ namespace Assets.Scripts.GazeTrackingFeature {
         [Header("Voice playback variables")]
         [SerializeField] private float maxSnoringTime = 10f;
         [SerializeField] private float minSnoringTime = 4f;
+        internal static float snoringCooldownCurrentTime;
         internal static bool isVocalPowerActive;
 
         public static event SnoringAudioPlaybackHandler OnSnoringAudioPlayback;
@@ -18,6 +19,7 @@ namespace Assets.Scripts.GazeTrackingFeature {
         /// </summary>
         public static event Action OnPlaybackAboutToStart;
         public static event Action OnPlaybackStopped;
+        public bool HandlePinkLotusPowerActivation(bool isActive) => isVocalPowerActive = isActive;
 
         private void Awake() {
             if (Instance == null) {
@@ -27,30 +29,26 @@ namespace Assets.Scripts.GazeTrackingFeature {
             else if (Instance != this) {
                 Destroy(this);
             }
+        }
+        private void OnEnable() {
+            EyeInteractable.OnEyeInteractableInstancesCounterChanged += HandleEyeInteractableInstancesCounterChange;
+            OnSnoringAudioPlayback += HandleSnoringAudioPlayback;
+            Flower_animator_mindcontrol.OnPinkLotusPowerChanged += HandlePinkLotusPowerActivation;
+        }
 
+        private void OnDisable() {
+            EyeInteractable.OnEyeInteractableInstancesCounterChanged -= HandleEyeInteractableInstancesCounterChange;
+            OnSnoringAudioPlayback -= HandleSnoringAudioPlayback;
+            Flower_animator_mindcontrol.OnPinkLotusPowerChanged -= HandlePinkLotusPowerActivation;
         }
 
         private void Start() {
             //StartInvokeVoicePlaybackCoroutine();
             int currentPinkLotusCounterValue = PlayerPrefsManager.GetInt(PlayerPrefsKeys.PinkLotus, 0);
             if (currentPinkLotusCounterValue > 0) {
-                Flower_animator_wallpower.TriggerOnPinkLotusPowerChangeEvent(true);
+                Flower_animator_mindcontrol.TriggerOnPinkLotusPowerChangeEvent(true);
             }
-            else Flower_animator_wallpower.TriggerOnPinkLotusPowerChangeEvent(false);
-        }
-
-        public bool HandlePinkLotusPowerActivation(bool isActive) => EyeTrackingDebug.isVocalPowerActive = isActive;
-
-        private void OnEnable() {
-            EyeInteractable.OnEyeInteractableInstancesCounterChanged += HandleEyeInteractableInstancesCounterChange;
-            OnSnoringAudioPlayback += HandleSnoringAudioPlayback;
-            Flower_animator_wallpower.OnPinkLotusPowerChanged += HandlePinkLotusPowerActivation;
-        }
-
-        private void OnDisable() {
-            EyeInteractable.OnEyeInteractableInstancesCounterChanged -= HandleEyeInteractableInstancesCounterChange;
-            OnSnoringAudioPlayback -= HandleSnoringAudioPlayback;
-            Flower_animator_wallpower.OnPinkLotusPowerChanged -= HandlePinkLotusPowerActivation;
+            else Flower_animator_mindcontrol.TriggerOnPinkLotusPowerChangeEvent(false);
         }
 
         private void HandleEyeInteractableInstancesCounterChange(int newCount) => Debug.Log($"Current EyeInteractable instance counter: {newCount}");
@@ -100,8 +98,11 @@ namespace Assets.Scripts.GazeTrackingFeature {
         public void StartSnoringAudioCoroutine() => StartCoroutine(PlaySnoringAudioCoroutine());
 
         internal void StartSnoringCooldown() {
-            float snoringAudioLength = EyeInteractable.snoringAudio != null ? EyeInteractable.snoringAudio.length : 0;
-            EyeInteractable.snoringCooldownEndTime = Time.time + Mathf.Max(15f, snoringAudioLength);
+            snoringCooldownCurrentTime = Time.time;
+        }
+
+        internal static bool HasSnoringCooldownPassed() {
+            return Time.time > snoringCooldownCurrentTime + EyeInteractable.snoringCooldownEndTime;
         }
 
         private void DecreasePinkPowerCounter() {
@@ -109,10 +110,10 @@ namespace Assets.Scripts.GazeTrackingFeature {
             if (currentPinkLotusCounterValue > 0) {
                 PlayerPrefsManager.SetInt(PlayerPrefsKeys.PinkLotus, currentPinkLotusCounterValue - 1);
                 Debug.Log("PinkLotus counter value: " + currentPinkLotusCounterValue);
-                UIController.Instance.AbilitiesUI.SetAbilitiesCount();                                   
-                Flower_animator_wallpower.TriggerOnPinkLotusPowerChangeEvent(true);
+                UIController.Instance.AbilitiesUI.SetAbilitiesCount();
+                Flower_animator_mindcontrol.TriggerOnPinkLotusPowerChangeEvent(true);
             }
-            else Flower_animator_wallpower.TriggerOnPinkLotusPowerChangeEvent(false);
+            else Flower_animator_mindcontrol.TriggerOnPinkLotusPowerChangeEvent(false);
         }
         #endregion
 
