@@ -8785,7 +8785,6 @@ MonoBehaviour:
     m_Bits: 0
   toggleDebugEye: 0
   collectDataOnStart: 1
-  eyeClosed: 0
 --- !u!114 &818872391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17877,6 +17876,7 @@ GameObject:
   - component: {fileID: 1332526908}
   - component: {fileID: 1332526910}
   - component: {fileID: 1332526914}
+  - component: {fileID: 1332526915}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -17966,6 +17966,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelsConfigContainer: {fileID: 1363421383}
+--- !u!114 &1332526915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1332526907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba65311dfce09e246a22cc2df4982950, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1338609482
 GameObject:
   m_ObjectHideFlags: 0

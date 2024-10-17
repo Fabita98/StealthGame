@@ -5,7 +5,6 @@ using UnityEngine.XR;
 
 public class EyeController : MonoBehaviour
 {
-    public DataTracker dt;
     private float timeToenable = 5f, timeSinceClosing;
     private bool restart = false;
 
@@ -17,7 +16,7 @@ public class EyeController : MonoBehaviour
 
     void Update()
     {
-        if (dt.eyeClosed)
+        if (DataTracker.eyeClosed)
         {
             if (!restart) 
             { 

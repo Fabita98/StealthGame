@@ -223,7 +223,7 @@ public class DataTracker : MonoBehaviour {
 
 	//Parameters are not shown in inspector if public, only using the GUI above (override for editor purpose)
 
-	private OVRFaceExpressions ovrexpr;
+	public static OVRFaceExpressions ovrexpr;
 	// private LipSyncTracker lipsyncTracker;
 
 	public bool takeTime, takeStartCycleTime, takeStartFixedUpdateTime, takeTimeDiff, takeUnityTime, takeUnityTimeDiff, takeEndFixedUpdateTime;
@@ -264,7 +264,7 @@ public class DataTracker : MonoBehaviour {
 
 	private RecorderWindow recorder;
 
-	public bool eyeClosed = false;
+	public static bool eyeClosed = false;
 
 	public void Start() {
 		fixedFrameCounter = 1;
@@ -858,30 +858,6 @@ public class DataTracker : MonoBehaviour {
 		AddToDictionary("EyeClosedL", eyeClosedL.ToString(), isValidData);
 		AddToDictionary("EyeClosedR", eyeClosedR.ToString(), isValidData);
 	}
-	public void CheckEyeClosed()
-    {
-		float eyeClosedL = 0;
-		float eyeClosedR = 0;
-
-		var isValidData = ovrexpr.ValidExpressions;
-
-		if (ovrexpr.ValidExpressions)
-		{
-			eyeClosedL = ovrexpr[OVRFaceExpressions.FaceExpression.EyesClosedL];
-			eyeClosedR = ovrexpr[OVRFaceExpressions.FaceExpression.EyesClosedR];
-
-			//If blendshape is active, sum blendshape offset to recover true eyeclosed value
-			if (ovrexpr.EyeFollowingBlendshapesValid)
-			{
-				var blendShapeOffset = Mathf.Min(ovrexpr[OVRFaceExpressions.FaceExpression.EyesLookDownL], ovrexpr[OVRFaceExpressions.FaceExpression.EyesLookDownR]);
-				eyeClosedL += blendShapeOffset;
-				eyeClosedR += blendShapeOffset;
-			}
-		}
-		if (eyeClosedL>0.2f&& eyeClosedR>0.2f) eyeClosed = true; else eyeClosed = false;
-		
-	}
-
 	#endregion
 
 	#region dictionary utils
@@ -1009,8 +985,5 @@ public class DataTracker : MonoBehaviour {
 
 		return latestDataRow;
 	}
-
-	#endregion
-
-
+    #endregion
 }

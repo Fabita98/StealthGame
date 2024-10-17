@@ -30,6 +30,7 @@ namespace Assets.Scripts.GazeTrackingFeature {
                 Destroy(this);
             }
         }
+
         private void OnEnable() {
             EyeInteractable.OnEyeInteractableInstancesCounterChanged += HandleEyeInteractableInstancesCounterChange;
             OnSnoringAudioPlayback += HandleSnoringAudioPlayback;
