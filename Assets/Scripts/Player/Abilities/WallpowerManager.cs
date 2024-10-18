@@ -15,7 +15,7 @@ public class WallpowerManager : MonoBehaviour
         Flower_animator_wallpower.OnBlueLotusPowerChanged -= HandleBlueLotusPowerActivation;
     }
 
-    private void Awake() {
+    private void Awake() { 
         if (Instance == null) {
             Instance = this;
             DontDestroyOnLoad(this);

@@ -1,40 +1,37 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SpiritVision : MonoBehaviour
 {
     // Start is called before the first frame update
-    public bool activate;
+    public bool activate = WallpowerManager.isSpiritVisionActive;
     public float mana=10, manaSpeed=0.5f;
     List<GameObject> enemyinrange = new List<GameObject>();
     List<GameObject> enemyHighlighted = new List<GameObject>();
-    bool isenable = false;
+    bool isEnabled = false;
     private float lastActivateTime;
-    void Start()
-    {
-    }
 
     // Update is called once per frame
     void Update()
     {
-        if (activate && mana > 0)              //if ability is used decrease mana and invoke outline; disable outline when mana is over
+        //if ability is used decrease mana and invoke outline; disable outline when mana is over
+        if (activate && mana > 0)              
         {
             mana -= Time.deltaTime * manaSpeed;
             mana = Mathf.Clamp(mana, -0.1f, 30);
-            if (!isenable)
+            if (!isEnabled)
             {
                 Invoke("enableVision", 1);
-                isenable = true;
+                isEnabled = true;
             }
         }
-        else if (isenable) disableVision();
+        else if (isEnabled) disableVision();
         if (activate)
         {
             lastActivateTime = Time.time;
             if (Time.time - lastActivateTime > 8f)
             {
-                isenable = false;
+                isEnabled = false;
                 activate = false;
             }
         }
@@ -50,18 +47,19 @@ public class SpiritVision : MonoBehaviour
     }
     public void disableVision()
     {
-        isenable = false;
+        isEnabled = false;
         foreach (GameObject enemy in enemyHighlighted)
         {
             enemy.GetComponent<Outline>().enabled = false;
         }
     }
 
-    private void OnTriggerStay(Collider other)      //add every enemy in collider to list
+    private void OnTriggerStay(Collider other)      
     {
         bool match = false;
         if (other.tag == "Monk" || other.tag =="Shadow")
         {
+            //add every enemy in collider to list
             foreach (GameObject enemy in enemyinrange)
             {
                 if (other.gameObject.Equals(enemy)) { 
@@ -73,7 +71,7 @@ public class SpiritVision : MonoBehaviour
             if (!match)
             {
                 enemyinrange.Add(other.gameObject);
-                if (isenable && !other.gameObject.GetComponent<Outline>().enabled)   //exception handler
+                if (isEnabled && !other.gameObject.GetComponent<Outline>().enabled)   //exception handler
                     {
                         enemyHighlighted.Add(other.gameObject);
                         other.gameObject.GetComponent<Outline>().enabled = true;

@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Assets.Scripts.GazeTrackingFeature {
     [RequireComponent(typeof(EyeOutline))]
@@ -9,42 +8,27 @@ namespace Assets.Scripts.GazeTrackingFeature {
     internal class EyeInteractable : MonoBehaviour {
         #region Variables and events definition
         [Header("Eye hovering parameters")]
+        internal static float HoveringTime;
+        public bool IsHovered { get; set; }
+        public bool isBeingStared;
+        public bool readyToTalk;
         internal Collider[] colliders;
         private Collider standardCollider;
         private Collider eyeTrackingCollider;
-        [SerializeField] private float eyeTrackingColliderRadius = 2.5f;
-        [SerializeField] private float eyeTrackingColliderHeight = 8.9f;
-        public bool IsHovered { get; set; }
-        // isStaring is used to check if the player is staring at a monk after a minimum amount of time;
-        // while readyToTalk is used to check if the required amount of time to make the monk snore has passed
-        public bool isBeingStared;
-        public bool readyToTalk;
-        internal static float HoveringTime;
-        [SerializeField] private float staringTimeToPressVocalKey = 2.0f;
-        [SerializeField] private float staringTimeToTalk = 4.0f;
-        private float duration;
-        internal const byte noWidthValue = 0;
-        [SerializeField] private float minWidthValue = .2f;
-        [SerializeField] private float maxWidthValue = 4;
+        [SerializeField] private const float eyeTrackingColliderRadius = 2.5f;
+        [SerializeField] private const float eyeTrackingColliderHeight = 8.9f;
 
         [Header("Squares related")]
         internal MeshRenderer meshRenderer;
         [SerializeField] internal Material OnHoverActiveMaterial;
         [SerializeField] internal Material OnHoverInactiveMaterial;
-        // Event to be invoked to debug logger, if needed
-        [SerializeField] private UnityEvent<GameObject> OnObjectHover;
 
         [Header("Snoring Audio Playback")]
-        private readonly OVRInput.RawButton keyForVoiceControl = OVRInput.RawButton.B;
-        public static float buttonHoldTime;
         internal EyeOutline eyeOutline;
         internal AudioSource[] audioSources;
-        internal static float snoringCooldownEndTime = 15.0f;
+        internal const float snoringCooldownEndTime = 15.0f;
         public static AudioClip snoringAudio;
         internal AudioClip playerSpottedAudio;
-
-        [Header("Vibration")]
-        private bool isVibrating;
 
         public static int OverallEyeInteractableInstanceCounter { get; private set; }
         public static event CounterChangeHandler OnEyeInteractableInstancesCounterChanged;
@@ -68,19 +52,13 @@ namespace Assets.Scripts.GazeTrackingFeature {
         void Start() {
             if (gameObject.layer == GazeLine.monkLayer) 
                 InitializeAudioSources();
-        }
-
-        private void Update() {
-            if (EyeTrackingDebug.isVocalPowerActive && EyeTrackingDebug.HasSnoringCooldownPassed()) GazeControl();
-        }
+        }        
 
         #region Initialization methods
         private void ComponentInit() {
-            duration = staringTimeToPressVocalKey + staringTimeToTalk;
-
             if (TryGetComponent<EyeOutline>(out var eO)) {
                 eyeOutline = eO;
-                eyeOutline.OutlineWidth = noWidthValue;
+                eyeOutline.OutlineWidth = EyeTrackingDebug.noWidthValue;
             }
             else Debug.LogWarning("EyeOutline component not found on: " + name);
 
@@ -145,118 +123,7 @@ namespace Assets.Scripts.GazeTrackingFeature {
         }
         #endregion
 
-        #region Eye control 
-        public void GazeControl() {
-            if (GazeLine.staredMonk != null && GazeLine.staredMonk.IsHovered) {
-                OnObjectHover?.Invoke(gameObject);
-                // Case 1: Hovering monk -> blue outline
-                OutlineWidthControl(Color.blue);
-
-                // Case 1.1 : Keep staring at the monk -> switch to yellow outline && Vocal Key enabled
-                if (HoveringTime > staringTimeToPressVocalKey) {
-                    isBeingStared = true;
-                    OutlineWidthControl(Color.yellow);
-                    // Case 1.1.1 : Keep staring at the monk after having both stared at it
-                    // and held the key for required amount of time -> switch to green outline && starts snoring
-                    if (HoveringTime > staringTimeToTalk && VocalKeyHoldingCheck()) {
-                        isBeingStared = false;
-                        readyToTalk = true;
-                        StartRightControllerStrongVibrationCoroutine();
-                        OutlineWidthControl(Color.green);
-                        if (snoringAudio != null) EyeTrackingDebug.SnoringAudioPlaybackTrigger();
-                        else Debug.LogWarning("snoringAudio is null -> Event not triggered!");
-                        readyToTalk = false;
-                    }
-                }
-            }
-            else return;
-        }
-
-        private bool VocalKeyHoldingCheck() {
-            bool isButtonHeld = false;
-            if (OVRInput.Get(keyForVoiceControl) && GazeLine.staredMonk.isBeingStared) {
-                StartCoroutine(GradualControllerVibration());
-                buttonHoldTime += Time.deltaTime;
-                if (buttonHoldTime >= duration) {
-                    isButtonHeld = true;
-                }
-            }
-            else buttonHoldTime = 0f;
-            return isButtonHeld;
-        }
-
-        internal void OutlineWidthControl(Color color) {
-            bool active = GazeLine.staredMonk.IsHovered;
-            EyeInteractable staredMonk = GazeLine.staredMonk;
-
-            if (active.Equals(false)) return;
-            else if (!staredMonk.eyeOutline) {
-                Debug.LogWarning("EyeOutline component is not assigned.");
-                return;
-            }
-
-            float lerpedWidth = Mathf.Lerp(minWidthValue, maxWidthValue, buttonHoldTime);
-            float desiredWidth = active switch {
-                true when staredMonk.IsHovered => staredMonk.maxWidthValue / 2,
-                true when staredMonk.IsHovered && staredMonk.isBeingStared => lerpedWidth,
-                true when staredMonk.IsHovered && staredMonk.readyToTalk => maxWidthValue,
-                _ => noWidthValue,
-            };
-
-            staredMonk.eyeOutline.OutlineMode = EyeOutline.Mode.OutlineAll;
-            staredMonk.eyeOutline.OutlineColor = color;
-            staredMonk.eyeOutline.OutlineWidth = desiredWidth;
-        }        
-
-        #region Vibration 
-        internal IEnumerator GradualControllerVibration() {
-            if (isVibrating) yield break;
-            isVibrating = true;
-
-            float maxAmplitude = 1.0f;
-            float maxFrequency = 1.0f;
-
-            while (buttonHoldTime < duration) {
-                float amplitude = Mathf.Lerp(0, maxAmplitude, buttonHoldTime / duration);
-                float frequency = Mathf.Lerp(0, maxFrequency, buttonHoldTime / duration);
-                OVRInput.SetControllerVibration(frequency, amplitude, OVRInput.Controller.RTouch);
-                yield return null;
-            }
-
-            // Ensure vibration is stopped at the end
-            StopRightControllerVibration();
-        }
-
-        internal void StartRightControllerStrongVibrationCoroutine() {
-            if (isVibrating) return;
-            StartCoroutine(RightControllerStrongVibrationCoroutine());
-        }
-
-        internal IEnumerator RightControllerStrongVibrationCoroutine() {
-            if (isVibrating) yield break;
-            isVibrating = true;
-
-            float vibDuration = 2.0f;
-            byte maxAmplitude = 1;
-            byte maxFrequency = 1;
-
-            OVRInput.SetControllerVibration(maxFrequency, maxAmplitude, OVRInput.Controller.RTouch);
-
-            // Wait for the duration
-            yield return new WaitForSeconds(vibDuration);
-
-            StopRightControllerVibration();
-        }
-
-        internal void StopRightControllerVibration() {
-            OVRInput.SetControllerVibration(0, 0, OVRInput.Controller.RTouch);
-            isVibrating = false;
-        }
-        #endregion
-        #endregion
-
         #region Player spotted audio playback
-
         private IEnumerator PlayPlayerSpottedAudioCoroutine() {
             if (audioSources[1].isPlaying) yield break;
 
