@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.000073461284, g: 0.00014288595, b: 0.0003183661, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -25859,8 +25859,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67978744717d2084da41bfbf8e3c66b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSnoringTime: 10
-  minSnoringTime: 4
+  OnObjectHover:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &1332526909
 Transform:
   m_ObjectHideFlags: 0
@@ -37666,9 +37667,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74a89e9196ea33142987a2e8b961a402, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activate: 0
-  mana: 10
-  manaSpeed: 0.5
 --- !u!135 &2027772333
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -40400,6 +40398,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.14
       objectReference: {fileID: 0}
+    - target: {fileID: 7565195968111864917, guid: f4ac951c16176334a8a4b5574c8d0bc1, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1486276778}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

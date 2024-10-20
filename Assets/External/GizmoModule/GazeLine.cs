@@ -73,7 +73,7 @@ namespace Assets.Scripts.GazeTrackingFeature {
                     mR.material = interactable.OnHoverInactiveMaterial;
                 // Case 1: Unhovering monk
                 else if (interactable.gameObject.layer == monkLayer) {
-                    interactable.eyeOutline.OutlineWidth = EyeInteractable.noWidthValue;
+                    interactable.eyeOutline.OutlineWidth = EyeTrackingDebug.noWidthValue;
                     interactable.isBeingStared = false;
                 }
             }

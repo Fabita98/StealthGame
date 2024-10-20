@@ -1,11 +1,17 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-public class WallpowerManager : MonoBehaviour
-{
+public class WallpowerManager : MonoBehaviour {
     public static WallpowerManager Instance { get; private set; }
-    [Header("Blue power variables")]
+
+    [Header("Blue power related variables")]
     public static bool isSpiritVisionActive = false;
-    public static float eyeClosingRequiredTime = 2f;
+    public const byte eyeClosingRequiredTime = 2;
+    public static bool isEnabled = false;
+    public static readonly List<GameObject> enemyinrange = new();
+    public static readonly List<GameObject> enemyHighlighted = new();
+    private float lastPowerEnabledTime;
+    private const byte bluePowerCooldown = 8;
 
     private void OnEnable() {
         Flower_animator_wallpower.OnBlueLotusPowerChanged += HandleBlueLotusPowerActivation;
@@ -14,6 +20,7 @@ public class WallpowerManager : MonoBehaviour
     private void OnDisable() {
         Flower_animator_wallpower.OnBlueLotusPowerChanged -= HandleBlueLotusPowerActivation;
     }
+    public bool HandleBlueLotusPowerActivation(bool isActive) => isSpiritVisionActive = isActive;
 
     private void Awake() { 
         if (Instance == null) {
@@ -33,12 +40,11 @@ public class WallpowerManager : MonoBehaviour
         else Flower_animator_wallpower.TriggerOnBlueLotusPowerChangeEvent(false);
     }
 
-    void Update()
-    {
-
+    void Update() {
+        if (BluePowerActivationCheck()) {
+            BluePowerUsage();
+        }
     }
-
-    public bool HandleBlueLotusPowerActivation(bool isActive) => isSpiritVisionActive = isActive;
 
     private void DecreaseBluePowerCounter() {
         int currentBlueLotusCounterValue = PlayerPrefsManager.GetInt(PlayerPrefsKeys.BlueLotus, 0);
@@ -56,20 +62,33 @@ public class WallpowerManager : MonoBehaviour
     }
 
     private void BluePowerUsage() {
-        if (BluePowerActivationCheck()) {
-            if (CheckEyeClosed()) { 
-                //to add the blue power effective usage: ask Max
-            
-            
+        if (CheckEyeClosed()) {
+            //if ability is used decrease mana and invoke outline; disable outline when mana is over
+            if (isSpiritVisionActive && SpiritVision.mana > 0) {
+                SpiritVision.mana -= Time.deltaTime * SpiritVision.manaSpeed;
+                SpiritVision.mana = Mathf.Clamp(SpiritVision.mana, -0.1f, 30);
+                if (!isEnabled) {
+                    Invoke("enableVision", 1);
+                    isEnabled = true;
+                    DecreaseBluePowerCounter();
+                }
             }
-        } else return;
+            else if (isEnabled) DisableVision();
+            if (isSpiritVisionActive) {
+                lastPowerEnabledTime = Time.time;
+                if (Time.time - lastPowerEnabledTime > bluePowerCooldown) {
+                    isEnabled = false;
+                    isSpiritVisionActive = false;
+                }
+            }
+        }
     }
 
     private bool CheckEyeClosed() {
         float eyeClosedL = 0;
         float eyeClosedR = 0;
 
-        var isValidData = DataTracker.ovrexpr.ValidExpressions;
+        bool isValidData = DataTracker.ovrexpr.ValidExpressions;
 
         if (DataTracker.ovrexpr.ValidExpressions) {
             eyeClosedL = DataTracker.ovrexpr[OVRFaceExpressions.FaceExpression.EyesClosedL];
@@ -83,5 +102,19 @@ public class WallpowerManager : MonoBehaviour
             }
         }
         return eyeClosedL > eyeClosingRequiredTime && eyeClosedR > eyeClosingRequiredTime;
+    }
+
+    private void EnableVision() {
+        foreach (GameObject enemy in enemyinrange) {
+            enemy.GetComponent<Outline>().enabled = true;
+            enemyHighlighted.Add(enemy);
+        }
+    }
+
+    private void DisableVision() {
+        isEnabled = false;
+        foreach (GameObject enemy in enemyHighlighted) {
+            enemy.GetComponent<Outline>().enabled = false;
+        }
     }
 }

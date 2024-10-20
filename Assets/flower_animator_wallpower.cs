@@ -73,7 +73,7 @@ public class Flower_animator_wallpower : MonoBehaviour
                 dissolveProgress += Time.deltaTime;
                 float dissolveAmount = Mathf.Clamp01((currentTime - dissolveStartTime) / dissolveDuration);
                 an.SetTrigger("activate");
-                playsound();
+                PlaySound();
                 foreach (Transform petal in petalsGO.transform)
                 {
                     Renderer renderer = petal.GetComponent<Renderer>();
@@ -108,15 +108,16 @@ public class Flower_animator_wallpower : MonoBehaviour
         isConsuming = true;
         dissolveProgress = 0.0f;
         dissolveStartTime = Time.time + dissolveDelay;
-        if (player.TryGetComponent<SpiritVision>(out var sv)) sv.mana += 8;
+        if (player.TryGetComponent<SpiritVision>(out _)) SpiritVision.mana += 8;
         else Debug.LogError("SpiritVision component not found on player");
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "RightHand" || other.tag == "LeftHand")
+        if (other.CompareTag("RightHand") || other.CompareTag("LeftHand"))
         {
-            if (OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, OVRInput.Controller.LTouch) > 0.1f || OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, OVRInput.Controller.RTouch) > 0.1f)
+            if (OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, OVRInput.Controller.LTouch) > 0.1f ||
+                OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, OVRInput.Controller.RTouch) > 0.1f)
             {
                 inHand = true;
             }
@@ -125,12 +126,12 @@ public class Flower_animator_wallpower : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "RightHand" || other.tag == "LeftHand")
+        if (other.CompareTag("RightHand") || other.CompareTag("LeftHand"))
         {
             inHand = false;
         }
     }
-    void playsound()
+    void PlaySound()
     {
         sound.Play();
     }
