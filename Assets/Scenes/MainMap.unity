@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.008999066, g: 0.0131014455, b: 0.02044398, a: 1}
+  m_IndirectSpecularColor: {r: 0.0031405212, g: 0.0061706034, b: 0.014241769, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1780,7 +1780,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0bc58b082a49d0e48a76910cfc94d034, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.2
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1789,7 +1789,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 50
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -4388,7 +4388,7 @@ PrefabInstance:
     - target: {fileID: 7702964666238492084, guid: d24db46c7c2c95545b61b927247d3218, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: e4bf99b633bf48e47a722b419f4bc201, type: 3}
+      objectReference: {fileID: 8300000, guid: 2fa0b2047250b48448cbcc5903b137c0, type: 3}
     - target: {fileID: 8939562465482850582, guid: d24db46c7c2c95545b61b927247d3218, type: 3}
       propertyPath: m_Name
       value: GuideStatue 3
@@ -6213,7 +6213,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5aee0c6b568bb8945bc81407cc5a36d6, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.2
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -6222,7 +6222,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 50
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -7987,7 +7987,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &487311503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12025,7 +12025,7 @@ PrefabInstance:
     - target: {fileID: 7702964666238492084, guid: d24db46c7c2c95545b61b927247d3218, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 7224fe3cd101c0341959639805ad650b, type: 3}
+      objectReference: {fileID: 8300000, guid: 54e77790b35eeac4588d3514a4ff83d8, type: 3}
     - target: {fileID: 8939562465482850582, guid: d24db46c7c2c95545b61b927247d3218, type: 3}
       propertyPath: m_Name
       value: GuideStatue 2
@@ -12783,7 +12783,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7357528760791184969, guid: 0426423c1f4e6644685c371e417d63a4, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8628360076603008337, guid: 0426423c1f4e6644685c371e417d63a4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13831,7 +13831,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &818872390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20340,10 +20340,10 @@ PrefabInstance:
     - target: {fileID: 7702964666238492084, guid: d24db46c7c2c95545b61b927247d3218, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 6e0761e01abed994aa48da5ee3a5e5c0, type: 3}
+      objectReference: {fileID: 8300000, guid: f125ab5b34ca56e4da09b7d4a86cde5d, type: 3}
     - target: {fileID: 8939562465482850582, guid: d24db46c7c2c95545b61b927247d3218, type: 3}
       propertyPath: m_Name
-      value: GuideStatue
+      value: GuideStatue 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -38332,7 +38332,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0cf9b96f53ab52f43b63cef6ef1e15c9, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.25
+  m_Volume: 0.12
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -38341,7 +38341,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 50
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -40345,7 +40345,7 @@ PrefabInstance:
     - target: {fileID: 7702964666238492084, guid: d24db46c7c2c95545b61b927247d3218, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 0a9334c6a3135dd40af3903a75b73500, type: 3}
+      objectReference: {fileID: 8300000, guid: 495d135a8d1d6234ca390a77b6667094, type: 3}
     - target: {fileID: 8939562465482850582, guid: d24db46c7c2c95545b61b927247d3218, type: 3}
       propertyPath: m_Name
       value: GuideStatue

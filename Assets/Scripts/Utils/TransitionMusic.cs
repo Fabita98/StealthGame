@@ -17,7 +17,7 @@ public class TransitionMusic : MonoBehaviour
         if (initial)
         {
             audio1.Play();
-            target = 0.6f;
+            target = 0.25f;
             duration = 3f;
             StartCoroutine(FadeAudioSource.StartFade(audio1, duration, target));
         }
@@ -43,7 +43,7 @@ public class TransitionMusic : MonoBehaviour
         StartCoroutine(FadeAudioSource.StartFade(audio1, duration, target));
         audio2.PlayDelayed(4);
         duration = 4;
-        target = 0.2f;
+        target = 0.1f;
         StartCoroutine(FadeAudioSource.StartFade(audio2, duration, target));
     }
 
