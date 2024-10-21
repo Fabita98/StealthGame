@@ -15,6 +15,8 @@ public class lightHR : MonoBehaviour
     void Start()
     {
         averageHR = 65;
+        PlayerPrefsManager.SetFloat(PlayerPrefsKeys.WhiteLotus, Mathf.Clamp(currentEnergy / maxEnergy * 100, 0, 100));
+        UIController.Instance.AbilitiesUI.SetAbilitiesCount();
     }
     private float incrementSpeed= 0.0005f;
 
@@ -94,7 +96,8 @@ public class lightHR : MonoBehaviour
                 OscillateLight();
             }
             
-            PlayerPrefsManager.SetFloat(PlayerPrefsKeys.WhiteLotus, Mathf.Clamp(currentEnergy / 30 * 100, 0, 100));
+            PlayerPrefsManager.SetFloat(PlayerPrefsKeys.WhiteLotus, Mathf.Clamp(currentEnergy / maxEnergy * 100, 0, 100));
+            UIController.Instance.AbilitiesUI.SetAbilitiesCount();
         }
 
         // Debug per mostrare l'energia corrente
@@ -115,7 +118,8 @@ public class lightHR : MonoBehaviour
             currentEnergy = maxEnergy;
         }
         
-        PlayerPrefsManager.SetFloat(PlayerPrefsKeys.WhiteLotus, Mathf.Clamp(currentEnergy / 30 * 100, 0, 100));
+        PlayerPrefsManager.SetFloat(PlayerPrefsKeys.WhiteLotus, Mathf.Clamp(currentEnergy / maxEnergy * 100, 0, 100));
+        UIController.Instance.AbilitiesUI.SetAbilitiesCount();
         Debug.Log("Energia ricaricata: " + currentEnergy);
     }
 }
