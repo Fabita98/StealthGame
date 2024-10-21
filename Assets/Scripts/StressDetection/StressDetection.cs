@@ -1,9 +1,12 @@
+using System;
 using System.Linq;
 using UnityEngine;
 using MathNet.Numerics.LinearAlgebra;
+using Random = UnityEngine.Random;
 
 public class StressDetection : MonoBehaviour
 {
+    [NonSerialized] public float predictedStressValue;
     [SerializeField] private DataTracker DataTracker;
     private KalmanFilter kalmanFilter;
     private Matrix<float> z_preds;    // Predicted states (dz-dimensional)
@@ -12,13 +15,22 @@ public class StressDetection : MonoBehaviour
     private int dz = 1;  // State dimension (stress)
     // private int dx = 125 - 2;  // Observation dimension (eye, movement, controller, time)
     // private int dx = 87 - 2;  // Observation dimension (movement, controller, time)
-    private int dx = 78 - 2;  // Observation dimension (movement, controller)
+    // private int dx = 78 - 2;  // Observation dimension (movement, controller)
+    private int dx = 126;  // all
 
     private Matrix<float> transitionMatrix;
     private Matrix<float> observationMatrix;
 
+
+    private static StressDetection _instance;
+    public static StressDetection Instance => _instance;
+
     void Start()
     {
+        if (_instance == null)
+        {
+            _instance = this;
+        }
         // Initialize the Kalman filter with a dynamic state and observation dimension
         kalmanFilter = new KalmanFilter(dz, dx);
 
@@ -34,10 +46,10 @@ public class StressDetection : MonoBehaviour
     void LateUpdate()
     {
         // Collect current frame data
-        float[] eyeMovement = GetEyeMovementData();
-        float[] headMovement = GetHeadMovementData();
-        float[] controllerPress = GetControllerPressData();
-        float heartRate = GetHeartRateData();
+        // float[] eyeMovement = GetEyeMovementData();
+        // float[] headMovement = GetHeadMovementData();
+        // float[] controllerPress = GetControllerPressData();
+        // float heartRate = GetHeartRateData();
 
         // Combine inputs into a single observation vector
         // var observation = Vector<float>.Build.DenseOfArray(new float[]
@@ -51,13 +63,15 @@ public class StressDetection : MonoBehaviour
         Vector<float> observation = Vector<float>.Build.DenseOfArray(DataTracker.GetLatestDataRow().Skip(2).ToArray());
 
         // Apply the Kalman filter at each frame
-        float[] controlInput = GetControlInput(); // Control input (u_test)
+        // float[] controlInput = GetControlInput(); // Control input (u_test)
+        float[] controlInput = null;
 
         // Call function to apply the Kalman filter and get the updated state
         var predictedStress = ApplyOnlineInputKalman(dz, dx, observation, controlInput);
         
         // Output the predicted stress level
-        Debug.LogWarning("Predicted Stress(" + Time.timeAsDouble + "): "  + predictedStress.Item1[0]);
+        predictedStressValue = predictedStress.Item1[0];
+        Debug.LogWarning("Predicted Stress(" + Time.timeAsDouble + "): "  + predictedStressValue);
         // Debug.LogWarning("Predicted Stress(" + Time.timeAsDouble + "): "  + predictedStress.Item2);
     }
 
@@ -77,12 +91,15 @@ public class StressDetection : MonoBehaviour
         if (Time.frameCount == 1) // First frame
         {
             (nextState, nextCovariance) = kalmanFilter.FilterUpdate(Vector<float>.Build.Dense(dz, 0), Matrix<float>.Build.DenseIdentity(dz),
-                observation, transitionMatrix, observationMatrix, Vector<float>.Build.DenseOfArray(controlInput));
+                observation, transitionMatrix, observationMatrix 
+                // , Vector<float>.Build.DenseOfArray(controlInput)
+                );
         }
         else // Update based on previous state
         {
-            (nextState, nextCovariance) = kalmanFilter.FilterUpdate(z_preds.Row(0), cov, observation, transitionMatrix, observationMatrix,
-                Vector<float>.Build.DenseOfArray(controlInput));
+            (nextState, nextCovariance) = kalmanFilter.FilterUpdate(z_preds.Row(0), cov, observation, transitionMatrix, observationMatrix
+                // , Vector<float>.Build.DenseOfArray(controlInput)
+                );
         }
 
         // Update the predicted state and covariance

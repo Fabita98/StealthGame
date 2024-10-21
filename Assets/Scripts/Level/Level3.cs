@@ -10,6 +10,7 @@ public class Level3 : Level
     private LevelConfig _levelConfig;
     private int _processNumber;
     private bool _isReachedToDestination;
+    private bool _isSaved;
 
     private void Awake()
     {
@@ -64,10 +65,14 @@ public class Level3 : Level
 
     private void firstProcess()
     {
+        if (!_isSaved)
+        {
+            PlayerPrefsManager.SaveGame(_levelConfig.playerSpawnPoint, 3);
+            _isSaved = true;
+        }
         _timer += Time.deltaTime;
         if (PlayerPrefsManager.GetInt(PlayerPrefsKeys.BlueLotus, 0) > 0)
         {
-            PlayerPrefsManager.SaveGame(_levelConfig.playerSpawnPoint, 3);
             _levelConfig.otherObjects[0].GetComponent<DoorBehavior>().DoorInteraction();
             SaveCompletedProcess(2);
         }

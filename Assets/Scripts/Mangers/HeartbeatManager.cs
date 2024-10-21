@@ -7,9 +7,15 @@ public class HeartbeatManager : MonoBehaviour
     public TMPro.TextMeshProUGUI max, min, avg;
     public static int avgINT = 0;
 
+    private static HeartbeatManager _instance;
+    public static HeartbeatManager Instance => _instance;
+
     private void Start()
     {
-        // Inizializza il gestore delle statistiche dei battiti cardiaci
+        if (_instance == null)
+        {
+            _instance = this;
+        }
         heartbeatStats = new HeartbeatStatistics();
     }
 
@@ -28,7 +34,7 @@ public class HeartbeatManager : MonoBehaviour
     {
         id = "player";
     }
-    private int GetPlayerHeartbeat()
+    public int GetPlayerHeartbeat()
     {
         // Simula il recupero del battito cardiaco del giocatore
         // Puoi sostituire questo con la logica effettiva per ottenere il battito cardiaco del giocatore

@@ -11,12 +11,13 @@ public class SleepAction : FSMAction
     
     public override void Execute(BaseStateMachine machine)
     {
-        var sleepSensor = machine.GetComponent<EnemySleepSensor>();
+        // var sleepSensor = machine.GetComponent<EnemySleepSensor>();
         EnemyUtility enemyUtility = machine.GetComponent<EnemyUtility>();
         if (machine.isStartOfSleep)
         {
             machine.Stop();
             enemyUtility.ChooseSleepAnimation();
+            enemyUtility.DisableEyeLights();
             EyeTrackingDebug.SnoringAudioPlaybackTrigger();
             machine.isStartOfPatrol = true;
             machine.isStartOfChase = true;

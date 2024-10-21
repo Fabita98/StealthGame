@@ -26,7 +26,7 @@ namespace Assets.Scripts.GazeTrackingFeature {
         [Header("Snoring Audio Playback")]
         internal EyeOutline eyeOutline;
         internal AudioSource[] audioSources;
-        internal const float snoringCooldownEndTime = 15.0f;
+        public static float snoringCooldownEndTime = 15.0f;
         public static AudioClip snoringAudio;
         internal AudioClip playerSpottedAudio;
 

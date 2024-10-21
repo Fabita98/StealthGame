@@ -1,3 +1,5 @@
+using System;
+using Assets.Scripts.GazeTrackingFeature;
 using UnityEngine;
 using UnityEngine.UI;  // Required for UI elements
 
@@ -7,6 +9,13 @@ public class DynamicSliderTimer : MonoBehaviour
     public float totalTime = 10f;  // Total time in seconds
     private float timeRemaining;   // Current remaining time
     private bool isTimerRunning = false;
+    // private GameObject _enemyGameObject;
+
+    private void Awake()
+    {
+        // _enemyGameObject = transform.parent.parent.gameObject;
+        totalTime = EyeInteractable.snoringCooldownEndTime;
+    }
 
     void OnEnable()
     {

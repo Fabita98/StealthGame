@@ -85,6 +85,7 @@ public class EnemyUtility : MonoBehaviour
 
     public void SetEyeLights(bool active)
     {
+        eyeLights.SetActive(true);
         if (active)
         {
             eyeLights.GetComponent<Light>().color = Color.red;            
@@ -94,6 +95,11 @@ public class EnemyUtility : MonoBehaviour
             eyeLights.GetComponent<Light>().color = Color.white;
         }
         // eyeLights.SetActive(active);
+    }
+
+    public void DisableEyeLights()
+    {
+        eyeLights.SetActive(false);
     }
     
 }

@@ -411,14 +411,19 @@ public class DataTracker : MonoBehaviour {
 				AddToDictionary("timestampEndFixedMillisecond", actualTime.ToString());
 			}
 
-			AddToDictionary("teleportInfo", teleported.ToString());
+			// AddToDictionary("teleportInfo", teleported.ToString());
+			AddToDictionary("HeartBeatRate",HeartbeatManager.Instance.GetPlayerHeartbeat().ToString());
+			AddToDictionary("MaxHeartBeatRate",HeartbeatManager.Instance.GetMaxHeartbeatForId("player").ToString());
+			AddToDictionary("MinHeartBeatRate",HeartbeatManager.Instance.GetMinHeartbeatForId("player").ToString());
+			AddToDictionary("AverageHeartBeatRate",HeartbeatManager.Instance.GetAverageHeartbeatForId("Player").ToString());
+			AddToDictionary("PredictedKalmanStress", StressDetection.Instance.predictedStressValue);
 			// AddToDictionary("LastCheckpoint", GameManager.Instance.lastCheckpointName);
 			// AddToDictionary("IsGunGrabbed", gun.IsGrabbed.ToString());
 			// AddToDictionary("Health", player.health.ToString());
 			// AddToDictionary("Oxygen", player.ox.ToString());
 			// AddToDictionary("Deaths", GameManager.Instance.deathCounter);
-			AddToDictionary("Command", lastCommand);
-			lastCommand = "";
+			// AddToDictionary("Command", lastCommand);
+			// lastCommand = "";
 		}
 	}
 

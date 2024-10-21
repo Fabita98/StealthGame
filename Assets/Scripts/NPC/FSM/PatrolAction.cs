@@ -7,8 +7,8 @@ using UnityEngine.AI;
 [CreateAssetMenu(menuName = "FSM/Actions/Patrol")]
 public class PatrolAction : FSMAction
 {
-    [NonSerialized] private float timer = 0;
-    [NonSerialized] private bool stopAnimationChoose = false;
+    // private float timer = 0;
+    // private bool stopAnimationChoose = false;
 
 
     public override void Execute(BaseStateMachine machine)
@@ -16,6 +16,7 @@ public class PatrolAction : FSMAction
         NavMeshAgent navMeshAgent = machine.GetComponent<NavMeshAgent>();
         MovingPoints movingPoints = machine.GetComponent<MovingPoints>();
         EnemySightSensor enemySightSensor = machine.GetComponent<EnemySightSensor>();
+        EnemyAttackSensor enemyAttackSensor = machine.GetComponent<EnemyAttackSensor>();
         EnemyUtility enemyUtility = machine.GetComponent<EnemyUtility>();
 
         
@@ -24,23 +25,24 @@ public class PatrolAction : FSMAction
             enemyUtility.SetEyeLights(false);
             navMeshAgent.SetDestination(movingPoints.GetNextCircular(navMeshAgent).position);
             machine.Move();
-            timer = 0;
-            stopAnimationChoose = false;
+            // timer = 0;
+            machine.patrolWaitTimer = 0;
+            machine.stopAnimationChoose = false;
             machine.isStartOfPatrol = false;
             machine.isStartOfChase = true;
             machine.isStartOfAttack = true;
             machine.isStartOfSleep = true;
-            machine.GetComponent<EnemySightSensor>().ChangeEscapedState(false);
-            machine.GetComponent<EnemyAttackSensor>().StartAttack = false;
-            machine.GetComponent<EnemyAttackSensor>().IsAttackCompleted = false;
+            enemySightSensor.ChangeEscapedState(false);
+            enemyAttackSensor.StartAttack = false;
+            enemyAttackSensor.IsAttackCompleted = false;
         }
 
         if (movingPoints.Count() <= 1)
         {
-            if (!stopAnimationChoose)
+            if (!machine.stopAnimationChoose)
             {
                 machine.Stop(false);
-                stopAnimationChoose = true;   
+                machine.stopAnimationChoose = true;   
             }
         }
 
@@ -48,30 +50,31 @@ public class PatrolAction : FSMAction
         {
             if (movingPoints.HasReached(navMeshAgent))
             {
-                timer += Time.deltaTime;
-                if (timer < machine.WaitTime)
+                machine.patrolWaitTimer += Time.deltaTime;
+                if (machine.patrolWaitTimer < machine.WaitTime)
                 {
-                    if(!stopAnimationChoose)
-                    {
-                        machine.Stop();
-                        stopAnimationChoose = true;
-                    }   
+                    machine.Stop();
+                    // if(!stopAnimationChoose)
+                    // {
+                    //     machine.Stop();
+                    //     stopAnimationChoose = true;
+                    // }   
                 }
                 else
                 {
                     navMeshAgent.SetDestination(movingPoints.GetNextCircular(navMeshAgent).position);
                     machine.Move();
-                    timer = 0;
-                    stopAnimationChoose = false;
+                    machine.patrolWaitTimer = 0;
+                    machine.stopAnimationChoose = false;
                 }
             }
         
-            if (timer > machine.WaitTime)
+            if (machine.patrolWaitTimer > machine.WaitTime)
             {
                 navMeshAgent.SetDestination(movingPoints.GetNextCircular(navMeshAgent).position);
                 machine.Move();
-                timer = 0;
-                stopAnimationChoose = false;
+                machine.patrolWaitTimer = 0;
+                machine.stopAnimationChoose = false;
             }            
    
         }

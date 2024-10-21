@@ -10,6 +10,7 @@ public class Level2 : Level
     private LevelConfig _levelConfig;
     private int _processNumber;
     private bool _isReachedToDestination;
+    private bool _isSaved = false;
 
     private void Awake()
     {
@@ -56,10 +57,14 @@ public class Level2 : Level
 
     private void firstProcess()
     {
+        if (!_isSaved)
+        {
+            PlayerPrefsManager.SaveGame(_levelConfig.playerSpawnPoint, 2);
+            _isSaved = true;
+        }
         _timer += Time.deltaTime;
         if (PlayerPrefsManager.GetInt(PlayerPrefsKeys.PinkLotus, 0) > 0)
         {
-            PlayerPrefsManager.SaveGame(_levelConfig.playerSpawnPoint, 2);
             SaveCompletedProcess(2);
         }
     }

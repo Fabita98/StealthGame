@@ -6,10 +6,10 @@ using UnityEngine.AI;
 [CreateAssetMenu(menuName = "FSM/Actions/Chase")]
 public class ChaseAction : FSMAction
 {
-    [NonSerialized] private float timer = 0;
-    [NonSerialized] private float alertTimer = 0;
-    [NonSerialized] private float waitTime = 0;
-    [NonSerialized] private bool stopAnimationChoose = false;
+    // [NonSerialized] private float timer = 0;
+    // [NonSerialized] private float alertTimer = 0;
+    // [NonSerialized] private float waitTime = 0;
+    // [NonSerialized] private bool stopAnimationChoose = false;
 
     public override void Execute(BaseStateMachine machine)
     {
@@ -25,22 +25,22 @@ public class ChaseAction : FSMAction
             eyeInteractable.StartPlayerSpottedAudioCoroutine();
             enemyUtility.SetEyeLights(true);
             navMeshAgent.SetDestination(playerTransform.position);
-            stopAnimationChoose = false;
+            machine.stopAnimationChoose = false;
             machine.isStartOfChase = false;
             machine.isStartOfPatrol = true;
             machine.isStartOfAttack = true;
             machine.isStartOfSleep = true;
             machine.Stop();
             enemyUtility.SetAnimation(alert: true);
-            timer = 0;
+            machine.chaseAlertTimer = 0;
         }
 
         if (machine.isChaseReset)
         {
-            stopAnimationChoose = false;
+            machine.stopAnimationChoose = false;
         }
-        timer += Time.deltaTime;
-        if (timer > machine.AlertTime)
+        machine.chaseAlertTimer += Time.deltaTime;
+        if (machine.chaseAlertTimer > machine.AlertTime)
         {
             if (movingPoints.HasReached(navMeshAgent, playerTransform))
             {
@@ -51,26 +51,26 @@ public class ChaseAction : FSMAction
                 // if (!enemySightSensor.Escaped(playerTransform, machine.transform, enemyUtility.viewRadius))
                 if (!enemySightSensor.Escaped(machine, machine.transform, enemyUtility.viewRadius))
                 {
-                    waitTime = machine.ChaseWaitTime;
+                    machine.chaseWaitTimer = machine.ChaseWaitTime;
                     machine.Move(true);
                     Transform lastSeenPlayerTransform = enemySightSensor.GetLastSeenPlayerTransform();
                     navMeshAgent.SetDestination(lastSeenPlayerTransform.position);   
                 }
                 else 
                 {
-                    waitTime -= Time.deltaTime;
-                    if (!stopAnimationChoose)
+                    machine.chaseWaitTimer -= Time.deltaTime;
+                    if (!machine.stopAnimationChoose)
                     {
                         machine.Stop(false);
-                        stopAnimationChoose = true;   
+                        machine.stopAnimationChoose = true;   
                     }
                 }
 
-                if (waitTime <= .1f)
+                if (machine.chaseWaitTimer <= .1f)
                 {
                     enemySightSensor.ChangeEscapedState(true);
                     machine.isStartOfChase = true;
-                    stopAnimationChoose = false;
+                    machine.stopAnimationChoose = false;
                 }
             }
         }

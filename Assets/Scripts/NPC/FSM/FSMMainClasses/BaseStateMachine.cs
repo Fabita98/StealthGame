@@ -26,7 +26,12 @@ public class BaseStateMachine : MonoBehaviour
     [NonSerialized] public bool isStartOfPatrol;
     [NonSerialized] public bool isStartOfAttack;
     [NonSerialized] public bool isStartOfSleep;
+    
     [NonSerialized] public bool stopAnimationChoose;
+    
+    [NonSerialized] public float patrolWaitTimer;
+    [NonSerialized] public float chaseAlertTimer;
+    [NonSerialized] public float chaseWaitTimer;
     private EnemyUtility enemyUtility;
     private Dictionary<Type, Component> _cachedComponents;
     private int _updateCounter;
