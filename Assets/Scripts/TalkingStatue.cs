@@ -40,10 +40,9 @@ public class TalkingStatue : MonoBehaviour
                 smoke.SetActive(true);
                 popSound.Play();
                 Invoke("show", 1f);
-                Invoke("disappear", 10f);
+                Invoke("disappear", voice.clip.length+2f);
             }
-            
-            Invoke("cooldown", 1.5f);
+           
             Invoke("talk", 1.5f);
             firstTime = false;
         }

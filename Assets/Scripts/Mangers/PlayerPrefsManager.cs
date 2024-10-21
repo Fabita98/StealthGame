@@ -86,7 +86,7 @@ public class PlayerPrefsManager : MonoBehaviour
         if (PlayerPrefs.HasKey(key.ToString()))
         {
             value = PlayerPrefs.GetInt(key.ToString());
-            Debug.Log("Value is: "+ value);
+            //Debug.Log("Value is: "+ value);
         }
         else
         {
