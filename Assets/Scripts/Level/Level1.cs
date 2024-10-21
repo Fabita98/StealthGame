@@ -58,7 +58,7 @@ public class Level1 : Level
     {
         _timer += Time.deltaTime;
         _levelConfig.pathBlockingGameObject.SetActive(true);
-        if (PlayerPrefsManager.GetInt(PlayerPrefsKeys.WhiteLotus, 0) > 0)
+        if (PlayerPrefsManager.GetFloat(PlayerPrefsKeys.WhiteLotus, 0) > 0)
         {
             _levelConfig.pathBlockingGameObject.SetActive(false);
             SaveCompletedProcess(2);

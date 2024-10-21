@@ -93,6 +93,8 @@ public class lightHR : MonoBehaviour
             {
                 OscillateLight();
             }
+            
+            PlayerPrefsManager.SetFloat(PlayerPrefsKeys.WhiteLotus, Mathf.Clamp(currentEnergy / 30 * 100, 0, 100));
         }
 
         // Debug per mostrare l'energia corrente
@@ -112,6 +114,8 @@ public class lightHR : MonoBehaviour
         {
             currentEnergy = maxEnergy;
         }
+        
+        PlayerPrefsManager.SetFloat(PlayerPrefsKeys.WhiteLotus, Mathf.Clamp(currentEnergy / 30 * 100, 0, 100));
         Debug.Log("Energia ricaricata: " + currentEnergy);
     }
 }
