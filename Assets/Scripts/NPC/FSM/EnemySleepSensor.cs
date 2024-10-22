@@ -12,6 +12,7 @@ public class EnemySleepSensor : MonoBehaviour
 
     public bool IsSleeping()
     {
+        // return isSleep;
         return eyeInteractable.readyToTalk;
     }
 

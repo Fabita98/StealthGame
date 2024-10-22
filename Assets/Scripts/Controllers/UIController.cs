@@ -13,7 +13,7 @@ public class UIController : MonoBehaviour
     private static UIController _instance;
     public static UIController Instance => _instance;
     
-    void Start()
+    void Awake()
     {
         if (_instance == null)
         {

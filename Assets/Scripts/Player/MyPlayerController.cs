@@ -193,9 +193,13 @@ public class MyPlayerController : MonoBehaviour
     private bool playerControllerEnabled = false;
     [HideInInspector] public bool isHiding = false;
     public GameObject torchGO;
+    
     public static MyPlayerController Instance => _instance;
     private static MyPlayerController _instance;
 
+    [HideInInspector] public int isInStressfulArea = 0;
+
+    
     void Start()
     {
         // Add eye-depth as a camera offset from the player controller

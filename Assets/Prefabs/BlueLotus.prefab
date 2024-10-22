@@ -5010,6 +5010,7 @@ GameObject:
   - component: {fileID: 5451964759622795614}
   - component: {fileID: 1317744725008047371}
   - component: {fileID: 7565195968111864917}
+  - component: {fileID: 5769597915235167747}
   m_Layer: 10
   m_Name: BlueLotus
   m_TagString: Untagged
@@ -5214,6 +5215,19 @@ MonoBehaviour:
   player: {fileID: 0}
   petalsGO: {fileID: 9205241132135608721}
   sound: {fileID: 1988631961387984649}
+--- !u!114 &5769597915235167747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3765655703283292593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0bc01689ad66274886cedde75de2e12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 2
 --- !u!1 &4338799133502447699
 GameObject:
   m_ObjectHideFlags: 0

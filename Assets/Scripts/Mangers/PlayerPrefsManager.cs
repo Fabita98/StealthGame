@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 /// <summary>
@@ -16,6 +18,7 @@ public enum PlayerPrefsKeys
     GotFirstWhiteLotus,
     GotFirstPinkLotus,
     GotFirstBlueLotus,
+    LotusInventory,
     Level1Process,
     Level2Process,
     Level3Process,
@@ -164,5 +167,26 @@ public class PlayerPrefsManager : MonoBehaviour
         GameController.Instance.CheckpointController.SetCheckpoint(playerTransform);
         if(level != -100)
             SetInt(PlayerPrefsKeys.Level, level);
+    }
+    
+    public static void SetIntList(PlayerPrefsKeys key, List<int> list)
+    {
+        string listString = string.Join(",", list);
+        PlayerPrefs.SetString(key.ToString(), listString);
+    }
+
+    public static List<int> GetIntList(PlayerPrefsKeys key, int defaultValue = 0)
+    {
+        string listString = PlayerPrefs.GetString(key.ToString(), string.Empty);
+
+        if (string.IsNullOrEmpty(listString))
+        {
+            return new List<int>();
+        }
+
+        return listString.Split(',').Select(s => {
+            int.TryParse(s, out int num); 
+            return num; 
+        }).ToList();
     }
 }

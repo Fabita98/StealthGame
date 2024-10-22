@@ -18,6 +18,7 @@ TagManager:
   - HidingArea
   - Shadow
   - Level1Objective
+  - StressfulArea
   layers:
   - Default
   - TransparentFX

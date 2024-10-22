@@ -104,6 +104,10 @@ public class EnemySightSensor : MonoBehaviour
     
     public bool Escaped(BaseStateMachine machine, Transform enemyTransform, float escapeDistance)
     {
+        if (playerController.isHiding)
+        {
+            return true;
+        }
         if (Vector3.Distance(_lastSeenPlayerTransform.position, enemyTransform.position) > escapeDistance)
         {
             machine.isChaseReset = true;
