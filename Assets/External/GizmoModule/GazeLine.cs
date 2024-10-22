@@ -64,7 +64,6 @@ namespace Assets.Scripts.GazeTrackingFeature {
         }
 
         public void UnSelect(bool clear = false) {
-            staredMonk = null;
             foreach (EyeInteractable interactable in eyeInteractablesList) {
                 interactable.IsHovered = false;
                 EyeInteractable.HoveringTime = 0;
