@@ -19,6 +19,9 @@ Erbeilo3D/
 # Never ignore Asset meta data
 !/[Aa]ssets/**/*.meta
 
+# Ignore data files like .csv
+/[Aa]ssets/[Dd]ata/[Dd]ataTracker"
+
 # Recordings can get excessive in size
 /[Rr]ecordings/
 
@@ -75,3 +78,5 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+Assets/Data/
