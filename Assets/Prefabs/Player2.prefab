@@ -31114,6 +31114,7 @@ GameObject:
   - component: {fileID: 5105461261561387018}
   - component: {fileID: 4243567915912833793}
   - component: {fileID: 4024089326611149326}
+  - component: {fileID: 879627029185382565}
   m_Layer: 8
   m_Name: Player2
   m_TagString: Player
@@ -31257,6 +31258,7 @@ MonoBehaviour:
   crouchHeightDifference: 0.5
   isHiding: 0
   torchGO: {fileID: 8679616797959578225}
+  isInStressfulArea: 0
 --- !u!114 &5105461261561387018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31293,6 +31295,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91a26430a45353749b780d87db481bee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!54 &879627029185382565
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8115332942976373740}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &8118371572820213147
 GameObject:
   m_ObjectHideFlags: 0
