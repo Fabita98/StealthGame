@@ -26,10 +26,11 @@ public class Flower_animator_light : MonoBehaviour
     void Update()
     {
         // Controlla se il tasto � premuto
-        if ((Input.GetKeyDown(KeyCode.Space) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger)) && inHand)
+        if ((Input.GetKeyDown(KeyCode.Space) || OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) ||
+     OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger)) && inHand)
         {
             holdStartTime = Time.time;
-            isHolding = true;
+            isHolding = true;            
 
             // Attiva il sistema di particelle
             if (fallParticles != null)
@@ -38,6 +39,14 @@ public class Flower_animator_light : MonoBehaviour
             }
         }
 
+        if (isHolding) // add gradual vibration
+        {
+            float amplitude = Mathf.Lerp(0, 1f, (Time.time - holdStartTime) / holdDuration);
+            float frequency = Mathf.Lerp(0, 1f, (Time.time - holdStartTime) / holdDuration);
+            OVRInput.SetControllerVibration(frequency, amplitude, OVRInput.Controller.LTouch);
+            OVRInput.SetControllerVibration(frequency, amplitude, OVRInput.Controller.RTouch);
+            
+        }
         // Controlla se il tasto � rilasciato
         if (Input.GetKeyUp(KeyCode.Space) || OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger))
         {
@@ -55,6 +64,7 @@ public class Flower_animator_light : MonoBehaviour
         {
             StartConsuming();
             isHolding = false;
+
 
             // Disattiva il sistema di particelle
             if (fallParticles != null)

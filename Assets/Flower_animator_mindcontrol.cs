@@ -38,6 +38,15 @@ public class Flower_animator_mindcontrol : MonoBehaviour
             }
         }
 
+        if (isHolding) // add gradual vibration
+        {
+            float amplitude = Mathf.Lerp(0, 1f, (Time.time - holdStartTime) / holdDuration);
+            float frequency = Mathf.Lerp(0, 1f, (Time.time - holdStartTime) / holdDuration);
+            OVRInput.SetControllerVibration(frequency, amplitude, OVRInput.Controller.LTouch);
+            OVRInput.SetControllerVibration(frequency, amplitude, OVRInput.Controller.RTouch);
+
+        }
+
         // Controlla se il tasto � rilasciato
         if (Input.GetKeyUp(KeyCode.Space) || OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger))
         {

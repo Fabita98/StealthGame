@@ -196,6 +196,7 @@ public class MyPlayerController : MonoBehaviour
     public static MyPlayerController Instance => _instance;
     private static MyPlayerController _instance;
 
+
     void Start()
     {
         // Add eye-depth as a camera offset from the player controller
