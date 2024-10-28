@@ -103,6 +103,7 @@ public class Flower_animator_mindcontrol : MonoBehaviour
                     isConsuming = false;
                     int currentPinkLotusCount = PlayerPrefsManager.GetInt(PlayerPrefsKeys.PinkLotus, 0);
                     PlayerPrefsManager.SetInt(PlayerPrefsKeys.PinkLotus, currentPinkLotusCount + 1);
+                    PlayerPrefsManager.SetBool(PlayerPrefsKeys.GotFirstPinkLotus, true);
                     UIController.Instance.AbilitiesUI.SetAbilitiesCount();
                     OnPinkLotusPowerChanged?.Invoke(true);
                 }

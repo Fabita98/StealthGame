@@ -105,6 +105,7 @@ public class Flower_animator_wallpower : MonoBehaviour
                     isConsuming = false;
                     int currentBlueLotusCounter = PlayerPrefsManager.GetInt(PlayerPrefsKeys.BlueLotus, 0);
                     PlayerPrefsManager.SetInt(PlayerPrefsKeys.BlueLotus, currentBlueLotusCounter + 1);
+                    PlayerPrefsManager.SetBool(PlayerPrefsKeys.GotFirstBlueLotus, true);
                     UIController.Instance.AbilitiesUI.SetAbilitiesCount();
                     OnBlueLotusPowerChanged?.Invoke(true);
                 }

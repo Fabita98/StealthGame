@@ -71,7 +71,7 @@ public class Level3 : Level
             _isSaved = true;
         }
         _timer += Time.deltaTime;
-        if (PlayerPrefsManager.GetInt(PlayerPrefsKeys.BlueLotus, 0) > 0)
+        if (PlayerPrefsManager.GetBool(PlayerPrefsKeys.GotFirstBlueLotus, false))
         {
             _levelConfig.otherObjects[0].GetComponent<DoorBehavior>().DoorInteraction();
             SaveCompletedProcess(2);

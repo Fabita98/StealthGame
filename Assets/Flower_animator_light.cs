@@ -104,8 +104,9 @@ public class Flower_animator_light : MonoBehaviour
                 if (dissolveAmount >= 1.0f)
                 {
                     isConsuming = false;
-                    float currentWhiteLotusCount = PlayerPrefsManager.GetFloat(PlayerPrefsKeys.WhiteLotus, 0);
+                    // float currentWhiteLotusCount = PlayerPrefsManager.GetFloat(PlayerPrefsKeys.WhiteLotus, 0);
                     // PlayerPrefsManager.SetFloat(PlayerPrefsKeys.WhiteLotus, Mathf.Clamp(currentWhiteLotusCount + 50, 0, 100));
+                    PlayerPrefsManager.SetBool(PlayerPrefsKeys.GotFirstWhiteLotus, true);
                     light.GetComponent<lightHR>().RechargeEnergy(15);
                     // light.GetComponent<lightHR>().currentEnergy += 15;
                     UIController.Instance.AbilitiesUI.SetAbilitiesCount();

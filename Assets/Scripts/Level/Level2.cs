@@ -63,7 +63,7 @@ public class Level2 : Level
             _isSaved = true;
         }
         _timer += Time.deltaTime;
-        if (PlayerPrefsManager.GetInt(PlayerPrefsKeys.PinkLotus, 0) > 0)
+        if (PlayerPrefsManager.GetBool(PlayerPrefsKeys.GotFirstPinkLotus, false))
         {
             SaveCompletedProcess(2);
         }
