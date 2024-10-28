@@ -6,6 +6,7 @@ namespace Assets.Scripts.GazeTrackingFeature {
     internal class GazeLine : MonoBehaviour {
         [SerializeField] private float cursorOffset = .1f;
         [SerializeField] private float cursorRadius = .2f;
+        [SerializeField] private bool showGazeLineDebug = true;
 
         internal static LayerMask mask;
         internal static int monkLayer, squareLayer;
@@ -38,8 +39,11 @@ namespace Assets.Scripts.GazeTrackingFeature {
 
         void FixedUpdate() => EyeGazeRayCasting();
 
-        void Update() => GizmoModule.instance.DrawSphere(hitPosition + (transform.position - hitPosition).normalized * cursorOffset, cursorRadius, Color.cyan);
-
+        void Update() {
+            if(showGazeLineDebug)
+                GizmoModule.instance.DrawSphere(hitPosition + (transform.position - hitPosition).normalized * cursorOffset, cursorRadius, Color.cyan);
+        }
+        
         private void EyeGazeRayCasting() {
             if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, Mathf.Infinity, layerMask: mask)) {
                 hitPosition = hit.point;

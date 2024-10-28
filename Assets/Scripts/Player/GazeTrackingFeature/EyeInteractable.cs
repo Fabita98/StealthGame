@@ -12,6 +12,7 @@ namespace Assets.Scripts.GazeTrackingFeature {
         public bool IsHovered { get; set; }
         public bool isBeingStared;
         public bool readyToTalk;
+        public bool isSleeping = false;
         internal Collider[] colliders;
         private Collider standardCollider;
         private Collider eyeTrackingCollider;

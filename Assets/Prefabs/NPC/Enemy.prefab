@@ -732,7 +732,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1209566225903903913}
   - component: {fileID: 7558724985992208675}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: StressfulArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}

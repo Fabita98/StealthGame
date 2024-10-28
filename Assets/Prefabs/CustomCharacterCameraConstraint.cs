@@ -6,7 +6,7 @@ using UnityEngine;
 /// collisions occur, and adjusting the character capsule height to match the HMD's offset from the ground.
 /// </summary>
 [RequireComponent(typeof(CharacterController))]
-[RequireComponent(typeof(OVRPlayerController))]
+[RequireComponent(typeof(MyPlayerController))]
 public class CustomCharacterCameraConstraint : MonoBehaviour {
 	/// <summary>
 	/// This should be a reference to the OVRCameraRig that is usually a child of the PlayerController.
@@ -36,7 +36,7 @@ public class CustomCharacterCameraConstraint : MonoBehaviour {
 	readonly Action _cameraUpdateAction;
 	readonly Action _preCharacterMovementAction;
 	CharacterController _character;
-	OVRPlayerController _playerController;
+	MyPlayerController _playerController;
 
 	CustomCharacterCameraConstraint() {
 		_cameraUpdateAction = CameraUpdate;
@@ -45,7 +45,7 @@ public class CustomCharacterCameraConstraint : MonoBehaviour {
 
 	void Awake() {
 		_character = GetComponent<CharacterController>();
-		_playerController = GetComponent<OVRPlayerController>();
+		_playerController = GetComponent<MyPlayerController>();
 	}
 
 	void OnEnable() {

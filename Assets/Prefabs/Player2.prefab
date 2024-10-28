@@ -2461,6 +2461,7 @@ GameObject:
   - component: {fileID: 3904433007853199045}
   - component: {fileID: 7142162710793587523}
   - component: {fileID: 4912944748993357582}
+  - component: {fileID: 1887852679296300014}
   m_Layer: 8
   m_Name: OVRCameraRig
   m_TagString: Untagged
@@ -2589,6 +2590,32 @@ MonoBehaviour:
   resetHmdPoseByMiddleMouseButton: 1
   activateKeys: 3201000031010000
   pitchKeys: 3401000033010000
+--- !u!143 &1887852679296300014
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 739457755008282626}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &753337080905584742
 GameObject:
   m_ObjectHideFlags: 0
@@ -5081,7 +5108,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.1
-  far clip plane: 100
+  far clip plane: 400
   field of view: 90
   orthographic: 0
   orthographic size: 5
@@ -31113,7 +31140,6 @@ GameObject:
   - component: {fileID: 8135042374922898975}
   - component: {fileID: 5105461261561387018}
   - component: {fileID: 4243567915912833793}
-  - component: {fileID: 4024089326611149326}
   - component: {fileID: 879627029185382565}
   m_Layer: 8
   m_Name: Player2
@@ -31213,7 +31239,7 @@ MonoBehaviour:
   rightHand: {fileID: 1543183295022576106}
   collisionMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 6809
   threshold: 0.1
   maxLookOutLenght: 0.35
   DynamicHeight: 0
@@ -31282,18 +31308,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 74a89e9196ea33142987a2e8b961a402, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &4024089326611149326
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8115332942976373740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91a26430a45353749b780d87db481bee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!54 &879627029185382565

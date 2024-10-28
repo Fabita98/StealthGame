@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SpiritVision : MonoBehaviour
 {
-    public static float mana = 15, manaSpeed = 1f;
+    public static float bluePowerTimer = 5f, timerRegressionSpeed = 1f;
 
     private void OnTriggerStay(Collider other)      
     {

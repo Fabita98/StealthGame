@@ -118,7 +118,7 @@ public class Flower_animator_wallpower : MonoBehaviour
         isConsuming = true;
         dissolveProgress = 0.0f;
         dissolveStartTime = Time.time + dissolveDelay;
-        if (player.TryGetComponent<SpiritVision>(out _)) SpiritVision.mana += 8;
+        if (player.TryGetComponent<SpiritVision>(out _)) SpiritVision.bluePowerTimer += 8;
         else Debug.LogError("SpiritVision component not found on player");
     }
 

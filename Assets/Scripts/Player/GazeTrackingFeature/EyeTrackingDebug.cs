@@ -11,8 +11,8 @@ namespace Assets.Scripts.GazeTrackingFeature {
         [Header("Eye hovering parameters")]
         // isStaring is used to check if the player is staring at a monk after a minimum amount of time;
         // while readyToTalk is used to check if the required amount of time to make the monk snore has passed        
-        [SerializeField] private const float staringTimeToPressVocalKey = 2.0f;
-        [SerializeField] private const float staringTimeToTalk = 4.0f;
+        [SerializeField] private const float staringTimeToPressVocalKey = .2f;
+        [SerializeField] private const float staringTimeToTalk = .3f;
         private const float duration = staringTimeToPressVocalKey + staringTimeToTalk;
         internal const byte noWidthValue = 0;
         [SerializeField] private const float minWidthValue = .2f;
@@ -173,8 +173,10 @@ namespace Assets.Scripts.GazeTrackingFeature {
             float duration = math.lerp(minSnoringTime, maxSnoringTime, stressValue);
             if (GazeLine.staredMonk.audioSources[0] != null) {
                 GazeLine.staredMonk.audioSources[0].Play();
+                GazeLine.staredMonk.isSleeping = true;
                 yield return new WaitForSeconds(duration);
                 GazeLine.staredMonk.audioSources[0].Stop();
+                GazeLine.staredMonk.isSleeping = false;
             }
             else {
                 Debug.LogWarning("AudioSource[0] is null on staredMonkForSingleton.");

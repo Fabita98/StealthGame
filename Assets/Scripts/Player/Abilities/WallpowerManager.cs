@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,12 +7,14 @@ public class WallpowerManager : MonoBehaviour {
 
     [Header("Blue power related variables")]
     public static bool isSpiritVisionAvailable = false;
-    public const byte eyeClosedTreshold = 2;
+    public float eyeClosedTreshold = .7f;
+    public float eyeClosedTimer = 1f;
     public static bool isEnabled = false;
     public static List<GameObject> enemyinrange = new();
     public static List<GameObject> enemyHighlighted= new();
     bool firstInstant = true;
     bool status;
+    private float eyeClosedFirstInstant;
 
     private void OnEnable() {
         Flower_animator_wallpower.OnBlueLotusPowerChanged += HandleBlueLotusPowerActivation;
@@ -63,20 +66,8 @@ public class WallpowerManager : MonoBehaviour {
 
     private void BluePowerUsage() {
         if (CheckEyeClosed()) {
-            Debug.Log("Occhi chiusi coglione! ");
-            //if ability is used decrease mana and invoke outline; disable outline when mana is over
-            if (SpiritVision.mana > 0) {
-                SpiritVision.mana -= Time.deltaTime * SpiritVision.manaSpeed;
-                SpiritVision.mana = Mathf.Clamp(SpiritVision.mana, -0.1f, 30);
-                if (!isEnabled) {
-                    Invoke("EnableVision", 1);
-                    isEnabled = true;
-                    DecreaseBluePowerCounter();
-                }
-            }
-            else if (isEnabled) {
-                DisableVision();
-            }
+            DecreaseBluePowerCounter();
+            StartCoroutine(EnableVisionCoroutine());
         }
     }
 
@@ -98,16 +89,14 @@ public class WallpowerManager : MonoBehaviour {
             }
         }
 
-        if (eyeClosedL > eyeClosedTreshold && eyeClosedR > eyeClosedTreshold) {
+        if (eyeClosedL > eyeClosedTreshold || eyeClosedR > eyeClosedTreshold) {
             Debug.Log("Eyes closed coglione! ");
-            float eyeClosedFirstInstant = 0;
-            float eyeClosedTimer = 3f;
             if (firstInstant) {
                 eyeClosedFirstInstant = Time.time;
                 firstInstant = false;
             }
 
-            if (Time.time - eyeClosedFirstInstant > eyeClosedTimer)
+            if ((Time.time - eyeClosedFirstInstant > eyeClosedTimer)&&!firstInstant)
             {
                 status = true;
             }
@@ -119,19 +108,25 @@ public class WallpowerManager : MonoBehaviour {
         return status;
     }
 
-    private void EnableVision() {
+    private IEnumerator EnableVisionCoroutine() {
+
+        if (!isEnabled) {
+            enabled = true;
+        }
         foreach (GameObject enemy in enemyinrange) {
             enemy.GetComponent<Outline>().enabled = true;
             enemyHighlighted.Add(enemy);
         }
+        yield return new WaitForSeconds(SpiritVision.bluePowerTimer);
+        
+        DisableVision();
     }
 
     private void DisableVision() {
+        SpiritVision.bluePowerTimer = 5;
         isEnabled = false;
         foreach (GameObject enemy in enemyHighlighted) {
             enemy.GetComponent<Outline>().enabled = false;
         }
-
-        if (isSpiritVisionAvailable) SpiritVision.mana = 15;
     }
 }
