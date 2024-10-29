@@ -8,13 +8,14 @@ public class WallpowerManager : MonoBehaviour {
     [Header("Blue power related variables")]
     public static bool isSpiritVisionAvailable = false;
     public float eyeClosedTreshold = .7f;
-    public float eyeClosedTimer = 1f;
+    public float eyeClosedTimer = 3f;
     public static bool isEnabled = false;
     public static List<GameObject> enemyinrange = new();
     public static List<GameObject> enemyHighlighted= new();
     bool firstInstant = true;
     bool status;
     private float eyeClosedFirstInstant;
+    public AudioSource whisper;
 
     private void OnEnable() {
         Flower_animator_wallpower.OnBlueLotusPowerChanged += HandleBlueLotusPowerActivation;
@@ -90,10 +91,18 @@ public class WallpowerManager : MonoBehaviour {
         }
 
         if (eyeClosedL > eyeClosedTreshold || eyeClosedR > eyeClosedTreshold) {
-            Debug.Log("Eyes closed coglione! ");
             if (firstInstant) {
                 eyeClosedFirstInstant = Time.time;
                 firstInstant = false;
+            }
+
+            if(Time.time - eyeClosedFirstInstant > .5f)
+            {
+                if (!whisper.isPlaying) whisper.Play();
+                float amplitude = Mathf.Lerp(0, 1f, (Time.time - eyeClosedFirstInstant) / eyeClosedTimer);
+                float frequency = Mathf.Lerp(0, 1f, (Time.time - eyeClosedFirstInstant) / eyeClosedTimer);
+                OVRInput.SetControllerVibration(frequency, amplitude, OVRInput.Controller.LTouch);
+                OVRInput.SetControllerVibration(frequency, amplitude, OVRInput.Controller.RTouch);
             }
 
             if ((Time.time - eyeClosedFirstInstant > eyeClosedTimer)&&!firstInstant)
@@ -101,6 +110,7 @@ public class WallpowerManager : MonoBehaviour {
                 status = true;
             }
         } else {
+            if (whisper.isPlaying) whisper.Stop();
             firstInstant = true;
             status = false;
         }
