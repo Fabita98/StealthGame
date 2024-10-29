@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Globalization;
 using UnityEngine;
 
 namespace Assets.Scripts.GazeTrackingFeature {
@@ -10,6 +9,7 @@ namespace Assets.Scripts.GazeTrackingFeature {
         // Paths within the Resources folder
         private const string relativeAudioPoolPath = "AudioPool"; 
         private const string relativeSnoringAudioPath = "Snoring"; 
+        private const string relativeYawnAudioPath = "Yawn"; 
         private List<AudioClip> audioClips;
         public GameObject audioHolder;
 
@@ -47,6 +47,7 @@ namespace Assets.Scripts.GazeTrackingFeature {
             }
 
             AssignSnoringAudio();
+            AssignYawnAudio();
         }
 
         internal AudioClip AssignRandomPlayerSpottedAudio() {
@@ -70,6 +71,16 @@ namespace Assets.Scripts.GazeTrackingFeature {
             }
             else {
                 Debug.LogWarning("snoring-8486 audio clip not found in the specified Resources folder.");
+            }
+        }
+        
+        private void AssignYawnAudio() {
+            AudioClip yawnClip = Resources.Load<AudioClip>($"{relativeYawnAudioPath}/yawn_cut");
+            if (yawnClip != null) {
+                EyeInteractable.yawnAudio = yawnClip;
+            }
+            else {
+                Debug.LogWarning("Yawn audio clip not found in the specified Resources folder.");
             }
         }
     }
