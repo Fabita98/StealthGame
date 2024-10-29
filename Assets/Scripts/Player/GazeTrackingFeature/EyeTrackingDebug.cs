@@ -80,10 +80,9 @@ namespace Assets.Scripts.GazeTrackingFeature {
 
         #region Gaze features methods
         public void GazeControl() {
-            if (GazeLine.staredMonk != null && GazeLine.staredMonk.IsHovered)
-            {
+            if (GazeLine.staredMonk != null && GazeLine.staredMonk.IsHovered) {
                 BaseStateMachine enemyStateMachine = GazeLine.staredMonk.gameObject.GetComponent<BaseStateMachine>();
-                if(enemyStateMachine.CurrentState.name != "StatePatrol") return;
+                if (enemyStateMachine.CurrentState.name != "StatePatrol") return;
                 OnObjectHover?.Invoke(gameObject);
                 // Case 1: Hovering monk -> blue outline
                 OutlineWidthControl(Color.white); //blue
@@ -91,7 +90,7 @@ namespace Assets.Scripts.GazeTrackingFeature {
                 // Case 1.1 : Keep staring at the monk -> switch to yellow outline && Vocal Key enabled
                 if (EyeInteractable.HoveringTime > staringTimeToPressVocalKey) {
                     GazeLine.staredMonk.isBeingStared = true;
-                    OutlineWidthControl(Color.white); //yellow
+                    //OutlineWidthControl(Color.white); //yellow
                     GazeLine.staredMonk.gameObject.GetComponent<EnemyUtility>().ableToSleepButtonUI.SetActive(true);
                     // Case 1.1.1 : Keep staring at the monk after having both stared at it
                     // and held the key for required amount of time -> switch to green outline && starts snoring
@@ -101,18 +100,21 @@ namespace Assets.Scripts.GazeTrackingFeature {
                         StartRightControllerStrongVibrationCoroutine();
                         OutlineWidthControl(Color.grey); //green
                         GazeLine.staredMonk.gameObject.GetComponent<EnemyUtility>().ableToSleepButtonUI.SetActive(false);
-                        if (EyeInteractable.snoringAudio != null) EyeTrackingDebug.SnoringAudioPlaybackTrigger();
+                        if (EyeInteractable.snoringAudio != null) SnoringAudioPlaybackTrigger();
                         else Debug.LogWarning("snoringAudio is null -> Event not triggered!");
                         GazeLine.staredMonk.readyToTalk = false;
                     }
                 }
             }
-            else return;
+            else {
+                GazeLine.staredMonk.gameObject.GetComponent<EnemyUtility>().ableToSleepButtonUI.SetActive(false);
+                return;
+            }
         }
 
         private bool VocalKeyHoldingCheck() {
             if (OVRInput.Get(keyForVoiceControl) && GazeLine.staredMonk.isBeingStared) {
-                StartCoroutine(GradualControllerVibration());
+                //StartCoroutine(GradualControllerVibration());
                 return true;
             }
             return false;
