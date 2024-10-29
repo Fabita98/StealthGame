@@ -14,7 +14,7 @@ public class DynamicSliderTimer : MonoBehaviour
     private void Awake()
     {
         // _enemyGameObject = transform.parent.parent.gameObject;
-        totalTime = EyeInteractable.snoringCooldownEndTime;
+        totalTime = EyeTrackingDebug.finalSnoringTime;
     }
 
     void OnEnable()

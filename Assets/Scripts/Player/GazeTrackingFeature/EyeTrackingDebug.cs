@@ -22,6 +22,7 @@ namespace Assets.Scripts.GazeTrackingFeature {
         [Header("Voice playback variables")]
         [SerializeField] private const float maxSnoringTime = 10f;
         [SerializeField] private const float minSnoringTime = 4f;
+        public static float finalSnoringTime = 10.0f;
         internal static float snoringCooldownCurrentTime;
         internal static bool isVocalPowerActive;
 
@@ -105,11 +106,12 @@ namespace Assets.Scripts.GazeTrackingFeature {
                         GazeLine.staredMonk.readyToTalk = false;
                     }
                 }
+                else
+                {
+                    GazeLine.staredMonk.gameObject.GetComponent<EnemyUtility>().ableToSleepButtonUI.SetActive(false);  
+                }
             }
-            else {
-                GazeLine.staredMonk.gameObject.GetComponent<EnemyUtility>().ableToSleepButtonUI.SetActive(false);
-                return;
-            }
+            else return;
         }
 
         private bool VocalKeyHoldingCheck() {
@@ -184,6 +186,7 @@ namespace Assets.Scripts.GazeTrackingFeature {
         /// <returns></returns>
         private IEnumerator PlaySnoringAudioCoroutine(float stressValue = .5f) {
             float duration = math.lerp(minSnoringTime, maxSnoringTime, stressValue);
+            finalSnoringTime = duration;
             if (GazeLine.staredMonk.audioSources[0] != null) {
                 GazeLine.staredMonk.audioSources[0].Play();
                 GazeLine.staredMonk.isSleeping = true;
