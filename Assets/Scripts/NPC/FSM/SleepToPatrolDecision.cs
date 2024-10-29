@@ -10,7 +10,7 @@ public class SleepToPatrolDecision : Decision
         var enemySleepSensor = stateMachine.GetComponent<EnemySleepSensor>();
         var enemyUtility = stateMachine.GetComponent<EnemyUtility>();
         if (!enemySleepSensor.IsSleeping())
-            enemyUtility.sleepTimer.SetActive(false);
+            enemyUtility.sleepTimerUI.SetActive(false);
         return !enemySleepSensor.IsSleeping();
     }
 }

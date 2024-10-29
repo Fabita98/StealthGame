@@ -192,6 +192,7 @@ public class MyPlayerController : MonoBehaviour
 
     private bool playerControllerEnabled = false;
     [HideInInspector] public bool isHiding = false;
+    public bool canSprint = true;
     public GameObject torchGO;
     
     public static MyPlayerController Instance => _instance;
@@ -479,7 +480,7 @@ public class MyPlayerController : MonoBehaviour
 
 
 #if !UNITY_ANDROID // LeftTrigger not avail on Android game pad
-            moveInfluence *= 1.0f + OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger);
+            moveInfluence *= 1.0f + (canSprint ? OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) : 0);
 #endif
 
             Vector2 primaryAxis = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick);
