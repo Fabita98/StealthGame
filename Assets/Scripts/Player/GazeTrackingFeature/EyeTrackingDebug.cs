@@ -92,6 +92,7 @@ namespace Assets.Scripts.GazeTrackingFeature {
                 if (EyeInteractable.HoveringTime > staringTimeToPressVocalKey) {
                     GazeLine.staredMonk.isBeingStared = true;
                     //OutlineWidthControl(Color.white); //yellow
+                    GazeLine.staredMonk.StartPlayYawnAudioCoroutine();
                     GazeLine.staredMonk.gameObject.GetComponent<EnemyUtility>().ableToSleepButtonUI.SetActive(true);
                     // Case 1.1.1 : Keep staring at the monk after having both stared at it
                     // and held the key for required amount of time -> switch to green outline && starts snoring

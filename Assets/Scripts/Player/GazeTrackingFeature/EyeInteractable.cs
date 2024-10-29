@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.GazeTrackingFeature {
     [RequireComponent(typeof(EyeOutline))]
-    [RequireComponent(typeof(AudioSource), typeof(AudioSource))]
+    [RequireComponent(typeof(AudioSource), typeof(AudioSource), typeof(AudioSource))]
     [RequireComponent(typeof(Collider), typeof(Collider))]
     internal class EyeInteractable : MonoBehaviour {
         #region Variables and events definition
@@ -30,6 +30,7 @@ namespace Assets.Scripts.GazeTrackingFeature {
         public static float snoringCooldownEndTime = 15.0f;
         public static AudioClip snoringAudio;
         internal AudioClip playerSpottedAudio;
+        public static AudioClip yawnAudio;
 
         public static int OverallEyeInteractableInstanceCounter { get; private set; }
         public static event CounterChangeHandler OnEyeInteractableInstancesCounterChanged;
@@ -100,19 +101,21 @@ namespace Assets.Scripts.GazeTrackingFeature {
             audioSources = GetComponents<AudioSource>();
 
             // Ensure there are two AudioSource components
-            if (audioSources.Length < 2) {
-                for (int i = audioSources.Length; i < 2; i++) {
+            if (audioSources.Length < 3) {
+                for (int i = audioSources.Length; i < 3; i++) {
                     gameObject.AddComponent<AudioSource>();
                 }
                 audioSources = GetComponents<AudioSource>();
             }
             // Assign the AudioSource components to the array
-            else if (audioSources.Length >= 2) {
+            else if (audioSources.Length >= 3) {
                 audioSources[0].clip = snoringAudio;
                 if (AudioHolder.instance != null) {
                     playerSpottedAudio = AudioHolder.instance.AssignRandomPlayerSpottedAudio();
                     audioSources[1].clip = playerSpottedAudio;
                     Debug.Log("playerSpottedAudio assigned ");
+                    audioSources[2].clip = yawnAudio;
+                    Debug.Log("yawnAudio assigned ");
                 }
             }
             else Debug.LogWarning("AudioSource array does not have enough elements.");
@@ -140,6 +143,24 @@ namespace Assets.Scripts.GazeTrackingFeature {
         }
 
         public void StartPlayerSpottedAudioCoroutine() => StartCoroutine(PlayPlayerSpottedAudioCoroutine());
+        #endregion
+        
+        #region Yawn audio playback
+        private IEnumerator PlayYawnAudioCoroutine() {
+            if (audioSources[2].isPlaying) yield break;
+
+            if (playerSpottedAudio != null) {
+                audioSources[2].Play();
+                yield return new WaitForSeconds(yawnAudio.length);
+                audioSources[2].Stop();
+            }
+            else {
+                Debug.LogWarning("AudioSource[2] is null.");
+                yield break;
+            }
+        }
+
+        public void StartPlayYawnAudioCoroutine() => StartCoroutine(PlayYawnAudioCoroutine());
         #endregion
     }
 }
