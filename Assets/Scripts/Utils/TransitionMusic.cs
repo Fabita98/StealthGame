@@ -57,11 +57,13 @@ public class TransitionMusic : MonoBehaviour
         {          
             StartCoroutine(FadeAudioSource.StartFade(audio1, duration, target));
             audio1on = true;
+            audio2on = false;
  
         } else if (audio2.volume > 0.01f) {
 
             StartCoroutine(FadeAudioSource.StartFade(audio2, duration, target));
             audio2on = true;
+            audio1on = false;
 
         }
         duration = .4f;
