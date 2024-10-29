@@ -71,8 +71,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4347fbeb24ef484ebb0bba674c228eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerRadius: 0.8
-  appearanceRadius: 3
+  triggerRadius: 0.7
+  appearanceRadius: 1
   dissolveTime: 0.5
 --- !u!82 &8619532626997143075
 AudioSource:

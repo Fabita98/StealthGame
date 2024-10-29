@@ -9655,6 +9655,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shadow
       objectReference: {fileID: 0}
+    - target: {fileID: 4291907945971122855, guid: 32341c67f29b4254ab63a9df97a0a9b4, type: 3}
+      propertyPath: triggerRadius
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 8619532626997143075, guid: 32341c67f29b4254ab63a9df97a0a9b4, type: 3}
       propertyPath: MaxDistance
       value: 7.8862276
@@ -13070,7 +13074,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7357528760791184969, guid: 0426423c1f4e6644685c371e417d63a4, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8628360076603008337, guid: 0426423c1f4e6644685c371e417d63a4, type: 3}
       propertyPath: m_LocalPosition.x

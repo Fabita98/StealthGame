@@ -107,12 +107,15 @@ namespace Assets.Scripts.GazeTrackingFeature {
                         GazeLine.staredMonk.readyToTalk = false;
                     }
                 }
-                else
-                {
-                    GazeLine.staredMonk.gameObject.GetComponent<EnemyUtility>().ableToSleepButtonUI.SetActive(false);  
-                }
             }
-            else return;
+            else
+            {
+                foreach (var enemyUtility in GetComponents<EnemyUtility>())
+                {
+                    enemyUtility.ableToSleepButtonUI.SetActive(false);
+                }
+                return;
+            }
         }
 
         private bool VocalKeyHoldingCheck() {
