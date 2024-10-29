@@ -154,7 +154,7 @@ Transform:
   m_GameObject: {fileID: 789633835821025854}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.42, z: 1.77}
+  m_LocalPosition: {x: 0.02, y: 0.32, z: 2.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2551,6 +2551,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   enemyAnimator: {fileID: 1196485789359088361}
+  transitionMusic: {fileID: 0}
 --- !u!114 &4597086340892482254
 MonoBehaviour:
   m_ObjectHideFlags: 0

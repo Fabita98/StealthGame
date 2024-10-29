@@ -9184,11 +9184,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4597086340892482254, guid: faf9c57d28d7aab4397b78a5c669b6b7, type: 3}
       propertyPath: _speed
-      value: 2.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4597086340892482254, guid: faf9c57d28d7aab4397b78a5c669b6b7, type: 3}
       propertyPath: _runSpeed
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4597086340892482254, guid: faf9c57d28d7aab4397b78a5c669b6b7, type: 3}
       propertyPath: PlayerController
@@ -9206,6 +9206,10 @@ PrefabInstance:
       propertyPath: waitTime
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 5397545951518848837, guid: faf9c57d28d7aab4397b78a5c669b6b7, type: 3}
+      propertyPath: transitionMusic
+      value: 
+      objectReference: {fileID: 1953055700}
     - target: {fileID: 5571994850090983642, guid: faf9c57d28d7aab4397b78a5c669b6b7, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -13066,7 +13070,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7357528760791184969, guid: 0426423c1f4e6644685c371e417d63a4, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8628360076603008337, guid: 0426423c1f4e6644685c371e417d63a4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -22175,6 +22179,14 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4597086340892482254, guid: faf9c57d28d7aab4397b78a5c669b6b7, type: 3}
+      propertyPath: _speed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597086340892482254, guid: faf9c57d28d7aab4397b78a5c669b6b7, type: 3}
+      propertyPath: _runSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597086340892482254, guid: faf9c57d28d7aab4397b78a5c669b6b7, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
@@ -22185,6 +22197,10 @@ PrefabInstance:
     - target: {fileID: 4941396226998244134, guid: faf9c57d28d7aab4397b78a5c669b6b7, type: 3}
       propertyPath: m_SpotAngle
       value: 59
+      objectReference: {fileID: 0}
+    - target: {fileID: 4951011961811103188, guid: faf9c57d28d7aab4397b78a5c669b6b7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5395161121928567442, guid: faf9c57d28d7aab4397b78a5c669b6b7, type: 3}
       propertyPath: m_AnchorMax.x
@@ -22214,6 +22230,10 @@ PrefabInstance:
       propertyPath: overallRadius
       value: 2.34
       objectReference: {fileID: 0}
+    - target: {fileID: 5397545951518848837, guid: faf9c57d28d7aab4397b78a5c669b6b7, type: 3}
+      propertyPath: transitionMusic
+      value: 
+      objectReference: {fileID: 1953055700}
     - target: {fileID: 5397545951518848837, guid: faf9c57d28d7aab4397b78a5c669b6b7, type: 3}
       propertyPath: playerMask.m_Bits
       value: 320
@@ -22293,14 +22313,6 @@ PrefabInstance:
     - target: {fileID: 8690285777130948020, guid: faf9c57d28d7aab4397b78a5c669b6b7, type: 3}
       propertyPath: m_Enabled
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9069384526693141986, guid: faf9c57d28d7aab4397b78a5c669b6b7, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.02
-      objectReference: {fileID: 0}
-    - target: {fileID: 9069384526693141986, guid: faf9c57d28d7aab4397b78a5c669b6b7, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 1.09
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -25366,6 +25378,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4597086340892482254, guid: faf9c57d28d7aab4397b78a5c669b6b7, type: 3}
+      propertyPath: _speed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597086340892482254, guid: faf9c57d28d7aab4397b78a5c669b6b7, type: 3}
+      propertyPath: _runSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597086340892482254, guid: faf9c57d28d7aab4397b78a5c669b6b7, type: 3}
       propertyPath: PlayerController
       value: 
       objectReference: {fileID: 1486276785}
@@ -25377,6 +25397,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5397545951518848837, guid: faf9c57d28d7aab4397b78a5c669b6b7, type: 3}
+      propertyPath: transitionMusic
+      value: 
+      objectReference: {fileID: 1953055700}
     - target: {fileID: 5986300088431556095, guid: faf9c57d28d7aab4397b78a5c669b6b7, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

@@ -27,7 +27,7 @@ public class TriggerDetector : MonoBehaviour
         }
         if (other.CompareTag("StressfulArea"))
         {
-            player.isInStressfulArea = 1;
+            MyPlayerController.Instance.isInStressfulArea = 1;
         }
     }
     
@@ -40,7 +40,7 @@ public class TriggerDetector : MonoBehaviour
         }
         if (other.CompareTag("StressfulArea"))
         {
-            player.isInStressfulArea = 0;
+            MyPlayerController.Instance.isInStressfulArea = 0;
         }
     }
 
