@@ -9655,10 +9655,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shadow
       objectReference: {fileID: 0}
-    - target: {fileID: 4291907945971122855, guid: 32341c67f29b4254ab63a9df97a0a9b4, type: 3}
-      propertyPath: triggerRadius
-      value: 0.7
-      objectReference: {fileID: 0}
     - target: {fileID: 8619532626997143075, guid: 32341c67f29b4254ab63a9df97a0a9b4, type: 3}
       propertyPath: MaxDistance
       value: 7.8862276
