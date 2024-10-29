@@ -14,6 +14,7 @@ namespace Assets.Scripts.GazeTrackingFeature {
         [SerializeField] private const float staringTimeToPressVocalKey = .2f;
         [SerializeField] private const float staringTimeToTalk = .3f;
         private const float duration = staringTimeToPressVocalKey + staringTimeToTalk;
+        private const float vibrationTime = .3f;
         internal const byte noWidthValue = 0;
         [SerializeField] private const float minWidthValue = .2f;
         [SerializeField] private const float maxWidthValue = 4;
@@ -21,6 +22,7 @@ namespace Assets.Scripts.GazeTrackingFeature {
         [Header("Voice playback variables")]
         [SerializeField] private const float maxSnoringTime = 10f;
         [SerializeField] private const float minSnoringTime = 4f;
+        public static float finalSnoringTime = 10.0f;
         internal static float snoringCooldownCurrentTime;
         internal static bool isVocalPowerActive;
 
@@ -80,41 +82,54 @@ namespace Assets.Scripts.GazeTrackingFeature {
         #region Gaze features methods
         public void GazeControl() {
             if (GazeLine.staredMonk != null && GazeLine.staredMonk.IsHovered) {
+                BaseStateMachine enemyStateMachine = GazeLine.staredMonk.gameObject.GetComponent<BaseStateMachine>();
+                if (enemyStateMachine.CurrentState.name != "StatePatrol") return;
                 OnObjectHover?.Invoke(gameObject);
                 // Case 1: Hovering monk -> blue outline
-                OutlineWidthControl(Color.blue);
+                OutlineWidthControl(Color.white); //blue
 
                 // Case 1.1 : Keep staring at the monk -> switch to yellow outline && Vocal Key enabled
                 if (EyeInteractable.HoveringTime > staringTimeToPressVocalKey) {
                     GazeLine.staredMonk.isBeingStared = true;
-                    OutlineWidthControl(Color.yellow);
+                    //OutlineWidthControl(Color.white); //yellow
+                    GazeLine.staredMonk.gameObject.GetComponent<EnemyUtility>().ableToSleepButtonUI.SetActive(true);
                     // Case 1.1.1 : Keep staring at the monk after having both stared at it
                     // and held the key for required amount of time -> switch to green outline && starts snoring
                     if (EyeInteractable.HoveringTime > staringTimeToTalk && VocalKeyHoldingCheck()) {
                         GazeLine.staredMonk.isBeingStared = false;
                         GazeLine.staredMonk.readyToTalk = true;
                         StartRightControllerStrongVibrationCoroutine();
-                        OutlineWidthControl(Color.green);
-                        if (EyeInteractable.snoringAudio != null) EyeTrackingDebug.SnoringAudioPlaybackTrigger();
+                        OutlineWidthControl(Color.grey); //green
+                        GazeLine.staredMonk.gameObject.GetComponent<EnemyUtility>().ableToSleepButtonUI.SetActive(false);
+                        if (EyeInteractable.snoringAudio != null) SnoringAudioPlaybackTrigger();
                         else Debug.LogWarning("snoringAudio is null -> Event not triggered!");
                         GazeLine.staredMonk.readyToTalk = false;
                     }
+                }
+                else
+                {
+                    GazeLine.staredMonk.gameObject.GetComponent<EnemyUtility>().ableToSleepButtonUI.SetActive(false);  
                 }
             }
             else return;
         }
 
         private bool VocalKeyHoldingCheck() {
-            bool isButtonHeld = false;
             if (OVRInput.Get(keyForVoiceControl) && GazeLine.staredMonk.isBeingStared) {
-                StartCoroutine(GradualControllerVibration());
-                buttonHoldTime += Time.deltaTime;
-                if (buttonHoldTime >= duration) {
-                    isButtonHeld = true;
-                }
+                //StartCoroutine(GradualControllerVibration());
+                return true;
             }
-            else buttonHoldTime = 0f;
-            return isButtonHeld;
+            return false;
+            // bool isButtonHeld = false;
+            // if (OVRInput.Get(keyForVoiceControl) && GazeLine.staredMonk.isBeingStared) {
+            //     StartCoroutine(GradualControllerVibration());
+            //     buttonHoldTime += Time.deltaTime;
+            //     if (buttonHoldTime >= duration) {
+            //         isButtonHeld = true;
+            //     }
+            // }
+            // else buttonHoldTime = 0f;
+            // return isButtonHeld;
         }
 
         internal void OutlineWidthControl(Color color) {
@@ -171,6 +186,7 @@ namespace Assets.Scripts.GazeTrackingFeature {
         /// <returns></returns>
         private IEnumerator PlaySnoringAudioCoroutine(float stressValue = .5f) {
             float duration = math.lerp(minSnoringTime, maxSnoringTime, stressValue);
+            finalSnoringTime = duration;
             if (GazeLine.staredMonk.audioSources[0] != null) {
                 GazeLine.staredMonk.audioSources[0].Play();
                 GazeLine.staredMonk.isSleeping = true;
@@ -233,10 +249,10 @@ namespace Assets.Scripts.GazeTrackingFeature {
             float maxAmplitude = 1.0f;
             float maxFrequency = 1.0f;
 
-            while (buttonHoldTime < duration) {
-                float amplitude = Mathf.Lerp(0, maxAmplitude, buttonHoldTime / duration);
-                float frequency = Mathf.Lerp(0, maxFrequency, buttonHoldTime / duration);
-                OVRInput.SetControllerVibration(frequency, amplitude, OVRInput.Controller.RTouch);
+            while (buttonHoldTime < vibrationTime) {
+                // float amplitude = Mathf.Lerp(0, maxAmplitude, buttonHoldTime / vibrationTime);
+                // float frequency = Mathf.Lerp(0, maxFrequency, buttonHoldTime / vibrationTime);
+                OVRInput.SetControllerVibration(maxFrequency, maxAmplitude, OVRInput.Controller.RTouch);
                 yield return null;
             }
 
@@ -253,7 +269,7 @@ namespace Assets.Scripts.GazeTrackingFeature {
             if (isVibrating) yield break;
             isVibrating = true;
 
-            float vibDuration = 2.0f;
+            float vibDuration = 1.0f;
             byte maxAmplitude = 1;
             byte maxFrequency = 1;
 

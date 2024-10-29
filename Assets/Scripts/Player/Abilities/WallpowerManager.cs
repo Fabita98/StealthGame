@@ -95,9 +95,10 @@ public class WallpowerManager : MonoBehaviour {
                 eyeClosedFirstInstant = Time.time;
                 firstInstant = false;
             }
-
+            
             if(Time.time - eyeClosedFirstInstant > .5f)
             {
+                Debug.Log("Eyes closed after .5 ");
                 if (!whisper.isPlaying) whisper.Play();
                 float amplitude = Mathf.Lerp(0, 1f, (Time.time - eyeClosedFirstInstant) / eyeClosedTimer);
                 float frequency = Mathf.Lerp(0, 1f, (Time.time - eyeClosedFirstInstant) / eyeClosedTimer);
