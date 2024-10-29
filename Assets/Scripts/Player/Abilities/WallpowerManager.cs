@@ -105,7 +105,7 @@ public class WallpowerManager : MonoBehaviour {
                 OVRInput.SetControllerVibration(frequency, amplitude, OVRInput.Controller.RTouch);
             }
 
-            if ((Time.time - eyeClosedFirstInstant > eyeClosedTimer)&&!firstInstant)
+            if ((Time.time - eyeClosedFirstInstant > eyeClosedTimer) && !firstInstant)
             {
                 status = true;
             }

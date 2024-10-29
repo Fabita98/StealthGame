@@ -176,7 +176,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3408970843396899258}
   - component: {fileID: 7872943773621798256}
-  - component: {fileID: 1442846986478263643}
   m_Layer: 0
   m_Name: lotus_SEE_THROUGH
   m_TagString: Untagged
@@ -239,26 +238,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1442846986478263643
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1128467547136402755}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07b7b646e03d53f4298c50ca05347766, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dissolveDuration: 2
-  dissolveDelay: 0.5
-  fallParticles: {fileID: 7010752326747618170}
-  holdDuration: 2
-  an: {fileID: 7872943773621798256}
-  player: {fileID: 0}
-  petalsGO: {fileID: 0}
-  sound: {fileID: 0}
 --- !u!1 &1195504120366983087
 GameObject:
   m_ObjectHideFlags: 0

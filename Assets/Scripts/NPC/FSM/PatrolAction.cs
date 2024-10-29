@@ -35,6 +35,7 @@ public class PatrolAction : FSMAction
             enemySightSensor.ChangeEscapedState(false);
             enemyAttackSensor.StartAttack = false;
             enemyAttackSensor.IsAttackCompleted = false;
+            enemyUtility.transitionMusic.startChase();
         }
 
         if (movingPoints.Count() <= 1)

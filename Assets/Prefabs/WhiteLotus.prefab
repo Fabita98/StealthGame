@@ -283,7 +283,7 @@ CapsuleCollider:
   m_Radius: 0.4374608
   m_Height: 1.04
   m_Direction: 0
-  m_Center: {x: 0, y: 0.12, z: 0}
+  m_Center: {x: 0, y: 0.43, z: 0}
 --- !u!114 &4718430215525626110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1251,7 +1251,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8891434792194753805}
   - component: {fileID: 6841699239345371357}
-  - component: {fileID: 5458671435954148839}
   m_Layer: 0
   m_Name: lotus_LIGHT
   m_TagString: Untagged
@@ -1314,26 +1313,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5458671435954148839
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5806345717999009416}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4852ab70840858244b44ee4d7b6f1a4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dissolveDuration: 2
-  dissolveDelay: 0.1
-  fallParticles: {fileID: 6177903400934258073}
-  holdDuration: 1.5
-  an: {fileID: 6841699239345371357}
-  petalsGO: {fileID: 0}
-  sound: {fileID: 0}
-  light: {fileID: 0}
 --- !u!1 &6388875894183118043
 GameObject:
   m_ObjectHideFlags: 0

@@ -26,7 +26,8 @@ public class Flower_animator_mindcontrol : MonoBehaviour
     void Update()
     {
         // Controlla se il tasto � premuto
-        if ((Input.GetKeyDown(KeyCode.Space) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger)) && inHand)
+        if ((Input.GetKeyDown(KeyCode.Space) || OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) ||
+     OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger)) && inHand)
         {
             holdStartTime = Time.time;
             isHolding = true;

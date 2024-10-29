@@ -31,6 +31,7 @@ public class EnemyUtility : MonoBehaviour
     public LayerMask playerMask;
     public LayerMask obstacleMask;
     [SerializeField] private Animator enemyAnimator;
+    public TransitionMusic transitionMusic;
 
     // public static EnemyUtility Instance;
     //

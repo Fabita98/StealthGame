@@ -20,6 +20,7 @@ public class ChaseAction : FSMAction
         EyeInteractable eyeInteractable = machine.GetComponent<EyeInteractable>();
         EnemyUtility enemyUtility = machine.GetComponent<EnemyUtility>();
         Transform playerTransform = machine.PlayerController.transform;
+        
         if (machine.isStartOfChase)
         {
             eyeInteractable.StartPlayerSpottedAudioCoroutine();
@@ -33,6 +34,7 @@ public class ChaseAction : FSMAction
             machine.Stop();
             enemyUtility.SetAnimation(alert: true);
             machine.chaseAlertTimer = 0;
+            enemyUtility.transitionMusic.startChase();
         }
 
         if (machine.isChaseReset)
