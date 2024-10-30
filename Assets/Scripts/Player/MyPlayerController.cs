@@ -199,6 +199,7 @@ public class MyPlayerController : MonoBehaviour
     private static MyPlayerController _instance;
 
     [HideInInspector] public int isInStressfulArea = 0;
+    public int NumberOfEnemiesChasing = 0;
 
     
     void Start()
@@ -238,6 +239,7 @@ public class MyPlayerController : MonoBehaviour
 
         headObjectTransform.localPosition = headPoseRelativeOffsetTranslation;
         InitialYRotation = transform.rotation.eulerAngles.y;
+        NumberOfEnemiesChasing = 0;
     }
 
     void OnEnable()

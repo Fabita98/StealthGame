@@ -115,7 +115,11 @@ public class BaseStateMachine : MonoBehaviour
         _updateCounter = 0;
 
         enemyUtility.ResetAnimator();
-        
+        if (PlayerController.NumberOfEnemiesChasing > 0)
+        {
+            PlayerController.NumberOfEnemiesChasing = 0;
+            enemyUtility.transitionMusic.stopChase();   
+        }
 
     }
 

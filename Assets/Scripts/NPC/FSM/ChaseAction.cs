@@ -34,6 +34,7 @@ public class ChaseAction : FSMAction
             machine.Stop();
             enemyUtility.SetAnimation(alert: true);
             machine.chaseAlertTimer = 0;
+            machine.PlayerController.NumberOfEnemiesChasing++;
             enemyUtility.transitionMusic.startChase();
         }
 
@@ -73,6 +74,7 @@ public class ChaseAction : FSMAction
                     enemySightSensor.ChangeEscapedState(true);
                     machine.isStartOfChase = true;
                     machine.stopAnimationChoose = false;
+                    machine.PlayerController.NumberOfEnemiesChasing--;
                 }
             }
         }

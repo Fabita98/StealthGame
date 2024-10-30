@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3823709860849022530}
   - component: {fileID: 2057794209406616542}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (20)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,7 +62,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3609577501181043454}
   - component: {fileID: 3840639346080245434}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Floor0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,7 +114,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4115159778356697769}
   - component: {fileID: 8089911737288578731}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (40)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,7 +168,7 @@ GameObject:
   - component: {fileID: 125560201760689268}
   - component: {fileID: 6433347171208882664}
   - component: {fileID: 5280125381479210943}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -272,7 +272,7 @@ GameObject:
   - component: {fileID: 7187985353940743956}
   - component: {fileID: 3540660787514559223}
   - component: {fileID: 8684285657128156760}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_lar_40cm (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -344,7 +344,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6855916542216407004}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ModulerHouse_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -390,7 +390,7 @@ GameObject:
   - component: {fileID: 5127314490550286905}
   - component: {fileID: 8078517442936276562}
   - component: {fileID: 8851440540337449111}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -493,7 +493,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4225846271504844113}
   - component: {fileID: 6649268052370642367}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Arch (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -547,7 +547,7 @@ GameObject:
   - component: {fileID: 2851421951845477342}
   - component: {fileID: 6309737238702392850}
   - component: {fileID: 2848463466261956507}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -649,7 +649,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7175942727790182561}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ModulerHouse_Base1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -697,7 +697,7 @@ GameObject:
   - component: {fileID: 3677259843798297591}
   - component: {fileID: 4542501378780494288}
   - component: {fileID: 2347898460583368323}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Chwarchewa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -802,7 +802,7 @@ GameObject:
   - component: {fileID: 5110672905368913973}
   - component: {fileID: 2503783072444127844}
   - component: {fileID: 8351998412518737894}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -907,7 +907,7 @@ GameObject:
   - component: {fileID: 6649723616660745186}
   - component: {fileID: 2387940758063564766}
   - component: {fileID: 3304835784286799104}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1010,7 +1010,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5450952813970886106}
   - component: {fileID: 432746065225864910}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (39)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1062,7 +1062,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4826132249119508952}
   - component: {fileID: 4022565852896794313}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_Or (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1114,7 +1114,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4861050324943176277}
   - component: {fileID: 7764146168850197296}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (30)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1168,7 +1168,7 @@ GameObject:
   - component: {fileID: 8741857793752998462}
   - component: {fileID: 5119529737049946173}
   - component: {fileID: 1351483176222756861}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1273,7 +1273,7 @@ GameObject:
   - component: {fileID: 7247502689381773064}
   - component: {fileID: 8706849942965590213}
   - component: {fileID: 3251817492977503684}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_10cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1378,7 +1378,7 @@ GameObject:
   - component: {fileID: 6524579348784982581}
   - component: {fileID: 6055267686531844436}
   - component: {fileID: 8511187875274268851}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_Or_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1482,7 +1482,7 @@ GameObject:
   - component: {fileID: 5123802945809366868}
   - component: {fileID: 556553511481994984}
   - component: {fileID: 5970417315973251194}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bracket_B_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1566,7 +1566,7 @@ GameObject:
   - component: {fileID: 3038652307925390273}
   - component: {fileID: 3554422023121230157}
   - component: {fileID: 296353332763676368}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_D_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1671,7 +1671,7 @@ GameObject:
   - component: {fileID: 2453068187810732056}
   - component: {fileID: 3293898634050806291}
   - component: {fileID: 7073864900151225120}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Short_wall (24)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1776,7 +1776,7 @@ GameObject:
   - component: {fileID: 6979109041663096129}
   - component: {fileID: 2598549444113250767}
   - component: {fileID: 1545038543368231436}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bracket_beam_wood.LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1881,7 +1881,7 @@ GameObject:
   - component: {fileID: 2746034216380472801}
   - component: {fileID: 4176404539419870437}
   - component: {fileID: 7668766458672735439}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_window_C_C1 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1988,7 +1988,7 @@ GameObject:
   - component: {fileID: 5940623954474713638}
   - component: {fileID: 2304597473900782238}
   - component: {fileID: 7964592921222979988}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2091,7 +2091,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5979413042056191743}
   - component: {fileID: 5992457023633992492}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (35)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2144,7 +2144,7 @@ GameObject:
   - component: {fileID: 7935046436411608759}
   - component: {fileID: 6446388019139592021}
   - component: {fileID: 2608948928537990589}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_lar_40cm.LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2228,7 +2228,7 @@ GameObject:
   - component: {fileID: 2256304195389335889}
   - component: {fileID: 8552170677069087943}
   - component: {fileID: 9114702798678322776}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2333,7 +2333,7 @@ GameObject:
   - component: {fileID: 8797007523792032465}
   - component: {fileID: 8407894146620000708}
   - component: {fileID: 4459719577573265572}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_10cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2436,7 +2436,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5608399811765904582}
   - component: {fileID: 8870509761476372361}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (15)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2488,7 +2488,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7157623753359757315}
   - component: {fileID: 5661099042122083752}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_panel_D (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2540,7 +2540,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8915917988058387123}
   - component: {fileID: 1536722340877316740}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (26)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2591,7 +2591,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1366653976206927588}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: WallPanels
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2637,7 +2637,7 @@ GameObject:
   - component: {fileID: 7463677485641892193}
   - component: {fileID: 5505677306895772751}
   - component: {fileID: 6366688579786496228}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_10cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2740,7 +2740,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5428256797328115455}
   - component: {fileID: 6681634578268719064}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_panel_C (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2794,7 +2794,7 @@ GameObject:
   - component: {fileID: 7257475078117054069}
   - component: {fileID: 6040658425907805656}
   - component: {fileID: 4360519066175212647}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2899,7 +2899,7 @@ GameObject:
   - component: {fileID: 8329103841975239240}
   - component: {fileID: 4351429551524604625}
   - component: {fileID: 1102889407720511345}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_panel_D.LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3002,7 +3002,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6247782451236048248}
   - component: {fileID: 5284538867771582391}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3056,7 +3056,7 @@ GameObject:
   - component: {fileID: 6463003416738655308}
   - component: {fileID: 5045229518345131699}
   - component: {fileID: 8303831073859769850}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Short_wall (15)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3160,7 +3160,7 @@ GameObject:
   - component: {fileID: 4284131771946747928}
   - component: {fileID: 688627631842521181}
   - component: {fileID: 6614000409095388221}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bracket_B_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3242,7 +3242,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6613310093234562637}
   - component: {fileID: 4885390748545539902}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bracket_beam_wood (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3294,7 +3294,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3101631626871109824}
   - component: {fileID: 8075430664104710538}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_panel_B (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3346,7 +3346,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5709670685525774159}
   - component: {fileID: 8778368036216766171}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (37)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3400,7 +3400,7 @@ GameObject:
   - component: {fileID: 1408914425273021252}
   - component: {fileID: 7062388651226921750}
   - component: {fileID: 2203917449986010107}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bracket_beam_wood.LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3504,7 +3504,7 @@ GameObject:
   - component: {fileID: 1874359006030207006}
   - component: {fileID: 7199631428173836623}
   - component: {fileID: 8968890879458950596}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_lar_40cm (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3579,7 +3579,7 @@ GameObject:
   - component: {fileID: 4060756900219992971}
   - component: {fileID: 1810752879778644741}
   - component: {fileID: 1308460227641601033}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3682,7 +3682,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2122995541495770505}
   - component: {fileID: 6169060774521615371}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (21)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3737,7 +3737,7 @@ GameObject:
   - component: {fileID: 4557412058505274140}
   - component: {fileID: 6571349004959235080}
   - component: {fileID: 4125194171082073862}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: POI_Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3852,7 +3852,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4737116780150971311}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall_Window
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3887,7 +3887,7 @@ GameObject:
   m_Component:
   - component: {fileID: 91004738505203831}
   - component: {fileID: 2716725445171786282}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Arch (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3940,7 +3940,7 @@ GameObject:
   - component: {fileID: 8448245302214015049}
   - component: {fileID: 7802637754079994302}
   - component: {fileID: 9139290442059690463}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bracket_B (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4013,7 +4013,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3141059165481275895}
   - component: {fileID: 3144106930555022437}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_panel_D (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4067,7 +4067,7 @@ GameObject:
   - component: {fileID: 146459330375147087}
   - component: {fileID: 2160385562849047535}
   - component: {fileID: 7181222492392130259}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_Or_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4172,7 +4172,7 @@ GameObject:
   - component: {fileID: 3373463835433943858}
   - component: {fileID: 8499456729505215445}
   - component: {fileID: 2347618422333148919}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Short_wall (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4277,7 +4277,7 @@ GameObject:
   - component: {fileID: 2223048222625640596}
   - component: {fileID: 2082775382350958850}
   - component: {fileID: 804030603100635891}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Short_wall (22)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4382,7 +4382,7 @@ GameObject:
   - component: {fileID: 4456015732328128478}
   - component: {fileID: 8023684006935755806}
   - component: {fileID: 5019908484665765359}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: arch_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4487,7 +4487,7 @@ GameObject:
   - component: {fileID: 1682727666960007239}
   - component: {fileID: 5569367230357623679}
   - component: {fileID: 4308113231188200622}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Short_wall1 (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4591,7 +4591,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1439085109832092494}
   - component: {fileID: 8786083481195818809}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_10cm (16)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4645,7 +4645,7 @@ GameObject:
   - component: {fileID: 1346393585767661840}
   - component: {fileID: 8984636160705974748}
   - component: {fileID: 2525332572623933096}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4750,7 +4750,7 @@ GameObject:
   - component: {fileID: 3998757858258716705}
   - component: {fileID: 4045009669336843026}
   - component: {fileID: 2442622686640268665}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_panel_B.LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4853,7 +4853,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6808609750459645349}
   - component: {fileID: 8864208009208662293}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Arch (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4907,7 +4907,7 @@ GameObject:
   - component: {fileID: 7957281685446567830}
   - component: {fileID: 3614950561793025620}
   - component: {fileID: 1559922112599760592}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_10cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5010,7 +5010,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6039731253218967632}
   - component: {fileID: 6231903508230613943}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_panel_A (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5064,7 +5064,7 @@ GameObject:
   - component: {fileID: 7038617304058821755}
   - component: {fileID: 460215591167947527}
   - component: {fileID: 6853991335368839026}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5169,7 +5169,7 @@ GameObject:
   - component: {fileID: 3767541128796396910}
   - component: {fileID: 3225501698803080935}
   - component: {fileID: 5826911667116245009}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5274,7 +5274,7 @@ GameObject:
   - component: {fileID: 1829774975606861677}
   - component: {fileID: 5265421492557649156}
   - component: {fileID: 330628853858922376}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5379,7 +5379,7 @@ GameObject:
   - component: {fileID: 5464602343571539449}
   - component: {fileID: 686907312157546863}
   - component: {fileID: 7259628315352536734}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: arch_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5482,7 +5482,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7357510099882216843}
   - component: {fileID: 7719801798246215333}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (43)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5533,7 +5533,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4910319235884047161}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5594,7 +5594,7 @@ GameObject:
   - component: {fileID: 3994320406135100693}
   - component: {fileID: 9030671898712884559}
   - component: {fileID: 1091857485614095381}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Short_wall (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5699,7 +5699,7 @@ GameObject:
   - component: {fileID: 3192551477089822401}
   - component: {fileID: 7005047488767710446}
   - component: {fileID: 9217543656766376524}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5804,7 +5804,7 @@ GameObject:
   - component: {fileID: 2407735700160300928}
   - component: {fileID: 561313316648825485}
   - component: {fileID: 2377103037884973510}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Window_Square (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5910,7 +5910,7 @@ GameObject:
   - component: {fileID: 4142074271377772881}
   - component: {fileID: 8471216700000283011}
   - component: {fileID: 3428740186500645618}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Floor0_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6012,7 +6012,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 774228890404989078}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ridges
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6045,7 +6045,7 @@ GameObject:
   - component: {fileID: 1290812109005407284}
   - component: {fileID: 3388206158513357292}
   - component: {fileID: 7591936507352393980}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: column_square_C_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6129,7 +6129,7 @@ GameObject:
   - component: {fileID: 7328389395084883065}
   - component: {fileID: 6396530207069490630}
   - component: {fileID: 4287180328225116449}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_10cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6232,7 +6232,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6536177848817176897}
   - component: {fileID: 7806099910845228149}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_D (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6286,7 +6286,7 @@ GameObject:
   - component: {fileID: 5276778924400935028}
   - component: {fileID: 13492355361455073}
   - component: {fileID: 6212611929362704176}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Short_wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6389,7 +6389,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6685771735783089902}
   - component: {fileID: 3255269684427286611}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (33)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6443,7 +6443,7 @@ GameObject:
   - component: {fileID: 4573553206778666343}
   - component: {fileID: 4508565148365426800}
   - component: {fileID: 628133118434552042}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Short_wall (18)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6548,7 +6548,7 @@ GameObject:
   - component: {fileID: 1034068723742512939}
   - component: {fileID: 9146790629628012678}
   - component: {fileID: 7584295195331439751}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Short_wall (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6653,7 +6653,7 @@ GameObject:
   - component: {fileID: 6037587093920917626}
   - component: {fileID: 3597675022381059842}
   - component: {fileID: 256379348301537243}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_panel_B.LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6756,7 +6756,7 @@ GameObject:
   m_Component:
   - component: {fileID: 741491645632104823}
   - component: {fileID: 246347598034614325}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (42)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6808,7 +6808,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2545676559322482088}
   - component: {fileID: 6875976195023946066}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Arch (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6859,7 +6859,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4700650201970785832}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Column
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6897,7 +6897,7 @@ GameObject:
   - component: {fileID: 5503914665020103912}
   - component: {fileID: 8144786900796050639}
   - component: {fileID: 5458029417730008085}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_10cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7002,7 +7002,7 @@ GameObject:
   - component: {fileID: 463953315918859898}
   - component: {fileID: 3891601260829502157}
   - component: {fileID: 7176677172573104458}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Short_wall (19)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7106,7 +7106,7 @@ GameObject:
   - component: {fileID: 4916384023625664907}
   - component: {fileID: 2631522727390548841}
   - component: {fileID: 3031387394324139720}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_panel_C
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7179,7 +7179,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9027701514977294332}
   - component: {fileID: 4551561087400095904}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_Or (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7231,7 +7231,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3800650068642742134}
   - component: {fileID: 5403174758518133087}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Arch (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7285,7 +7285,7 @@ GameObject:
   - component: {fileID: 8947586652569019978}
   - component: {fileID: 3001720582199324668}
   - component: {fileID: 2701244202865891545}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7389,7 +7389,7 @@ GameObject:
   - component: {fileID: 3579579686218092159}
   - component: {fileID: 6564099382491735138}
   - component: {fileID: 7202558660604121799}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bracket_B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7464,7 +7464,7 @@ GameObject:
   - component: {fileID: 5092340204452939046}
   - component: {fileID: 4347863399613391115}
   - component: {fileID: 4815344709477909833}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bulding_shell2.LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7570,7 +7570,7 @@ GameObject:
   - component: {fileID: 6550481602627331571}
   - component: {fileID: 8036367200945768633}
   - component: {fileID: 7861464628667093696}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Window_Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7676,7 +7676,7 @@ GameObject:
   - component: {fileID: 1993273874118572928}
   - component: {fileID: 1230695996526084743}
   - component: {fileID: 6111555520119099708}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_panel_C_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7779,7 +7779,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6327713428183223464}
   - component: {fileID: 3825435164444454654}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (20)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7833,7 +7833,7 @@ GameObject:
   - component: {fileID: 7810700693027973450}
   - component: {fileID: 6153142057159910076}
   - component: {fileID: 7809069604891576726}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7938,7 +7938,7 @@ GameObject:
   - component: {fileID: 8852341167503954724}
   - component: {fileID: 4622510495220433912}
   - component: {fileID: 5937891182965977865}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Window_Square (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8043,7 +8043,7 @@ GameObject:
   - component: {fileID: 3048170893181586264}
   - component: {fileID: 537385303430176912}
   - component: {fileID: 6255405770564036397}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: column_square_C
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8116,7 +8116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4763682124326145975}
   - component: {fileID: 8199391845585541068}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (16)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8169,7 +8169,7 @@ GameObject:
   - component: {fileID: 1619356462362318100}
   - component: {fileID: 5422130387144359738}
   - component: {fileID: 6723947582461526648}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_lar_40cm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8244,7 +8244,7 @@ GameObject:
   - component: {fileID: 6537019955478344931}
   - component: {fileID: 5947401437691941622}
   - component: {fileID: 6137643286665438822}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sara_Roof.LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8349,7 +8349,7 @@ GameObject:
   - component: {fileID: 7412832034522987431}
   - component: {fileID: 6515314572739442531}
   - component: {fileID: 1121645434340609282}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_window_C_C1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8456,7 +8456,7 @@ GameObject:
   - component: {fileID: 2270719221980692628}
   - component: {fileID: 7964830799611417596}
   - component: {fileID: 3229109918793852018}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Short_wall1 (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8561,7 +8561,7 @@ GameObject:
   - component: {fileID: 537653633904379904}
   - component: {fileID: 2787364652733241425}
   - component: {fileID: 570910886539333912}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bracket_B_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8645,7 +8645,7 @@ GameObject:
   - component: {fileID: 1662732608068284720}
   - component: {fileID: 2577132786361925098}
   - component: {fileID: 6931917890967512159}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_D_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8750,7 +8750,7 @@ GameObject:
   - component: {fileID: 8454104394231950374}
   - component: {fileID: 6535719512145203073}
   - component: {fileID: 3217371948174138771}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_short_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8853,7 +8853,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3886693565540990996}
   - component: {fileID: 300341534640359341}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_Or (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8907,7 +8907,7 @@ GameObject:
   - component: {fileID: 7612745487271322878}
   - component: {fileID: 6800384882737706433}
   - component: {fileID: 1250443795609619136}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9010,7 +9010,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4447186267444988004}
   - component: {fileID: 9077526999976843613}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (16)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9064,7 +9064,7 @@ GameObject:
   - component: {fileID: 6815116855872129736}
   - component: {fileID: 3988347193836690779}
   - component: {fileID: 4476943678813200072}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9169,7 +9169,7 @@ GameObject:
   - component: {fileID: 7174894846718526470}
   - component: {fileID: 8871835941922731995}
   - component: {fileID: 5691745537512970692}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: arch_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9272,7 +9272,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1047894678189861986}
   - component: {fileID: 2109897708891095175}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Floor0 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9324,7 +9324,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7605417445177758284}
   - component: {fileID: 6458930094053040807}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_panel_A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9378,7 +9378,7 @@ GameObject:
   - component: {fileID: 971428633048435993}
   - component: {fileID: 8664958047242452980}
   - component: {fileID: 831507358987262436}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Short_wall (25)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9481,7 +9481,7 @@ GameObject:
   m_Component:
   - component: {fileID: 854162110761983177}
   - component: {fileID: 7339307707461993953}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_Or (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9534,7 +9534,7 @@ GameObject:
   - component: {fileID: 2403048341562330494}
   - component: {fileID: 3523196662440941274}
   - component: {fileID: 5308918798691361843}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bracket_B (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9607,7 +9607,7 @@ GameObject:
   m_Component:
   - component: {fileID: 317584973635422457}
   - component: {fileID: 6864654032932741908}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Arch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9661,7 +9661,7 @@ GameObject:
   - component: {fileID: 7500340783072498277}
   - component: {fileID: 4062016712516122805}
   - component: {fileID: 7634315048183600183}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ridge_B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9766,7 +9766,7 @@ GameObject:
   - component: {fileID: 5818642967461090248}
   - component: {fileID: 6590094875844517221}
   - component: {fileID: 72779066691537495}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Window_Circle (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9870,7 +9870,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5659069767607770673}
   - component: {fileID: 4915774588661172239}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Floor0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9924,7 +9924,7 @@ GameObject:
   - component: {fileID: 626747456190951316}
   - component: {fileID: 8727306601080128727}
   - component: {fileID: 6222087426291172956}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_panel_B.LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10029,7 +10029,7 @@ GameObject:
   - component: {fileID: 7613691151905550043}
   - component: {fileID: 6589147547372999709}
   - component: {fileID: 3916207788822569370}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Short_wall (15)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10134,7 +10134,7 @@ GameObject:
   - component: {fileID: 6130248923536378673}
   - component: {fileID: 6461612960915094527}
   - component: {fileID: 8511253735541216028}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10239,7 +10239,7 @@ GameObject:
   - component: {fileID: 4449042581069044576}
   - component: {fileID: 4530477686866598450}
   - component: {fileID: 2923831290461321592}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_panel_C_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10344,7 +10344,7 @@ GameObject:
   - component: {fileID: 2063563291891785330}
   - component: {fileID: 4373286580676140437}
   - component: {fileID: 8319969882791048660}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_10cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10449,7 +10449,7 @@ GameObject:
   - component: {fileID: 8012818347151705575}
   - component: {fileID: 5863232320772423322}
   - component: {fileID: 6125424080285506821}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: arch_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10552,7 +10552,7 @@ GameObject:
   m_Component:
   - component: {fileID: 528324018333112684}
   - component: {fileID: 7972795967396896188}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DoorSound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10682,7 +10682,7 @@ GameObject:
   - component: {fileID: 2888119035168754665}
   - component: {fileID: 7718397838206109051}
   - component: {fileID: 2933323454561983647}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_10cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10785,7 +10785,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7773230597885216075}
   - component: {fileID: 3711736809691997763}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_10cm (17)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10839,7 +10839,7 @@ GameObject:
   - component: {fileID: 5239294698184983770}
   - component: {fileID: 8045378275992482193}
   - component: {fileID: 1570536664360480049}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_Ta.LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10944,7 +10944,7 @@ GameObject:
   - component: {fileID: 4055165848761544924}
   - component: {fileID: 8131469200118769473}
   - component: {fileID: 4174008371901429070}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Short_wall (21)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11047,7 +11047,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6459270062945182358}
   - component: {fileID: 1419024719194781276}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11101,7 +11101,7 @@ GameObject:
   - component: {fileID: 2341042463516923913}
   - component: {fileID: 3563488992013784283}
   - component: {fileID: 7036774251540848779}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_Or_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11206,7 +11206,7 @@ GameObject:
   - component: {fileID: 6616699457402410302}
   - component: {fileID: 6896436625850390511}
   - component: {fileID: 4735404693143461911}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bracket_beam_wood.LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11309,7 +11309,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5878837072115280719}
   - component: {fileID: 4729480504366771801}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_10cm (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11361,7 +11361,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1222975987726767821}
   - component: {fileID: 2012746150251325745}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_Ta (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11413,7 +11413,7 @@ GameObject:
   m_Component:
   - component: {fileID: 68942307866768037}
   - component: {fileID: 8641932873924654933}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_Or (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11467,7 +11467,7 @@ GameObject:
   - component: {fileID: 5763262814166117162}
   - component: {fileID: 1331866029845768681}
   - component: {fileID: 7743660784976030603}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11571,7 +11571,7 @@ GameObject:
   - component: {fileID: 8283524690580757417}
   - component: {fileID: 8744770028429748427}
   - component: {fileID: 488303070077857132}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_lar_40cm.LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11655,7 +11655,7 @@ GameObject:
   - component: {fileID: 4396693128923979826}
   - component: {fileID: 3351314196056111660}
   - component: {fileID: 5059113077663385550}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_10cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11760,7 +11760,7 @@ GameObject:
   - component: {fileID: 3143203772657365758}
   - component: {fileID: 4418746119299333196}
   - component: {fileID: 4973055637605757597}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11863,7 +11863,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5993542687284788754}
   - component: {fileID: 8626645121065129271}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_panel_D (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11915,7 +11915,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1466476260651974930}
   - component: {fileID: 1110829965008713357}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_panel_D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11969,7 +11969,7 @@ GameObject:
   - component: {fileID: 8060706107411768117}
   - component: {fileID: 5927867908288193935}
   - component: {fileID: 1199920093000167901}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Short_wall (24)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12073,7 +12073,7 @@ GameObject:
   - component: {fileID: 8578085212263680596}
   - component: {fileID: 8733302985193332410}
   - component: {fileID: 7507876808067101141}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_20cm.LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12157,7 +12157,7 @@ GameObject:
   - component: {fileID: 8821747543724173117}
   - component: {fileID: 8546419024475803977}
   - component: {fileID: 8421169501599015906}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Short_wall1 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12263,7 +12263,7 @@ GameObject:
   - component: {fileID: 7040961369835832856}
   - component: {fileID: 1314827987209014555}
   - component: {fileID: 6601924264940536462}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_Or_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12366,7 +12366,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5052002288618549184}
   - component: {fileID: 1220331543394165545}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (37)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12418,7 +12418,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3720336121075142830}
   - component: {fileID: 8667147165658808066}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (34)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12473,7 +12473,7 @@ GameObject:
   - component: {fileID: 5668907295081372790}
   - component: {fileID: 3317266231334807518}
   - component: {fileID: 9085917461475564498}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Door.
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12601,7 +12601,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2216326883398344232}
   - component: {fileID: 3616426590555951960}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_panel_C
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12655,7 +12655,7 @@ GameObject:
   - component: {fileID: 1141942636444996496}
   - component: {fileID: 218180761926722212}
   - component: {fileID: 8291564292365738474}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_ridge_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12759,7 +12759,7 @@ GameObject:
   - component: {fileID: 3227052326400277415}
   - component: {fileID: 6590239855111646141}
   - component: {fileID: 2772115001571635715}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_lar_40cm (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12834,7 +12834,7 @@ GameObject:
   - component: {fileID: 8878175694474285919}
   - component: {fileID: 7067641101818737279}
   - component: {fileID: 1069436756160295678}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12939,7 +12939,7 @@ GameObject:
   - component: {fileID: 939316094962356917}
   - component: {fileID: 7072395584380292892}
   - component: {fileID: 6031362039993950056}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13043,7 +13043,7 @@ GameObject:
   - component: {fileID: 1862276500903732953}
   - component: {fileID: 450842300769822853}
   - component: {fileID: 5408511685536008558}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: column_square_C (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13118,7 +13118,7 @@ GameObject:
   - component: {fileID: 4342064086059840090}
   - component: {fileID: 2886359140777477923}
   - component: {fileID: 4373788294540813737}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Short_wall (26)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13223,7 +13223,7 @@ GameObject:
   - component: {fileID: 7878065536004367413}
   - component: {fileID: 8144261469377586884}
   - component: {fileID: 5309126550438163323}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_10cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13328,7 +13328,7 @@ GameObject:
   - component: {fileID: 1733148294963994268}
   - component: {fileID: 1472165246135905586}
   - component: {fileID: 2444569188163363814}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_window_B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13435,7 +13435,7 @@ GameObject:
   - component: {fileID: 250129015472774631}
   - component: {fileID: 5405001020218152209}
   - component: {fileID: 4223463025815030127}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_panel_D.LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13539,7 +13539,7 @@ GameObject:
   - component: {fileID: 359107979038112017}
   - component: {fileID: 5441529805964858300}
   - component: {fileID: 8497022767257852205}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: column_square_C (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13612,7 +13612,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4106864112394254142}
   - component: {fileID: 3618367851631973999}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bulding_shell2 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13672,7 +13672,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5334472592871389312}
   - component: {fileID: 4494428923458816899}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_panel_D (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13724,7 +13724,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4196583415604091173}
   - component: {fileID: 7248916021731094174}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Arch (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13778,7 +13778,7 @@ GameObject:
   - component: {fileID: 3913456930326294015}
   - component: {fileID: 7761381539025549349}
   - component: {fileID: 1352419449598777760}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_Or_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13883,7 +13883,7 @@ GameObject:
   - component: {fileID: 4530380155004935203}
   - component: {fileID: 1010415622588108593}
   - component: {fileID: 352319985962490066}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_10cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13986,7 +13986,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8549951509312119726}
   - component: {fileID: 3746822808668995693}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_10cm (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14040,7 +14040,7 @@ GameObject:
   - component: {fileID: 8394308766410309839}
   - component: {fileID: 2856345031008526823}
   - component: {fileID: 1248513883601151454}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14143,7 +14143,7 @@ GameObject:
   m_Component:
   - component: {fileID: 73150565119657216}
   - component: {fileID: 2136252564179743713}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14195,7 +14195,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8727782510582075772}
   - component: {fileID: 6483838842329508745}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_10cm (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14249,7 +14249,7 @@ GameObject:
   - component: {fileID: 528435221677961546}
   - component: {fileID: 3595849570731888713}
   - component: {fileID: 2685954378220054917}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Short_wall1 (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14352,7 +14352,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5047040996739296901}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Beam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14417,7 +14417,7 @@ GameObject:
   - component: {fileID: 3691427361395456156}
   - component: {fileID: 7914101889025895362}
   - component: {fileID: 2617419879391419213}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14521,7 +14521,7 @@ GameObject:
   - component: {fileID: 1994950473643418883}
   - component: {fileID: 7073884175929372781}
   - component: {fileID: 3471939910079389320}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_lar_40cm (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14593,7 +14593,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2838951724651598515}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Moduler_House_2Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14628,7 +14628,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8654372679955738446}
   - component: {fileID: 7749335454042947655}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_Or (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14682,7 +14682,7 @@ GameObject:
   - component: {fileID: 1152692814288472641}
   - component: {fileID: 1862376514456760618}
   - component: {fileID: 6931291427724142545}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_panel_A_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14785,7 +14785,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2695287448454367288}
   - component: {fileID: 1174999184718075481}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (42)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14837,7 +14837,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2879625575433347385}
   - component: {fileID: 644517791005320278}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_Ta
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14891,7 +14891,7 @@ GameObject:
   - component: {fileID: 6027728850181123584}
   - component: {fileID: 4278687180200058752}
   - component: {fileID: 5570729241373984893}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14996,7 +14996,7 @@ GameObject:
   - component: {fileID: 4807554084577264751}
   - component: {fileID: 7402343339707976839}
   - component: {fileID: 2948154115931364418}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_ridge_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15099,7 +15099,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6115907307817501645}
   - component: {fileID: 243174383776692683}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (22)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15151,7 +15151,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2359009747101817116}
   - component: {fileID: 6437153892671126953}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (27)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15203,7 +15203,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2222587936091393748}
   - component: {fileID: 6546840364469902546}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (37)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15257,7 +15257,7 @@ GameObject:
   - component: {fileID: 5569968502739803501}
   - component: {fileID: 4299037074999014093}
   - component: {fileID: 7705527380356133014}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_panel_C_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15361,7 +15361,7 @@ GameObject:
   - component: {fileID: 713341781527728883}
   - component: {fileID: 7394519188933356891}
   - component: {fileID: 9086007510367215243}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_lar_40cm.LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15444,7 +15444,7 @@ GameObject:
   - component: {fileID: 3089712488357774629}
   - component: {fileID: 6926168713798929856}
   - component: {fileID: 2039311683891488746}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bracket_B (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15518,7 +15518,7 @@ GameObject:
   - component: {fileID: 44428303947075704}
   - component: {fileID: 8169567611161108257}
   - component: {fileID: 2955160914641169593}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_lar_40cm (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15591,7 +15591,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5470972193643513069}
   - component: {fileID: 8887908629839415453}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (17)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15643,7 +15643,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5984075764481971209}
   - component: {fileID: 1083759021239889073}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_ridge (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15696,7 +15696,7 @@ GameObject:
   - component: {fileID: 7698181623783658701}
   - component: {fileID: 1244569675711435671}
   - component: {fileID: 7705438845368754338}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_10cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15801,7 +15801,7 @@ GameObject:
   - component: {fileID: 5365607057282100088}
   - component: {fileID: 4382321926947282350}
   - component: {fileID: 769898976260323852}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15904,7 +15904,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1502927129716272366}
   - component: {fileID: 2689931128384347409}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (31)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15956,7 +15956,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3149771723947002112}
   - component: {fileID: 6155048917383518097}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (23)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16010,7 +16010,7 @@ GameObject:
   - component: {fileID: 5241964660514467821}
   - component: {fileID: 4664047109848805914}
   - component: {fileID: 3435997283727687052}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16113,7 +16113,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3503740834842906371}
   - component: {fileID: 5430798682303839277}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_10cm (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16165,7 +16165,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7097321163695580566}
   - component: {fileID: 4560849638819046154}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (25)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16219,7 +16219,7 @@ GameObject:
   - component: {fileID: 7465520107309472723}
   - component: {fileID: 1306014067324774509}
   - component: {fileID: 6589393823324724091}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16321,7 +16321,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2517233124363211280}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bracket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16356,7 +16356,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8312482256511455875}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Window
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16391,7 +16391,7 @@ GameObject:
   - component: {fileID: 6247209743051129426}
   - component: {fileID: 5570981732174192764}
   - component: {fileID: 4503590953103295251}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ridge_B (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16494,7 +16494,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6324003263986758499}
   - component: {fileID: 404158676850937368}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (39)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16548,7 +16548,7 @@ GameObject:
   - component: {fileID: 733375534621044506}
   - component: {fileID: 5914286062688238446}
   - component: {fileID: 6599665872426744115}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_short_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16650,7 +16650,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 858906889356382175}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Short_Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16709,7 +16709,7 @@ GameObject:
   - component: {fileID: 6223436087123407710}
   - component: {fileID: 2303689271078550323}
   - component: {fileID: 7298701502629175596}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16814,7 +16814,7 @@ GameObject:
   - component: {fileID: 7108882834764919901}
   - component: {fileID: 9067786637295512285}
   - component: {fileID: 1975317278112090549}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: arch_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16917,7 +16917,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3904325786739880847}
   - component: {fileID: 7560084241933762470}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_Ta
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16968,7 +16968,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7792071354817189308}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Railings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17000,7 +17000,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5785584464812303636}
   - component: {fileID: 4256082261598907208}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (24)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17054,7 +17054,7 @@ GameObject:
   - component: {fileID: 1186694552894313098}
   - component: {fileID: 2889048767469658095}
   - component: {fileID: 4356165301152959492}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17156,7 +17156,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3800420483961353005}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17193,7 +17193,7 @@ GameObject:
   - component: {fileID: 5727192957955138386}
   - component: {fileID: 4663465015843737242}
   - component: {fileID: 6674900231073331408}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17297,7 +17297,7 @@ GameObject:
   - component: {fileID: 4920995336911372873}
   - component: {fileID: 4039696453721754100}
   - component: {fileID: 8051678364006105083}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bracket_B_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17381,7 +17381,7 @@ GameObject:
   - component: {fileID: 1054046425384266375}
   - component: {fileID: 4369807269195853966}
   - component: {fileID: 3040062406700333045}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: arch_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17485,7 +17485,7 @@ GameObject:
   - component: {fileID: 2553605991247428975}
   - component: {fileID: 8854920046506226317}
   - component: {fileID: 5509956881565743027}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_lar_40cm (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17560,7 +17560,7 @@ GameObject:
   - component: {fileID: 2323905820096220873}
   - component: {fileID: 8946437542736548184}
   - component: {fileID: 6703303256706964900}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_Ta.LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17662,7 +17662,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8996811927273105893}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Beam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17751,7 +17751,7 @@ GameObject:
   - component: {fileID: 4522309868755455860}
   - component: {fileID: 1309517951592591176}
   - component: {fileID: 2739853718870610923}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Short_wall (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17856,7 +17856,7 @@ GameObject:
   - component: {fileID: 4854133066656537518}
   - component: {fileID: 6938003488820933130}
   - component: {fileID: 5809953986537483471}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bracket_beam_wood.LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17960,7 +17960,7 @@ GameObject:
   - component: {fileID: 5765157804694018176}
   - component: {fileID: 2608195351385610694}
   - component: {fileID: 3447384145913320319}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_lar_40cm.LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18042,7 +18042,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7791434748514475684}
   - component: {fileID: 4252717272067362860}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (41)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18096,7 +18096,7 @@ GameObject:
   - component: {fileID: 7410086843869947614}
   - component: {fileID: 1566691482153831698}
   - component: {fileID: 8872489035047829352}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_ridge_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18199,7 +18199,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8780428467393527042}
   - component: {fileID: 4526964399601635542}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_ridge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18252,7 +18252,7 @@ GameObject:
   - component: {fileID: 2644401061168883251}
   - component: {fileID: 4874876476519248705}
   - component: {fileID: 8120125498255563141}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Short_wall1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18357,7 +18357,7 @@ GameObject:
   - component: {fileID: 8795301682667864066}
   - component: {fileID: 1087210980733365093}
   - component: {fileID: 7893301593343213081}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bracket_B (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18431,7 +18431,7 @@ GameObject:
   - component: {fileID: 7290415615277337242}
   - component: {fileID: 1817515014255401485}
   - component: {fileID: 2133919501880998024}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: column_square_C_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18513,7 +18513,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4717117345299595181}
   - component: {fileID: 590100426655510686}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_10cm (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18564,7 +18564,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7464509284998440361}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bracket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18598,7 +18598,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3595642890474258811}
   - component: {fileID: 367973521184631041}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (38)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18650,7 +18650,7 @@ GameObject:
   m_Component:
   - component: {fileID: 691347765322349173}
   - component: {fileID: 8602915639547576755}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Arch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18702,7 +18702,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1722795892502742427}
   - component: {fileID: 7866195336186461714}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_10cm (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18754,7 +18754,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4411315764404668838}
   - component: {fileID: 8191767515516770864}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (44)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18808,7 +18808,7 @@ GameObject:
   - component: {fileID: 3736047187146279248}
   - component: {fileID: 3964824306300825152}
   - component: {fileID: 5629440161113138074}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_panel_B.LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18911,7 +18911,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6102162755915011466}
   - component: {fileID: 3366607613412169160}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_ridge (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18962,7 +18962,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8609539956850855923}
   - component: {fileID: 2898253558194842981}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (34)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19014,7 +19014,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3079332948309049031}
   - component: {fileID: 8593296616838525027}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_10cm (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19067,7 +19067,7 @@ GameObject:
   - component: {fileID: 3348431878816420062}
   - component: {fileID: 1149480669189332997}
   - component: {fileID: 9046428747229435084}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bracket_B (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19140,7 +19140,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3378234214895549377}
   - component: {fileID: 1574845166085325622}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19194,7 +19194,7 @@ GameObject:
   - component: {fileID: 3768202431062161060}
   - component: {fileID: 7524397456307444069}
   - component: {fileID: 3668807179489424478}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19297,7 +19297,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3266956148998729805}
   - component: {fileID: 6103185125438278746}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (26)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19351,7 +19351,7 @@ GameObject:
   - component: {fileID: 3858127994613849667}
   - component: {fileID: 8080575348878593083}
   - component: {fileID: 8201566762073786683}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_panel_B.LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19454,7 +19454,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5844152263593887283}
   - component: {fileID: 2260211380503629404}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19508,7 +19508,7 @@ GameObject:
   m_Component:
   - component: {fileID: 868085244035379021}
   - component: {fileID: 5103532011187739091}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (32)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19562,7 +19562,7 @@ GameObject:
   - component: {fileID: 5759843363265268432}
   - component: {fileID: 7039666388738008171}
   - component: {fileID: 5925651800461734839}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19665,7 +19665,7 @@ GameObject:
   m_Component:
   - component: {fileID: 285050900326216420}
   - component: {fileID: 2296267348392857928}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_10cm (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19717,7 +19717,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5075212825925269163}
   - component: {fileID: 5280905661466816283}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_panel_B (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19771,7 +19771,7 @@ GameObject:
   - component: {fileID: 7875205674235283641}
   - component: {fileID: 2932172751138254164}
   - component: {fileID: 5519053721114164661}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Short_wall (20)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19876,7 +19876,7 @@ GameObject:
   - component: {fileID: 7621835581712189662}
   - component: {fileID: 4336397617573698581}
   - component: {fileID: 2905489817695274996}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ridge_B (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19981,7 +19981,7 @@ GameObject:
   - component: {fileID: 4750310546512824826}
   - component: {fileID: 7599560640758970140}
   - component: {fileID: 6613017337792714016}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Short_wall (17)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20085,7 +20085,7 @@ GameObject:
   - component: {fileID: 5974740424428126611}
   - component: {fileID: 3759095157370180082}
   - component: {fileID: 993878060446631655}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: column_square_C (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20159,7 +20159,7 @@ GameObject:
   - component: {fileID: 1214055181178158587}
   - component: {fileID: 5276064290927659710}
   - component: {fileID: 710362972264527097}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_lar_40cm (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20232,7 +20232,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5293828636511963267}
   - component: {fileID: 3646753186413090299}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (32)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20286,7 +20286,7 @@ GameObject:
   - component: {fileID: 2227451134665042802}
   - component: {fileID: 6333513237271884122}
   - component: {fileID: 5338811569980173661}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: arch_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20391,7 +20391,7 @@ GameObject:
   - component: {fileID: 7533299506704026854}
   - component: {fileID: 3470669980048191847}
   - component: {fileID: 7522006920317073318}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_panel_D.LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20495,7 +20495,7 @@ GameObject:
   - component: {fileID: 3849446025448772096}
   - component: {fileID: 5871826154422298112}
   - component: {fileID: 2262820800723718073}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_20cm.LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20579,7 +20579,7 @@ GameObject:
   - component: {fileID: 5920518923460642935}
   - component: {fileID: 2036872705211194059}
   - component: {fileID: 7187033439149608677}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: arch_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20682,7 +20682,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5980999327073524409}
   - component: {fileID: 4734401493276871576}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_panel_C (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20734,7 +20734,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8874170593719007869}
   - component: {fileID: 7674157471096661221}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_panel_D (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20788,7 +20788,7 @@ GameObject:
   - component: {fileID: 3428766965291570363}
   - component: {fileID: 1390289643534556634}
   - component: {fileID: 1527429413586498404}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_10cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20891,7 +20891,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5381000734048749417}
   - component: {fileID: 7318500123237537653}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_10cm (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20944,7 +20944,7 @@ GameObject:
   - component: {fileID: 1297621243586618653}
   - component: {fileID: 6816229253520744078}
   - component: {fileID: 7000694334357070995}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_20cm (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21018,7 +21018,7 @@ GameObject:
   - component: {fileID: 8291631716339677583}
   - component: {fileID: 5950131555903495148}
   - component: {fileID: 93500672362855034}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bracket_B (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21092,7 +21092,7 @@ GameObject:
   - component: {fileID: 5862746314721111717}
   - component: {fileID: 4995392202428499742}
   - component: {fileID: 9163945357569887494}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: column_square_C_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21175,7 +21175,7 @@ GameObject:
   - component: {fileID: 3419772405921864672}
   - component: {fileID: 6480825378571551412}
   - component: {fileID: 5273382688554969987}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bracket_B_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21257,7 +21257,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4229862833451024127}
   - component: {fileID: 1493499492475411844}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21309,7 +21309,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5849659573021581326}
   - component: {fileID: 3141802371657430345}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Floor0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21363,7 +21363,7 @@ GameObject:
   - component: {fileID: 4657960242911641141}
   - component: {fileID: 5769211614316924596}
   - component: {fileID: 7646448741077527998}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Short_wall1 (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21469,7 +21469,7 @@ GameObject:
   - component: {fileID: 7512519838237280257}
   - component: {fileID: 8899828912985594270}
   - component: {fileID: 6827743284236401358}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Short_wall (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21574,7 +21574,7 @@ GameObject:
   - component: {fileID: 8985890047681717609}
   - component: {fileID: 9171367293536189062}
   - component: {fileID: 9038023847074218532}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21678,7 +21678,7 @@ GameObject:
   - component: {fileID: 4647039248936794550}
   - component: {fileID: 832650881438075847}
   - component: {fileID: 438518308606133801}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: column_square_C
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21753,7 +21753,7 @@ GameObject:
   - component: {fileID: 6490730346396226271}
   - component: {fileID: 7500496399460274349}
   - component: {fileID: 3431738761326354046}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Floor0_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21858,7 +21858,7 @@ GameObject:
   - component: {fileID: 8720105458827701697}
   - component: {fileID: 5513864772746261884}
   - component: {fileID: 6234183176281180965}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Window_Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21963,7 +21963,7 @@ GameObject:
   - component: {fileID: 9015923173082533554}
   - component: {fileID: 4924697115952038804}
   - component: {fileID: 4958604198369083273}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: column_square_C_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22047,7 +22047,7 @@ GameObject:
   - component: {fileID: 1686675103118413244}
   - component: {fileID: 7176339345149777364}
   - component: {fileID: 1892174722522109883}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Short_wall (22)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22150,7 +22150,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6881776829862182328}
   - component: {fileID: 8312691859319493848}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (35)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22204,7 +22204,7 @@ GameObject:
   - component: {fileID: 2413180242486826942}
   - component: {fileID: 8259170611581114025}
   - component: {fileID: 4729044754337286219}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22309,7 +22309,7 @@ GameObject:
   - component: {fileID: 645156562616710545}
   - component: {fileID: 9085627345452901654}
   - component: {fileID: 9179741495531104064}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22413,7 +22413,7 @@ GameObject:
   - component: {fileID: 7297750750061604698}
   - component: {fileID: 4764378314971934822}
   - component: {fileID: 8962690870396425973}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_lar_40cm.LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22495,7 +22495,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5065292334211791576}
   - component: {fileID: 6691030895164038357}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_Ta (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22549,7 +22549,7 @@ GameObject:
   - component: {fileID: 4371189672958497189}
   - component: {fileID: 3666503082487457997}
   - component: {fileID: 6340336793577735387}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_window_B (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22656,7 +22656,7 @@ GameObject:
   - component: {fileID: 8158731989664414990}
   - component: {fileID: 4344567640741783206}
   - component: {fileID: 939992844460864097}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ridge_B (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22761,7 +22761,7 @@ GameObject:
   - component: {fileID: 1992093951120871060}
   - component: {fileID: 3587353048551078165}
   - component: {fileID: 9218398253075055129}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_panel_B.LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22866,7 +22866,7 @@ GameObject:
   - component: {fileID: 8247013799324605322}
   - component: {fileID: 6576035284450146302}
   - component: {fileID: 1203655414561642287}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Short_wall (25)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22972,7 +22972,7 @@ GameObject:
   - component: {fileID: 1828249503947461321}
   - component: {fileID: 764861508246074259}
   - component: {fileID: 2712858971382077563}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: POI_Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23090,7 +23090,7 @@ GameObject:
   - component: {fileID: 7362620534292843714}
   - component: {fileID: 924310228650225181}
   - component: {fileID: 8365206501893230370}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23195,7 +23195,7 @@ GameObject:
   - component: {fileID: 5281763064881326703}
   - component: {fileID: 4819142104391917978}
   - component: {fileID: 3149694501364856253}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_panel_B.LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23298,7 +23298,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7619020668788408050}
   - component: {fileID: 323268390457988981}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_panel_D (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23350,7 +23350,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2475672927307969006}
   - component: {fileID: 8923899249297908757}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_Or
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23404,7 +23404,7 @@ GameObject:
   - component: {fileID: 6967828922591425086}
   - component: {fileID: 6049491861404246781}
   - component: {fileID: 3152945255669695621}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23507,7 +23507,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4274732899698241109}
   - component: {fileID: 4115131480002077827}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Arch (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23559,7 +23559,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1857529516434505807}
   - component: {fileID: 523993906491806114}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_10cm (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23611,7 +23611,7 @@ GameObject:
   m_Component:
   - component: {fileID: 560928416761978772}
   - component: {fileID: 2477829147189427193}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_10cm (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23664,7 +23664,7 @@ GameObject:
   - component: {fileID: 9142137818160616298}
   - component: {fileID: 1667009442343800370}
   - component: {fileID: 8496627822834754472}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: column_square_C (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23737,7 +23737,7 @@ GameObject:
   m_Component:
   - component: {fileID: 409534955550142401}
   - component: {fileID: 686638590657375260}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (33)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23791,7 +23791,7 @@ GameObject:
   - component: {fileID: 6242121216400868943}
   - component: {fileID: 7238841484197214665}
   - component: {fileID: 5177946192633120426}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_10cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23894,7 +23894,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8020877043154518728}
   - component: {fileID: 4249529950752747081}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_panel_B (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23948,7 +23948,7 @@ GameObject:
   - component: {fileID: 5109164321320168880}
   - component: {fileID: 1291691391990000825}
   - component: {fileID: 5749917406187828686}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_panel_D.LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24050,7 +24050,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2440722096569051728}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Railings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24084,7 +24084,7 @@ GameObject:
   - component: {fileID: 4593656717535936492}
   - component: {fileID: 4384713149699441659}
   - component: {fileID: 2395230907470521733}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24188,7 +24188,7 @@ GameObject:
   - component: {fileID: 4137397587408995162}
   - component: {fileID: 1399900920999284314}
   - component: {fileID: 1336029138808737524}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bracket_B_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24272,7 +24272,7 @@ GameObject:
   - component: {fileID: 6615150343809980687}
   - component: {fileID: 4925097030386601605}
   - component: {fileID: 1304999466467637748}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24375,7 +24375,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6287800553140140216}
   - component: {fileID: 222749719889241228}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bracket_beam_wood (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24429,7 +24429,7 @@ GameObject:
   - component: {fileID: 4101491142912984906}
   - component: {fileID: 1424119283121954451}
   - component: {fileID: 3976608866258142729}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Floor0_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24532,7 +24532,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1809914659134126777}
   - component: {fileID: 8373424568195432977}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_10cm (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24586,7 +24586,7 @@ GameObject:
   - component: {fileID: 3841367450300792708}
   - component: {fileID: 8911734282239269795}
   - component: {fileID: 5634092444761867879}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bracket_beam_wood.LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24691,7 +24691,7 @@ GameObject:
   - component: {fileID: 1897701595468500521}
   - component: {fileID: 1896507568714065540}
   - component: {fileID: 6775287179975560420}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Short_wall (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24796,7 +24796,7 @@ GameObject:
   - component: {fileID: 2033283468664079295}
   - component: {fileID: 7695979376048143481}
   - component: {fileID: 1001565541159093493}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ridge_B (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24899,7 +24899,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5462218453985667166}
   - component: {fileID: 9097980911353382535}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24953,7 +24953,7 @@ GameObject:
   - component: {fileID: 4987798359743118}
   - component: {fileID: 3112391178206272939}
   - component: {fileID: 6833153684825733548}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25055,7 +25055,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7096269233544101802}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Roofs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25097,7 +25097,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7190997864146723181}
   - component: {fileID: 6097478483597763468}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Arch (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25148,7 +25148,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4234115945057985813}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25185,7 +25185,7 @@ GameObject:
   - component: {fileID: 3913121866941589233}
   - component: {fileID: 300572717645625376}
   - component: {fileID: 1721997210987087156}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: column_square_C_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25267,7 +25267,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7311241503508412372}
   - component: {fileID: 5367524456758267686}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_panel_B (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25321,7 +25321,7 @@ GameObject:
   - component: {fileID: 7629400401943476101}
   - component: {fileID: 5644211450861596793}
   - component: {fileID: 7229872918430155789}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: arch_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25425,7 +25425,7 @@ GameObject:
   - component: {fileID: 3447450293373805727}
   - component: {fileID: 7595169100525403067}
   - component: {fileID: 4935581504037624182}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: column_square_C (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25498,7 +25498,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8395936736480495500}
   - component: {fileID: 2839935874602131453}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (45)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25550,7 +25550,7 @@ GameObject:
   m_Component:
   - component: {fileID: 82507986946992816}
   - component: {fileID: 8058850374577678624}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (30)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25603,7 +25603,7 @@ GameObject:
   - component: {fileID: 2414957029513560435}
   - component: {fileID: 320968991481735901}
   - component: {fileID: 6747763580401724263}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_lar_40cm.LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25687,7 +25687,7 @@ GameObject:
   - component: {fileID: 5825304539014229306}
   - component: {fileID: 4019860766466146069}
   - component: {fileID: 5375304765072465760}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25792,7 +25792,7 @@ GameObject:
   - component: {fileID: 4753533997627335137}
   - component: {fileID: 4358120623050642176}
   - component: {fileID: 4015702109829141045}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25894,7 +25894,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4625467760861095767}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25928,7 +25928,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5157187034241535265}
   - component: {fileID: 8263569890097571354}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bracket_beam_wood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25982,7 +25982,7 @@ GameObject:
   - component: {fileID: 6092332960637556712}
   - component: {fileID: 2051552041610702364}
   - component: {fileID: 6976318187003157576}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26085,7 +26085,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2822003974508042004}
   - component: {fileID: 3158957818841324496}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Arch (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26139,7 +26139,7 @@ GameObject:
   - component: {fileID: 5433429381397038727}
   - component: {fileID: 1270741402006724563}
   - component: {fileID: 8912829388806404500}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26244,7 +26244,7 @@ GameObject:
   - component: {fileID: 8945466164974648180}
   - component: {fileID: 3644806058678492852}
   - component: {fileID: 8913838595898825120}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Short_wall (18)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26347,7 +26347,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5746478320695218671}
   - component: {fileID: 418233046979287061}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_ridge (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26400,7 +26400,7 @@ GameObject:
   - component: {fileID: 8314543421905075846}
   - component: {fileID: 3006088088956563736}
   - component: {fileID: 5425076824384482049}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_panel_B.LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26505,7 +26505,7 @@ GameObject:
   - component: {fileID: 757696516163672190}
   - component: {fileID: 3901794914958372997}
   - component: {fileID: 7031564577754311070}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26608,7 +26608,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4312737177119219980}
   - component: {fileID: 2760691737386312532}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (36)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26662,7 +26662,7 @@ GameObject:
   - component: {fileID: 5195387911292868730}
   - component: {fileID: 5348558676164563522}
   - component: {fileID: 3768670830190307164}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Floor0_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26767,7 +26767,7 @@ GameObject:
   - component: {fileID: 4460654320191216538}
   - component: {fileID: 2448484942187332844}
   - component: {fileID: 1617398260650343865}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bracket_beam_wood.LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26870,7 +26870,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3950471097424386777}
   - component: {fileID: 1301797037149316931}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_short (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26922,7 +26922,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8047559212463248532}
   - component: {fileID: 6022662713305898808}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sara_Roof
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26976,7 +26976,7 @@ GameObject:
   - component: {fileID: 722807062723240727}
   - component: {fileID: 6673030999387293851}
   - component: {fileID: 71307156944127464}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_Or_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27079,7 +27079,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7868283341527390864}
   - component: {fileID: 7775486050805826390}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27131,7 +27131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4394258322159931920}
   - component: {fileID: 809595139775082146}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27185,7 +27185,7 @@ GameObject:
   - component: {fileID: 3728204241787469748}
   - component: {fileID: 7747670743512188488}
   - component: {fileID: 6713879168939285638}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Short_wall (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27290,7 +27290,7 @@ GameObject:
   - component: {fileID: 7923757200004154555}
   - component: {fileID: 3223759301421675096}
   - component: {fileID: 8758839807215001907}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_panel_B.LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27395,7 +27395,7 @@ GameObject:
   - component: {fileID: 6654441775481643826}
   - component: {fileID: 5161931819967114074}
   - component: {fileID: 3872868861658388419}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: arch_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27497,7 +27497,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7238060136272212573}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Shell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27532,7 +27532,7 @@ GameObject:
   - component: {fileID: 9006252251305990506}
   - component: {fileID: 7019837537027869471}
   - component: {fileID: 1049094924999968372}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_Or_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27637,7 +27637,7 @@ GameObject:
   - component: {fileID: 5142138280495555385}
   - component: {fileID: 4258436412214590628}
   - component: {fileID: 8322658254943553844}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Window_Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27741,7 +27741,7 @@ GameObject:
   m_Component:
   - component: {fileID: 119058251666713147}
   - component: {fileID: 9057734940345569781}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_Or
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27793,7 +27793,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8189453209954056256}
   - component: {fileID: 2485357618064263388}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_ridge (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27844,7 +27844,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1324048122619846492}
   - component: {fileID: 6065691200299539144}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Arch (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27896,7 +27896,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5543375657245150734}
   - component: {fileID: 1225337057229104822}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_10cm (18)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27950,7 +27950,7 @@ GameObject:
   - component: {fileID: 3565608876715548429}
   - component: {fileID: 3062994354194636730}
   - component: {fileID: 1434702816565594011}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_D_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28053,7 +28053,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1251091387724066976}
   - component: {fileID: 8216835844786453660}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (28)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28107,7 +28107,7 @@ GameObject:
   - component: {fileID: 8996699770464534177}
   - component: {fileID: 6856930610593167540}
   - component: {fileID: 2633945310367993867}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Short_wall (20)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28214,7 +28214,7 @@ GameObject:
   - component: {fileID: 7250571500884990451}
   - component: {fileID: 5157922107073346935}
   - component: {fileID: 476642214067884848}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28349,7 +28349,7 @@ GameObject:
   m_Component:
   - component: {fileID: 744507705933714961}
   - component: {fileID: 5356057041591918576}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_panel_B (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28401,7 +28401,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2131665624330521349}
   - component: {fileID: 554407599106716908}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_panel_B (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28455,7 +28455,7 @@ GameObject:
   - component: {fileID: 2146694777625906436}
   - component: {fileID: 1915588615888510927}
   - component: {fileID: 2337020575408391920}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ridge_C
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28560,7 +28560,7 @@ GameObject:
   - component: {fileID: 4142342392604035110}
   - component: {fileID: 1731035992461746310}
   - component: {fileID: 957863564077158369}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_panel_A_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28663,7 +28663,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6852565137908341441}
   - component: {fileID: 4777384985281479270}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (44)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28714,7 +28714,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7604813843888065665}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Short_Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28761,7 +28761,7 @@ GameObject:
   - component: {fileID: 3819882364016341428}
   - component: {fileID: 3764867982370498914}
   - component: {fileID: 4132391378805773854}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: column_square_C (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28835,7 +28835,7 @@ GameObject:
   - component: {fileID: 5512485729321541758}
   - component: {fileID: 7325122205423981395}
   - component: {fileID: 2311827479909817268}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: column_square_C (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28910,7 +28910,7 @@ GameObject:
   - component: {fileID: 6116073234518881653}
   - component: {fileID: 7027133797318678222}
   - component: {fileID: 4873674933553774235}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Short_wall (16)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29013,7 +29013,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1074119623838967562}
   - component: {fileID: 4024594011122895725}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_10cm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29067,7 +29067,7 @@ GameObject:
   - component: {fileID: 1676596900937393472}
   - component: {fileID: 1014608607706090647}
   - component: {fileID: 337628047892108763}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_10cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29171,7 +29171,7 @@ GameObject:
   - component: {fileID: 4591224220287859542}
   - component: {fileID: 5678068026224163649}
   - component: {fileID: 4961395548345601776}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: column_square_C_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29253,7 +29253,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5859149611211975585}
   - component: {fileID: 1398830118292445309}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bracket_beam_wood (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29307,7 +29307,7 @@ GameObject:
   - component: {fileID: 3606719846021104247}
   - component: {fileID: 3609539256030949143}
   - component: {fileID: 1836151764414765103}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_ridge_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29410,7 +29410,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2733052057240514198}
   - component: {fileID: 7241502483548060832}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bracket_beam_wood (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29462,7 +29462,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5769372155909029727}
   - component: {fileID: 4544196164423432446}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_10cm (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29516,7 +29516,7 @@ GameObject:
   - component: {fileID: 7866643952423580499}
   - component: {fileID: 7337409763212471544}
   - component: {fileID: 6461947898551236397}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_Or_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29619,7 +29619,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9177603651195466707}
   - component: {fileID: 8627061179027348329}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (38)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29673,7 +29673,7 @@ GameObject:
   - component: {fileID: 881779543687520622}
   - component: {fileID: 1432137678722265652}
   - component: {fileID: 6938592328086872451}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_panel_C_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29777,7 +29777,7 @@ GameObject:
   - component: {fileID: 227021224589313222}
   - component: {fileID: 1139648015442497977}
   - component: {fileID: 5668059747924720552}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: column_square_C (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29850,7 +29850,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5093125023886409924}
   - component: {fileID: 5801077803051276586}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (41)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29904,7 +29904,7 @@ GameObject:
   - component: {fileID: 1588556223197813744}
   - component: {fileID: 7071120123906627584}
   - component: {fileID: 443999092077646716}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Short_wall1 (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30009,7 +30009,7 @@ GameObject:
   - component: {fileID: 249235742969397540}
   - component: {fileID: 4137654909714879206}
   - component: {fileID: 8132883689387879742}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: column_square_C_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30091,7 +30091,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5210925941319686363}
   - component: {fileID: 4579228223879636088}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30142,7 +30142,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 512964537360450489}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall_Window
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30179,7 +30179,7 @@ GameObject:
   - component: {fileID: 5533172163166289369}
   - component: {fileID: 8358314112415603728}
   - component: {fileID: 2726808386741540177}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_Ta.LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30284,7 +30284,7 @@ GameObject:
   - component: {fileID: 8998621173974040256}
   - component: {fileID: 1705636372311808585}
   - component: {fileID: 1694192680522999434}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30388,7 +30388,7 @@ GameObject:
   - component: {fileID: 956911983330796561}
   - component: {fileID: 6318376200807398053}
   - component: {fileID: 2201373642449086918}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_lar_40cm.LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30470,7 +30470,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2945681897345392437}
   - component: {fileID: 5565924645137515446}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DoorSound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30600,7 +30600,7 @@ GameObject:
   - component: {fileID: 4234294992785648815}
   - component: {fileID: 4510904119642650307}
   - component: {fileID: 10022768804662872}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_window_B (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30707,7 +30707,7 @@ GameObject:
   - component: {fileID: 5491558793494900915}
   - component: {fileID: 6862167758167013840}
   - component: {fileID: 2091149392045113457}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_Or_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30809,7 +30809,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3668334692048095743}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Arch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30845,7 +30845,7 @@ GameObject:
   - component: {fileID: 159582989655400121}
   - component: {fileID: 5094554689980272914}
   - component: {fileID: 3210864435837281295}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bracket_beam_wood.LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30948,7 +30948,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6981544635492651145}
   - component: {fileID: 7198548666490000250}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_10cm (15)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31001,7 +31001,7 @@ GameObject:
   - component: {fileID: 5737777412338879767}
   - component: {fileID: 7710558276742576692}
   - component: {fileID: 5416517348099438867}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: column_square_C_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31085,7 +31085,7 @@ GameObject:
   - component: {fileID: 19416594705274630}
   - component: {fileID: 2744704780441365075}
   - component: {fileID: 882435882687161252}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_Or_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31190,7 +31190,7 @@ GameObject:
   - component: {fileID: 3340400247149636820}
   - component: {fileID: 4058797768765098631}
   - component: {fileID: 227442760208488641}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Short_wall (19)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31293,7 +31293,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2151945039331164522}
   - component: {fileID: 8027652959695514484}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_Or (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31347,7 +31347,7 @@ GameObject:
   - component: {fileID: 3212410683959350271}
   - component: {fileID: 3264439259624754353}
   - component: {fileID: 8568180104911659425}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_panel_D.LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31449,7 +31449,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6294153649218892305}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: WallPanels
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31491,7 +31491,7 @@ GameObject:
   - component: {fileID: 3964146676921995305}
   - component: {fileID: 6068241310238746194}
   - component: {fileID: 3521040829796621200}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_Or_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31594,7 +31594,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3642202861493690345}
   - component: {fileID: 2926534550788346515}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bracket_beam_wood (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31645,7 +31645,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8510690142662248934}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31682,7 +31682,7 @@ GameObject:
   - component: {fileID: 7871683007446976423}
   - component: {fileID: 4869288328290589682}
   - component: {fileID: 2280764955090992584}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_10cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31786,7 +31786,7 @@ GameObject:
   - component: {fileID: 3642819889024717611}
   - component: {fileID: 5800497809076901407}
   - component: {fileID: 4291509671756865438}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: column_square_C_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31870,7 +31870,7 @@ GameObject:
   - component: {fileID: 6511078536107114206}
   - component: {fileID: 9105381932511371742}
   - component: {fileID: 737622548912759579}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ridge_B (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31975,7 +31975,7 @@ GameObject:
   - component: {fileID: 6963359921653565911}
   - component: {fileID: 8359523668709218108}
   - component: {fileID: 1918917335199693652}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_panel_D.LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32080,7 +32080,7 @@ GameObject:
   - component: {fileID: 2523906613972590689}
   - component: {fileID: 4901306574651087978}
   - component: {fileID: 1400839728506124584}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Short_wall (22)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32183,7 +32183,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5821944421917984195}
   - component: {fileID: 8868193851406515655}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (31)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32237,7 +32237,7 @@ GameObject:
   - component: {fileID: 8276250989340563637}
   - component: {fileID: 7041584332565106766}
   - component: {fileID: 6177937769221853337}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32342,7 +32342,7 @@ GameObject:
   - component: {fileID: 6501952972442901265}
   - component: {fileID: 6665642543758555363}
   - component: {fileID: 5933118682872097993}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: arch_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32447,7 +32447,7 @@ GameObject:
   - component: {fileID: 4974775654258441345}
   - component: {fileID: 7323510098839008330}
   - component: {fileID: 1471378171170927966}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bracket_beam_wood.LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32550,7 +32550,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5333887113680619745}
   - component: {fileID: 2867975436701119122}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Arch (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32604,7 +32604,7 @@ GameObject:
   - component: {fileID: 2093451606471295591}
   - component: {fileID: 4266225955488596178}
   - component: {fileID: 5111934911227854196}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32709,7 +32709,7 @@ GameObject:
   - component: {fileID: 2450227872463907699}
   - component: {fileID: 3402148005046033185}
   - component: {fileID: 8583296780523610129}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_panel_C_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32814,7 +32814,7 @@ GameObject:
   - component: {fileID: 2706529936778470545}
   - component: {fileID: 1539785777501084169}
   - component: {fileID: 8342262386280601909}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Short_wall (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32917,7 +32917,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1675558399801809930}
   - component: {fileID: 7835998682534555959}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_panel_D (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32971,7 +32971,7 @@ GameObject:
   - component: {fileID: 4154512786518383508}
   - component: {fileID: 1609730579221931903}
   - component: {fileID: 6476663113849367002}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_10cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33074,7 +33074,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6440515189138321862}
   - component: {fileID: 7085589265527638478}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (28)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33126,7 +33126,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6813547548067706238}
   - component: {fileID: 531345293376129491}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (15)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33178,7 +33178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6231241096579829365}
   - component: {fileID: 7584897614038561771}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_Or (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33230,7 +33230,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3313555507168016151}
   - component: {fileID: 5592580283616063485}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bracket_beam_wood (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33283,7 +33283,7 @@ GameObject:
   - component: {fileID: 8610066219981016999}
   - component: {fileID: 5082018218218153105}
   - component: {fileID: 5898181786813743806}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: column_square_C_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33365,7 +33365,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3416244319695147398}
   - component: {fileID: 3881114063246859339}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_short
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33418,7 +33418,7 @@ GameObject:
   - component: {fileID: 8147932204629164745}
   - component: {fileID: 8946969893868700908}
   - component: {fileID: 5726792431688618291}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: column_square_C (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33493,7 +33493,7 @@ GameObject:
   - component: {fileID: 7435128787137533399}
   - component: {fileID: 715261390326514376}
   - component: {fileID: 8347962324449651584}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33596,7 +33596,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4112060403121509186}
   - component: {fileID: 1030809352210425214}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (36)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33647,7 +33647,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8410865067834788014}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Roofs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33684,7 +33684,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5941180327979288654}
   - component: {fileID: 4346681007145273615}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Floor0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33737,7 +33737,7 @@ GameObject:
   - component: {fileID: 3171543582189575420}
   - component: {fileID: 7871098169530808611}
   - component: {fileID: 2567041252571790680}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_lar_40cm.LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33820,7 +33820,7 @@ GameObject:
   - component: {fileID: 5465360559954088833}
   - component: {fileID: 5629113127716112572}
   - component: {fileID: 4014950925555615668}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bracket_B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33895,7 +33895,7 @@ GameObject:
   - component: {fileID: 263289539013683882}
   - component: {fileID: 3879170846482857600}
   - component: {fileID: 4581602150035774019}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_window_C_C1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34000,7 +34000,7 @@ GameObject:
   m_Component:
   - component: {fileID: 348025607271855557}
   - component: {fileID: 4157966771915065965}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (17)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34054,7 +34054,7 @@ GameObject:
   - component: {fileID: 7178547301115142777}
   - component: {fileID: 6430438252461271145}
   - component: {fileID: 6132242321450476630}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Short_wall (21)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34159,7 +34159,7 @@ GameObject:
   - component: {fileID: 6605112376355009281}
   - component: {fileID: 301907149547525162}
   - component: {fileID: 8672472013337022057}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34263,7 +34263,7 @@ GameObject:
   - component: {fileID: 8057305592245419544}
   - component: {fileID: 5502035776918763957}
   - component: {fileID: 4425546024480634274}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bracket_B_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34347,7 +34347,7 @@ GameObject:
   - component: {fileID: 6803583270095039894}
   - component: {fileID: 397386181704772583}
   - component: {fileID: 8120605560128933542}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34451,7 +34451,7 @@ GameObject:
   - component: {fileID: 8282670200661558863}
   - component: {fileID: 6228625723053865245}
   - component: {fileID: 5788696343259559900}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bracket_B_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34534,7 +34534,7 @@ GameObject:
   - component: {fileID: 8178615653447746929}
   - component: {fileID: 7416844997160927727}
   - component: {fileID: 7108431593201099191}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_20cm (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34609,7 +34609,7 @@ GameObject:
   - component: {fileID: 8432616939102646107}
   - component: {fileID: 6764312488173807153}
   - component: {fileID: 4608036129920071072}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Floor0_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34714,7 +34714,7 @@ GameObject:
   - component: {fileID: 1940458745430065801}
   - component: {fileID: 3479611090499266600}
   - component: {fileID: 2884640327885155866}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Short_wall (23)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34817,7 +34817,7 @@ GameObject:
   m_Component:
   - component: {fileID: 73932450639327393}
   - component: {fileID: 2149505870653056885}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (43)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34871,7 +34871,7 @@ GameObject:
   - component: {fileID: 5842864478605958689}
   - component: {fileID: 9069780158368817312}
   - component: {fileID: 8336383816929869800}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: arch_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34974,7 +34974,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5752260290665785631}
   - component: {fileID: 8048680188802370443}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bracket_beam_wood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35028,7 +35028,7 @@ GameObject:
   - component: {fileID: 7447267288633470}
   - component: {fileID: 4947022227538021144}
   - component: {fileID: 4268923331454385823}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_panel_D.LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35131,7 +35131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7842193079826402193}
   - component: {fileID: 8288440008567456229}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (40)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35182,7 +35182,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 581297759934940326}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ridges
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35220,7 +35220,7 @@ GameObject:
   - component: {fileID: 2093653579735055997}
   - component: {fileID: 7149726721669722127}
   - component: {fileID: 7127315331997545342}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35355,7 +35355,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4665639311391701827}
   - component: {fileID: 8981453679380012907}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (18)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35409,7 +35409,7 @@ GameObject:
   - component: {fileID: 8504280850446529775}
   - component: {fileID: 2822049699864671029}
   - component: {fileID: 6234110319328913085}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35513,7 +35513,7 @@ GameObject:
   - component: {fileID: 3315863534499962497}
   - component: {fileID: 7547470291605616130}
   - component: {fileID: 9186559243658379533}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bracket_B_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35597,7 +35597,7 @@ GameObject:
   - component: {fileID: 3147792315480091055}
   - component: {fileID: 7854937952278597704}
   - component: {fileID: 1734608423975480279}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Short_wall1 (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35703,7 +35703,7 @@ GameObject:
   - component: {fileID: 4165282297427984012}
   - component: {fileID: 9181851395721824502}
   - component: {fileID: 3394101598121382042}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35806,7 +35806,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2008096491465718769}
   - component: {fileID: 6123068412956795103}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Floor0 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35860,7 +35860,7 @@ GameObject:
   - component: {fileID: 3821947460095185424}
   - component: {fileID: 908332228722274111}
   - component: {fileID: 1165619593767957087}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: arch_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35965,7 +35965,7 @@ GameObject:
   - component: {fileID: 7394385863306566416}
   - component: {fileID: 2149744924066200764}
   - component: {fileID: 5419384858364314109}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Floor0_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36069,7 +36069,7 @@ GameObject:
   - component: {fileID: 3504695050609819047}
   - component: {fileID: 716221502429715305}
   - component: {fileID: 4735416720080375358}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: column_square_C_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36152,7 +36152,7 @@ GameObject:
   - component: {fileID: 1532570543598637970}
   - component: {fileID: 1392487335102202426}
   - component: {fileID: 3589026094986440095}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: column_square_C (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36225,7 +36225,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1151096575578480704}
   - component: {fileID: 7052453027080707347}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_Or (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36277,7 +36277,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8751952450264866377}
   - component: {fileID: 8642539094943797303}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_D (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36330,7 +36330,7 @@ GameObject:
   - component: {fileID: 1521600825806091804}
   - component: {fileID: 6660969495100568944}
   - component: {fileID: 81949796091576217}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_panel_C (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36403,7 +36403,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1566696504006690402}
   - component: {fileID: 6565562569008679387}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (18)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36457,7 +36457,7 @@ GameObject:
   - component: {fileID: 3699805170072604513}
   - component: {fileID: 7015396645810193409}
   - component: {fileID: 8546569909037326969}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: arch_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36559,7 +36559,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 210357418470022245}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Arch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36601,7 +36601,7 @@ GameObject:
   - component: {fileID: 2280114463431452712}
   - component: {fileID: 49369115618012723}
   - component: {fileID: 5482776805239112566}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_10cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36704,7 +36704,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1997490480937520983}
   - component: {fileID: 4780538619524386703}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_panel_C (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36755,7 +36755,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2172462840703203186}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Shell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36788,7 +36788,7 @@ GameObject:
   - component: {fileID: 3288744072075721789}
   - component: {fileID: 9052185013185727280}
   - component: {fileID: 3037500866120700124}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bracket_B (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36861,7 +36861,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5036817866472094648}
   - component: {fileID: 7178017848505396603}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (21)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36915,7 +36915,7 @@ GameObject:
   - component: {fileID: 7972047069570525943}
   - component: {fileID: 5628334501910788058}
   - component: {fileID: 4223478494266895526}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_ridge_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37018,7 +37018,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8499790126758549172}
   - component: {fileID: 5314613895985791228}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_10cm (19)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37070,7 +37070,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8920872612519158902}
   - component: {fileID: 4774735543359264656}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_panel_B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37124,7 +37124,7 @@ GameObject:
   - component: {fileID: 6979424092596566256}
   - component: {fileID: 1055696058655055340}
   - component: {fileID: 7613273836101762827}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_10cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37229,7 +37229,7 @@ GameObject:
   - component: {fileID: 4164450898718122466}
   - component: {fileID: 5118234646604952826}
   - component: {fileID: 4757500642512783731}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37332,7 +37332,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5753635198326840272}
   - component: {fileID: 7679526281212451922}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (27)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37383,7 +37383,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2749341170582134190}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Column
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37420,7 +37420,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7700420403602878340}
   - component: {fileID: 3658649329572078735}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Arch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37474,7 +37474,7 @@ GameObject:
   - component: {fileID: 2099044954244348630}
   - component: {fileID: 3767927786564198186}
   - component: {fileID: 6827319668695161819}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Short_wall (23)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37579,7 +37579,7 @@ GameObject:
   - component: {fileID: 1634637050118742337}
   - component: {fileID: 6306158764913841052}
   - component: {fileID: 6487666547059588976}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Short_wall (16)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37684,7 +37684,7 @@ GameObject:
   - component: {fileID: 3764552438585894771}
   - component: {fileID: 2308914238199896766}
   - component: {fileID: 9170938862814961002}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37787,7 +37787,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3068414977248391648}
   - component: {fileID: 6387581492513277337}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (25)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37841,7 +37841,7 @@ GameObject:
   - component: {fileID: 3118961105283122756}
   - component: {fileID: 2734235820302000370}
   - component: {fileID: 2030714699104985765}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Short_wall (17)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37945,7 +37945,7 @@ GameObject:
   - component: {fileID: 8695178758482540}
   - component: {fileID: 8229182378823143409}
   - component: {fileID: 8565939778565516130}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: column_square_C_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38029,7 +38029,7 @@ GameObject:
   - component: {fileID: 4345802279009891441}
   - component: {fileID: 42585996159362313}
   - component: {fileID: 2473914149670545352}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_panel_C_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38133,7 +38133,7 @@ GameObject:
   - component: {fileID: 9025082283774102237}
   - component: {fileID: 5252711626240060054}
   - component: {fileID: 6692535966532354915}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_20cm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38206,7 +38206,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1096139810943582807}
   - component: {fileID: 4139600152708738314}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm (38)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38257,7 +38257,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5989619904901113227}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Roof
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38313,7 +38313,7 @@ GameObject:
   - component: {fileID: 6118920538627752900}
   - component: {fileID: 2866137023076255110}
   - component: {fileID: 6937831191608192667}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38418,7 +38418,7 @@ GameObject:
   - component: {fileID: 272340965628160480}
   - component: {fileID: 2914089499721892421}
   - component: {fileID: 6738476172058689689}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_10cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38521,7 +38521,7 @@ GameObject:
   m_Component:
   - component: {fileID: 465468116176785788}
   - component: {fileID: 1844330536957686593}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_10cm (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38574,7 +38574,7 @@ GameObject:
   - component: {fileID: 1522520085474555960}
   - component: {fileID: 2426963187475766467}
   - component: {fileID: 995976895599200335}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_20cm.LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38658,7 +38658,7 @@ GameObject:
   - component: {fileID: 3396307471144977859}
   - component: {fileID: 7055664787883555062}
   - component: {fileID: 5172159303019037277}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38763,7 +38763,7 @@ GameObject:
   - component: {fileID: 7104433119893772843}
   - component: {fileID: 4149637621050812334}
   - component: {fileID: 2291309700094084952}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Short_wall (19)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38868,7 +38868,7 @@ GameObject:
   - component: {fileID: 871386129556289348}
   - component: {fileID: 7696797189526940212}
   - component: {fileID: 547014575977740538}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ridge_C (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38971,7 +38971,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3343598025885834024}
   - component: {fileID: 5791706969285673094}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_panel_B (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39025,7 +39025,7 @@ GameObject:
   - component: {fileID: 2191292559772805932}
   - component: {fileID: 784098443807415050}
   - component: {fileID: 750762695461165915}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_Ta.LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39130,7 +39130,7 @@ GameObject:
   - component: {fileID: 7223907806987812478}
   - component: {fileID: 6962926823255768575}
   - component: {fileID: 2187082834488739835}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Short_wall1 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39234,7 +39234,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6075995984499549469}
   - component: {fileID: 4788507775773902725}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_panel_B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39288,7 +39288,7 @@ GameObject:
   - component: {fileID: 4677840039245247937}
   - component: {fileID: 6405568940279407405}
   - component: {fileID: 5613501625219296380}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall_panel_D.LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39393,7 +39393,7 @@ GameObject:
   - component: {fileID: 8597519423511269932}
   - component: {fileID: 4259377683289653312}
   - component: {fileID: 7144360909671422047}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39498,7 +39498,7 @@ GameObject:
   - component: {fileID: 8405622660526318114}
   - component: {fileID: 9198799335844255922}
   - component: {fileID: 8635344018535313224}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_D_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39603,7 +39603,7 @@ GameObject:
   - component: {fileID: 5900357653643714213}
   - component: {fileID: 8564745236423014788}
   - component: {fileID: 7158374767674628309}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39707,7 +39707,7 @@ GameObject:
   - component: {fileID: 105359252379402953}
   - component: {fileID: 7488973689345769985}
   - component: {fileID: 6200253985945164900}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bracket_B (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39782,7 +39782,7 @@ GameObject:
   - component: {fileID: 6281599918271838612}
   - component: {fileID: 3121373188656692067}
   - component: {fileID: 3143499256501372053}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Short_wall1 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39888,7 +39888,7 @@ GameObject:
   - component: {fileID: 3038325474182141665}
   - component: {fileID: 6023390912233923135}
   - component: {fileID: 7760187730038302889}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Short_wall1 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39994,7 +39994,7 @@ GameObject:
   - component: {fileID: 1129973052890915895}
   - component: {fileID: 8310771184982934949}
   - component: {fileID: 4495673362210340605}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: beam_straight_40cm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40098,7 +40098,7 @@ GameObject:
   - component: {fileID: 4359560149318178662}
   - component: {fileID: 5742342728672471186}
   - component: {fileID: 2812992712131237463}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bracket_B_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40179,7 +40179,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4803021150826913332}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Window
   m_TagString: Untagged
   m_Icon: {fileID: 0}
