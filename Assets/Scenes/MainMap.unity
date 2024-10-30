@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.008999066, g: 0.0131014455, b: 0.02044398, a: 1}
+  m_IndirectSpecularColor: {r: 0.008999071, g: 0.013101444, b: 0.020444002, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -25361,6 +25361,10 @@ PrefabInstance:
       propertyPath: readyToTalk
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 573133671525017405, guid: faf9c57d28d7aab4397b78a5c669b6b7, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 873543783822502652, guid: faf9c57d28d7aab4397b78a5c669b6b7, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -29676,6 +29680,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4331150251270548736, guid: 04f679b953cf73b49b555bd7bce56d93, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4825618184997864774, guid: 04f679b953cf73b49b555bd7bce56d93, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5254827090117080195, guid: 04f679b953cf73b49b555bd7bce56d93, type: 3}
       propertyPath: m_LocalPosition.x
       value: -16.425

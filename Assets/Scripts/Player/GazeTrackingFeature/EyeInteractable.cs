@@ -29,8 +29,8 @@ namespace Assets.Scripts.GazeTrackingFeature {
         internal AudioSource[] audioSources;
         public static float snoringCooldownEndTime = 15.0f;
         public static AudioClip snoringAudio;
-        internal AudioClip playerSpottedAudio;
         public static AudioClip yawnAudio;
+        internal AudioClip playerSpottedAudio;
 
         public static int OverallEyeInteractableInstanceCounter { get; private set; }
         public static event CounterChangeHandler OnEyeInteractableInstancesCounterChanged;
@@ -76,8 +76,6 @@ namespace Assets.Scripts.GazeTrackingFeature {
 
         private void InitializeColliders() {
             colliders = GetComponents<Collider>();
-            standardCollider = colliders[0];
-            eyeTrackingCollider = colliders[1];
 
             if (colliders.Length < 2) {
                 for (int i = colliders.Length; i < 2; i++) {
@@ -85,45 +83,44 @@ namespace Assets.Scripts.GazeTrackingFeature {
                 }
                 colliders = GetComponents<Collider>();
             }
-            else if (colliders.Length >= 2) {
-                standardCollider.isTrigger = false;
-                eyeTrackingCollider.isTrigger = true;
-                // Bigger collider for eye tracking because monks are currently moving very fast
-                if (eyeTrackingCollider.TryGetComponent<CapsuleCollider>(out var cC)) {
-                    cC.radius = eyeTrackingColliderRadius;
-                    cC.height = eyeTrackingColliderHeight;
-                }
-            }
+
+            standardCollider = colliders[0];
+            eyeTrackingCollider = colliders[1];
+            standardCollider.isTrigger = false;
+            eyeTrackingCollider.isTrigger = true;
+            // Bigger collider for eye tracking because monks are currently moving very fast
+            if (eyeTrackingCollider.TryGetComponent<CapsuleCollider>(out var cC)) {
+                cC.radius = eyeTrackingColliderRadius;
+                cC.height = eyeTrackingColliderHeight;
+            }            
             else Debug.LogWarning("Collider array does not have enough elements.");
         }
 
         private void InitializeAudioSources() {
             audioSources = GetComponents<AudioSource>();
 
-            // Ensure there are two AudioSource components
+            // Ensure there are 3 AudioSource components
             if (audioSources.Length < 3) {
                 for (int i = audioSources.Length; i < 3; i++) {
                     gameObject.AddComponent<AudioSource>();
                 }
                 audioSources = GetComponents<AudioSource>();
             }
-            // Assign the AudioSource components to the array
-            else if (audioSources.Length >= 3) {
-                audioSources[0].clip = snoringAudio;
-                if (AudioHolder.instance != null) {
-                    playerSpottedAudio = AudioHolder.instance.AssignRandomPlayerSpottedAudio();
-                    audioSources[1].clip = playerSpottedAudio;
-                    Debug.Log("playerSpottedAudio assigned ");
-                    audioSources[2].clip = yawnAudio;
-                    Debug.Log("yawnAudio assigned ");
+            
+            if (AudioHolder.instance != null) {
+                playerSpottedAudio = AudioHolder.instance.AssignRandomPlayerSpottedAudio();
+                audioSources[1].clip = playerSpottedAudio;
+                // Ensure both snoringAudio and yawnAudio exist
+                if (snoringAudio == null) {
+                    Debug.LogError($"snoringAudio is null.");
                 }
-            }
-            else Debug.LogWarning("AudioSource array does not have enough elements.");
+                else audioSources[0].clip = snoringAudio;
 
-            // Ensure snoringAudio is assigned
-            if (snoringAudio == null) {
-                Debug.LogError("snoringAudio is not assigned.");
-            }
+                if (yawnAudio == null) {
+                    Debug.LogError($"yawnAudio is null.");
+                }
+                else audioSources[2].clip = yawnAudio;
+            } else Debug.LogWarning("AudioHolder doesn't exist! ");
         }
         #endregion
 
