@@ -8,8 +8,8 @@ namespace Assets.Scripts.GazeTrackingFeature {
         [SerializeField] private float cursorRadius = .2f;
         [SerializeField] private bool showGazeLineDebug = true;
 
-        internal static LayerMask mask;
-        internal static int monkLayer, squareLayer;
+        public LayerMask mask;
+        internal static int monkLayer, squareLayer, obstacleLayer;
 
         internal static Vector3 hitPosition;
         internal static EyeInteractable staredMonk = null;
@@ -26,11 +26,8 @@ namespace Assets.Scripts.GazeTrackingFeature {
 
             monkLayer = LayerMask.NameToLayer("Monks");
             squareLayer = LayerMask.NameToLayer("Squares");
-            // All layers
-            int allLayers = ~0; 
-            // Exclude Monks and Squares layers
-            mask = allLayers & ~(1 << monkLayer) & ~(1 << squareLayer);
-    }
+            obstacleLayer = LayerMask.NameToLayer("Obstacle");
+        }
 
         private void OnEnable() {
             instanceCount++;
@@ -40,9 +37,8 @@ namespace Assets.Scripts.GazeTrackingFeature {
             instanceCount--;
         }
 
-        void FixedUpdate() => EyeGazeRayCasting();
-
         void Update() {
+            EyeGazeRayCasting();
             if(showGazeLineDebug)
                 GizmoModule.instance.DrawSphere(hitPosition + (transform.position - hitPosition).normalized * cursorOffset, cursorRadius, Color.cyan);
         }
@@ -83,8 +79,15 @@ namespace Assets.Scripts.GazeTrackingFeature {
                 else if (interactable.gameObject.layer == monkLayer) {
                     interactable.eyeOutline.OutlineWidth = EyeTrackingDebug.noWidthValue;
                     interactable.isBeingStared = false;
+                    interactable.gameObject.TryGetComponent<EnemyUtility>(out var enemyUtility);
+                    enemyUtility.ableToSleepButtonUI.SetActive(false);
                 }
             }
+            // foreach (var enemyUtility in FindObjectsByType<EnemyUtility>(FindObjectsSortMode.None))
+            // {
+            //     enemyUtility.ableToSleepButtonUI.SetActive(false);
+            // }
+            EyeTrackingDebug.isFirstYawning = true;
             if (clear) eyeInteractablesList.Clear();
         }
     }

@@ -12,29 +12,34 @@ public class lightHR : MonoBehaviour
     public float maxEnergy = 30f; // Massimo tempo di energia disponibile per l'abilit�
     public float energyDrainRate = 1f; // Energia consumata al secondo
     public float currentEnergy=15;
+    public bool useHR = true;
+        
     void Start()
     {
         averageHR = 65;
         PlayerPrefsManager.SetFloat(PlayerPrefsKeys.WhiteLotus, Mathf.Clamp(currentEnergy / maxEnergy * 100, 0, 100));
         UIController.Instance.AbilitiesUI.SetAbilitiesCount();
+        GetComponent<Light>().intensity = 1;
     }
     private float incrementSpeed= 0.0005f;
 
     void Update()
     {
-        valueHR = hyperateSocket.value;
-        averageHR = HeartbeatManager.avgINT;
-        newIntensity = 1 - (valueHR - (averageHR+delta))/10f;
-        newIntensity = Mathf.Clamp(newIntensity, 0, 1);
-        if (GetComponent<Light>().intensity < newIntensity)
-        {
-            GetComponent<Light>().intensity += incrementSpeed;
-        }
-        if (GetComponent<Light>().intensity > newIntensity)
-        {
-            GetComponent<Light>().intensity -= incrementSpeed;
-            lastDecrease = Time.time;
-        }
+        if (useHR) {
+            valueHR = hyperateSocket.value;
+            averageHR = HeartbeatManager.avgINT;
+            newIntensity = 1 - (valueHR - (averageHR+delta))/10f;
+            newIntensity = Mathf.Clamp(newIntensity, 0, 1);
+            if (GetComponent<Light>().intensity < newIntensity)
+            {
+                GetComponent<Light>().intensity += incrementSpeed;
+            }
+            if (GetComponent<Light>().intensity > newIntensity)
+            {
+                GetComponent<Light>().intensity -= incrementSpeed;
+                lastDecrease = Time.time;
+            }
+        } 
         if (Time.time - lastDecrease > 15&& !reset)
         {
             delta -= 1;
@@ -52,7 +57,7 @@ public class lightHR : MonoBehaviour
         if (abilityActive)
         {
             UpdateAbility();
-        }
+        } 
 
     }
     void ToggleAbility()

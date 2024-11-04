@@ -5075,7 +5075,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1517399839202131091}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!20 &4331150251270548736
 Camera:
   m_ObjectHideFlags: 0
@@ -11196,7 +11196,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 4331150251270548736}
-  m_PlaneDistance: 0.35
+  m_PlaneDistance: 0.7
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -31353,7 +31353,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8115332942976373740}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!114 &8135042374922898975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31391,6 +31391,7 @@ MonoBehaviour:
   canSprint: 0
   torchGO: {fileID: 8679616797959578225}
   isInStressfulArea: 0
+  NumberOfEnemiesChasing: 0
 --- !u!114 &5105461261561387018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35953,15 +35954,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3226316082941857824, guid: 95136ec9ff9ebb14ca5c9a155ab01df3, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 3226316082941857824, guid: 95136ec9ff9ebb14ca5c9a155ab01df3, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 3226316082941857824, guid: 95136ec9ff9ebb14ca5c9a155ab01df3, type: 3}
       propertyPath: m_LocalScale.z
-      value: 2
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 3226316082941857824, guid: 95136ec9ff9ebb14ca5c9a155ab01df3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -36178,15 +36179,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6159974726581485721, guid: 499081cb387e324428e60448a2b7655a, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 6159974726581485721, guid: 499081cb387e324428e60448a2b7655a, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 6159974726581485721, guid: 499081cb387e324428e60448a2b7655a, type: 3}
       propertyPath: m_LocalScale.z
-      value: 2
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 6159974726581485721, guid: 499081cb387e324428e60448a2b7655a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -36656,15 +36657,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3551421876537978048, guid: 66922f50efe4f8049acd1a1126636c67, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 3551421876537978048, guid: 66922f50efe4f8049acd1a1126636c67, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 3551421876537978048, guid: 66922f50efe4f8049acd1a1126636c67, type: 3}
       propertyPath: m_LocalScale.z
-      value: 2
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 3551421876537978048, guid: 66922f50efe4f8049acd1a1126636c67, type: 3}
       propertyPath: m_LocalPosition.x
