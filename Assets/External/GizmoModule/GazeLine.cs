@@ -26,8 +26,11 @@ namespace Assets.Scripts.GazeTrackingFeature {
 
             monkLayer = LayerMask.NameToLayer("Monks");
             squareLayer = LayerMask.NameToLayer("Squares");
-            mask = LayerMask.GetMask("Monks", "Squares");
-        }
+            // All layers
+            int allLayers = ~0; 
+            // Exclude Monks and Squares layers
+            mask = allLayers & ~(1 << monkLayer) & ~(1 << squareLayer);
+    }
 
         private void OnEnable() {
             instanceCount++;
@@ -43,23 +46,25 @@ namespace Assets.Scripts.GazeTrackingFeature {
             if(showGazeLineDebug)
                 GizmoModule.instance.DrawSphere(hitPosition + (transform.position - hitPosition).normalized * cursorOffset, cursorRadius, Color.cyan);
         }
-        
+
         private void EyeGazeRayCasting() {
             if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, Mathf.Infinity, layerMask: mask)) {
                 hitPosition = hit.point;
 
-                if (hit.collider.TryGetComponent<EyeInteractable>(out var eyeInteractable)) {
-                    eyeInteractablesList.Add(eyeInteractable);
-                    eyeInteractable.IsHovered = true;
+                if (hit.collider.gameObject.layer == monkLayer || hit.collider.gameObject.layer == squareLayer) {
+                    if (hit.collider.TryGetComponent<EyeInteractable>(out var eyeInteractable)) {
+                        eyeInteractablesList.Add(eyeInteractable);
+                        eyeInteractable.IsHovered = true;
 
-                    // Case 0: Hovering square 
-                    if (eyeInteractable.gameObject.layer == squareLayer && eyeInteractable.TryGetComponent<MeshRenderer>(out var mR)) {
-                        mR.material = eyeInteractable.OnHoverActiveMaterial;
-                    }
-                    // Case 1: Hovering monk
-                    else if (eyeInteractable.gameObject.layer == monkLayer) {
-                        staredMonk = eyeInteractable;
-                        EyeInteractable.HoveringTime += Time.fixedDeltaTime;
+                        // Case 0: Hovering square 
+                        if (eyeInteractable.gameObject.layer == squareLayer && eyeInteractable.TryGetComponent<MeshRenderer>(out var mR)) {
+                            mR.material = eyeInteractable.OnHoverActiveMaterial;
+                        }
+                        // Case 1: Hovering monk
+                        else if (eyeInteractable.gameObject.layer == monkLayer) {
+                            staredMonk = eyeInteractable;
+                            EyeInteractable.HoveringTime += Time.fixedDeltaTime;
+                        }
                     }
                 }
                 else UnSelect();
