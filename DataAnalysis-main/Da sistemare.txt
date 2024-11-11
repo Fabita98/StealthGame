@@ -1,0 +1,4 @@
+- sincronizzare i dati con le annotazioni
+- preprocessing: serie temporali con dati spazializzati in modo diverso
+- estrazione delle feature su finestre temporali aggiornando la selezione
+- modelli test
