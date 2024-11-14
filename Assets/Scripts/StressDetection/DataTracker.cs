@@ -413,9 +413,9 @@ public class DataTracker : MonoBehaviour {
 
 			// AddToDictionary("teleportInfo", teleported.ToString());
 			AddToDictionary("HeartBeatRate",HeartbeatManager.Instance.GetPlayerHeartbeat().ToString());
-			AddToDictionary("MaxHeartBeatRate",HeartbeatManager.Instance.GetMaxHeartbeatForId("player").ToString());
-			AddToDictionary("MinHeartBeatRate",HeartbeatManager.Instance.GetMinHeartbeatForId("player").ToString());
-			AddToDictionary("AverageHeartBeatRate",HeartbeatManager.Instance.GetAverageHeartbeatForId("Player").ToString());
+			// AddToDictionary("MaxHeartBeatRate",HeartbeatManager.Instance.GetMaxHeartbeatForId("player").ToString());
+			// AddToDictionary("MinHeartBeatRate",HeartbeatManager.Instance.GetMinHeartbeatForId("player").ToString());
+			// AddToDictionary("AverageHeartBeatRate",HeartbeatManager.Instance.GetAverageHeartbeatForId("Player").ToString());
 			// AddToDictionary("PredictedKalmanStress", StressDetection.Instance.predictedStressValue);
 			AddToDictionary("IsInStressfulArea", player.isInStressfulArea);
 			AddToDictionary("Deaths", PlayerPrefsManager.GetInt(PlayerPrefsKeys.Deaths, 0).ToString());

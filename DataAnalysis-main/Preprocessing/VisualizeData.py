@@ -7,7 +7,7 @@ import pandas as pd
 drivePath = 'D:/University-Masters/Thesis'
 AlienPath = 'F:/Data_Analysis'
 
-def saveColumns(process_movement=True, process_eye=True, process_face=True, process_button=True,
+def saveColumns(process_movement=True, process_eye=True, process_face=True, process_button=True, process_external = True,
                 path=drivePath):
     dirs = sorted(list(filter(lambda x: x[0] == 'S', os.listdir(path))), key=lambda x: int(x[1:]))
     for dr in dirs:
@@ -22,6 +22,10 @@ def saveColumns(process_movement=True, process_eye=True, process_face=True, proc
             plot_column_graphs(df,path + '/' + dr)
         if process_face:
             df = processFace(path + '/' + dr + "/ProcessedCsv/" + f"{dr}_Face.csv")
+            plot_column_graphs(df,path + '/' + dr)
+        
+        if process_external:
+            df = process_external(path + '/' + dr + "/ProcessedCsv/" + f"{dr}_External.csv")
             plot_column_graphs(df,path + '/' + dr)
         print(f"{dr} done")
 
@@ -40,4 +44,4 @@ def plot_column_graphs(df, path):
 
 
 if __name__ == "__main__":
-    saveColumns(process_movement=True, process_eye=True, process_face=False,process_button=True,path=drivePath)
+    saveColumns(process_movement=True, process_eye=True, process_face=True,process_button=True,path=drivePath)

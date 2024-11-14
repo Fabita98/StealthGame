@@ -30,32 +30,32 @@ OVRInput+RawButtonRIndexTrigger,OVRInput+RawButtonLThumbstick,OVRInput+RawButton
 
 class DataType(int):
     def __str__(self):
+        # if self == 0:
+        #     return 'Eye'
+        # elif self == 1:
+        #     return 'Button'
+        # elif self == 2:
+        #     return 'Movement'
+        # elif self == 3:
+        #     return 'External'
+        # elif self == 4:
+        #     return 'Total'
+        # else:
+        #     return 'Unknown'
         if self == 0:
-            return 'Eye'
+            return 'Face'
         elif self == 1:
-            return 'Button'
+            return 'Eye'
         elif self == 2:
-            return 'Movement'
+            return 'Button'
         elif self == 3:
-            return 'External'
+            return 'Movement'
         elif self == 4:
+            return 'External'
+        elif self == 5:
             return 'Total'
         else:
             return 'Unknown'
-        #~ if self == 0:
-        #~     return 'Face'
-        #~ elif self == 1:
-        #~     return 'Eye'
-        #~ elif self == 2:
-        #~     return 'Button'
-        #~ elif self == 3:
-        #~     return 'Movement'
-        #~ elif self == 4:
-        #~     return 'External'
-        #~ elif self == 5:
-        #~     return 'Total'
-        #~ else:
-        #~     return 'Unknown'
 
 
 def processFileOnPath(hasHeader=True, path = drivePath):
@@ -130,8 +130,8 @@ def DivideDatatrackerData(inputData):
 
     dfTime = pd.DataFrame(
         inputData.loc[:, inputData.columns.str.startswith('Frame') | inputData.columns.str.startswith('timestamp')])
-    #~ dfFace = pd.DataFrame(inputData.loc[:, inputData.columns.isin(faceColumnNames)])
-    #~ dfFace = dfFace.loc[:, ~(dfFace.fillna(0) == 0).all(axis=0)]
+    dfFace = pd.DataFrame(inputData.loc[:, inputData.columns.isin(faceColumnNames)])
+    dfFace = dfFace.loc[:, ~(dfFace.fillna(0) == 0).all(axis=0)]
     dfEye = pd.DataFrame(inputData.loc[:, (inputData.columns.str.startswith('Eye') & ~inputData.columns.str.startswith(
         'Eyes'))])
     dfEye = dfEye.loc[:, ~(dfEye.fillna(0) == 0).all(axis=0)]
@@ -143,7 +143,7 @@ def DivideDatatrackerData(inputData):
     dfExternData = ExternalData(inputData)
     dfs = [pd.concat([dfTime, df], axis='columns') for df in [dfEye, dfButtons, dfMovements, dfExternData]]
     
-    #~ dfs = [pd.concat([dfTime, df], axis='columns') for df in [dfFace, dfEye, dfButtons, dfMovements, dfExternData]]
+    dfs = [pd.concat([dfTime, df], axis='columns') for df in [dfFace, dfEye, dfButtons, dfMovements, dfExternData]]
     #dfTot = pd.concat([dfTime, dfFace, dfEye, dfButtons, dfMovements, dfExternData], axis='columns')
     #dfs.append(dfTot)
 
@@ -189,15 +189,13 @@ def ExternalData(inputData):
 
     # Extract external data from the input DataFrame
     #~ externalData = ['EyesClosedL', 'EyesClosedR', 'IsGunGrabbed', 'Health', 'Oxygen', 'Deaths', 'LastCheckpoint']
-    externalData = ['HeartBeatRate', 'MaxHeartBeatRate', 'MinHeartBeatRate', 'AverageHeartBeatRate', 'IsInStressfulArea']
-    #~ df = pd.DataFrame(inputData.loc[:, inputData.columns.isin(externalData) | inputData.columns.str.startswith(
-    #     'Semantic') | inputData.columns.str.startswith('OVRNodeHeadPosition')])
-    df = pd.DataFrame(inputData.loc[:, inputData.columns.isin(externalData)])
-    
-    #~ rays = range(0, 10)
-    #~ SemanticTags = ["SemanticTag" + str(i) for i in rays]
-    #~ for tag in SemanticTags:
-    #~     df[tag] = df[tag].apply(TagtoValue)
+    externalData = ['HeartBeatRate', 'MaxHeartBeatRate', 'MinHeartBeatRate', 'AverageHeartBeatRate', 'IsInStressfulArea', 'Deaths', 'LastCheckpoint']
+    df = pd.DataFrame(inputData.loc[:, inputData.columns.isin(externalData) | inputData.columns.str.startswith(
+        'Semantic') | inputData.columns.str.startswith('OVRNodeHeadPosition')])
+    rays = range(0, 10)
+    SemanticTags = ["SemanticTag" + str(i) for i in rays]
+    for tag in SemanticTags:
+        df[tag] = df[tag].apply(TagtoValue)
 
     """
     for ray in rays:
@@ -207,13 +205,13 @@ def ExternalData(inputData):
         df.loc[~df[f'SemanticTag{ray}'] == -1, f'Distance{ray}'] = float('nan')
     """
     # convertire checkPoint o da zero a n o livello di stress nell'area,
-    #~ convertCheckpointToNumber(df, useStressLevel=True)
-    #~ df.drop(columns=['LastCheckpoint'], inplace=True)
+    convertCheckpointToNumber(df, useStressLevel=True)
+    df.drop(columns=['LastCheckpoint'], inplace=True)
     #df['LastCheckpoint'] = checkpoint_numeric
 
     # convertire le morti in valore logaritmico o valore esponenziale
-    #~ deaths_converted = convertDeaths(df, useLogarithmic=False, keepOriginal=True)
-    #~ df['Deaths'] = deaths_converted
+    deaths_converted = convertDeaths(df, useLogarithmic=False, keepOriginal=True)
+    df['Deaths'] = deaths_converted
 
     # convertire vita e ossigeno in soglie circa di 25% da 0 a 1
     #~ ox_converted = convertOxygenAndHealth(df['Oxygen'], threshold=25, convertToThreshold=True)
@@ -223,7 +221,7 @@ def ExternalData(inputData):
     #~ df['IsGunGrabbed'] = df['IsGunGrabbed'].apply(lambda x: 1 if x == 'True' else 0)
     #~ EnemiesTracker(df, inputData)
     # Rimuovere colonne non necessarie
-    #~ columns_to_drop = [col for col in df.columns if "SemanticPoint" in col or "SemanticObj" in col or "OVRNode" in col]
+    columns_to_drop = [col for col in df.columns if "SemanticPoint" in col or "SemanticObj" in col or "OVRNode" in col]
     columns_to_drop = [col for col in df.columns if "OVRNode" in col]
     df = df.drop(columns=columns_to_drop)
 
@@ -232,30 +230,29 @@ def ExternalData(inputData):
 
 def convertCheckpointToNumber(df: pd.DataFrame, useStressLevel: bool) -> pd.Series:
     # Definizione dei checkpoint e dei rispettivi valori di stress (da decidere)
-    checkpoint_to_stress = {
-        "baseline_button": 1,
-        "startroom_completed": 2,
-        "room3_completed": 3,
-        "room2_completed": 4,
-        "room2": 4,
-        "map_puzzle_start": 5,
-        "MAP_PUZZLE_COMPLETED": 6,
-        "room5_completed": 7,
-        "EscapeRoom": 8,
-        "room9_completed": 9,
-        "bossfight_start": 10,
-        "bossfight_completed": 11
-    }
-
+    #~ checkpoint_to_stress = {
+    #~     "baseline_button": 1,
+    #~     "startroom_completed": 2,
+    #~     "room3_completed": 3,
+    #~     "room2_completed": 4,
+    #~     "room2": 4,
+    #~     "map_puzzle_start": 5,
+    #~     "MAP_PUZZLE_COMPLETED": 6,
+    #~     "room5_completed": 7,
+    #~     "EscapeRoom": 8,
+    #~     "room9_completed": 9,
+    #~     "bossfight_start": 10,
+    #~     "bossfight_completed": 11
+    #~ }
     last_checkpoint_series = df["LastCheckpoint"]
-
+    return last_checkpoint_series
     if useStressLevel:
         # Mappa il livello di stress
         allcheckpoints = last_checkpoint_series.unique()
 
         allcheckpoints = [x for x in allcheckpoints if pd.notnull(x)]
         for checkpoint in allcheckpoints:
-            df[checkpoint + "_checkpoint"] = last_checkpoint_series.apply(lambda x: 1 if x == checkpoint else 0)
+            df[checkpoint] = last_checkpoint_series.apply(lambda x: 1 if x == checkpoint else 0)
 
     else:
         checkpoint_to_number = {}

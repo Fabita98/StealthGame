@@ -61,11 +61,11 @@ def preprocessData(df, has_Discrete=False, target_samples_per_second=90):
         # end_time = pd.to_datetime(df[time_column].iloc[-1])
         # new_index = pd.date_range(start=start_time, end=end_time, freq=sample_interval)
         df[time_column] = pd.to_datetime(df[time_column], unit='s')
-        discrete_data = ['HeartBeatRate', 'MaxHeartBeatRate', 'MinHeartBeatRate', 'AverageHeartBeatRate', 'IsInStressfulArea']
+        discrete_data = ['HeartBeatRate', 'MaxHeartBeatRate', 'MinHeartBeatRate', 'AverageHeartBeatRate', 'IsInStressfulArea', 'Deaths', 'LastCheckpoint']
 
         #~ discrete_data = ["LastCheckpoint", "Health", "IsGunGrabbed", "Deaths", "Oxygen", 'Frogger', 'Walker', 'Shield','BlackHole', 'BossWalker']
-        #~ discrete_data.extend([col for col in df.columns if "SemanticTag" in col or "SemanticObj" in col])
-        #~ discrete_data.extend([col for col in df.columns if "checkpoint" in col])
+        discrete_data.extend([col for col in df.columns if "SemanticTag" in col or "SemanticObj" in col])
+        discrete_data.extend([col for col in df.columns if "checkpoint" in col])
 
         df_resampled = df.set_index(time_column)
         for col in df_resampled.columns:
