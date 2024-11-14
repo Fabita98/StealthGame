@@ -132,13 +132,13 @@ public class DataTracker : MonoBehaviour {
 					trackerClass.RemoveUnusedEyes();
 				}
 
-				// trackerClass.takeFaceData = EditorGUILayout.Toggle("Take Face Data", trackerClass.takeFaceData);
+				trackerClass.takeFaceData = EditorGUILayout.Toggle("Take Face Data", trackerClass.takeFaceData);
 
-				// ovrexpr.enabled = trackerClass.takeFaceData || trackerClass.takeEyeData;
+				ovrexpr.enabled = trackerClass.takeFaceData || trackerClass.takeEyeData;
 
-				// if (trackerClass.takeFaceData && trackerClass.takeEyeData) {
-				// 	EditorGUILayout.HelpBox("Eye closed will be collected as face data to avoid double access to face expression", MessageType.Info);
-				// }
+				if (trackerClass.takeFaceData && trackerClass.takeEyeData) {
+					EditorGUILayout.HelpBox("Eye closed will be collected as face data to avoid double access to face expression", MessageType.Info);
+				}
 
 
 				trackerClass.takeMovementData = EditorGUILayout.Toggle("Take Movement Data", trackerClass.takeMovementData);
@@ -363,9 +363,9 @@ public class DataTracker : MonoBehaviour {
 				unityTimePrevious = Time.time;
 			}
 
-			// if (takeFaceData) {
-			// 	CollectFaceData();
-			// }
+			if (takeFaceData) {
+				CollectFaceData();
+			}
 
 			if (takeEyeData) {
 				if (takeEyeHead) {
@@ -418,6 +418,8 @@ public class DataTracker : MonoBehaviour {
 			AddToDictionary("AverageHeartBeatRate",HeartbeatManager.Instance.GetAverageHeartbeatForId("Player").ToString());
 			// AddToDictionary("PredictedKalmanStress", StressDetection.Instance.predictedStressValue);
 			AddToDictionary("IsInStressfulArea", player.isInStressfulArea);
+			AddToDictionary("Deaths", PlayerPrefsManager.GetInt(PlayerPrefsKeys.Deaths, 0).ToString());
+			AddToDictionary("LastCheckpoint", PlayerPrefsManager.GetInt(PlayerPrefsKeys.Level, 0).ToString());
 			// AddToDictionary("LastCheckpoint", GameManager.Instance.lastCheckpointName);
 			// AddToDictionary("IsGunGrabbed", gun.IsGrabbed.ToString());
 			// AddToDictionary("Health", player.health.ToString());
@@ -442,6 +444,41 @@ public class DataTracker : MonoBehaviour {
 		// recorder.StopRecording();
 	}
 
+	#region FaceTracking
+
+	private void CollectFaceData() {
+		var faceWeights = GetFaceData();
+
+		if (faceWeights != null) {
+			foreach (var expr in (OVRFaceExpressions.FaceExpression[]) Enum.GetValues(typeof(OVRFaceExpressions.FaceExpression))) {
+				if (expr is not (OVRFaceExpressions.FaceExpression.Max or OVRFaceExpressions.FaceExpression.Invalid)) {
+					AddToDictionary(expr.ToString(), faceWeights[(int) expr].ToString());
+				}
+			}
+		} else {
+			foreach (var expr in (OVRFaceExpressions.FaceExpression[]) Enum.GetValues(typeof(OVRFaceExpressions.FaceExpression))) {
+				if (expr is not (OVRFaceExpressions.FaceExpression.Max or OVRFaceExpressions.FaceExpression.Invalid)) {
+					AddToDictionary(expr.ToString(), "NaN", false);
+				}
+			}
+		}
+	}
+
+	private List<float> GetFaceData() {
+		if (!ovrexpr.ValidExpressions) return null;
+		List<float> faceWeights = new(ovrexpr.ToArray());
+
+		//If blendshape is active, sum blendshape offset to recover true eyeclosed value
+		if (ovrexpr.EyeFollowingBlendshapesValid) {
+			var blendShapeOffset = Mathf.Min(faceWeights[(int) OVRFaceExpressions.FaceExpression.EyesLookDownL], faceWeights[(int) OVRFaceExpressions.FaceExpression.EyesLookDownR]);
+			faceWeights[(int) OVRFaceExpressions.FaceExpression.EyesClosedL] += blendShapeOffset;
+			faceWeights[(int) OVRFaceExpressions.FaceExpression.EyesClosedR] += blendShapeOffset;
+		}
+
+		return faceWeights;
+	}
+
+	#endregion
 
 	#region Movement
 
