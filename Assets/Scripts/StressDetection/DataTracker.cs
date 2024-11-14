@@ -262,7 +262,7 @@ public class DataTracker : MonoBehaviour {
 
 	private string lastCommand = "";
 
-	// private RecorderWindow recorder;
+	private RecorderWindow recorder;
 
 	public static bool eyeClosed = false;
 
@@ -270,7 +270,7 @@ public class DataTracker : MonoBehaviour {
 		fixedFrameCounter = 1;
 
 		collectedData = new();
-		// recorder = EditorWindow.GetWindow<RecorderWindow>();
+		recorder = EditorWindow.GetWindow<RecorderWindow>();
 
 		if (takeFaceData || takeEyeData) {
 			ovrexpr = GetComponent<OVRFaceExpressions>();
@@ -315,7 +315,7 @@ public class DataTracker : MonoBehaviour {
 		// CommandRecognizer.OnCommandRecognized.AddListener(c=> lastCommand = c.name);
 		collectData = collectDataOnStart;
 		latestDataRow = new List<float>();
-		// recorder.StartRecording();
+		recorder.StartRecording();
 	}
 
 	public void StartCollectData() {
@@ -441,7 +441,7 @@ public class DataTracker : MonoBehaviour {
 	private void OnApplicationQuit() {
 		if (enableSaveIntoCSV)
 			SaveIntoCSV();
-		// recorder.StopRecording();
+		recorder.StopRecording();
 	}
 
 	#region FaceTracking
