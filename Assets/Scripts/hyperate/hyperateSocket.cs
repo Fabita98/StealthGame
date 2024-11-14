@@ -13,7 +13,7 @@ public class hyperateSocket : MonoBehaviour
 	// Put your websocket Token ID here
     public string websocketToken = "Nb3mi4BcOSoje0dqhmljXk5JYy6qcMKOCkKgMYvddoahX9UYaK4V5JENah5LDMT6"; //You don't have one, get it here https://www.hyperate.io/api
     public string hyperateID = "7B6B";
-    public static int value;
+    public static int value = 60;
     
 
     // Textbox to display your heart rate in

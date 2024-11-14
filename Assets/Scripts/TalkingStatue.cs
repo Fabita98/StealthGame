@@ -6,6 +6,7 @@ public class TalkingStatue : MonoBehaviour
 {
     public AudioSource voice, popSound;
     bool firstTime = true;
+    public bool finished = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -72,6 +73,7 @@ public class TalkingStatue : MonoBehaviour
     {
         smoke.SetActive(true);
         popSound.Play();
+        finished = true;
         Invoke("smoke_out", 1.5f);
     }
 }
