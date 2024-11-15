@@ -53,9 +53,22 @@ def correlation(data, corrth):
 
 
 def variance(data, varth):
+    # Calculate variance for each feature
+    variances = data.var()
+    
+    # Check if all variances are below the threshold
+    if all(variances < varth):
+        print(f"Warning: All features have variance below {varth}.")
+        print("Consider lowering the threshold or using a different feature selection method.")
+        print(f"Minimum variance: {variances.min()}, Maximum variance: {variances.max()}")
+        # Optionally return the data as-is or drop constant columns
+        return data.loc[:, (variances > 0)]
+    
+    # Apply VarianceThreshold if some features meet the threshold
     variance_selector = VarianceThreshold(threshold=varth)
     variance_selected = variance_selector.set_output(transform="pandas").fit_transform(data)
     return variance_selected
+
 
 
 def stressSelection(data, y):
@@ -136,8 +149,8 @@ if __name__ == "__main__":
             total_dante_df = pd.DataFrame()
             total_external_df = pd.DataFrame()
 
-            subjects_to_exclude = subjects_to_exclude + ["S0"]
-            dirs = [dr for dr in dirs if dr not in subjects_to_exclude]
+            # subjects_to_exclude = subjects_to_exclude + ["S0"]
+            # dirs = [dr for dr in dirs if dr not in subjects_to_exclude]
             for dr in dirs:
                 features_subject_folder = path + '/' + dr + f"/WindowedCsv_{dim_seconds}_{shift_seconds}_stand{stand}_norm{norm}"
                 print(f"Processing {dr}")
@@ -170,8 +183,8 @@ if __name__ == "__main__":
                     print(f"Total columns: {total_columns} -> {selectedTotalDataDf.shape[1]}")
         case "ForDataTypes":
             datatypes = ["Dante", "External", "Movement", "Button", "Face", "Eye"]
-            subjects_to_exclude = subjects_to_exclude + ["S0"]
-            dirs = [dr for dr in dirs if dr not in subjects_to_exclude]
+            #~ subjects_to_exclude = subjects_to_exclude + ["S0"]
+            # dirs = [dr for dr in dirs if dr not in subjects_to_exclude]
             for datatype in datatypes:
                 print(f"Processing {datatype}")
                 total_df = pd.DataFrame()

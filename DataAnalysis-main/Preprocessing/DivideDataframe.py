@@ -190,12 +190,13 @@ def ExternalData(inputData):
     # Extract external data from the input DataFrame
     #~ externalData = ['EyesClosedL', 'EyesClosedR', 'IsGunGrabbed', 'Health', 'Oxygen', 'Deaths', 'LastCheckpoint']
     externalData = ['HeartBeatRate', 'MaxHeartBeatRate', 'MinHeartBeatRate', 'AverageHeartBeatRate', 'IsInStressfulArea', 'Deaths', 'LastCheckpoint']
-    df = pd.DataFrame(inputData.loc[:, inputData.columns.isin(externalData) | inputData.columns.str.startswith(
-        'Semantic') | inputData.columns.str.startswith('OVRNodeHeadPosition')])
-    rays = range(0, 10)
-    SemanticTags = ["SemanticTag" + str(i) for i in rays]
-    for tag in SemanticTags:
-        df[tag] = df[tag].apply(TagtoValue)
+    df = pd.DataFrame(inputData.loc[:, inputData.columns.isin(externalData) | 
+                                    #~ inputData.columns.str.startswith('Semantic') | 
+                                    inputData.columns.str.startswith('OVRNodeHeadPosition')])
+    #~ rays = range(0, 10)
+    #~ SemanticTags = ["SemanticTag" + str(i) for i in rays]
+    #~ for tag in SemanticTags:
+    #~     df[tag] = df[tag].apply(TagtoValue)
 
     """
     for ray in rays:
@@ -205,13 +206,13 @@ def ExternalData(inputData):
         df.loc[~df[f'SemanticTag{ray}'] == -1, f'Distance{ray}'] = float('nan')
     """
     # convertire checkPoint o da zero a n o livello di stress nell'area,
-    convertCheckpointToNumber(df, useStressLevel=True)
-    df.drop(columns=['LastCheckpoint'], inplace=True)
-    #df['LastCheckpoint'] = checkpoint_numeric
+    #~ convertCheckpointToNumber(df, useStressLevel=True)
+    #~ df.drop(columns=['LastCheckpoint'], inplace=True)
+    # df['LastCheckpoint'] = checkpoint_numeric
 
     # convertire le morti in valore logaritmico o valore esponenziale
-    deaths_converted = convertDeaths(df, useLogarithmic=False, keepOriginal=True)
-    df['Deaths'] = deaths_converted
+    #~ deaths_converted = convertDeaths(df, useLogarithmic=False, keepOriginal=True)
+    #~ df['Deaths'] = deaths_converted
 
     # convertire vita e ossigeno in soglie circa di 25% da 0 a 1
     #~ ox_converted = convertOxygenAndHealth(df['Oxygen'], threshold=25, convertToThreshold=True)
@@ -221,7 +222,7 @@ def ExternalData(inputData):
     #~ df['IsGunGrabbed'] = df['IsGunGrabbed'].apply(lambda x: 1 if x == 'True' else 0)
     #~ EnemiesTracker(df, inputData)
     # Rimuovere colonne non necessarie
-    columns_to_drop = [col for col in df.columns if "SemanticPoint" in col or "SemanticObj" in col or "OVRNode" in col]
+    #~ columns_to_drop = [col for col in df.columns if "SemanticPoint" in col or "SemanticObj" in col or "OVRNode" in col]
     columns_to_drop = [col for col in df.columns if "OVRNode" in col]
     df = df.drop(columns=columns_to_drop)
 

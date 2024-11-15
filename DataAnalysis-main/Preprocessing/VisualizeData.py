@@ -25,7 +25,7 @@ def saveColumns(process_movement=True, process_eye=True, process_face=True, proc
             plot_column_graphs(df,path + '/' + dr)
         
         if process_external:
-            df = process_external(path + '/' + dr + "/ProcessedCsv/" + f"{dr}_External.csv")
+            df = processExternal(path + '/' + dr + "/ProcessedCsv/" + f"{dr}_External.csv")
             plot_column_graphs(df,path + '/' + dr)
         print(f"{dr} done")
 

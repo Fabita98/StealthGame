@@ -1,6 +1,7 @@
 from ProcessSingleDataframe import processMovement, processEye, processFace, processExternal
 import os
 import pandas as pd
+from DataSynchronization import synchronize
 drivePath = 'D:/University-Masters/Thesis'
 AlienPath = 'F:/Data_Analysis'
 #~ subjects_to_exclude = [f"S{i}" for i in range(0, 2)] + [f"S{i}" for i in range(3, 29)] + ['S25','S100','S101']
@@ -11,8 +12,8 @@ def process_dataframes(process_movement=True, process_eye=True, process_face=Fal
     for dr in dirs:
         if process_movement:
             df = processMovement(path + '/' + dr + "/ProcessedCsv/" + f"{dr}_Movement.csv").iloc[100:]
-            #dfDante = pd.read_csv(path + '/' + dr + f"/Resampled_{dr}.csv", sep=';')
-            #df = synchronize(df, dfDante)
+            # dfDante = pd.read_csv(path + '/' + dr + f"/Resampled_{dr}.csv", sep=';')
+            # df = synchronize(df, dfDante)
             save_dataframes_in_file(df, path + '/' + dr + "/ResampledCsv", f"{dr}_Movement.csv")
         if process_button:
             df = processMovement(path + '/' + dr + "/ProcessedCsv/" + f"{dr}_Button.csv").iloc[100:]
