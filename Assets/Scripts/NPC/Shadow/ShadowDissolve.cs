@@ -9,6 +9,7 @@ public class ShadowDissolve : MonoBehaviour
     private CapsuleCollider _appearanceCapsuleCollider;
     private float _defaultRadius;
     private Coroutine _dissolveCoroutine;
+    public AudioSource scarySound;
 
     void Start()
     {
@@ -35,6 +36,7 @@ public class ShadowDissolve : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            scarySound.Play();
             _dissolveCoroutine = StartCoroutine(DissolveShaderCR(.5f, 0));
         }
     }
