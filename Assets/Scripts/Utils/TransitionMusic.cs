@@ -102,7 +102,7 @@ public class TransitionMusic : MonoBehaviour
             audio1on = false;
         }
         duration = .4f;
-        target = .6f;
+        target = .8f;
         chaseMusic.Play();
         currentAudio = AudioTypes.ChaseSound;
         StartCoroutine(FadeAudioSource.StartFade(chaseMusic, duration, target));

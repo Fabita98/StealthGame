@@ -53,7 +53,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 5
+  MaxDistance: 10
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -5346,6 +5346,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   voice: {fileID: 7702964666238492084}
   popSound: {fileID: 5523293681083777423}
+  finished: 0
   smoke: {fileID: 5184464091914227274}
 --- !u!1 &8939562465482850582
 GameObject:

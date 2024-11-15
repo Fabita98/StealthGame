@@ -72,7 +72,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   triggerRadius: 0.7
-  appearanceRadius: 1
+  appearanceRadius: 1.2
   dissolveTime: 0.5
 --- !u!82 &8619532626997143075
 AudioSource:
