@@ -44,4 +44,4 @@ def plot_column_graphs(df, path):
 
 
 if __name__ == "__main__":
-    saveColumns(process_movement=True, process_eye=True, process_face=True,process_button=True,path=drivePath)
+    saveColumns(process_movement=True, process_eye=True, process_face=True,process_button=False,path=drivePath)

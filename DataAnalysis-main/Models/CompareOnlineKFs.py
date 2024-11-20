@@ -624,8 +624,8 @@ if __name__ == '__main__':
     print(dirs)
     warnings.filterwarnings("ignore")
 
-    #~ dirs = [f for f in dirs if f[0] == 'S' and f not in subjects_to_exclude]
-    #~ dirs = sorted(dirs, key=lambda x: int(x[1:]))
+    # dirs = [f for f in dirs if f[0] == 'S' and f not in subjects_to_exclude]
+    # dirs = sorted(dirs, key=lambda x: int(x[1:]))
 
     scaler = MinMaxScaler(feature_range=(0, 1))
 

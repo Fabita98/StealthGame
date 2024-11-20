@@ -50,4 +50,4 @@ def save_dataframes_in_file(dataframe, subject_folder, name):
 
 if __name__ == "__main__":
 
-    process_dataframes(process_movement=True, process_eye=True, process_face=True, process_external=True, process_button=True, path=drivePath)
+    process_dataframes(process_movement=True, process_eye=True, process_face=True, process_external=True, process_button=False, path=drivePath)

@@ -30,32 +30,32 @@ OVRInput+RawButtonRIndexTrigger,OVRInput+RawButtonLThumbstick,OVRInput+RawButton
 
 class DataType(int):
     def __str__(self):
-        # if self == 0:
-        #     return 'Eye'
-        # elif self == 1:
-        #     return 'Button'
-        # elif self == 2:
-        #     return 'Movement'
-        # elif self == 3:
-        #     return 'External'
-        # elif self == 4:
-        #     return 'Total'
-        # else:
-        #     return 'Unknown'
         if self == 0:
             return 'Face'
         elif self == 1:
             return 'Eye'
         elif self == 2:
-            return 'Button'
-        elif self == 3:
             return 'Movement'
-        elif self == 4:
+        elif self == 3:
             return 'External'
-        elif self == 5:
+        elif self == 4:
             return 'Total'
         else:
             return 'Unknown'
+        # if self == 0:
+        #     return 'Face'
+        # elif self == 1:
+        #     return 'Eye'
+        # elif self == 2:
+        #     return 'Button'
+        # elif self == 3:
+        #     return 'Movement'
+        # elif self == 4:
+        #     return 'External'
+        # elif self == 5:
+        #     return 'Total'
+        # else:
+        #     return 'Unknown'
 
 
 def processFileOnPath(hasHeader=True, path = drivePath):
@@ -135,15 +135,15 @@ def DivideDatatrackerData(inputData):
     dfEye = pd.DataFrame(inputData.loc[:, (inputData.columns.str.startswith('Eye') & ~inputData.columns.str.startswith(
         'Eyes'))])
     dfEye = dfEye.loc[:, ~(dfEye.fillna(0) == 0).all(axis=0)]
-    dfButtons = pd.DataFrame(inputData.loc[:, inputData.columns.str.startswith(buttonPrefix)])
-    dfButtons = dfButtons.loc[:, ~(dfButtons.fillna(0) == 0).all(axis=0)]
+    #~ dfButtons = pd.DataFrame(inputData.loc[:, inputData.columns.str.startswith(buttonPrefix)])
+    #~ dfButtons = dfButtons.loc[:, ~(dfButtons.fillna(0) == 0).all(axis=0)]
     dfMovements = pd.DataFrame(inputData.loc[:, (inputData.columns.str.startswith(
         "OVR") & ~inputData.columns.str.startswith(buttonPrefix))])
     dfMovements = dfMovements.loc[:, ~(dfMovements.fillna(0) == 0).all(axis=0)]
     dfExternData = ExternalData(inputData)
-    dfs = [pd.concat([dfTime, df], axis='columns') for df in [dfEye, dfButtons, dfMovements, dfExternData]]
+    # dfs = [pd.concat([dfTime, df], axis='columns') for df in [dfEye, dfButtons, dfMovements, dfExternData]]
     
-    dfs = [pd.concat([dfTime, df], axis='columns') for df in [dfFace, dfEye, dfButtons, dfMovements, dfExternData]]
+    dfs = [pd.concat([dfTime, df], axis='columns') for df in [dfFace, dfEye, dfMovements, dfExternData]]
     #dfTot = pd.concat([dfTime, dfFace, dfEye, dfButtons, dfMovements, dfExternData], axis='columns')
     #dfs.append(dfTot)
 
