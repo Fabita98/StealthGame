@@ -16,7 +16,8 @@ import matplotlib.gridspec as gridspec
 drivePath = 'D:/University-Masters/Thesis'
 susiDrivePath = 'G:/.shortcut-targets-by-id/1wNGSxajmNG6X6ORVLNxGRZkrJJVw02FA/Test'
 AlienPath = 'F:/Data_Analysis'
-windowsPath = "/WindowedCsv_0.5_0.25_standFalse_normFalse/"
+# windowsPath = "/WindowedCsv_0.5_0.25_standFalse_normFalse/"
+windowsPath = "/WindowedCsv_0.5_0.25_standTrue_normFalse/"
 subjects_to_exclude = [f"S{i}" for i in range(0, 21)]  + ['S25', 'S100', 'S101']  + [f"S{i}" for i in range(22, 29)]
 # Path dei csv
 # dataPath = 'data'
@@ -624,7 +625,7 @@ if __name__ == '__main__':
     print(dirs)
     warnings.filterwarnings("ignore")
 
-    # dirs = [f for f in dirs if f[0] == 'S' and f not in subjects_to_exclude]
+    dirs = [f for f in dirs if f[0] == 'S' and f not in ['S0', 'S1']]
     # dirs = sorted(dirs, key=lambda x: int(x[1:]))
 
     scaler = MinMaxScaler(feature_range=(0, 1))

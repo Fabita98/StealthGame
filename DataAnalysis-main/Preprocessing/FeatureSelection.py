@@ -12,7 +12,7 @@ import time
 dim_seconds = 0.5
 shift_seconds = 0.25
 norm = False
-stand = False
+stand = True
 #~ subjects_to_exclude = ["S25", "S100", "S101"]
 #subjects_to_exclude = subjects_to_exclude + ([f"S{i}" for i in range(0, 2)] + [f"S{i}" for i in range(3, 29)])
 FraDrivePath = '/mnt/g/.shortcut-targets-by-id/1wNGSxajmNG6X6ORVLNxGRZkrJJVw02FA/Test'

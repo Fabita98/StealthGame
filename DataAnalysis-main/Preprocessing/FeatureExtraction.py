@@ -15,7 +15,7 @@ dim_seconds = 0.5
 shift_seconds = 0.25
 
 norm = False
-stand = False
+stand = True
 
 # subjects_to_exclude = ([f"S{i}" for i in range(0,21)] +
 #                        [f"S{i}" for i in range(22,29)] + ['S25',"S100", "S101"])
@@ -121,6 +121,7 @@ def normalizeData(data):
     # dati normalizzati tra 0 e 1
     scaler = MinMaxScaler()
     normalized_data = scaler.fit_transform(data)
+    normalized_data = pd.DataFrame(normalized_data)
     return normalized_data
 
 
@@ -128,6 +129,7 @@ def standardizeData(data):
     # dati standardizzati: std = 1, mean = 0
     scaler = StandardScaler()
     standardized_data = scaler.fit_transform(data)
+    standardized_data = pd.DataFrame(standardized_data)
     return standardized_data
 
 
