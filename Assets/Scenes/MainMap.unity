@@ -19249,6 +19249,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1664126497}
     m_Modifications:
+    - target: {fileID: -2216181429629429775, guid: e300fb986f27eec4bb410e60357727e8, type: 3}
+      propertyPath: m_Size.x
+      value: 5.485512
+      objectReference: {fileID: 0}
+    - target: {fileID: -2216181429629429775, guid: e300fb986f27eec4bb410e60357727e8, type: 3}
+      propertyPath: m_Size.z
+      value: 6.9554267
+      objectReference: {fileID: 0}
+    - target: {fileID: -2216181429629429775, guid: e300fb986f27eec4bb410e60357727e8, type: 3}
+      propertyPath: m_Center.x
+      value: 0.053901672
+      objectReference: {fileID: 0}
+    - target: {fileID: -2216181429629429775, guid: e300fb986f27eec4bb410e60357727e8, type: 3}
+      propertyPath: m_Center.z
+      value: -3.0590792
+      objectReference: {fileID: 0}
     - target: {fileID: 1185904382849395437, guid: e300fb986f27eec4bb410e60357727e8, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.99999857
@@ -19283,7 +19299,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2810818039143010912, guid: e300fb986f27eec4bb410e60357727e8, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 2810818039143010912, guid: e300fb986f27eec4bb410e60357727e8, type: 3}
       propertyPath: m_StaticEditorFlags

@@ -18,6 +18,9 @@ namespace Assets.Scripts.GazeTrackingFeature {
         internal const byte noWidthValue = 0;
         [SerializeField] private const float minWidthValue = .2f;
         [SerializeField] private const float maxWidthValue = 4;
+        
+        [Header("EndZoneFireStone")]
+        public static bool FireStoneCanBeStared;
 
         [Header("Voice playback variables")]
         [SerializeField] private const float maxSnoringTime = 10f;

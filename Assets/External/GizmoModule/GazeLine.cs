@@ -9,7 +9,7 @@ namespace Assets.Scripts.GazeTrackingFeature {
         [SerializeField] private bool showGazeLineDebug = true;
 
         public LayerMask mask;
-        internal static int monkLayer, squareLayer, obstacleLayer;
+        internal static int monkLayer, squareLayer, obstacleLayer, endInteractableStoneLayer;
 
         internal static Vector3 hitPosition;
         internal static EyeInteractable staredMonk = null;
@@ -27,6 +27,7 @@ namespace Assets.Scripts.GazeTrackingFeature {
             monkLayer = LayerMask.NameToLayer("Monks");
             squareLayer = LayerMask.NameToLayer("Squares");
             obstacleLayer = LayerMask.NameToLayer("Obstacle");
+            endInteractableStoneLayer = LayerMask.NameToLayer("EndInteractableStone");
         }
 
         private void OnEnable() {
@@ -47,7 +48,9 @@ namespace Assets.Scripts.GazeTrackingFeature {
             if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, Mathf.Infinity, layerMask: mask)) {
                 hitPosition = hit.point;
 
-                if (hit.collider.gameObject.layer == monkLayer || hit.collider.gameObject.layer == squareLayer) {
+                if (hit.collider.gameObject.layer == monkLayer 
+                    || hit.collider.gameObject.layer == squareLayer 
+                    || hit.collider.gameObject.layer == endInteractableStoneLayer) {
                     if (hit.collider.TryGetComponent<EyeInteractable>(out var eyeInteractable)) {
                         eyeInteractablesList.Add(eyeInteractable);
                         eyeInteractable.IsHovered = true;
@@ -60,6 +63,10 @@ namespace Assets.Scripts.GazeTrackingFeature {
                         else if (eyeInteractable.gameObject.layer == monkLayer) {
                             staredMonk = eyeInteractable;
                             EyeInteractable.HoveringTime += Time.fixedDeltaTime;
+                        }
+                        // Case 3: Hovering EndGameStone
+                        else if (eyeInteractable.gameObject.layer == endInteractableStoneLayer && EndGameStoneToBeLooked.canBeLooked) {
+                            // run method to set on fire();
                         }
                     }
                 }

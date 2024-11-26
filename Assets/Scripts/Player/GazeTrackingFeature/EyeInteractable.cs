@@ -96,6 +96,14 @@ namespace Assets.Scripts.GazeTrackingFeature {
             else Debug.LogWarning("Collider array does not have enough elements.");
         }
 
+        private void InitializeEndStoneCollider() {
+            if (!TryGetComponent<BoxCollider>(out BoxCollider endStoneCollider)) {
+                endStoneCollider = gameObject.AddComponent<BoxCollider>();
+                endStoneCollider.center = new Vector3(0.03f, -0.15f, -3.44f);
+                endStoneCollider.size = new Vector3(5.31f, 4.22f, 8.06f);
+            }
+        }
+
         private void InitializeAudioSources() {
             audioSources = GetComponents<AudioSource>();
 
