@@ -44,7 +44,7 @@ class DivideDataframe:
         dirs = [dr for dr in dirs if dr not in self.subjects_to_exclude]
         count = 0
         for dir in dirs:
-            templist = list(filter(lambda f: f == f"S{count}.csv", os.listdir(os.path.join(path, dir))))
+            templist = list(filter(lambda f: f == f"{dir}.csv", os.listdir(os.path.join(path, dir))))
             f = templist[0] if len(templist) > 0 else None
             if f is None:
                 continue

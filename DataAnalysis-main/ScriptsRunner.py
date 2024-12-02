@@ -7,7 +7,7 @@ from Preprocessing.VisualizeData import VisualizeData
 from Models.CompareOnlineKFs import CompareOnlineKFs
 
 if __name__ == "__main__":
-    drivePath = "D:/University-Masters/Thesis"
+    drivePath = "D:/University-Masters/Thesis/T"
     externalData = ['HeartBeatRate', 'MaxHeartBeatRate', 'MinHeartBeatRate', 'AverageHeartBeatRate', 'IsInStressfulArea', 'Deaths', 'LastCheckpoint']
     discreteData = ['HeartBeatRate', 'MaxHeartBeatRate', 'MinHeartBeatRate', 'AverageHeartBeatRate', 'IsInStressfulArea', 'Deaths', 'LastCheckpoint']
     datatypeToExcludeInKalman = ['Dante', 'External', "Eye", "Button", "Data_ALL"]
@@ -26,11 +26,11 @@ if __name__ == "__main__":
     doStandardization=False
 
     doDivideDataframe = True
+    doVisualizeData = True
     doProcessDataframes = True
     doDanteAnnotation = True
     doFeatureExtraction = True
     doFeatureSelection = True
-    doVisualizeData = True
     doKalmanFilter = True
 
     
@@ -83,7 +83,7 @@ if __name__ == "__main__":
                                               norm=doNormalization, 
                                               stand=doStandardization, 
                                               sampling_rate=data_samples_per_second, 
-                                              subjects_to_exclude=[])
+                                              subjects_to_exclude=subjectsToExclude)
         featureExtraction.main()
 
     # Select most important features based on correlation and variance
