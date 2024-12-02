@@ -14,13 +14,8 @@ from matplotlib import pyplot as plt
 import matplotlib.gridspec as gridspec
 
 drivePath = 'D:/University-Masters/Thesis'
-susiDrivePath = 'G:/.shortcut-targets-by-id/1wNGSxajmNG6X6ORVLNxGRZkrJJVw02FA/Test'
-AlienPath = 'F:/Data_Analysis'
-# windowsPath = "/WindowedCsv_0.5_0.25_standFalse_normFalse/"
-windowsPath = "/WindowedCsv_0.5_0.25_standTrue_normFalse/"
-subjects_to_exclude = [f"S{i}" for i in range(0, 21)]  + ['S25', 'S100', 'S101']  + [f"S{i}" for i in range(22, 29)]
-# Path dei csv
-# dataPath = 'data'
+defaultDatatypeToExclude = ['Dante', 'External', "Eye", "Button", "Data_ALL"]
+
 
 subjects = {}
 subjects_om = {}
@@ -29,28 +24,14 @@ subjects_tm = {}
 # Numero di righe del df che vengono fornite in input al KF ad ogni iterazione
 block_size = 5
 
+class CompareOnlineKFs:
 
-class Comparison:
+    def __init__(self, path=drivePath, dim_seconds=0.5, shift_seconds=0.25, norm=False, stand=True, datatype_to_exclude=defaultDatatypeToExclude, subjects_to_exclude=[]):
+        self.windowsPath = f"/WindowedCsv_{dim_seconds}_{shift_seconds}_stand{stand}_norm{norm}/"
+        self.subjects_to_exclude = subjects_to_exclude
+        self.datatype_to_exclude = datatype_to_exclude
+        self.path = path
 
-    def split_data_and_labels(self, all_features_df):
-        X = []
-        y = []
-        subjects = all_features_df['subject']
-
-        # Qui ci vanno gli external data
-        u = all_features_df['game_section'].values
-
-        y = all_features_df['stress_label'].values
-        # Non ricordo se i csv sono tutti distinti, nel caso questa funzione va riscritta
-        X_df = all_features_df.drop(['stress_label', 'game_section', 'subject'], axis=1)
-
-        for index, rows in X_df.iterrows():
-            my_list = []
-            for col in X_df.columns:
-                my_list.append(rows[col])
-            X.append(my_list)
-
-        return X, y, u, subjects
 
     # Filtro di Kalman base, online, con test con le combinazioni di matrici
     def apply_online_baseline_kalman(self, dz, dx, x_test, transition_matrix, observation_matrix):
@@ -168,12 +149,6 @@ class Comparison:
 
             for j in range(block_size):
                 if i + j < len(x_test):
-                    '''
-                    if i == 0:
-                        z_preds_block[j], cov_block[j] = kf.filter_update(filtered_state_mean=np.zeros(dz), filtered_state_covariance=np.eye(dz), observation=observations[j], transition_offset=u_block[j])
-                    else:
-                        z_preds_block[j], cov_block[j] = kf.filter_update(filtered_state_mean=z_preds_block[j-1], filtered_state_covariance=cov_block[j-1], observation=observations[j], transition_offset=u_block[j])
-                    '''
                     z_preds_array = []
                     cov_array = []
                     for col in range(len(u_block[j])):
@@ -207,10 +182,6 @@ class Comparison:
 
         scaler = MinMaxScaler(feature_range=(0, 1))
         u.fillna(0, inplace=True)
-        # x_subject = pd.DataFrame(x)
-        # z_subject = pd.DataFrame(z)
-        # u_subject = pd.DataFrame(u)
-        # print(x)
         x_subject = scaler.fit_transform(x)
         u_subject = scaler.fit_transform(u)
         z_subject = scaler.fit_transform(z)
@@ -253,31 +224,10 @@ class Comparison:
                 z_preds_input = scaler.fit_transform(pd.DataFrame(z_preds_input))
                 crl_input = pearsonr(np.concatenate(z_preds_input, axis=0), np.concatenate(z_subject, axis=0))[0]
                 matrix_results["Input"] = crl_input
-                '''
-                # Applica filtro di Kalman baseline con più righe di features
-                z_preds_baseline_group= self.apply_online_baseline_kalman_group(z_subject.shape[1], x_subject.shape[1], x_subject, block_size = block_size, transition_matrix=transition_matrix, observation_matrix=observation_matrix)
-                z_preds_baseline_group = scaler.fit_transform(pd.DataFrame(z_preds_baseline_group) )
-
-                # Applica filtro di Kalman input con più righe di features
-                z_preds_input_group = self.apply_online_input_kalman_group(z_subject.shape[1], x_subject.shape[1], x_subject, u_subject, block_size = block_size, transition_matrix=transition_matrix, observation_matrix=observation_matrix)
-                z_preds_input_group = scaler.fit_transform(pd.DataFrame(z_preds_input_group))
-                
-                # Dividi z in blocchi di dimensione block_size
-                blocks = [z_subject[i:i+block_size] for i in range(0, len(z_subject), block_size)]
-                
-                # Calcola la media per ogni blocco e crea z_mean
-                z_mean = np.array([np.mean(block) for block in blocks])
-                '''
                 # Calcola RMSE
                 rmse_baseline = np.sqrt(np.mean(np.square(z_subject - z_preds_baseline))) / np.sqrt(
                     np.mean(np.square(z_subject)))
                 rmse_input = np.sqrt(np.mean(np.square(z - z_preds_input))) / np.sqrt(np.mean(np.square(z)))
-                '''     
-                crl_baseline_group = pearsonr(np.concatenate(z_preds_baseline_group, axis=0), z_mean)[0]
-                matrix_results["Baseline Group"] = crl_baseline_group
-                crl_input_group = pearsonr(np.concatenate(z_preds_input_group, axis=0), z_mean)[0]
-                matrix_results["Input Group"] = crl_input_group
-                '''
 
                 # Visualizza i risultati
                 print("Subject:", subject_id)
@@ -290,8 +240,6 @@ class Comparison:
                 smoothed_z_preds_input = np.apply_along_axis(self.smoothing, 1, z_preds_input)
 
                 # Visualizza i grafici
-                # self.plot_results(z_mean, z_preds_baseline_group, z_preds_input_group, crl_baseline_group, crl_input_group, u, f"Kalman blocks_{t_m}_{o_m}, s{subject_id}")
-                # self.saveFigures(subject_id,  f"Kalman blocks_{t_m}_{o_m}", datatype)
                 self.plot_results(z_subject, smoothed_z_preds_baseline, smoothed_z_preds_input, crl_baseline, crl_input,
                                   u_subject,
                                   f"Kalman_{t_m}_{o_m}, s{subject_id}")
@@ -343,7 +291,7 @@ class Comparison:
 
     def plot_kalman_results(self, subject, dante_df, datatype_results, external_col):
         # Create the results folder if it does not exist
-        results_folder_path = f"{drivePath}/{subject}{windowsPath}FeatureSelected/kalman_results_all_datatypes/{external_col}"
+        results_folder_path = f"{self.path}/{subject}{self.windowsPath}FeatureSelected/kalman_results_all_datatypes/{external_col}"
         if not os.path.exists(results_folder_path):
             os.makedirs(results_folder_path)
 
@@ -472,7 +420,7 @@ class Comparison:
     def saveFigures(self, subject_id, filter_type, datatype, external_col):
 
         results_folder = f"kalman_results_{datatype}/{external_col}"
-        results_folder_path = drivePath + '/' + subject_id + windowsPath + "FeatureSelected" + '/' + results_folder
+        results_folder_path = self.path + '/' + subject_id + self.windowsPath + "FeatureSelected" + '/' + results_folder
         if not os.path.exists(results_folder_path):
             os.makedirs(results_folder_path)
 
@@ -515,41 +463,91 @@ class Comparison:
         latex_table += "\\end{table}\n"
 
         return latex_table
+    
+    def main(self):
+        warnings.filterwarnings("ignore")
+
+        # dirs = [f for f in dirs if f[0] == 'S' and f not in ['S0', 'S1']]
+        # dirs = sorted(dirs, key=lambda x: int(x[1:]))
+        
+        dirs = sorted(list(filter(lambda x: x[0] == 'S', os.listdir(self.path))), key=lambda x: int(x[1:]))
+        dirs = [dr for dr in dirs if dr not in self.subjects_to_exclude]
+
+        for dir in dirs:
+            dante_df = pd.read_csv(self.path + '/' + dir + self.windowsPath + f"{dir}_Dante.csv", sep=';')
+            selectFeaturesFiles = os.listdir(self.path + '/' + dir + self.windowsPath + "FeatureSelected")
+
+            subject = str(dir)
+            print(subject)
+
+            datatype_results = {}  # Dizionario per salvare i risultati per ogni datatype
+            datatype_to_exclude = self.datatype_to_exclude
+            subjects = {}
+
+            for file in selectFeaturesFiles:
+                if file.startswith("S") and file.endswith(".csv") and not any(
+                        exclude in file for exclude in datatype_to_exclude) or "Data_ALL.csv" in file:
+
+                    X = pd.read_csv(self.path + '/' + dir + self.windowsPath + "FeatureSelected/" + file, sep=';')
+                    if (not file == f"Data_ALL.csv"):
+                        datatype = file.split('_')[1].replace('.csv', '')
+                        external = pd.read_csv(
+                            #~ drivePath + '/' + dir + windowsPath + "FeatureSelected/" + f"{dir}_External.csv",
+                            self.path + '/' + dir + self.windowsPath + f"{dir}_External.csv",
+                            sep=';')
+                    else:
+                        datatype = "Data_ALL"
+                        external = pd.read_csv(
+                            self.path + '/' + dir + self.windowsPath + "FeatureSelected/" + f"{dir}_External_ALL.csv",
+                            sep=';')
+                    if len(external) <= len(X):
+                        X = X.iloc[:len(external)]
+                    else:
+                        external = external.iloc[:len(X)]
+                    dante_df = dante_df.iloc[:len(X)]
+                    baseline_results = []
+                    input_results = []
+
+                    # Confronta con tutti i datatype per questa colonna di external
+                    for col in external.columns:
+                        start_time = time.time()
+                        crl_baseline, crl_input, pred_baseline, pred_input = self.compareKalmans_online(X, dante_df,
+                                                                                                              external[
+                                                                                                                  col].to_frame(),
+                                                                                                              subject,
+                                                                                                              datatype, col)
+                        current_time = time.time()
+                        local_time = time.localtime(current_time)
+
+                        hour = local_time.tm_hour
+                        minute = local_time.tm_min
+                        second = local_time.tm_sec
+
+                        print(f"Time: {hour}:{minute}:{second} --- {subject} - {datatype} - {col} --- {current_time - start_time} seconds")
+
+                        if datatype not in datatype_results:
+                            datatype_results[datatype] = {}
+                        if col not in datatype_results[datatype]:
+                            datatype_results[datatype][col] = {'baseline': [], 'input': []}
+                        datatype_results[datatype][col]['baseline'].extend(pred_baseline)
+                        datatype_results[datatype][col]['input'].extend(pred_input)
+
+            # Chiama plot_kalman_results per ogni valore della colonna di external
+
+            for col in list(datatype_results.values())[0].keys():
+                self.plot_kalman_results(subject, dante_df, datatype_results, col)
+
+            # comparison.compareMatrixConfigurationsSelection(X, y, external, subject, withInput=True)
+            output_folder = f"{self.path}/{dir}{self.windowsPath}FeatureSelected/"
+            if not os.path.exists(output_folder):
+                os.makedirs(output_folder)
+
+            save_results_to_excel(subjects, output_folder)
+
 
 
 def save_results_to_excel(subjects, output_folder):
     # Collect all unique datatypes, filter types, and external columns from the results
-    '''
-    datatypes = set()
-    #print(subjects)
-    filter_types = ['Baseline', 'Input']
-    external_columns = set()
-    for results_dict in subjects.values():
-        for datatype, filters in results_dict.items():
-            datatypes.add(datatype)
-            for filter_type in filter_types:
-                for external_col in filters.get(filter_type, {}):
-                    external_columns.add(external_col)
-    datatypes = sorted(datatypes)
-    external_columns = sorted(external_columns)
-
-    # Create a DataFrame to store the results
-    columns = pd.MultiIndex.from_product([datatypes, filter_types, external_columns], names=['Datatype', 'Filter Type', 'External Column'])
-    df_results = pd.DataFrame(index=subjects.keys(), columns=columns)
-
-    # Fill the DataFrame with correlation values
-    for subject_id, results_dict in subjects.items():
-        for datatype in datatypes:
-            for filter_type in filter_types:
-                for external_col in external_columns:
-                    correlation = results_dict.get(datatype, {}).get(filter_type, {}).get(external_col, None)
-                    df_results.at[subject_id, (datatype, filter_type, external_col)] = correlation
-
-    # Save the DataFrame to an Excel file
-    output_file = f"{output_folder}/kalman_results_all_subjects.xlsx"
-    df_results.to_excel(output_file)
-    print(f'Results saved to {output_file}')
-    '''
     excel_file = os.path.join(output_folder, 'kalman_results_all_corr.xlsx')
 
     # Create DataFrames for Baseline and Input
@@ -607,20 +605,8 @@ def save_results_to_excel(subjects, output_folder):
             updated_baseline.to_excel(writer, sheet_name='Baseline')
             updated_input.to_excel(writer, sheet_name='Input')
 
-
-def transpose_array(array):
-    # Reshape the array if it's one-dimensional
-    if len(array.shape) == 1:
-        array = array.reshape((array.shape[0], 1))
-
-    # Transpose the array
-    array_transposed = array.T
-
-    return array_transposed
-
-
 if __name__ == '__main__':
-    comparison = Comparison()
+    comparison = CompareOnlineKFs(path=drivePath, dim_seconds=0.5, shift_seconds=0.25, norm=False, stand=True, datatype_to_exclude=defaultDatatypeToExclude, subjects_to_exclude=[])
     dirs = os.listdir(drivePath)
     print(dirs)
     warnings.filterwarnings("ignore")
@@ -631,8 +617,8 @@ if __name__ == '__main__':
     scaler = MinMaxScaler(feature_range=(0, 1))
 
     for dir in dirs:
-        dante_df = pd.read_csv(drivePath + '/' + dir + windowsPath + f"{dir}_Dante.csv", sep=';')
-        selectFeaturesFiles = os.listdir(drivePath + '/' + dir + windowsPath + "FeatureSelected")
+        dante_df = pd.read_csv(comparison.path + '/' + dir + comparison.windowsPath + f"{dir}_Dante.csv", sep=';')
+        selectFeaturesFiles = os.listdir(comparison.path + '/' + dir + comparison.windowsPath + "FeatureSelected")
 
         subject = str(dir)
         print(subject)
@@ -645,17 +631,17 @@ if __name__ == '__main__':
             if file.startswith("S") and file.endswith(".csv") and not any(
                     exclude in file for exclude in datatype_to_exclude) or "Data_ALL.csv" in file:
 
-                X = pd.read_csv(drivePath + '/' + dir + windowsPath + "FeatureSelected/" + file, sep=';')
+                X = pd.read_csv(comparison.path + '/' + dir + comparison.windowsPath + "FeatureSelected/" + file, sep=';')
                 if (not file == f"Data_ALL.csv"):
                     datatype = file.split('_')[1].replace('.csv', '')
                     external = pd.read_csv(
                         #~ drivePath + '/' + dir + windowsPath + "FeatureSelected/" + f"{dir}_External.csv",
-                        drivePath + '/' + dir + windowsPath + f"{dir}_External.csv",
+                        comparison.path + '/' + dir + comparison.windowsPath + f"{dir}_External.csv",
                         sep=';')
                 else:
                     datatype = "Data_ALL"
                     external = pd.read_csv(
-                        drivePath + '/' + dir + windowsPath + "FeatureSelected/" + f"{dir}_External_ALL.csv",
+                        comparison.path + '/' + dir + comparison.windowsPath + "FeatureSelected/" + f"{dir}_External_ALL.csv",
                         sep=';')
                 if len(external) <= len(X):
                     X = X.iloc[:len(external)]
@@ -695,14 +681,8 @@ if __name__ == '__main__':
             comparison.plot_kalman_results(subject, dante_df, datatype_results, col)
 
         # comparison.compareMatrixConfigurationsSelection(X, y, external, subject, withInput=True)
-        output_folder = f"{drivePath}/{dir}{windowsPath}FeatureSelected/"
+        output_folder = f"{comparison.path}/{dir}{comparison.windowsPath}FeatureSelected/"
         if not os.path.exists(output_folder):
             os.makedirs(output_folder)
 
         save_results_to_excel(subjects, output_folder)
-    # Genera la tabella latex con i risultati come correlazione tra stress predetto e dante
-    # latex_table_online = comparison.generate_latex_table(subjects)
-    # print(latex_table_online)
-
-    # Save the results to Excel files for each external column
-    # x fra: vedi tu dove salvare

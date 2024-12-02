@@ -1,6 +1,4 @@
-import os
 import pandas as pd
-drivePath = 'D:/University-Masters/Thesis'
 
 
 def synchronize(data,dante):

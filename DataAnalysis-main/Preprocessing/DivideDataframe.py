@@ -22,6 +22,8 @@ class DataType(int):
         elif self == 3:
             return 'External'
         elif self == 4:
+            return 'Button'
+        elif self == 5:
             return 'Total'
         else:
             return 'Unknown'
@@ -31,13 +33,15 @@ class DataType(int):
 class DivideDataframe:
     defaultExternalData = ['HeartBeatRate', 'MaxHeartBeatRate', 'MinHeartBeatRate', 'AverageHeartBeatRate', 'IsInStressfulArea', 'Deaths', 'LastCheckpoint']
 
-    def __init__(self, path, externalData=defaultExternalData):
+    def __init__(self, path, external_data=defaultExternalData, subjects_to_exclude=[]):
         self.path = path
-        self.externalData = externalData
+        self.external_data = external_data
+        self.subjects_to_exclude = subjects_to_exclude
 
 
     def processFileOnPath(self, path, hasHeader=True):
         dirs = sorted(list(filter(lambda x: x[0] == 'S', os.listdir(path))), key=lambda x: int(x[1:]))
+        dirs = [dr for dr in dirs if dr not in self.subjects_to_exclude]
         count = 0
         for dir in dirs:
             templist = list(filter(lambda f: f == f"S{count}.csv", os.listdir(os.path.join(path, dir))))
@@ -95,19 +99,19 @@ class DivideDataframe:
         dfEye = pd.DataFrame(inputData.loc[:, (inputData.columns.str.startswith('Eye') & ~inputData.columns.str.startswith(
             'Eyes'))])
         dfEye = dfEye.loc[:, ~(dfEye.fillna(0) == 0).all(axis=0)]
-        #~ dfButtons = pd.DataFrame(inputData.loc[:, inputData.columns.str.startswith(buttonPrefix)])
-        #~ dfButtons = dfButtons.loc[:, ~(dfButtons.fillna(0) == 0).all(axis=0)]
+        dfButtons = pd.DataFrame(inputData.loc[:, inputData.columns.str.startswith(buttonPrefix)])
+        dfButtons = dfButtons.loc[:, ~(dfButtons.fillna(0) == 0).all(axis=0)]
         dfMovements = pd.DataFrame(inputData.loc[:, (inputData.columns.str.startswith(
             "OVR") & ~inputData.columns.str.startswith(buttonPrefix))])
         dfMovements = dfMovements.loc[:, ~(dfMovements.fillna(0) == 0).all(axis=0)]
         dfExternData = self.ExternalData(inputData)
-        dfs = [pd.concat([dfTime, df], axis='columns') for df in [dfFace, dfEye, dfMovements, dfExternData]]
+        dfs = [pd.concat([dfTime, df], axis='columns') for df in [dfFace, dfEye, dfMovements, dfExternData, dfButtons]]
         return dfs
 
 
     def ExternalData(self, inputData):
         # Extract external data from the input DataFrame
-        df = pd.DataFrame(inputData.loc[:, inputData.columns.isin(self.externalData) | 
+        df = pd.DataFrame(inputData.loc[:, inputData.columns.isin(self.external_data) | 
                                         #~ inputData.columns.str.startswith('Semantic') | 
                                         inputData.columns.str.startswith('OVRNodeHeadPosition')])
         #~ rays = range(0, 10)
@@ -119,9 +123,13 @@ class DivideDataframe:
         return df
 
     def main(self):
-        self.processFileOnPath()
+        self.processFileOnPath(self.path)
     
 
 if __name__ == "__main__":
-    DivideDataframe.main()
+    
+    drivePath = "D:/University-Masters/Thesis"
+    externalData = ['HeartBeatRate', 'MaxHeartBeatRate', 'MinHeartBeatRate', 'AverageHeartBeatRate', 'IsInStressfulArea', 'Deaths', 'LastCheckpoint']
+    divideDataframe = DivideDataframe(path=drivePath, external_data=externalData)
+    divideDataframe.main()
 

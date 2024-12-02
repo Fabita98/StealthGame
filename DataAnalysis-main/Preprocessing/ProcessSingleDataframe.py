@@ -7,6 +7,7 @@ class ProcessSingleDataframe:
     def __init__(self, path, discrete_data=default_discrete_data, target_samples_per_second=90):
         self.path = path
         self.target_samples_per_second = target_samples_per_second
+        self.discrete_data = discrete_data
 
     def processMovement(self, unique_path):
         df = pd.read_csv(self.path + unique_path, sep=';')
@@ -34,7 +35,6 @@ class ProcessSingleDataframe:
         
         time_column = "timestampUnityTime"
         sample_interval = pd.Timedelta(seconds=1 / target_samples_per_second)
-        
         if has_Discrete:
             df[time_column] = pd.to_datetime(df[time_column], unit='s')
             self.discrete_data.extend([col for col in df.columns if "SemanticTag" in col or "SemanticObj" in col])
@@ -54,7 +54,6 @@ class ProcessSingleDataframe:
             df_resampled = df.resample(sample_interval).mean()
             df_resampled = df_resampled.interpolate(method='linear', limit_direction='forward')
             df_resampled = df_resampled.reset_index()
-        
         return df_resampled
 
     def saveProcessedData(self, df, output_path):

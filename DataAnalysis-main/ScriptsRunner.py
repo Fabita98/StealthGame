@@ -1,13 +1,111 @@
 from Preprocessing.DivideDataframe import DivideDataframe
+from Preprocessing.ProcessDataframes import ProcessDataFrames
+from Preprocessing.DanteAnnotation import DanteAnnotation
+from Preprocessing.FeatureExtraction import FeatureExtraction
+from Preprocessing.FeatureSelection import FeatureSelection
+from Preprocessing.VisualizeData import VisualizeData
+from Models.CompareOnlineKFs import CompareOnlineKFs
 
 if __name__ == "__main__":
     drivePath = "D:/University-Masters/Thesis"
     externalData = ['HeartBeatRate', 'MaxHeartBeatRate', 'MinHeartBeatRate', 'AverageHeartBeatRate', 'IsInStressfulArea', 'Deaths', 'LastCheckpoint']
-    
     discreteData = ['HeartBeatRate', 'MaxHeartBeatRate', 'MinHeartBeatRate', 'AverageHeartBeatRate', 'IsInStressfulArea', 'Deaths', 'LastCheckpoint']
+    datatypeToExcludeInKalman = ['Dante', 'External', "Eye", "Button", "Data_ALL"]
+    subjectsToExclude = []
+    process_movement=True, 
+    process_eye=True, 
+    process_face=True, 
+    process_external=True, 
+    process_button=False, 
+    dante_samples_per_second = 50
+    data_samples_per_second = 90
+    dim_seconds = 0.5
+    shift_seconds = 0.5
+    selection_type = "Single"
+    doNormalization=False
+    doStandardization=False
+
+    doDivideDataframe = True
+    doProcessDataframes = True
+    doDanteAnnotation = True
+    doFeatureExtraction = True
+    doFeatureSelection = True
+    doVisualizeData = True
+    doKalmanFilter = True
 
     
-    # Divide Dataframe
-    print("==========DivideDataframe==========")
-    divide_data_processor = DivideDataframe(path=drivePath, externalData=externalData)
-    divide_data_processor.processFileOnPath()
+    # Divide Dataframe (Divide to multiple classes)
+    if(doDivideDataframe):
+        print("==========DivideDataframe==========")
+        divideDataframe = DivideDataframe(path=drivePath, external_data=externalData, subjects_to_exclude=subjectsToExclude)
+        divideDataframe.main()
+        
+    # Creat Plots of the processed data
+    if(doVisualizeData):
+        print("==========VisualizeData==========")
+        visualizeData = VisualizeData(path=drivePath,
+                                      process_movement=process_movement, 
+                                      process_eye=process_eye, 
+                                      process_face=process_face, 
+                                      process_external=process_external, 
+                                      process_button=process_button, 
+                                      subjects_to_exclude=subjectsToExclude)
+        visualizeData.main()
+
+    # Process Dataframes (Remove NANs, Convert timestampUnityTime to datetime, Resample the data to the specified target sampling rate)
+    if(doProcessDataframes):
+        print("==========ProcessDataFrames==========")
+        processDataframes = ProcessDataFrames(path=drivePath, 
+                                              discrete_data=discreteData, 
+                                              target_samples_per_second=data_samples_per_second,
+                                              process_movement=process_movement, 
+                                              process_eye=process_eye, 
+                                              process_face=process_face, 
+                                              process_external=process_external, 
+                                              process_button=process_button, 
+                                              subjects_to_exclude=subjectsToExclude)
+        processDataframes.main()
+
+    # Process Dante and set the correct sampling rate)
+    if(doDanteAnnotation):
+        print("==========DanteAnnotation==========")
+        danteAnnotation = DanteAnnotation(path=drivePath, 
+                                          samples_per_second=dante_samples_per_second,
+                                          subjects_to_exclude=subjectsToExclude)
+        danteAnnotation.main()
+        
+    # Extract features on dataframes like mean, median, ...
+    if(doFeatureExtraction):
+        print("==========FeatureExtraction==========")
+        featureExtraction = FeatureExtraction(path=drivePath, 
+                                              dim_seconds=dim_seconds,
+                                              shift_seconds=shift_seconds, 
+                                              norm=doNormalization, 
+                                              stand=doStandardization, 
+                                              sampling_rate=data_samples_per_second, 
+                                              subjects_to_exclude=[])
+        featureExtraction.main()
+
+    # Select most important features based on correlation and variance
+    if(doFeatureSelection):
+        print("==========FeatureSelection==========")
+        featureSelection = FeatureSelection(path=drivePath, 
+                                            selection_type=selection_type, 
+                                            dim_seconds=dim_seconds, 
+                                            shift_seconds=shift_seconds, 
+                                            norm=doNormalization, 
+                                            stand=doStandardization)
+        featureSelection.main()
+
+    # Apply Kalman Filtering with baseline and external inputs
+    if(doKalmanFilter):
+        print("==========CompareOnlineKFs==========")
+        compareOnlineKFs = CompareOnlineKFs(path=drivePath, 
+                                            dim_seconds=dim_seconds, 
+                                            shift_seconds=shift_seconds, 
+                                            norm=doNormalization, 
+                                            stand=doStandardization, 
+                                            datatype_to_exclude=datatypeToExcludeInKalman, 
+                                            subjects_to_exclude=subjectsToExclude)
+        compareOnlineKFs.main()
+

@@ -1,215 +1,151 @@
 import os
 import pandas as pd
-import tsfresh as tsf
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
 from tsfresh import extract_features
-from tsfresh.feature_extraction import EfficientFCParameters, MinimalFCParameters
+from tsfresh.feature_extraction import MinimalFCParameters
 import time
-from DataSynchronization import synchronize
-
-drivePath = 'D:/University-Masters/Thesis'
-AlienPath = 'F:/Data_Analysis'
-# Definisci dim e shift per le sliding window
-dim_seconds = 0.5
-shift_seconds = 0.25
-
-norm = False
-stand = True
-
-# subjects_to_exclude = ([f"S{i}" for i in range(0,21)] +
-#                        [f"S{i}" for i in range(22,29)] + ['S25',"S100", "S101"])
-#sampling rate dei dati
-sampling_rate = 90
 
 
-def createWindow(df, subject_folder, file_name):
-    # Creare finestre temporali con dimensione e shift variabile
-    global dim_seconds, shift_seconds, sampling_rate
-    windows = []
-    num_points = len(df)
-    dim_points = int(dim_seconds * sampling_rate)
-    shift_points = int(shift_seconds * sampling_rate)
-    start_index = 0
-    index = 0
+class FeatureExtraction:
+    def __init__(self, path='D:/University-Masters/Thesis', dim_seconds=0.5,
+                 shift_seconds=0.25, norm=False, stand=True, sampling_rate=90, subjects_to_exclude=[]):
+        self.path = path
+        self.dim_seconds = dim_seconds
+        self.shift_seconds = shift_seconds
+        self.norm = norm
+        self.stand = stand
+        self.sampling_rate = sampling_rate
+        self.subjects_to_exclude = subjects_to_exclude
 
-    while start_index + dim_points <= num_points:
+    def create_window(self, df, subject_folder, file_name):
+        num_points = len(df)
+        dim_points = int(self.dim_seconds * self.sampling_rate)
+        shift_points = int(self.shift_seconds * self.sampling_rate)
+        start_index = 0
+        index = 0
 
-        window = df.iloc[start_index:start_index + dim_points]
-        # Estrai le feature
-        window['W_Index'] = np.zeros(len(window))
-        features = extractFeaturesData(window)
-        if index == 0:
-            #open(os.path.join(subject_folder, file_name), 'w').write('sep=;\n') # write the header
-            if os.path.exists(os.path.join(subject_folder, file_name)):
-                os.remove(os.path.join(subject_folder, file_name))
-            features.to_csv(os.path.join(subject_folder, file_name), mode='a', index=False, sep=';')
-            index += 1
+        while start_index + dim_points <= num_points:
+            window = df.iloc[start_index:start_index + dim_points]
+            window['W_Index'] = np.zeros(len(window))
+            features = self.extract_features_data(window)
+            if index == 0:
+                if os.path.exists(os.path.join(subject_folder, file_name)):
+                    os.remove(os.path.join(subject_folder, file_name))
+                features.to_csv(os.path.join(subject_folder, file_name), mode='a', index=False, sep=';')
+                index += 1
+            else:
+                features.to_csv(os.path.join(subject_folder, file_name), header=False, mode='a', index=False, sep=';')
+            start_index += shift_points
+
+    def create_window_external(self, df, is_discrete):
+        windows = pd.DataFrame()
+        num_points = len(df)
+        dim_points = int(self.dim_seconds * self.sampling_rate)
+        shift_points = int(self.shift_seconds * self.sampling_rate)
+
+        start_index = 0
+        while start_index + dim_points <= num_points:
+            window = df.iloc[start_index:start_index + dim_points]
+            features = self.extract_feature_external_data(window, is_discrete)
+            windows = windows.append(features, ignore_index=True)
+            start_index += shift_points
+
+        return windows
+
+    @staticmethod
+    def extract_features_data(w_data):
+        extracted_features = extract_features(w_data, default_fc_parameters=MinimalFCParameters(), column_id='W_Index',
+                                              n_jobs=1)
+        return extracted_features
+
+    def create_dante_window(self, df_dante):
+        windows = pd.DataFrame()
+        num_points = len(df_dante)
+        dim_points = int(self.dim_seconds * self.sampling_rate)
+        shift_points = int(self.shift_seconds * self.sampling_rate)
+
+        start_index = 0
+        while start_index + dim_points <= num_points:
+            window = df_dante.iloc[start_index:start_index + dim_points]
+            features = window.mean()
+            windows = windows.append(features, ignore_index=True)
+            start_index += shift_points
+
+        return windows
+
+    @staticmethod
+    def extract_feature_external_data(w_data, is_discrete):
+        if is_discrete:
+            extracted_features = w_data.apply(pd.value_counts).idxmax()
         else:
-            features.to_csv(os.path.join(subject_folder, file_name), header=False, mode='a', index=False, sep=';')
-        #windows.append(features)
-        start_index += shift_points
+            extracted_features = w_data.mean()
+        return extracted_features
 
-    #qui va restituito un dataframe
-    #return windows
+    @staticmethod
+    def normalize_data(data):
+        scaler = MinMaxScaler()
+        normalized_data = scaler.fit_transform(data)
+        return pd.DataFrame(normalized_data)
 
+    @staticmethod
+    def standardize_data(data):
+        scaler = StandardScaler()
+        standardized_data = scaler.fit_transform(data)
+        return pd.DataFrame(standardized_data)
 
-def createWindowExternal(df, isDiscrete):
-    # Creare finestre temporali con dimensione e shift variabile
-    global dim_seconds, shift_seconds, sampling_rate
-    windows = pd.DataFrame()
-    num_points = len(df)
-    dim_points = int(dim_seconds * sampling_rate)
-    shift_points = int(shift_seconds * sampling_rate)
+    @staticmethod
+    def save_dataframes_in_file(dataframe, subject_folder, name):
+        if not os.path.exists(subject_folder):
+            os.makedirs(subject_folder)
+        dataframe.to_csv(os.path.join(subject_folder, name), index=False, sep=';')
 
-    start_index = 0
+    def process_dante(self, path, dr):
+        df_dante = pd.read_csv(f"{path}/{dr}/Resampled_{dr}.csv", sep=';')
+        df_dante.drop(columns=[col for col in df_dante.columns if "TimeStamp" in col or "timestamp" in col], inplace=True)
+        df_dante = df_dante.iloc[100:]
+        win_dante_headers = [col + "_mean" for col in df_dante.columns]
+        win_dante = self.create_dante_window(df_dante)
+        win_dante.columns = win_dante_headers
+        self.save_dataframes_in_file(win_dante, f"{path}/{dr}/WindowedCsv_{self.dim_seconds}_{self.shift_seconds}_stand{self.stand}_norm{self.norm}", f"{dr}_Dante.csv")
 
-    while start_index + dim_points <= num_points:
-        window = df.iloc[start_index:start_index + dim_points]
-        # Estrai le feature
-        features = extractFeatureExternalData(window, isDiscrete)
-        windows = windows.append(features, ignore_index=True)
-        start_index += shift_points
+    def main(self):
+        path = self.path
+        dirs = sorted(list(filter(lambda x: x[0] == 'S', os.listdir(path))), key=lambda x: int(x[1:]))
+        dirs = [dr for dr in dirs if dr not in self.subjects_to_exclude]
+        import warnings
+        warnings.filterwarnings("ignore")
+        for dr in dirs:
+            features_subject_folder = f"{path}/{dr}/WindowedCsv_{self.dim_seconds}_{self.shift_seconds}_stand{self.stand}_norm{self.norm}"
+            if not os.path.exists(features_subject_folder):
+                os.makedirs(features_subject_folder)
+            self.process_dante(path, dr)
 
-    #qui va restituito un dataframe
-    return windows
-
-
-def extractFeaturesData(w_data):
-    # Estrarre le feature da ogni finestra tramite tsfresh
-    # DA RIVEDERE
-    # https://tsfresh.readthedocs.io/en/latest/api/tsfresh.feature_extraction.html#module-tsfresh.feature_extraction.extraction
-    extracted_features = extract_features(w_data, default_fc_parameters=MinimalFCParameters(), column_id='W_Index',
-                                          n_jobs=1)
-    return extracted_features
-
-
-def createDanteWindow(dfDante):
-    global dim_seconds, shift_seconds, sampling_rate
-    windows = pd.DataFrame()
-    num_points = len(dfDante)
-    dim_points = int(dim_seconds * sampling_rate)
-    shift_points = int(shift_seconds * sampling_rate)
-
-    start_index = 0
-
-    while start_index + dim_points <= num_points:
-        window = dfDante.iloc[start_index:start_index + dim_points]
-        # Estrai le feature
-        features = window.mean()
-        windows = windows.append(features, ignore_index=True)
-        start_index += shift_points
-
-    # qui va restituito un dataframe
-    return windows
-
-
-def extractFeatureExternalData(w_data, isDiscrete):
-    #qui c'è da fare la distinzione se i dati sono discreti o continui.
-    # se sono discreti?
-    # esempio: conteggio delle occorrenze di ciascun valore
-    #w_data = w_data.to_frame()
-    if isDiscrete:
-        extracted_features = w_data.apply(pd.value_counts).idxmax()
-    # se sono continui prenderei la media, ma dobbiamo capire se ha senso
-    else:
-        extracted_features = w_data.mean()
-    return extracted_features
-
-
-def normalizeData(data):
-    # dati normalizzati tra 0 e 1
-    scaler = MinMaxScaler()
-    normalized_data = scaler.fit_transform(data)
-    normalized_data = pd.DataFrame(normalized_data)
-    return normalized_data
-
-
-def standardizeData(data):
-    # dati standardizzati: std = 1, mean = 0
-    scaler = StandardScaler()
-    standardized_data = scaler.fit_transform(data)
-    standardized_data = pd.DataFrame(standardized_data)
-    return standardized_data
-
-
-def save_dataframes_in_file(dataframe, subject_folder, name):
-    if not os.path.exists(subject_folder):
-        os.makedirs(subject_folder)
-
-    dataframe.to_csv(os.path.join(subject_folder, name), index=False, sep=';')
-
-
-def processDante():
-    dfDante = pd.read_csv(path + '/' + dr + f"/Resampled_{dr}.csv", sep=';')
-    dfDante.drop(columns=[col for col in dfDante.columns if "TimeStamp" in col or "timestamp" in col], inplace=True)
-    dfDante = dfDante.iloc[100:]
-    win_dante_headers = [col + "_mean" for col in dfDante.columns]
-    winDante = createDanteWindow(dfDante)
-    winDante.columns = win_dante_headers
-    save_dataframes_in_file(winDante,
-                            path + '/' + dr + f"/WindowedCsv_{dim_seconds}_{shift_seconds}_stand{stand}_norm{norm}",
-                            f"{dr}_Dante.csv")
+            file_folder = list(filter(lambda x: x[0] == 'S', os.listdir(f"{path}/{dr}/ResampledCsv")))
+            for file in file_folder:
+                start_time = time.time()
+                df = pd.read_csv(f"{path}/{dr}/ResampledCsv/{file}", sep=';')
+                df.drop(columns=[col for col in df.columns if "TimeStamp" in col or "timestamp" in col], inplace=True)
+                if "External" in file:
+                    discrete_data = ['HeartBeatRate', 'IsInStressfulArea', 'Deaths', 'LastCheckpoint']
+                    discrete_data.extend([col for col in df.columns if "SemanticTag" in col or "SemanticObj" in col])
+                    discrete_data.extend([col for col in df.columns if "checkpoint" in col])
+                    df_discrete = df[discrete_data]
+                    df_continuous = df.drop(columns=discrete_data)
+                    win_discrete = self.create_window_external(df_discrete, True)
+                    win_continuous = self.create_window_external(df_continuous, False)
+                    wdf = pd.concat([win_discrete, win_continuous], axis=1)
+                    self.save_dataframes_in_file(wdf, features_subject_folder, file)
+                else:
+                    if self.norm:
+                        df = self.normalize_data(df)
+                    if self.stand:
+                        df = self.standardize_data(df)
+                    self.create_window(df, features_subject_folder, file)
+                print(f"Windowed data for {file} saved")
+                print(f"--- {time.time() - start_time} seconds ---")
 
 
 if __name__ == "__main__":
-
-    path = drivePath
-    dirs = sorted(list(filter(lambda x: x[0] == 'S', os.listdir(path))), key=lambda x: int(x[1:]))
-    # dirs = [dr for dr in dirs if dr not in subjects_to_exclude]
-    import warnings
-
-    warnings.filterwarnings("ignore")
-    for dr in dirs:
-        #create folder for single subject
-        features_subject_folder = path + '/' + dr + f"/WindowedCsv_{dim_seconds}_{shift_seconds}_stand{stand}_norm{norm}"
-        if not os.path.exists(features_subject_folder):
-            os.makedirs(features_subject_folder)
-        processDante()
-
-        fileFolder = list(filter(lambda x: x[0] == 'S', os.listdir(path + '/' + dr + "/ResampledCsv")))
-
-        for file in fileFolder:
-            start_time = time.time()
-            #create empty csv file to save extracted features into
-
-            if "External" in file:
-                df = pd.read_csv(path + '/' + dr + "/ResampledCsv/" + file, sep=';')
-                df.drop(columns=[col for col in df.columns if "TimeStamp" in col or "timestamp" in col], inplace=True)
-                discrete_data = ['HeartBeatRate', 
-                                #  'MaxHeartBeatRate', 'MinHeartBeatRate', 'AverageHeartBeatRate', 
-                                 'IsInStressfulArea', 'Deaths', 'LastCheckpoint']
-                discrete_data.extend([col for col in df.columns if "SemanticTag" in col or "SemanticObj" in col])
-                discrete_data.extend([col for col in df.columns if "checkpoint" in col])
-                dfDiscrete = df[discrete_data]
-                dfContinuous = df.drop(columns=discrete_data)
-                win_discrete_headers = [col + "_valuesCount" for col in dfDiscrete.columns]
-                winDiscrete = createWindowExternal(dfDiscrete, True)
-                print(winDiscrete.columns)
-                winDiscrete.columns = win_discrete_headers
-                win_continuous_headers = [col + "_mean" for col in dfContinuous.columns]
-                winContinuous = createWindowExternal(dfContinuous, False)
-                winContinuous.columns = win_continuous_headers
-                #wdfDiscrete = pd.concat(winDiscrete, axis=0, ignore_index=True)
-
-                #wdfContinuous = pd.concat(winContinuous, axis=0, ignore_index=True)
-
-                wdf = pd.concat([winDiscrete, winContinuous], axis=1)
-
-                save_dataframes_in_file(wdf,
-                                        path + '/' + dr + f"/WindowedCsv_{dim_seconds}_{shift_seconds}_stand{stand}_norm{norm}",
-                                        f"{file}")
-            else:
-
-                df = pd.read_csv(path + '/' + dr + "/ResampledCsv/" + file, sep=';')
-                df.drop(columns=[col for col in df.columns if "TimeStamp" in col or "timestamp" in col], inplace=True)
-                if norm:
-                    df = normalizeData(df)
-                if stand:
-                    df = standardizeData(df)
-                createWindow(df, features_subject_folder, f"{file}")
-
-                #wdf = pd.concat(win, axis=0, ignore_index=True)
-            #save_dataframes_in_file(wdf, path + '/' + dr + f"/WindowedCsv_{dim_seconds}_{shift_seconds}_stand{stand}_norm{norm}", f"{file}")
-            print(f"Windowed data for {file} saved")
-            print("--- %s seconds ---" % (time.time() - start_time))
+    featureExtraction = FeatureExtraction()
+    featureExtraction.main()
