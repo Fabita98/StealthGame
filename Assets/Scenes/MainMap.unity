@@ -40704,6 +40704,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5410854758953699313, guid: 04f679b953cf73b49b555bd7bce56d93, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5490487401446232074, guid: 04f679b953cf73b49b555bd7bce56d93, type: 3}
       propertyPath: m_SizeDelta.x
       value: 50

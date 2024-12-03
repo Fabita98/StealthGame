@@ -65,10 +65,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Press A to resume
+  m_text: 'Press B to resume
 
 
-    Press B to restart'
+    Press A to restart'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e084221ad316c82459230cce28cc9178, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: e084221ad316c82459230cce28cc9178, type: 2}
