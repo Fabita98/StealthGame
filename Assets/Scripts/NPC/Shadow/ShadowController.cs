@@ -7,7 +7,7 @@ public class ShadowController : MonoBehaviour
 {
     public float triggerRadius = 1;
     public float appearanceRadius = 3;
-    public float dissolveTime = .5f;
+    public float dissolveTime = .3f;
 
     // private GameManager _gameManager;
     // private AudioManager _audioManager;

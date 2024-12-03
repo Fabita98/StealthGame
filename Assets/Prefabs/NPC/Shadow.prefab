@@ -74,7 +74,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   triggerRadius: 0.7
   appearanceRadius: 1.2
-  dissolveTime: 0.5
+  dissolveTime: 0.3
 --- !u!82 &8619532626997143075
 AudioSource:
   m_ObjectHideFlags: 0

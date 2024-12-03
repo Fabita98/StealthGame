@@ -24,7 +24,8 @@ public class ShadowDissolve : MonoBehaviour
 
     public void Reset()
     {
-        GetComponent<Renderer>().material.SetFloat("_DissolveAmount", 1);
+        StopAllCoroutines();
+        GetComponent<Renderer>().material.SetFloat("_DissolveAmount", 1f);
     }
 
     private void SetAppearanceRadius(float radius)
