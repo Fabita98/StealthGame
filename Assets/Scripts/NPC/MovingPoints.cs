@@ -9,7 +9,7 @@ using Random = UnityEngine.Random;
 public class MovingPoints : MonoBehaviour
 {
     [SerializeField] private GameObject pointsContainer;
-    [SerializeField] private int nearestPointPickRange = 3;
+    private int nearestPointPickRange = 3;
     private List<Transform> points;
     private int pointIndex;
     private Transform _currentPoint;

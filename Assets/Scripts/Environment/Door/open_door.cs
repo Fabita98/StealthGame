@@ -16,7 +16,7 @@ public class open_door : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (DoorSound.isPlaying == false && play)  Invoke("playsound", 0.5f); 
+        if (DoorSound.isPlaying == false && play)  Invoke("playsound", 0.4f); 
     }
     private void OnTriggerEnter(Collider other)
     {

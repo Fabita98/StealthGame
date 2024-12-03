@@ -691,14 +691,41 @@ public class DataTracker : MonoBehaviour {
 	/// <summary>
 	/// Collect Button data from OVRInput class, using different types of sources
 	/// </summary>
-	private void CollectOVRInputControllerButtonData() {
-		var isValidData = OVRInput.IsControllerConnected(OVRInput.Controller.RTouch) && OVRInput.IsControllerConnected(OVRInput.Controller.LTouch);
-		GetOVRInputEnumInfo(OVRInput.RawButton.Any | OVRInput.RawButton.None | OVRInput.RawButton.Back | OVRInput.RawButton.LShoulder | OVRInput.RawButton.RShoulder | OVRInput.RawButton.DpadUp | OVRInput.RawButton.DpadDown | OVRInput.RawButton.DpadLeft | OVRInput.RawButton.DpadRight, isValidData);
-		GetOVRInputEnumInfo(OVRInput.RawTouch.Any | OVRInput.RawTouch.None | OVRInput.RawTouch.LTouchpad | OVRInput.RawTouch.RTouchpad, isValidData);
-		GetOVRInputEnumInfo(OVRInput.RawNearTouch.Any | OVRInput.RawNearTouch.None, isValidData);
-		GetOVRInputEnumInfo(OVRInput.RawAxis1D.Any | OVRInput.RawAxis1D.None | OVRInput.RawAxis1D.LStylusForce | OVRInput.RawAxis1D.RStylusForce, isValidData);
-		GetOVRInputEnumInfo(OVRInput.RawAxis2D.Any | OVRInput.RawAxis2D.None | OVRInput.RawAxis2D.LTouchpad | OVRInput.RawAxis2D.RTouchpad, isValidData);
+	// private void CollectOVRInputControllerButtonData() {
+	// 	var isValidData = OVRInput.IsControllerConnected(OVRInput.Controller.RTouch) && OVRInput.IsControllerConnected(OVRInput.Controller.LTouch);
+	// 	GetOVRInputEnumInfo(OVRInput.RawButton.Any | OVRInput.RawButton.None | OVRInput.RawButton.Back | OVRInput.RawButton.LShoulder | OVRInput.RawButton.RShoulder | OVRInput.RawButton.DpadUp | OVRInput.RawButton.DpadDown | OVRInput.RawButton.DpadLeft | OVRInput.RawButton.DpadRight, isValidData);
+	// 	GetOVRInputEnumInfo(OVRInput.RawTouch.Any | OVRInput.RawTouch.None | OVRInput.RawTouch.LTouchpad | OVRInput.RawTouch.RTouchpad, isValidData);
+	// 	GetOVRInputEnumInfo(OVRInput.RawNearTouch.Any | OVRInput.RawNearTouch.None, isValidData);
+	// 	GetOVRInputEnumInfo(OVRInput.RawAxis1D.Any | OVRInput.RawAxis1D.None | OVRInput.RawAxis1D.LStylusForce | OVRInput.RawAxis1D.RStylusForce, isValidData);
+	// 	GetOVRInputEnumInfo(OVRInput.RawAxis2D.Any | OVRInput.RawAxis2D.None | OVRInput.RawAxis2D.LTouchpad | OVRInput.RawAxis2D.RTouchpad, isValidData);
+	// }
+	
+	private void CollectOVRInputControllerButtonData()
+	{
+    	var isRightControllerConnected = OVRInput.IsControllerConnected(OVRInput.Controller.RTouch);
+    	var isLeftControllerConnected = OVRInput.IsControllerConnected(OVRInput.Controller.LTouch);
+	
+    	// Collect data for A and B buttons on the right controller
+    	AddToDictionary("ControllerRight_A_Touch", OVRInput.Get(OVRInput.Touch.One, OVRInput.Controller.RTouch), isRightControllerConnected);
+    	AddToDictionary("ControllerRight_B_Touch", OVRInput.Get(OVRInput.Touch.Two, OVRInput.Controller.RTouch), isRightControllerConnected);
+    	AddToDictionary("ControllerRight_A_Hold", OVRInput.Get(OVRInput.Button.One, OVRInput.Controller.RTouch), isRightControllerConnected);
+    	AddToDictionary("ControllerRight_B_Hold", OVRInput.Get(OVRInput.Button.Two, OVRInput.Controller.RTouch), isRightControllerConnected);
+	
+    	// Collect trigger data for the right controller
+    	AddToDictionary("ControllerRight_IndexTrigger", OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, OVRInput.Controller.RTouch), isRightControllerConnected);
+    	AddToDictionary("ControllerRight_HandTrigger", OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, OVRInput.Controller.RTouch), isRightControllerConnected);
+	
+    	// Collect data for A and B buttons on the left controller (if needed)
+    	AddToDictionary("Controller_Left_A_Touch", OVRInput.Get(OVRInput.Touch.One, OVRInput.Controller.LTouch), isLeftControllerConnected);
+    	AddToDictionary("Controller_Left_B_Touch", OVRInput.Get(OVRInput.Touch.Two, OVRInput.Controller.LTouch), isLeftControllerConnected);
+    	AddToDictionary("Controller_Left_A_Hold", OVRInput.Get(OVRInput.Button.One, OVRInput.Controller.LTouch), isLeftControllerConnected);
+    	AddToDictionary("Controller_Left_B_Hold", OVRInput.Get(OVRInput.Button.Two, OVRInput.Controller.LTouch), isLeftControllerConnected);
+	
+    	// Collect trigger data for the left controller
+    	AddToDictionary("ControllerLeft_IndexTrigger", OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, OVRInput.Controller.LTouch), isLeftControllerConnected);
+    	AddToDictionary("ControllerLeft_HandTrigger", OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, OVRInput.Controller.LTouch), isLeftControllerConnected);
 	}
+
 
 
 	/// <summary>

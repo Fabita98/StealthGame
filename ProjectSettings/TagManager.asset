@@ -35,7 +35,7 @@ TagManager:
   - Squares
   - Interactable
   - PlayerHand
-  - 
+  - MapCollider
   - 
   - 
   - 

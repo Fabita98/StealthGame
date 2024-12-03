@@ -39,6 +39,11 @@ public class GameController : MonoBehaviour
             PlayerPrefsManager.SetBool(PlayerPrefsKeys.GameStarted, true);
         }
 
+        List<BaseStateMachine> enemiesSM = GetAllEnemies();
+        foreach (var SM in enemiesSM)
+        {
+            SM.enabled = true;
+        }
         // _gameManager.AudioManager.play(SoundName.MainTheme);
     }
 
