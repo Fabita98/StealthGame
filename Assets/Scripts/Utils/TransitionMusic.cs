@@ -40,7 +40,7 @@ public class TransitionMusic : MonoBehaviour
                 audio2.Play();
                 currentAudio = AudioTypes.Soundtrack2;
                 duration = 4;
-                target = 0.1f;
+                target = 0.07f;
                 StartCoroutine(FadeAudioSource.StartFade(audio2, duration, target));
             }
         }
@@ -71,7 +71,7 @@ public class TransitionMusic : MonoBehaviour
         audio2.PlayDelayed(4);
         currentAudio = AudioTypes.Soundtrack2;
         duration = 4;
-        target = 0.1f;
+        target = 0.07f;
         StartCoroutine(FadeAudioSource.StartFade(audio2, duration, target));
     }
 
@@ -116,7 +116,7 @@ public class TransitionMusic : MonoBehaviour
             target = 0;
             StartCoroutine(FadeAudioSource.StartFade(chaseMusic, duration, target));
             duration = 2f;
-            target = 0.1f;
+            target = 0.07f;
             if (audio1on)
             {
                 currentAudio = AudioTypes.Soundtrack1;
