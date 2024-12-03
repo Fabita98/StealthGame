@@ -13,6 +13,7 @@ public class lightHR : MonoBehaviour
     public float energyDrainRate = 1f; // Energia consumata al secondo
     public float currentEnergy=15;
     public bool useHR = true;
+    public float lightRange = 20;
         
     void Start()
     {
@@ -75,7 +76,7 @@ public class lightHR : MonoBehaviour
     void ActivateAbility()
     {
         abilityActive = true;
-        GetComponent<Light>().range = 76; 
+        GetComponent<Light>().range = lightRange; 
         Debug.Log("Abilit� attivata");
     }
 

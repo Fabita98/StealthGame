@@ -3,7 +3,7 @@ import os
 import pandas as pd
 import os
 
-buttonPrefix = 'OVRInput+Raw'
+buttonPrefix = 'Controller_'
 '''
 buttonsToKeep = ['OVRInput+RawAxis2DLThumbstickY', 'OVRInput+RawAxis2DLThumbstickX', 'OVRInput+RawAxis1DRThumbRestForce',OVRInput+RawAxis1DRIndexTriggerSlide,OVRInput+RawAxis1DRIndexTriggerCurl,OVRInput+RawAxis1DLThumbRestForce,OVRInput+RawAxis1DRIndexTriggerCurl,OVRInput+RawAxis1DLThumbRestForce,OVRInput+RawAxis1DLIndexTriggerSlide,OVRInput+RawAxis1DLIndexTriggerCurl,
 OVRInput+RawAxis1DRHandTrigger,OVRInput+RawAxis1DLHandTrigger,OVRInput+RawAxis1DRIndexTrigger,OVRInput+RawAxis1DLIndexTrigger,OVRInput+RawNearTouchRThumbButtons,OVRInput+RawNearTouchRIndexTrigger,OVRInput+RawNearTouchLThumbButtons,OVRInput+RawNearTouchLIndexTrigger,OVRInput+RawTouchLIndexTrigger,

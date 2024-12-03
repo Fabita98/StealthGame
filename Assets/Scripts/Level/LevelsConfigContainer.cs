@@ -10,4 +10,8 @@ public class LevelsConfigContainer : MonoBehaviour
     public LevelConfig level2Config;
     [Header("Tutorial Level 3")] 
     public LevelConfig level3Config;
+    [Header("Tutorial Level 4")] 
+    public LevelConfig level4Config;
+    [Header("Tutorial Level 5")] 
+    public LevelConfig level5Config;
 }
