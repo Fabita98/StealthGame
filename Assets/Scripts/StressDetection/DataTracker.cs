@@ -709,6 +709,12 @@ public class DataTracker : MonoBehaviour {
     	AddToDictionary("Controller_Right_B_Touch", OVRInput.Get(OVRInput.Touch.Two, OVRInput.Controller.RTouch), isValidData);
     	AddToDictionary("Controller_Right_A_Hold", OVRInput.Get(OVRInput.Button.One, OVRInput.Controller.RTouch), isValidData);
     	AddToDictionary("Controller_Right_B_Hold", OVRInput.Get(OVRInput.Button.Two, OVRInput.Controller.RTouch), isValidData);
+	    
+	    // Collect data for X and Y buttons on the left controller
+	    AddToDictionary("Controller_Left_X_Touch", OVRInput.Get(OVRInput.Touch.Three, OVRInput.Controller.LTouch), isValidData);
+	    AddToDictionary("Controller_Left_X_Press", OVRInput.Get(OVRInput.Button.Three, OVRInput.Controller.LTouch), isValidData);
+	    AddToDictionary("Controller_Left_Y_Touch", OVRInput.Get(OVRInput.Touch.Four, OVRInput.Controller.LTouch), isValidData);
+	    AddToDictionary("Controller_Left_Y_Press", OVRInput.Get(OVRInput.Button.Four, OVRInput.Controller.LTouch), isValidData);
 	
     	// Collect trigger data for the right controller
     	AddToDictionary("Controller_Right_IndexTrigger", OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, OVRInput.Controller.RTouch), isValidData);
