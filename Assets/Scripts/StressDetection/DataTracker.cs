@@ -702,29 +702,31 @@ public class DataTracker : MonoBehaviour {
 	
 	private void CollectOVRInputControllerButtonData()
 	{
-    	var isRightControllerConnected = OVRInput.IsControllerConnected(OVRInput.Controller.RTouch);
-    	var isLeftControllerConnected = OVRInput.IsControllerConnected(OVRInput.Controller.LTouch);
+		bool isValidData = OVRInput.IsControllerConnected(OVRInput.Controller.RTouch) || OVRInput.IsControllerConnected(OVRInput.Controller.LTouch);
 	
     	// Collect data for A and B buttons on the right controller
-    	AddToDictionary("ControllerRight_A_Touch", OVRInput.Get(OVRInput.Touch.One, OVRInput.Controller.RTouch), isRightControllerConnected);
-    	AddToDictionary("ControllerRight_B_Touch", OVRInput.Get(OVRInput.Touch.Two, OVRInput.Controller.RTouch), isRightControllerConnected);
-    	AddToDictionary("ControllerRight_A_Hold", OVRInput.Get(OVRInput.Button.One, OVRInput.Controller.RTouch), isRightControllerConnected);
-    	AddToDictionary("ControllerRight_B_Hold", OVRInput.Get(OVRInput.Button.Two, OVRInput.Controller.RTouch), isRightControllerConnected);
+    	AddToDictionary("Controller_Right_A_Touch", OVRInput.Get(OVRInput.Touch.One, OVRInput.Controller.RTouch), isValidData);
+    	AddToDictionary("Controller_Right_B_Touch", OVRInput.Get(OVRInput.Touch.Two, OVRInput.Controller.RTouch), isValidData);
+    	AddToDictionary("Controller_Right_A_Hold", OVRInput.Get(OVRInput.Button.One, OVRInput.Controller.RTouch), isValidData);
+    	AddToDictionary("Controller_Right_B_Hold", OVRInput.Get(OVRInput.Button.Two, OVRInput.Controller.RTouch), isValidData);
 	
     	// Collect trigger data for the right controller
-    	AddToDictionary("ControllerRight_IndexTrigger", OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, OVRInput.Controller.RTouch), isRightControllerConnected);
-    	AddToDictionary("ControllerRight_HandTrigger", OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, OVRInput.Controller.RTouch), isRightControllerConnected);
-	
-    	// Collect data for A and B buttons on the left controller (if needed)
-    	AddToDictionary("Controller_Left_A_Touch", OVRInput.Get(OVRInput.Touch.One, OVRInput.Controller.LTouch), isLeftControllerConnected);
-    	AddToDictionary("Controller_Left_B_Touch", OVRInput.Get(OVRInput.Touch.Two, OVRInput.Controller.LTouch), isLeftControllerConnected);
-    	AddToDictionary("Controller_Left_A_Hold", OVRInput.Get(OVRInput.Button.One, OVRInput.Controller.LTouch), isLeftControllerConnected);
-    	AddToDictionary("Controller_Left_B_Hold", OVRInput.Get(OVRInput.Button.Two, OVRInput.Controller.LTouch), isLeftControllerConnected);
+    	AddToDictionary("Controller_Right_IndexTrigger", OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, OVRInput.Controller.RTouch), isValidData);
+    	AddToDictionary("Controller_Right_HandTrigger", OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, OVRInput.Controller.RTouch), isValidData);
 	
     	// Collect trigger data for the left controller
-    	AddToDictionary("ControllerLeft_IndexTrigger", OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, OVRInput.Controller.LTouch), isLeftControllerConnected);
-    	AddToDictionary("ControllerLeft_HandTrigger", OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, OVRInput.Controller.LTouch), isLeftControllerConnected);
-	}
+    	AddToDictionary("Controller_Left_IndexTrigger", OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, OVRInput.Controller.LTouch), isValidData);
+    	AddToDictionary("Controller_Left_HandTrigger", OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, OVRInput.Controller.LTouch), isValidData);
+	    
+		// Collect analog stick values (2D analog input)
+	    Vector2 rightStick = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, OVRInput.Controller.RTouch);
+	    Vector2 leftStick = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, OVRInput.Controller.LTouch);
+
+	    AddToDictionary("Controller_RightStick_X", rightStick.x, isValidData);
+	    AddToDictionary("Controller_RightStick_Y", rightStick.y, isValidData);
+
+	    AddToDictionary("Controller_LeftStick_X", leftStick.x, isValidData);
+	    AddToDictionary("Controller_LeftStick_Y", leftStick.y, isValidData);	}
 
 
 
