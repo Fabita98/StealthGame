@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.008999066, g: 0.0131014455, b: 0.02044398, a: 1}
+  m_IndirectSpecularColor: {r: 0.008999071, g: 0.013101444, b: 0.020444002, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -19402,6 +19402,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e300fb986f27eec4bb410e60357727e8, type: 3}
+--- !u!1 &767455531 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2810818039143010912, guid: e300fb986f27eec4bb410e60357727e8, type: 3}
+  m_PrefabInstance: {fileID: 767455530}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &767638655
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37544,9 +37549,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67978744717d2084da41bfbf8e3c66b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnObjectHover:
-    m_PersistentCalls:
-      m_Calls: []
+  endZoneFireStone: {fileID: 767455531}
+  completeGameParent: {fileID: 2087004397}
+  onLookActivationObject: {fileID: 0}
 --- !u!4 &1332526909
 Transform:
   m_ObjectHideFlags: 0
@@ -54323,6 +54328,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2087004398}
+  - component: {fileID: 2087004399}
   m_Layer: 7
   m_Name: COMPLETE GAME
   m_TagString: Untagged
@@ -54363,6 +54369,18 @@ Transform:
   - {fileID: 1277135478}
   m_Father: {fileID: 778958559}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2087004399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2087004397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcaae403835937642bcc4e5532873748, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2090187639
 GameObject:
   m_ObjectHideFlags: 0

@@ -65,7 +65,7 @@ namespace Assets.Scripts.GazeTrackingFeature {
                             EyeInteractable.HoveringTime += Time.fixedDeltaTime;
                         }
                         // Case 3: Hovering EndGameStone
-                        else if (eyeInteractable.gameObject.layer == endInteractableStoneLayer && EndGameStoneToBeLooked.canBeLooked) {
+                        else if (eyeInteractable.gameObject.layer == endInteractableStoneLayer && EyeTrackingDebug.FireStoneCanBeStared) {
                             // run method to set on fire();
                         }
                     }

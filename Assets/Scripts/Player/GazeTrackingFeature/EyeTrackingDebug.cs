@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Assets.Scripts.GazeTrackingFeature {
     internal class EyeTrackingDebug : MonoBehaviour {
@@ -20,7 +19,15 @@ namespace Assets.Scripts.GazeTrackingFeature {
         [SerializeField] private const float maxWidthValue = 4;
         
         [Header("EndZoneFireStone")]
+        [SerializeField] private GameObject endZoneFireStone;
+        [SerializeField] private GameObject completeGameParent;
         public static bool FireStoneCanBeStared;
+        internal Collider[] FireStoneColliders;
+        private Collider collisionCollider;
+        private Collider eyeTrackingCollider;
+        private EyeOutline fireStoneEyeOutline;
+        // GameObject to be activated when the player looks at the fire stone
+        [SerializeField] private GameObject onLookActivationObject;
 
         [Header("Voice playback variables")]
         [SerializeField] private const float maxSnoringTime = 10f;
@@ -35,19 +42,22 @@ namespace Assets.Scripts.GazeTrackingFeature {
         public static float buttonHoldTime;
         private bool isVibrating;
 
-        // Event to be invoked to debug logger, if needed
-        [SerializeField] private UnityEvent<GameObject> OnObjectHover;
-
         public static event SnoringAudioPlaybackHandler OnSnoringAudioPlayback;
         public delegate void SnoringAudioPlaybackHandler();
+        public static event CompleteGameHandler OnCompleteGameParentEnabled;
+        public delegate void CompleteGameHandler();
         /// <summary>
         /// Events used to enable/disable the speaking text UI
         /// </summary>
         public static event Action OnPlaybackAboutToStart;
         public static event Action OnPlaybackStopped;
+
         private void HandleEyeInteractableInstancesCounterChange(int newCount) => Debug.Log($"Current EyeInteractable instance counter: {newCount}");
         public bool HandlePinkLotusPowerActivation(bool isActive) => isVocalPowerActive = isActive;
-
+        public void HandleOnCompleteGameEnabled() {
+            SetFireStoneLayer();
+            InitializeEndFireStone();
+        }
         private void Awake() {
             if (Instance == null) {
                 Instance = this;
@@ -62,12 +72,14 @@ namespace Assets.Scripts.GazeTrackingFeature {
             EyeInteractable.OnEyeInteractableInstancesCounterChanged += HandleEyeInteractableInstancesCounterChange;
             OnSnoringAudioPlayback += HandleSnoringAudioPlayback;
             Flower_animator_mindcontrol.OnPinkLotusPowerChanged += HandlePinkLotusPowerActivation;
+            OnCompleteGameParentEnabled += HandleOnCompleteGameEnabled;
         }
 
         private void OnDisable() {
             EyeInteractable.OnEyeInteractableInstancesCounterChanged -= HandleEyeInteractableInstancesCounterChange;
             OnSnoringAudioPlayback -= HandleSnoringAudioPlayback;
             Flower_animator_mindcontrol.OnPinkLotusPowerChanged -= HandlePinkLotusPowerActivation;
+            OnCompleteGameParentEnabled -= HandleOnCompleteGameEnabled;
         }
 
         private void Start() {
@@ -88,7 +100,6 @@ namespace Assets.Scripts.GazeTrackingFeature {
             if (GazeLine.staredMonk != null && GazeLine.staredMonk.IsHovered) {
                 BaseStateMachine enemyStateMachine = GazeLine.staredMonk.gameObject.GetComponent<BaseStateMachine>();
                 if (enemyStateMachine.CurrentState.name != "StatePatrol") return;
-                OnObjectHover?.Invoke(gameObject);
                 // Case 1: Hovering monk -> blue outline
                 OutlineWidthControl(Color.white); //blue
                 if (isFirstYawning)
@@ -297,6 +308,37 @@ namespace Assets.Scripts.GazeTrackingFeature {
             OVRInput.SetControllerVibration(0, 0, OVRInput.Controller.RTouch);
             isVibrating = false;
         }
+        #endregion
+
+        #region Firestone methods
+        private void SetFireStoneLayer() => endZoneFireStone.layer = LayerMask.NameToLayer("EndInteractableStone");
+
+        public void InitializeEndFireStone() {
+            if (endZoneFireStone == null) {
+                Debug.LogError("EndZoneFireStone is not assigned in the inspector.");
+                return;
+            }
+
+            SetFireStoneLayer();
+            FireStoneColliders = endZoneFireStone.GetComponents<BoxCollider>();
+
+            if (FireStoneColliders.Length < 2) {
+                for (int i = FireStoneColliders.Length; i < 2; i++) {
+                    gameObject.AddComponent<BoxCollider>();
+                }
+                FireStoneColliders = GetComponents<BoxCollider>();
+            }
+
+            collisionCollider = FireStoneColliders[0];
+            eyeTrackingCollider = FireStoneColliders[1];
+            collisionCollider.isTrigger = false;
+            eyeTrackingCollider.isTrigger = true;
+            // eyeOutline init
+            fireStoneEyeOutline = endZoneFireStone.AddComponent<EyeOutline>();
+            fireStoneEyeOutline.OutlineWidth = noWidthValue;
+        }     
+
+        public static void CompleteGameEventTrigger() => OnCompleteGameParentEnabled?.Invoke();
         #endregion
     }
 }
