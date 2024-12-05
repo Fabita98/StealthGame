@@ -5,7 +5,7 @@ class ProcessDataFrames:
     default_discrete_data = ['HeartBeatRate', 'MaxHeartBeatRate', 'MinHeartBeatRate', 'AverageHeartBeatRate', 'IsInStressfulArea', 'Deaths', 'LastCheckpoint']
 
     def __init__(self, path='D:/University-Masters/Thesis', discrete_data=default_discrete_data, target_samples_per_second=90,
-                 process_movement:bool=True, process_eye:bool=True, process_face:bool=True, process_external:bool=True, process_button:bool=True, subjects_to_exclude=[]):
+                 process_movement:bool=True, process_eye:bool=True, process_face:bool=True, process_external:bool=True, process_button:bool=True, process_heartbeat:bool=False, subjects_to_exclude=[]):
         self.path = path
         self.discrete_data = discrete_data
         self.target_samples_per_second = target_samples_per_second
@@ -14,6 +14,7 @@ class ProcessDataFrames:
         self.process_face = process_face
         self.process_external = process_external
         self.process_button = process_button
+        self.process_heartbeat = process_heartbeat
         self.subjects_to_exclude = subjects_to_exclude
 
     def process_dataframes(self):
@@ -40,6 +41,9 @@ class ProcessDataFrames:
             if self.process_external[0]:
                 df = processSingleDataframe.processExternal(unique_path = f"{dr}_External.csv").iloc[100:]
                 self.save_dataframes_in_file(df, ResampledPath, f"{dr}_External.csv")
+            if self.process_heartbeat[0]:
+                df = processSingleDataframe.processHeartBeat(unique_path = f"{dr}_HeartBeat.csv").iloc[100:]
+                self.save_dataframes_in_file(df, ResampledPath, f"{dr}_HeartBeat.csv")
             print(f"{dr} done")
     
     def save_dataframes_in_file(self, dataframe, subject_folder, name):

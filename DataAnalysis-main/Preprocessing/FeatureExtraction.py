@@ -8,14 +8,17 @@ import time
 
 
 class FeatureExtraction:
+    default_discrete_data =  ['HeartBeatRate', 'IsInStressfulArea', 'Deaths', 'LastCheckpoint']
+
     def __init__(self, path='D:/University-Masters/Thesis', dim_seconds=0.5,
-                 shift_seconds=0.25, norm=False, stand=True, sampling_rate=90, subjects_to_exclude=[]):
+                 shift_seconds=0.25, norm=False, stand=True, sampling_rate=90, discrete_data=default_discrete_data, subjects_to_exclude=[]):
         self.path = path
         self.dim_seconds = dim_seconds
         self.shift_seconds = shift_seconds
         self.norm = norm
         self.stand = stand
         self.sampling_rate = sampling_rate
+        self.discrete_data = discrete_data
         self.subjects_to_exclude = subjects_to_exclude
 
     def create_window(self, df, subject_folder, file_name):
@@ -127,7 +130,7 @@ class FeatureExtraction:
                 df = pd.read_csv(f"{path}/{dr}/ResampledCsv/{file}", sep=';')
                 df.drop(columns=[col for col in df.columns if "TimeStamp" in col or "timestamp" in col], inplace=True)
                 if "External" in file:
-                    discrete_data = ['HeartBeatRate', 'IsInStressfulArea', 'Deaths', 'LastCheckpoint']
+                    discrete_data = self.discrete_data
                     discrete_data.extend([col for col in df.columns if "SemanticTag" in col or "SemanticObj" in col])
                     discrete_data.extend([col for col in df.columns if "checkpoint" in col])
                     df_discrete = df[discrete_data]
