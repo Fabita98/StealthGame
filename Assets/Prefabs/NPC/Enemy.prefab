@@ -734,7 +734,7 @@ GameObject:
   - component: {fileID: 7558724985992208675}
   m_Layer: 11
   m_Name: StressfulArea
-  m_TagString: Untagged
+  m_TagString: StressfulArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -773,7 +773,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 20
+  m_Radius: 30
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -2538,7 +2538,7 @@ MonoBehaviour:
   eyeLights: {fileID: 789633835821025854}
   sleepTimerUI: {fileID: 1094765697391659323}
   ableToSleepButtonUI: {fileID: 4951011961811103188}
-  viewRadius: 25
+  viewRadius: 20
   overallRadius: 5
   viewAngle: 90
   waitTime: 4
