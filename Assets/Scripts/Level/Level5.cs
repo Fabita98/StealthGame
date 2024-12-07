@@ -10,33 +10,28 @@ public class Level5 : Level
     private LevelConfig _levelConfig;
     private int _processNumber;
     private bool _isReachedToDestination;
-    private bool _isSaved;
+    private bool _isSaved = false;
 
     private void Awake()
     {
         _timer = 0;
-        _processNumber = PlayerPrefsManager.GetInt(PlayerPrefsKeys.Level3Process, 1);
-        _levelConfig = GameController.Instance.LevelsController.levelsConfigContainer.level3Config;
+        _processNumber = PlayerPrefsManager.GetInt(PlayerPrefsKeys.Level5Process, 1);
+        _levelConfig = GameController.Instance.LevelsController.levelsConfigContainer.level5Config;
     }
 
-    public override int LevelNum => 3;
+    public override int LevelNum => 5;
 
-    public override GameObject Self => GameController.Instance.LevelsController.levelsConfigContainer.level3Config.levelGameObject;
+    public override GameObject Self => GameController.Instance.LevelsController.levelsConfigContainer.level5Config.levelGameObject;
     
     public override bool IsDone { get; protected set; }
 
     public override void Setup()
     {
         SetPlayerPosition();
-        PlayerPrefsManager.SaveGame(_levelConfig.playerSpawnPoint, 3);
+        PlayerPrefsManager.SaveGame(_levelConfig.playerSpawnPoint, 5);
         if (_processNumber == 1)
         {
-            // Statue talk
-            print("Statue Talking");
-        }
-        else if (_processNumber >= 2)
-        {
-            _levelConfig.otherObjects[0].GetComponent<DoorBehavior>().DoorInteraction();
+            print("Starting level 2(5)");
         }
         // if (PlayerPrefsManager.GetInt(PlayerPrefsKeys.BlueLotus, 0) > 0)
         // {
@@ -46,17 +41,13 @@ public class Level5 : Level
 
     public override void Process()
     {
-        if(_processNumber < 3)
+        if(_processNumber < 2)
             _timer += Time.deltaTime;
         switch (_processNumber)
         {
             case 1:
                 firstProcess();
                 break;
-            case 2:
-                secondProcess();
-                break;
-            
             default:
                 break;
         }
@@ -67,27 +58,12 @@ public class Level5 : Level
     {
         if (!_isSaved)
         {
-            PlayerPrefsManager.SaveGame(_levelConfig.playerSpawnPoint, 3);
+            PlayerPrefsManager.SaveGame(_levelConfig.playerSpawnPoint, 5);
             _isSaved = true;
         }
-        _timer += Time.deltaTime;
-        //if (PlayerPrefsManager.GetBool(PlayerPrefsKeys.GotFirstBlueLotus, false))
-        if (_levelConfig.otherObjects[1].GetComponent<TalkingStatue>().finished)
-        {
-            _levelConfig.otherObjects[0].GetComponent<DoorBehavior>().DoorInteraction();
-            SaveCompletedProcess(2);
-        }
-    }
-    
-    private void secondProcess()
-    {   
-
-        // if (_levelConfig.otherObjects[0].GetComponent<DoorBehavior>().GetDoorState() == DoorBehavior.DoorState.Close)
-        // {
-        // }
         if (_isReachedToDestination)
         {
-            SaveCompletedProcess(3);
+            SaveCompletedProcess(1);
             EndOfLevel();
         }
     }
@@ -95,16 +71,16 @@ public class Level5 : Level
     private void SaveCompletedProcess(int processNumber)
     {
         _processNumber = processNumber;
-        PlayerPrefsManager.SetInt(PlayerPrefsKeys.Level3Process, processNumber);
+        PlayerPrefsManager.SetInt(PlayerPrefsKeys.Level5Process, processNumber);
     }
 
     public override void EndOfLevel()
     {
-        Debug.Log("Tutorial Finished");
+        Debug.Log("Level 2(5) Finished");
         UIController.Instance.TutorialFinishedUI.gameObject.SetActive(true);
         // PlayerPrefsManager.SetInt(PlayerPrefsKeys.Level, 4);
         IsDone = true;
-        PlayerPrefsManager.DeleteKey(PlayerPrefsKeys.Level3Process);
+        PlayerPrefsManager.DeleteKey(PlayerPrefsKeys.Level5Process);
     }
 
     public override void SetPlayerPosition()
@@ -117,7 +93,7 @@ public class Level5 : Level
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Player has passed through the Level3 Destination");
+            Debug.Log("Player has passed through the Level5 Destination");
             _isReachedToDestination = true;
         }
     }

@@ -10,7 +10,7 @@ public class Level4 : Level
     private LevelConfig _levelConfig;
     private int _processNumber;
     private bool _isReachedToDestination;
-    private bool _isSaved;
+    private bool _isSaved = false;
 
     private void Awake()
     {
@@ -19,7 +19,7 @@ public class Level4 : Level
         _levelConfig = GameController.Instance.LevelsController.levelsConfigContainer.level4Config;
     }
 
-    public override int LevelNum => 3;
+    public override int LevelNum => 4;
 
     public override GameObject Self => GameController.Instance.LevelsController.levelsConfigContainer.level4Config.levelGameObject;
     
@@ -31,12 +31,7 @@ public class Level4 : Level
         PlayerPrefsManager.SaveGame(_levelConfig.playerSpawnPoint, 4);
         if (_processNumber == 1)
         {
-            // Statue talk
-            print("Statue Talking");
-        }
-        else if (_processNumber >= 2)
-        {
-            _levelConfig.otherObjects[0].GetComponent<DoorBehavior>().DoorInteraction();
+            print("Starting level 1(4)");
         }
         // if (PlayerPrefsManager.GetInt(PlayerPrefsKeys.BlueLotus, 0) > 0)
         // {
@@ -46,15 +41,12 @@ public class Level4 : Level
 
     public override void Process()
     {
-        if(_processNumber < 3)
+        if(_processNumber < 2)
             _timer += Time.deltaTime;
         switch (_processNumber)
         {
             case 1:
                 firstProcess();
-                break;
-            case 2:
-                secondProcess();
                 break;
             
             default:
@@ -67,27 +59,12 @@ public class Level4 : Level
     {
         if (!_isSaved)
         {
-            PlayerPrefsManager.SaveGame(_levelConfig.playerSpawnPoint, 3);
+            PlayerPrefsManager.SaveGame(_levelConfig.playerSpawnPoint, 4);
             _isSaved = true;
         }
-        _timer += Time.deltaTime;
-        //if (PlayerPrefsManager.GetBool(PlayerPrefsKeys.GotFirstBlueLotus, false))
-        if (_levelConfig.otherObjects[1].GetComponent<TalkingStatue>().finished)
+        if (_isReachedToDestination && PlayerPrefsManager.GetBool(PlayerPrefsKeys.GotStickPower, false))
         {
-            _levelConfig.otherObjects[0].GetComponent<DoorBehavior>().DoorInteraction();
-            SaveCompletedProcess(2);
-        }
-    }
-    
-    private void secondProcess()
-    {   
-
-        // if (_levelConfig.otherObjects[0].GetComponent<DoorBehavior>().GetDoorState() == DoorBehavior.DoorState.Close)
-        // {
-        // }
-        if (_isReachedToDestination)
-        {
-            SaveCompletedProcess(4);
+            SaveCompletedProcess(1);
             EndOfLevel();
         }
     }
@@ -100,8 +77,7 @@ public class Level4 : Level
 
     public override void EndOfLevel()
     {
-        Debug.Log("Tutorial Finished");
-        UIController.Instance.TutorialFinishedUI.gameObject.SetActive(true);
+        Debug.Log("Level 1(4) Finished");
         // PlayerPrefsManager.SetInt(PlayerPrefsKeys.Level, 4);
         IsDone = true;
         PlayerPrefsManager.DeleteKey(PlayerPrefsKeys.Level4Process);
@@ -119,6 +95,15 @@ public class Level4 : Level
         {
             Debug.Log("Player has passed through the Level4 Destination");
             _isReachedToDestination = true;
+        }
+    }
+    
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("Player has exited the Level4 Destination");
+            _isReachedToDestination = false;
         }
     }
 }
