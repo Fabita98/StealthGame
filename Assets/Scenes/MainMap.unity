@@ -39191,7 +39191,7 @@ MonoBehaviour:
   GameOverUI: {fileID: 1569614022}
   AbilitiesUI: {fileID: 1486276779}
   TutorialFinishedUI: {fileID: 7259451584768257837}
-  GameFinishedUI: {fileID: 0}
+  GameFinishedUI: {fileID: 1486276781}
   PauseUI: {fileID: 1642221410669072207}
 --- !u!114 &1332526911
 MonoBehaviour:
@@ -42992,6 +42992,17 @@ AudioSource:
   m_CorrespondingSourceObject: {fileID: 5883911487571586669, guid: 04f679b953cf73b49b555bd7bce56d93, type: 3}
   m_PrefabInstance: {fileID: 1486276777}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1486276781 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8306526544476534818, guid: 04f679b953cf73b49b555bd7bce56d93, type: 3}
+  m_PrefabInstance: {fileID: 1486276777}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5830f1fbb1baab24495f5b825e6d8cf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1486276785 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8135042374922898975, guid: 04f679b953cf73b49b555bd7bce56d93, type: 3}
