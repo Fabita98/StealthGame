@@ -35923,10 +35923,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6068311604076435834}
     m_Modifications:
-    - target: {fileID: 2080436627914134308, guid: 95136ec9ff9ebb14ca5c9a155ab01df3, type: 3}
-      propertyPath: m_text
-      value: Tutorial Finished
-      objectReference: {fileID: 0}
     - target: {fileID: 3226316082941857824, guid: 95136ec9ff9ebb14ca5c9a155ab01df3, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -35958,18 +35954,6 @@ PrefabInstance:
     - target: {fileID: 3226316082941857824, guid: 95136ec9ff9ebb14ca5c9a155ab01df3, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3226316082941857824, guid: 95136ec9ff9ebb14ca5c9a155ab01df3, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3226316082941857824, guid: 95136ec9ff9ebb14ca5c9a155ab01df3, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3226316082941857824, guid: 95136ec9ff9ebb14ca5c9a155ab01df3, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 3226316082941857824, guid: 95136ec9ff9ebb14ca5c9a155ab01df3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -36019,10 +36003,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3226316082941857824, guid: 95136ec9ff9ebb14ca5c9a155ab01df3, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4469664851498268413, guid: 95136ec9ff9ebb14ca5c9a155ab01df3, type: 3}
       propertyPath: m_Name
       value: TutorialFinishedPanel2D
@@ -36030,10 +36010,6 @@ PrefabInstance:
     - target: {fileID: 4469664851498268413, guid: 95136ec9ff9ebb14ca5c9a155ab01df3, type: 3}
       propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8755885923186608007, guid: 95136ec9ff9ebb14ca5c9a155ab01df3, type: 3}
-      propertyPath: m_text
-      value: Press any button to continue
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
