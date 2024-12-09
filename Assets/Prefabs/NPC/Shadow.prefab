@@ -35,6 +35,7 @@ Transform:
   m_Children:
   - {fileID: 5506128487594458643}
   - {fileID: 5838631889606491034}
+  - {fileID: 8734455302724719075}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &1347023450369709627
@@ -106,46 +107,37 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0.047295637
+      time: 0
       value: 1
-      inSlope: -15.005997
-      outSlope: -15.005997
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.12122549
-      value: 0.4964447
-      inSlope: -3.7514992
-      outSlope: -3.7514992
+      time: 0.23031807
+      value: 0.938054
+      inSlope: -0.7633311
+      outSlope: -0.7633311
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0
-      outWeight: 0
+      inWeight: 0.38132003
+      outWeight: 0.6175573
     - serializedVersion: 3
-      time: 0.26666668
-      value: 0.23574829
-      inSlope: -0.9378748
-      outSlope: -0.9378748
+      time: 0.40829867
+      value: 0.17301083
+      inSlope: -0.79676163
+      outSlope: -0.79676163
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.53333336
-      value: 0.125
-      inSlope: -0.2344687
-      outSlope: -0.2344687
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
+      inWeight: 0.36311585
+      outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: 0.02394206
-      inSlope: -0.06669331
-      outSlope: -0.06669331
+      value: 0
+      inSlope: -1.1538461
+      outSlope: -1.1538461
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
@@ -216,6 +208,61 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!1 &4516519067710915319
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8734455302724719075}
+  - component: {fileID: 7925867444632322819}
+  m_Layer: 0
+  m_Name: StressfullArea
+  m_TagString: StressfulArea
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8734455302724719075
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4516519067710915319}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8625937471992348367}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &7925867444632322819
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4516519067710915319}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.56
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8549467101488384047
 GameObject:
   m_ObjectHideFlags: 0

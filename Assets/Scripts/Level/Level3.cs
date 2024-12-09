@@ -11,12 +11,14 @@ public class Level3 : Level
     private int _processNumber;
     private bool _isReachedToDestination;
     private bool _isSaved;
+    private GameController _gameController;
 
     private void Awake()
     {
         _timer = 0;
         _processNumber = PlayerPrefsManager.GetInt(PlayerPrefsKeys.Level3Process, 1);
-        _levelConfig = GameController.Instance.LevelsController.levelsConfigContainer.level3Config;
+        _gameController = GameController.Instance;
+        _levelConfig = _gameController.LevelsController.levelsConfigContainer.level3Config;
     }
 
     public override int LevelNum => 3;
@@ -72,7 +74,7 @@ public class Level3 : Level
         }
         _timer += Time.deltaTime;
         //if (PlayerPrefsManager.GetBool(PlayerPrefsKeys.GotFirstBlueLotus, false))
-        if (_levelConfig.otherObjects[1].GetComponent<TalkingStatue>().finished)
+        if (_levelConfig.otherObjects[1].GetComponent<TalkingStatue>().finished || _gameController.DebugMode)
         {
             _levelConfig.otherObjects[0].GetComponent<DoorBehavior>().DoorInteraction();
             SaveCompletedProcess(2);

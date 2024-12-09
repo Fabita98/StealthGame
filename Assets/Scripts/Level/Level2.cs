@@ -11,12 +11,14 @@ public class Level2 : Level
     private int _processNumber;
     private bool _isReachedToDestination;
     private bool _isSaved = false;
+    private GameController _gameController;
 
     private void Awake()
     {
         _timer = 0;
         _processNumber = PlayerPrefsManager.GetInt(PlayerPrefsKeys.Level2Process, 1);
-        _levelConfig = GameController.Instance.LevelsController.levelsConfigContainer.level2Config;
+        _gameController = GameController.Instance;
+        _levelConfig = _gameController.LevelsController.levelsConfigContainer.level2Config;
     }
 
     public override int LevelNum => 2;
@@ -63,7 +65,7 @@ public class Level2 : Level
             _isSaved = true;
         }
         _timer += Time.deltaTime;
-        if (PlayerPrefsManager.GetBool(PlayerPrefsKeys.GotFirstPinkLotus, false))
+        if (PlayerPrefsManager.GetBool(PlayerPrefsKeys.GotFirstPinkLotus, false) || _gameController.DebugMode)
         {
             SaveCompletedProcess(2);
         }

@@ -192,7 +192,7 @@ public class MyPlayerController : MonoBehaviour
 
     private bool playerControllerEnabled = false;
     [HideInInspector] public bool isHiding = false;
-    public bool canSprint = true;
+    private bool canSprint = true;
     public GameObject torchGO;
     
     public static MyPlayerController Instance => _instance;
@@ -240,6 +240,7 @@ public class MyPlayerController : MonoBehaviour
         headObjectTransform.localPosition = headPoseRelativeOffsetTranslation;
         InitialYRotation = transform.rotation.eulerAngles.y;
         NumberOfEnemiesChasing = 0;
+        canSprint = GameController.Instance.DebugMode;
     }
 
     void OnEnable()
