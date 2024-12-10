@@ -10,6 +10,7 @@ public class UIController : MonoBehaviour
     public TutorialFinishedUI TutorialFinishedUI;
     public GameFinishedUI GameFinishedUI;
     public PauseUI PauseUI;
+    public StickUI StickUI;
     
     private static UIController _instance;
     public static UIController Instance => _instance;
