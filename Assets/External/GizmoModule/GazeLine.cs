@@ -4,15 +4,18 @@ using UnityEngine;
 
 namespace Assets.Scripts.GazeTrackingFeature {
     internal class GazeLine : MonoBehaviour {
+        [Header("Gaze Line Debug Parameters")]
         [SerializeField] private float cursorOffset = .1f;
         [SerializeField] private float cursorRadius = .2f;
         [SerializeField] private bool showGazeLineDebug = true;
 
+        [Header("Layers")]
         public LayerMask mask;
         internal static int monkLayer, squareLayer, obstacleLayer, endInteractableStoneLayer;
 
         internal static Vector3 hitPosition;
         internal static EyeInteractable staredMonk = null;
+        internal static EyeInteractable endFireStone;
         private static readonly List<EyeInteractable> eyeInteractablesList = new();
 
         private static int instanceCount = 0;
@@ -30,13 +33,11 @@ namespace Assets.Scripts.GazeTrackingFeature {
             endInteractableStoneLayer = LayerMask.NameToLayer("EndInteractableStone");
         }
 
-        private void OnEnable() {
-            instanceCount++;
-        }
+        private void OnEnable() => instanceCount++;
 
-        private void OnDestroy() {
-            instanceCount--;
-        }
+        private void OnDestroy() => instanceCount--;
+
+        private void Start() => endFireStone = EyeTrackingDebug.Instance.fireStoneEyeInteractableComponent;
 
         void Update() {
             EyeGazeRayCasting();
@@ -65,8 +66,9 @@ namespace Assets.Scripts.GazeTrackingFeature {
                             EyeInteractable.HoveringTime += Time.fixedDeltaTime;
                         }
                         // Case 3: Hovering EndGameStone
-                        else if (eyeInteractable.gameObject.layer == endInteractableStoneLayer && EyeTrackingDebug.FireStoneCanBeStared) {
-                            // run method to set on fire();
+                        else if (eyeInteractable.gameObject.layer == endInteractableStoneLayer) {
+                            Debug.Log("Hovering EndGameStone");
+                            // run method to set on FireEffectGameObject();
                         }
                     }
                 }
@@ -89,11 +91,13 @@ namespace Assets.Scripts.GazeTrackingFeature {
                     interactable.gameObject.TryGetComponent<EnemyUtility>(out var enemyUtility);
                     enemyUtility.ableToSleepButtonUI.SetActive(false);
                 }
+                // Case 2: Unhovering EndGameStone
+                else if (interactable.gameObject.layer == endInteractableStoneLayer) {
+                    if (interactable.TryGetComponent<FirestoneUI>(out var fSUI)) 
+                        fSUI.DisableSleepButton(); 
+                }
             }
-            // foreach (var enemyUtility in FindObjectsByType<EnemyUtility>(FindObjectsSortMode.None))
-            // {
-            //     enemyUtility.ableToSleepButtonUI.SetActive(false);
-            // }
+
             EyeTrackingDebug.isFirstYawning = true;
             if (clear) eyeInteractablesList.Clear();
         }

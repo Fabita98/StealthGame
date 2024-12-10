@@ -19,13 +19,14 @@ namespace Assets.Scripts.GazeTrackingFeature {
         [SerializeField] private const float maxWidthValue = 4;
         
         [Header("EndZoneFireStone")]
-        [SerializeField] private GameObject endZoneFireStone;
         [SerializeField] private GameObject completeGameParent;
+        public GameObject endZoneFireStone;
         public static bool FireStoneCanBeStared;
         internal Collider[] FireStoneColliders;
         private Collider collisionCollider;
         private Collider eyeTrackingCollider;
-        private EyeOutline fireStoneEyeOutline;
+        internal EyeOutline fireStoneEyeOutline;
+        internal EyeInteractable fireStoneEyeInteractableComponent;
         // GameObject to be activated when the player looks at the fire stone
         [SerializeField] private GameObject onLookActivationObject;
 
@@ -66,6 +67,8 @@ namespace Assets.Scripts.GazeTrackingFeature {
             else if (Instance != this) {
                 Destroy(this);
             }
+
+            FireStoneCanBeStared = PlayerPrefsManager.GetBool(PlayerPrefsKeys.GotStickPower);
         }
 
         private void OnEnable() {
@@ -97,13 +100,13 @@ namespace Assets.Scripts.GazeTrackingFeature {
 
         #region Gaze features methods
         public void GazeControl() {
+            // Monks hovering case
             if (GazeLine.staredMonk != null && GazeLine.staredMonk.IsHovered) {
                 BaseStateMachine enemyStateMachine = GazeLine.staredMonk.gameObject.GetComponent<BaseStateMachine>();
                 if (enemyStateMachine.CurrentState.name != "StatePatrol") return;
                 // Case 1: Hovering monk -> blue outline
                 OutlineWidthControl(Color.white); //blue
-                if (isFirstYawning)
-                {
+                if (isFirstYawning) {
                     GazeLine.staredMonk.StartPlayYawnAudioCoroutine();
                     isFirstYawning = false;
                     GazeLine.staredMonk.gameObject.GetComponent<EnemyUtility>().ableToSleepButtonUI.SetActive(true);
@@ -127,13 +130,30 @@ namespace Assets.Scripts.GazeTrackingFeature {
                     }
                 }
             }
-            else
-            {
+            else {
                 foreach (var enemyUtility in GetComponents<EnemyUtility>())
                 {
                     enemyUtility.ableToSleepButtonUI.SetActive(false);
                 }
                 return;
+            }
+
+            // EndZoneFireStone hovering case
+            if (FireStoneCanBeStared) {
+                if (endZoneFireStone != null) {
+                    if (endZoneFireStone.TryGetComponent<EyeInteractable>(out var fsEyeInterComp)) {
+                        if (fsEyeInterComp.IsHovered) {
+                            OutlineFireStoneWidthControl(Color.white);
+                            endZoneFireStone.GetComponent<FirestoneUI>().EnableSleepButton();
+                            if (FireStoneKeyHoldingCheck()) {
+                                OutlineFireStoneWidthControl(Color.gray);
+                                // run method to activate firestoneGameObj effect
+                                endZoneFireStone.GetComponent<FirestoneUI>().DisableSleepButton();
+                            }
+                        }
+                    }
+                    else Debug.LogWarning("EyeInteractable component not found on FireStone.");
+                }
             }
         }
 
@@ -333,12 +353,47 @@ namespace Assets.Scripts.GazeTrackingFeature {
             eyeTrackingCollider = FireStoneColliders[1];
             collisionCollider.isTrigger = false;
             eyeTrackingCollider.isTrigger = true;
+
             // eyeOutline init
-            fireStoneEyeOutline = endZoneFireStone.AddComponent<EyeOutline>();
-            fireStoneEyeOutline.OutlineWidth = noWidthValue;
+            if (endZoneFireStone.TryGetComponent<EyeOutline>(out var fStEyOut)) {
+                fireStoneEyeOutline = fStEyOut;
+                fireStoneEyeOutline.OutlineWidth = noWidthValue;
+            }
+            else fireStoneEyeOutline = endZoneFireStone.AddComponent<EyeOutline>();
+            // EyeInteractable init
+            if (endZoneFireStone.TryGetComponent<EyeInteractable>(out var fireStoneEyeInteract)) 
+                fireStoneEyeInteractableComponent = fireStoneEyeInteract;
+            else endZoneFireStone.AddComponent<EyeInteractable>();
         }     
 
         public static void CompleteGameEventTrigger() => OnCompleteGameParentEnabled?.Invoke();
+
+        internal void OutlineFireStoneWidthControl(Color color) {
+            bool active = FireStoneCanBeStared;
+            if (active.Equals(false)) return;
+            
+            float lerpedWidth = Mathf.Lerp(minWidthValue, maxWidthValue, buttonHoldTime);
+            float desiredWidth = active switch {
+                true when fireStoneEyeInteractableComponent.IsHovered => maxWidthValue / 2,
+                true when fireStoneEyeInteractableComponent.IsHovered && fireStoneEyeInteractableComponent.isBeingStared => lerpedWidth,
+                true when fireStoneEyeInteractableComponent.IsHovered && fireStoneEyeInteractableComponent.readyToTalk => maxWidthValue,
+                _ => noWidthValue,
+            };
+
+            if (endZoneFireStone != null) {
+                fireStoneEyeOutline.OutlineMode = EyeOutline.Mode.OutlineAll;
+                fireStoneEyeOutline.OutlineColor = color;
+                fireStoneEyeOutline.OutlineWidth = desiredWidth;
+            }            
+            else Debug.LogWarning("EyeOutline component is not assigned to Firestone.");
+        }
+
+        private bool FireStoneKeyHoldingCheck() {
+            if (OVRInput.Get(keyForVoiceControl) && fireStoneEyeInteractableComponent.IsHovered) {
+                return true;
+            }
+            return false;
+        }
         #endregion
     }
 }
