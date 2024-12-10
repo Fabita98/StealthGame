@@ -1,14 +1,20 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class TutorialFinishedUI : MonoBehaviour
 {
+    private GameController _gameController;
+    [SerializeField] private TMP_Text title;
+    [SerializeField] private TMP_Text message;
+    
     
     private void OnEnable()
     {
+        _gameController = GameController.Instance;
         Time.timeScale = 0;
     }
 
@@ -17,16 +23,25 @@ public class TutorialFinishedUI : MonoBehaviour
     {
         if (OVRInput.GetDown(OVRInput.Button.Any))
         {
-            PlayerPrefs.DeleteAll();
-            // Time.timeScale = 1;
+            if (_gameController.IsOnlyTutorial)
+            {
+                title.text = "Congrats";
+                message.text = "Tutorial finished";
+                PlayerPrefs.DeleteAll();
 #if UNITY_STANDALONE
-            Application.Quit();
+                Application.Quit();
 #endif
 #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
+                UnityEditor.EditorApplication.isPlaying = false;
 #endif
-            // gameObject.SetActive(false);
-            // GameController.Instance.CheckpointController.ResetToCheckpoint();
+            }
+            else
+            {
+                title.text = "Tutorial finished";
+                message.text = "Press any button to continue";
+                Time.timeScale = 1;
+                gameObject.SetActive(false);   
+            }
         }
     }
 

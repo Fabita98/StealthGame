@@ -13,6 +13,8 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour
 {
     private GameManager _gameManager;
+    public bool IsOnlyTutorial;
+    public bool DebugMode;
     [NonSerialized] public CheckpointController CheckpointController;
     [NonSerialized] public LevelsController LevelsController;
     

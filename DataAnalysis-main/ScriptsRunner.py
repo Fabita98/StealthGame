@@ -7,20 +7,22 @@ from Preprocessing.VisualizeData import VisualizeData
 from Models.CompareOnlineKFs import CompareOnlineKFs
 
 if __name__ == "__main__":
-    drivePath = "D:/University-Masters/Thesis/T"
-    externalData = ['HeartBeatRate', 'MaxHeartBeatRate', 'MinHeartBeatRate', 'AverageHeartBeatRate', 'IsInStressfulArea', 'Deaths', 'LastCheckpoint']
-    discreteData = ['HeartBeatRate', 'MaxHeartBeatRate', 'MinHeartBeatRate', 'AverageHeartBeatRate', 'IsInStressfulArea', 'Deaths', 'LastCheckpoint']
-    datatypeToExcludeInKalman = ['Dante', 'External', "Eye", "Button", "Data_ALL"]
-    subjectsToExclude = []
+    drivePath = "D:/University-Masters/Thesis_heartbeat"
+    externalData = ['IsInStressfulArea', 'Deaths', 'LastCheckpoint']
+    discreteData = ['IsInStressfulArea', 'Deaths', 'LastCheckpoint']
+    # discreteData = ['HeartBeatRate', 'IsInStressfulArea', 'Deaths', 'LastCheckpoint']
+    datatypeToExcludeInKalman = ['Dante', 'External', "Eye", "Data_ALL"]
+    subjectsToExclude = ["S4", "S5", "S6"]
     process_movement=True, 
     process_eye=True, 
     process_face=True, 
     process_external=True, 
     process_button=False, 
+    process_heartbeat=True, 
     dante_samples_per_second = 50
     data_samples_per_second = 90
     dim_seconds = 0.5
-    shift_seconds = 0.5
+    shift_seconds = 0.25
     selection_type = "Single"
     doNormalization=False
     doStandardization=False
@@ -37,7 +39,7 @@ if __name__ == "__main__":
     # Divide Dataframe (Divide to multiple classes)
     if(doDivideDataframe):
         print("==========DivideDataframe==========")
-        divideDataframe = DivideDataframe(path=drivePath, external_data=externalData, subjects_to_exclude=subjectsToExclude)
+        divideDataframe = DivideDataframe(path=drivePath, external_data=externalData, heartbeat_excluded=False, subjects_to_exclude=subjectsToExclude)
         divideDataframe.main()
         
     # Creat Plots of the processed data
@@ -49,6 +51,7 @@ if __name__ == "__main__":
                                       process_face=process_face, 
                                       process_external=process_external, 
                                       process_button=process_button, 
+                                      process_heartbeat=process_heartbeat,
                                       subjects_to_exclude=subjectsToExclude)
         visualizeData.main()
 
@@ -63,6 +66,7 @@ if __name__ == "__main__":
                                               process_face=process_face, 
                                               process_external=process_external, 
                                               process_button=process_button, 
+                                              process_heartbeat=process_heartbeat,
                                               subjects_to_exclude=subjectsToExclude)
         processDataframes.main()
 
@@ -83,6 +87,7 @@ if __name__ == "__main__":
                                               norm=doNormalization, 
                                               stand=doStandardization, 
                                               sampling_rate=data_samples_per_second, 
+                                              discrete_data=discreteData,
                                               subjects_to_exclude=subjectsToExclude)
         featureExtraction.main()
 

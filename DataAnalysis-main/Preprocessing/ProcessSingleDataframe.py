@@ -24,6 +24,10 @@ class ProcessSingleDataframe:
     def processFace(self, unique_path):
         df = pd.read_csv(self.path + unique_path, sep=';')
         return self.preprocessData(df)
+    
+    def processHeartBeat(self, unique_path):
+        df = pd.read_csv(self.path + unique_path, sep=';')
+        return self.preprocessData(df)
 
     def processExternal(self, unique_path):
         df = pd.read_csv(self.path + unique_path, sep=';')

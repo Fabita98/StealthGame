@@ -531,6 +531,8 @@ class CompareOnlineKFs:
                             datatype_results[datatype][col] = {'baseline': [], 'input': []}
                         datatype_results[datatype][col]['baseline'].extend(pred_baseline)
                         datatype_results[datatype][col]['input'].extend(pred_input)
+                        # if(col=="LastCheckpoint" and datatype=="Movement"):
+                        #     print("salam")
 
             # Chiama plot_kalman_results per ogni valore della colonna di external
 
@@ -595,7 +597,7 @@ def save_results_to_excel(subjects, output_folder):
 
             # Check and update Input sheet
             if 'Input' in xls.sheet_names:
-                existing_input = pd.read_excel(xls, sheet_name='Input', index_col=0, header=[0, 1])
+                existing_input = pd.read_excel(xls, sheet_name='Input', index_col=0)
                 updated_input = existing_input.combine_first(df_input_pivot)
             else:
                 updated_input = df_input_pivot

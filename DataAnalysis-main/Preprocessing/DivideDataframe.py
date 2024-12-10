@@ -24,6 +24,8 @@ class DataType(int):
         elif self == 4:
             return 'Button'
         elif self == 5:
+            return 'HeartBeat'
+        elif self == 6:
             return 'Total'
         else:
             return 'Unknown'
@@ -33,9 +35,10 @@ class DataType(int):
 class DivideDataframe:
     defaultExternalData = ['HeartBeatRate', 'MaxHeartBeatRate', 'MinHeartBeatRate', 'AverageHeartBeatRate', 'IsInStressfulArea', 'Deaths', 'LastCheckpoint']
 
-    def __init__(self, path, external_data=defaultExternalData, subjects_to_exclude=[]):
+    def __init__(self, path, heartbeat_excluded=True, external_data=defaultExternalData, subjects_to_exclude=[]):
         self.path = path
         self.external_data = external_data
+        self.heartbeat_excluded = heartbeat_excluded
         self.subjects_to_exclude = subjects_to_exclude
 
 
@@ -105,7 +108,11 @@ class DivideDataframe:
             "OVR") & ~inputData.columns.str.startswith(buttonPrefix))])
         dfMovements = dfMovements.loc[:, ~(dfMovements.fillna(0) == 0).all(axis=0)]
         dfExternData = self.ExternalData(inputData)
-        dfs = [pd.concat([dfTime, df], axis='columns') for df in [dfFace, dfEye, dfMovements, dfExternData, dfButtons]]
+        if (not self.heartbeat_excluded):
+            dfHeartBeat = pd.DataFrame(inputData.loc[:, inputData.columns.isin(['HeartBeatRate'])])
+            dfs = [pd.concat([dfTime, df], axis='columns') for df in [dfFace, dfEye, dfMovements, dfExternData, dfButtons, dfHeartBeat]]
+        else:
+            dfs = [pd.concat([dfTime, df], axis='columns') for df in [dfFace, dfEye, dfMovements, dfExternData, dfButtons]]
         return dfs
 
 

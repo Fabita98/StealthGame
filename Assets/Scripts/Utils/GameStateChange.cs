@@ -10,7 +10,8 @@ public class GameStateChange : MonoBehaviour
     
     private void OnEnable()
     {
-        EnableGameObjects(false);
+        if(!GameController.Instance.IsOnlyTutorial)
+            EnableGameObjects(false);
     }
 
     private void EnableGameObjects(bool isTutorial)

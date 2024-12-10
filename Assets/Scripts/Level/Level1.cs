@@ -10,12 +10,14 @@ public class Level1 : Level
     private LevelConfig _levelConfig;
     private int _processNumber;
     private bool _isReachedToDestination;
+    private GameController _gameController;
 
     private void Awake()
     {
         _timer = 0;
         _processNumber = PlayerPrefsManager.GetInt(PlayerPrefsKeys.Level1Process, 1);
-        _levelConfig = GameController.Instance.LevelsController.levelsConfigContainer.level1Config;
+        _gameController = GameController.Instance;
+        _levelConfig = _gameController.LevelsController.levelsConfigContainer.level1Config;
     }
 
     public override int LevelNum => 1;
@@ -58,7 +60,7 @@ public class Level1 : Level
     {
         _timer += Time.deltaTime;
         _levelConfig.pathBlockingGameObject.SetActive(true);
-        if (PlayerPrefsManager.GetBool(PlayerPrefsKeys.GotFirstWhiteLotus, false))
+        if (PlayerPrefsManager.GetBool(PlayerPrefsKeys.GotFirstWhiteLotus, false) || _gameController.DebugMode)
         {
             _levelConfig.pathBlockingGameObject.SetActive(false);
             SaveCompletedProcess(2);

@@ -8,6 +8,7 @@ public class UIController : MonoBehaviour
     public GameOverUI GameOverUI;
     public AbilitiesUI AbilitiesUI;
     public TutorialFinishedUI TutorialFinishedUI;
+    public GameFinishedUI GameFinishedUI;
     public PauseUI PauseUI;
     
     private static UIController _instance;

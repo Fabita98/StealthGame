@@ -15,6 +15,7 @@ public enum PlayerPrefsKeys
     WhiteLotus,
     PinkLotus,
     BlueLotus,
+    GotStickPower,
     GotFirstWhiteLotus,
     GotFirstPinkLotus,
     GotFirstBlueLotus,
