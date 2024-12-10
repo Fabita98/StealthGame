@@ -15,7 +15,7 @@ namespace Assets.Scripts.GazeTrackingFeature {
 
         internal static Vector3 hitPosition;
         internal static EyeInteractable staredMonk = null;
-        internal static EyeInteractable endFireStone;
+        internal static EyeInteractable gazeLineEndFireStoneEyeInteractComponent;
         private static readonly List<EyeInteractable> eyeInteractablesList = new();
 
         private static int instanceCount = 0;
@@ -37,7 +37,7 @@ namespace Assets.Scripts.GazeTrackingFeature {
 
         private void OnDestroy() => instanceCount--;
 
-        private void Start() => endFireStone = EyeTrackingDebug.Instance.fireStoneEyeInteractableComponent;
+        private void Start() => gazeLineEndFireStoneEyeInteractComponent = EyeTrackingDebug.Instance.fireStoneEyeInteractableComponent;
 
         void Update() {
             EyeGazeRayCasting();

@@ -22,12 +22,12 @@ namespace Assets.Scripts.GazeTrackingFeature {
         [Header("EndZoneFireStone")]
         [SerializeField] private GameObject completeGameParent;
         public GameObject endZoneFireStone;
+        internal EyeInteractable fireStoneEyeInteractableComponent;
         public static bool FireStoneCanBeStared;
         internal BoxCollider[] FireStoneColliders;
         private BoxCollider collisionCollider;
         private BoxCollider eyeTrackingCollider;
         internal EyeOutline fireStoneEyeOutline;
-        internal EyeInteractable fireStoneEyeInteractableComponent;
         // GameObject to be activated when the player looks at the fire stone
         [SerializeField] private GameObject onLookActivationObject;
 
@@ -97,6 +97,7 @@ namespace Assets.Scripts.GazeTrackingFeature {
 
         private void Update() {
             if (isVocalPowerActive && HasSnoringCooldownPassed()) GazeControl();
+            FireStoneGazeControl();
         }
 
         #region Gaze features methods
@@ -137,24 +138,6 @@ namespace Assets.Scripts.GazeTrackingFeature {
                     enemyUtility.ableToSleepButtonUI.SetActive(false);
                 }
                 return;
-            }
-
-            // EndZoneFireStone hovering case
-            if (FireStoneCanBeStared) {
-                if (endZoneFireStone != null) {
-                    if (endZoneFireStone.TryGetComponent<EyeInteractable>(out var fsEyeInterComp)) {
-                        if (fsEyeInterComp.IsHovered) {
-                            OutlineFireStoneWidthControl(Color.white);
-                            endZoneFireStone.GetComponent<FirestoneUI>().EnableSleepButton();
-                            if (FireStoneKeyHoldingCheck()) {
-                                OutlineFireStoneWidthControl(Color.gray);
-                                // run method to activate firestoneGameObj effect
-                                endZoneFireStone.GetComponent<FirestoneUI>().DisableSleepButton();
-                            }
-                        }
-                    }
-                    else Debug.LogWarning("EyeInteractable component not found on FireStone.");
-                }
             }
         }
 
@@ -366,9 +349,9 @@ namespace Assets.Scripts.GazeTrackingFeature {
             }
             else fireStoneEyeOutline = endZoneFireStone.AddComponent<EyeOutline>();
             // EyeInteractable init
-            if (endZoneFireStone.TryGetComponent<EyeInteractable>(out var fireStoneEyeInteract)) 
-                fireStoneEyeInteractableComponent = fireStoneEyeInteract;
-            else endZoneFireStone.AddComponent<EyeInteractable>();
+            if (endZoneFireStone.TryGetComponent<EyeInteractable>(out var fSEyeInterOutVar)) 
+                fireStoneEyeInteractableComponent = fSEyeInterOutVar;
+            else fireStoneEyeInteractableComponent = endZoneFireStone.AddComponent<EyeInteractable>();
         }     
 
         public static void CompleteGameEventTrigger() => OnCompleteGameParentEnabled?.Invoke();
@@ -398,6 +381,25 @@ namespace Assets.Scripts.GazeTrackingFeature {
                 return true;
             }
             return false;
+        }
+
+        private void FireStoneGazeControl() {
+            if (FireStoneCanBeStared) {
+                if (endZoneFireStone != null) {
+                    if (endZoneFireStone.TryGetComponent<EyeInteractable>(out var fsEyeInterComp)) {
+                        if (fsEyeInterComp.IsHovered) {
+                            OutlineFireStoneWidthControl(Color.white);
+                            endZoneFireStone.GetComponent<FirestoneUI>().EnableSleepButton();
+                            if (FireStoneKeyHoldingCheck()) {
+                                OutlineFireStoneWidthControl(Color.gray);
+                                // run method to activate firestoneGameObj effect
+                                endZoneFireStone.GetComponent<FirestoneUI>().DisableSleepButton();
+                            }
+                        }
+                    }
+                    else Debug.LogWarning("FireStoneGazeControl(): EyeInteractable component not found on FireStone.");
+                }
+            }
         }
         #endregion
     }
