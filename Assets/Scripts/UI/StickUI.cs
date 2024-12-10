@@ -15,9 +15,6 @@ public class StickUI : MonoBehaviour
 
     public void Set()
     {
-        if (PlayerPrefsManager.GetBool(PlayerPrefsKeys.GotStickPower, false))
-        {
-            stickImageGO.SetActive(true);
-        }
+        stickImageGO.SetActive(PlayerPrefsManager.GetBool(PlayerPrefsKeys.GotStickPower, false));
     }
 }
