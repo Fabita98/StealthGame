@@ -340,13 +340,13 @@ namespace Assets.Scripts.GazeTrackingFeature {
             }
 
             SetFireStoneLayer();
-            FireStoneColliders = endZoneFireStone.GetComponents<BoxCollider>();
+            FireStoneColliders = endZoneFireStone.GetComponents<Collider>();
 
             if (FireStoneColliders.Length < 2) {
                 for (int i = FireStoneColliders.Length; i < 2; i++) {
                     gameObject.AddComponent<BoxCollider>();
                 }
-                FireStoneColliders = GetComponents<BoxCollider>();
+                FireStoneColliders = GetComponents<Collider>();
             }
 
             collisionCollider = FireStoneColliders[0];

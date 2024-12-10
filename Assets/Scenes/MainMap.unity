@@ -39188,8 +39188,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67978744717d2084da41bfbf8e3c66b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endZoneFireStone: {fileID: 767455531}
   completeGameParent: {fileID: 2087004397}
+  endZoneFireStone: {fileID: 767455531}
   onLookActivationObject: {fileID: 0}
 --- !u!4 &1332526909
 Transform:
@@ -57010,7 +57010,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2087004398
 Transform:
   m_ObjectHideFlags: 0
