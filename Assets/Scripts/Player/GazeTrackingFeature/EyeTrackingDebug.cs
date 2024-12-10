@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Assets.Scripts.GazeTrackingFeature {
@@ -22,9 +23,9 @@ namespace Assets.Scripts.GazeTrackingFeature {
         [SerializeField] private GameObject completeGameParent;
         public GameObject endZoneFireStone;
         public static bool FireStoneCanBeStared;
-        internal Collider[] FireStoneColliders;
-        private Collider collisionCollider;
-        private Collider eyeTrackingCollider;
+        internal BoxCollider[] FireStoneColliders;
+        private BoxCollider collisionCollider;
+        private BoxCollider eyeTrackingCollider;
         internal EyeOutline fireStoneEyeOutline;
         internal EyeInteractable fireStoneEyeInteractableComponent;
         // GameObject to be activated when the player looks at the fire stone
@@ -340,19 +341,23 @@ namespace Assets.Scripts.GazeTrackingFeature {
             }
 
             SetFireStoneLayer();
-            FireStoneColliders = endZoneFireStone.GetComponents<Collider>();
+            FireStoneColliders = endZoneFireStone.GetComponents<BoxCollider>();
 
             if (FireStoneColliders.Length < 2) {
                 for (int i = FireStoneColliders.Length; i < 2; i++) {
                     gameObject.AddComponent<BoxCollider>();
                 }
-                FireStoneColliders = GetComponents<Collider>();
+                FireStoneColliders = GetComponents<BoxCollider>();
             }
 
             collisionCollider = FireStoneColliders[0];
             eyeTrackingCollider = FireStoneColliders[1];
             collisionCollider.isTrigger = false;
+            collisionCollider.center = new Vector3(0.0539016724f, -0.150000006f, -3.05907917f);
+            collisionCollider.size = new Vector3(5.48551178f, 4.21999979f, 6.95542669f);
             eyeTrackingCollider.isTrigger = true;
+            eyeTrackingCollider.center = new Vector3(0.0299999993f, -0.150000006f, -3.44000006f);
+            eyeTrackingCollider.size = new Vector3(5.30999994f, 4.21999979f, 8.05833817f);
 
             // eyeOutline init
             if (endZoneFireStone.TryGetComponent<EyeOutline>(out var fStEyOut)) {
