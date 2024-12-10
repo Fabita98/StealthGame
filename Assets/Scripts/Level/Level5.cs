@@ -77,7 +77,7 @@ public class Level5 : Level
     public override void EndOfLevel()
     {
         Debug.Log("Level 2(5) Finished");
-        UIController.Instance.TutorialFinishedUI.gameObject.SetActive(true);
+        UIController.Instance.GameFinishedUI.gameObject.SetActive(true);
         // PlayerPrefsManager.SetInt(PlayerPrefsKeys.Level, 4);
         IsDone = true;
         PlayerPrefsManager.DeleteKey(PlayerPrefsKeys.Level5Process);
