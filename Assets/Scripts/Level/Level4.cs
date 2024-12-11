@@ -52,7 +52,8 @@ public class Level4 : Level
             default:
                 break;
         }
-        
+
+        Collider a;
     }
 
     private void firstProcess()

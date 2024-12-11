@@ -42880,7 +42880,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1628056600014774645, guid: 04f679b953cf73b49b555bd7bce56d93, type: 3}
       propertyPath: lightRange
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2577905059698467667, guid: 04f679b953cf73b49b555bd7bce56d93, type: 3}
       propertyPath: m_IsActive

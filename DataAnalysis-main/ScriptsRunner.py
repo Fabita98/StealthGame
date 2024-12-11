@@ -12,7 +12,7 @@ if __name__ == "__main__":
     discreteData = ['IsInStressfulArea', 'Deaths', 'LastCheckpoint']
     # discreteData = ['HeartBeatRate', 'IsInStressfulArea', 'Deaths', 'LastCheckpoint']
     datatypeToExcludeInKalman = ['Dante', 'External', "Eye", "Data_ALL"]
-    subjectsToExclude = ["S4", "S5", "S6"]
+    subjectsToExclude = ["S0", "S1", "S2", "S3", "S4", "S5", "S6"]
     process_movement=True, 
     process_eye=True, 
     process_face=True, 
