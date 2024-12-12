@@ -11,7 +11,6 @@ namespace Assets.Scripts.GazeTrackingFeature {
 
         [Header("Layers")]
         public LayerMask mask;
-        internal static int monkLayer, squareLayer, obstacleLayer, endInteractableStoneLayer;
 
         internal static Vector3 hitPosition;
         internal static EyeInteractable staredMonk = null;
@@ -26,11 +25,6 @@ namespace Assets.Scripts.GazeTrackingFeature {
                 Destroy(gameObject);
                 return;
             }
-
-            monkLayer = LayerMask.NameToLayer("Monks");
-            squareLayer = LayerMask.NameToLayer("Squares");
-            obstacleLayer = LayerMask.NameToLayer("Obstacle");
-            endInteractableStoneLayer = LayerMask.NameToLayer("EndInteractableStone");
         }
 
         private void OnEnable() => instanceCount++;
@@ -49,24 +43,24 @@ namespace Assets.Scripts.GazeTrackingFeature {
             if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, Mathf.Infinity, layerMask: mask)) {
                 hitPosition = hit.point;
 
-                if (hit.collider.gameObject.layer == monkLayer 
-                    || hit.collider.gameObject.layer == squareLayer 
-                    || hit.collider.gameObject.layer == endInteractableStoneLayer) {
+                if (hit.collider.gameObject.layer == EyeTrackingDebug.Instance.monkLayer 
+                    || hit.collider.gameObject.layer == EyeTrackingDebug.Instance.squareLayer 
+                    || hit.collider.gameObject.layer == EyeTrackingDebug.Instance.endInteractableStoneLayer) {
                     if (hit.collider.TryGetComponent<EyeInteractable>(out var eyeInteractable)) {
                         eyeInteractablesList.Add(eyeInteractable);
                         eyeInteractable.IsHovered = true;
 
                         // Case 0: Hovering square 
-                        if (eyeInteractable.gameObject.layer == squareLayer && eyeInteractable.TryGetComponent<MeshRenderer>(out var mR)) {
+                        if (eyeInteractable.gameObject.layer == EyeTrackingDebug.Instance.squareLayer && eyeInteractable.TryGetComponent<MeshRenderer>(out var mR)) {
                             mR.material = eyeInteractable.OnHoverActiveMaterial;
                         }
                         // Case 1: Hovering monk
-                        else if (eyeInteractable.gameObject.layer == monkLayer) {
+                        else if (eyeInteractable.gameObject.layer == EyeTrackingDebug.Instance.monkLayer) {
                             staredMonk = eyeInteractable;
                             EyeInteractable.HoveringTime += Time.fixedDeltaTime;
                         }
                         // Case 3: Hovering EndGameStone
-                        else if (eyeInteractable.gameObject.layer == endInteractableStoneLayer) {
+                        else if (eyeInteractable.gameObject.layer == EyeTrackingDebug.Instance.endInteractableStoneLayer) {
                             Debug.Log("Hovering EndGameStone");
                             // run method to set on FireEffectGameObject();
                         }
@@ -82,17 +76,17 @@ namespace Assets.Scripts.GazeTrackingFeature {
                 interactable.IsHovered = false;
                 EyeInteractable.HoveringTime = 0;
                 // Case 0: Unhovering square
-                if (interactable.gameObject.layer == squareLayer && interactable.TryGetComponent<MeshRenderer>(out var mR))
+                if (interactable.gameObject.layer == EyeTrackingDebug.Instance.squareLayer && interactable.TryGetComponent<MeshRenderer>(out var mR))
                     mR.material = interactable.OnHoverInactiveMaterial;
                 // Case 1: Unhovering monk
-                else if (interactable.gameObject.layer == monkLayer) {
+                else if (interactable.gameObject.layer == EyeTrackingDebug.Instance.monkLayer) {
                     interactable.eyeOutline.OutlineWidth = EyeTrackingDebug.noWidthValue;
                     interactable.isBeingStared = false;
                     interactable.gameObject.TryGetComponent<EnemyUtility>(out var enemyUtility);
                     enemyUtility.ableToSleepButtonUI.SetActive(false);
                 }
                 // Case 2: Unhovering EndGameStone
-                else if (interactable.gameObject.layer == endInteractableStoneLayer) {
+                else if (interactable.gameObject.layer == EyeTrackingDebug.Instance.endInteractableStoneLayer) {
                     if (interactable.TryGetComponent<FirestoneUI>(out var fSUI)) 
                         fSUI.DisableSleepButton(); 
                 }

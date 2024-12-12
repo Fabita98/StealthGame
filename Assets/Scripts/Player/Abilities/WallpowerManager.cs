@@ -76,7 +76,6 @@ public class WallpowerManager : MonoBehaviour {
         float eyeClosedL = 0;
         float eyeClosedR = 0;
 
-        bool isValidData = DataTracker.ovrexpr.ValidExpressions;
 
         if (DataTracker.ovrexpr.ValidExpressions) {
             eyeClosedL = DataTracker.ovrexpr[OVRFaceExpressions.FaceExpression.EyesClosedL];

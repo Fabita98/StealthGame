@@ -52,7 +52,7 @@ namespace Assets.Scripts.GazeTrackingFeature {
         void Awake() => ComponentInit();
 
         void Start() {
-            if (gameObject.layer == GazeLine.monkLayer) 
+            if (gameObject.layer == EyeTrackingDebug.Instance.monkLayer) 
                 InitializeAudioSources();
         }        
 
@@ -64,12 +64,12 @@ namespace Assets.Scripts.GazeTrackingFeature {
             }
             else Debug.LogWarning("EyeOutline component not found on: " + name);
 
-            if (gameObject.layer == GazeLine.squareLayer) {
+            if (gameObject.layer == EyeTrackingDebug.Instance.squareLayer) {
                 if (TryGetComponent<MeshRenderer>(out var mR)) meshRenderer = mR;
                 else Debug.LogWarning("MeshRenderer component not found on square: " + name);
             }
 
-            else if (gameObject.layer == GazeLine.monkLayer) {
+            else if (gameObject.layer == EyeTrackingDebug.Instance.monkLayer) {
                 InitializeColliders();
             }
         }

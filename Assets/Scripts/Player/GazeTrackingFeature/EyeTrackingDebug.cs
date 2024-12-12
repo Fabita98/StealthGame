@@ -7,6 +7,7 @@ using UnityEngine;
 namespace Assets.Scripts.GazeTrackingFeature {
     internal class EyeTrackingDebug : MonoBehaviour {
         public static EyeTrackingDebug Instance { get; private set; }
+        public int monkLayer, squareLayer, obstacleLayer, endInteractableStoneLayer;
         
         [Header("Eye hovering parameters")]
         // isStaring is used to check if the player is staring at a monk after a minimum amount of time;
@@ -68,7 +69,10 @@ namespace Assets.Scripts.GazeTrackingFeature {
             else if (Instance != this) {
                 Destroy(this);
             }
-
+            monkLayer = LayerMask.NameToLayer("Monks");
+            squareLayer = LayerMask.NameToLayer("Squares");
+            obstacleLayer = LayerMask.NameToLayer("Obstacle");
+            endInteractableStoneLayer = LayerMask.NameToLayer("Stone");
             FireStoneCanBeStared = PlayerPrefsManager.GetBool(PlayerPrefsKeys.GotStickPower);
         }
 
@@ -315,7 +319,7 @@ namespace Assets.Scripts.GazeTrackingFeature {
         #endregion
 
         #region Firestone methods
-        private void SetFireStoneLayer() => endZoneFireStone.layer = LayerMask.NameToLayer("EndInteractableStone");
+        private void SetFireStoneLayer() => endZoneFireStone.layer = LayerMask.NameToLayer("Stone");
 
         public void InitializeEndFireStone() {
             if (endZoneFireStone == null) {

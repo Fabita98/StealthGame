@@ -23,7 +23,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - House
+  - Stone
   - Water
   - UI
   - Player
@@ -36,7 +36,6 @@ TagManager:
   - Interactable
   - PlayerHand
   - MapCollider
-  - EndInteractableStone
   - 
   - 
   - 
