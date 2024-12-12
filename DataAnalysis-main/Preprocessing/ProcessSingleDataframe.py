@@ -28,19 +28,19 @@ class ProcessSingleDataframe:
     def processHeartBeat(self, unique_path):
         df = pd.read_csv(self.path + unique_path, sep=';')
         if 'HeartBeatRate' in df.columns:
-            non_60_idx = df[df['HeartBeatRate'] != 60].index.min()
-            if pd.notnull(non_60_idx):
-                non_60_value = df.loc[non_60_idx, 'HeartBeatRate']
-                df.loc[:non_60_idx - 1, 'HeartBeatRate'] = non_60_value
+            non_60_or_0_idx = df[(df['HeartBeatRate'] != 60) & (df['HeartBeatRate'] != 0)].index.min()
+            if pd.notnull(non_60_or_0_idx):
+                non_60_or_0_value = df.loc[non_60_or_0_idx, 'HeartBeatRate']
+                df.loc[:non_60_or_0_idx, 'HeartBeatRate'] = non_60_or_0_value
         return self.preprocessData(df)
     
     def processExternal(self, unique_path):
         df = pd.read_csv(self.path + unique_path, sep=';')
         if 'HeartBeatRate' in df.columns:
-            non_60_idx = df[df['HeartBeatRate'] != 60].index.min()
-            if pd.notnull(non_60_idx):
-                non_60_value = df.loc[non_60_idx, 'HeartBeatRate']
-                df.loc[:non_60_idx - 1, 'HeartBeatRate'] = non_60_value
+            non_60_or_0_idx = df[(df['HeartBeatRate'] != 60) & (df['HeartBeatRate'] != 0)].index.min()
+            if pd.notnull(non_60_or_0_idx):
+                non_60_or_0_value = df.loc[non_60_or_0_idx, 'HeartBeatRate']
+                df.loc[:non_60_or_0_idx, 'HeartBeatRate'] = non_60_or_0_value
         return self.preprocessData(df)
 
     def preprocessData(self, df, has_Discrete=False, target_samples_per_second=None):

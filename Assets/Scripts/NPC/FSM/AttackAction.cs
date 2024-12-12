@@ -18,6 +18,7 @@ public class AttackAction : FSMAction
             enemyAttackSensor.IsAttackCompleted = true;
             enemyUtility.ChooseAttackAnimation();
             machine.isStartOfAttack = false;
+            machine.PlayerController.isInStressfulArea = 0;
             PlayerFunctionalities.Instance.CapturedByGuard();
         }
     }

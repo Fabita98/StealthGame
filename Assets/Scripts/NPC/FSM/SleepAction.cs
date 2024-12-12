@@ -23,6 +23,7 @@ public class SleepAction : FSMAction
             machine.isStartOfChase = true;
             machine.isStartOfAttack = true;
             machine.isStartOfSleep = false;
+            machine.PlayerController.isInStressfulArea = 0;
             enemyUtility.sleepTimerUI.SetActive(true);
         }
     }

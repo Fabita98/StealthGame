@@ -34,10 +34,11 @@ public class ChaseAction : FSMAction
             machine.Stop();
             enemyUtility.SetAnimation(alert: true);
             machine.chaseAlertTimer = 0;
+            machine.PlayerController.isInStressfulArea = 1;
             machine.PlayerController.NumberOfEnemiesChasing++;
             enemyUtility.transitionMusic.startChase();
         }
-
+        
         if (machine.isChaseReset)
         {
             machine.stopAnimationChoose = false;
